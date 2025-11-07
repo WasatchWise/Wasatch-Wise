@@ -1,0 +1,5 @@
+{
+  "name": "The Help List",
+  "description": "A platform to connect neighbors in need of groceries with volunteers who can help. Features a Gemini-powered smart list organizer to make shopping trips more efficient.",
+  "requestFramePermissions": []
+}
