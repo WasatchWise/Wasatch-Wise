@@ -29,9 +29,17 @@ export const UpdateIndicator: React.FC<UpdateIndicatorProps> = ({ lastUpdated })
   }, [lastUpdated]);
 
   return (
-    <div className="flex items-center gap-2 text-xs text-gray-500">
-      <div className="w-2 h-2 bg-sanctuary-green rounded-full animate-pulse-soft"></div>
-      <span>Updated {timeAgo}</span>
+    <div className="flex items-center gap-2 text-xs" style={{ color: '#6B7280' }}>
+      <div
+        className="rounded-full"
+        style={{
+          width: '8px',
+          height: '8px',
+          backgroundColor: '#2A5F3E',
+          animation: 'pulse-soft 2s ease-in-out infinite'
+        }}
+      ></div>
+      <span style={{ textDecoration: 'none' }}>Updated {timeAgo}</span>
     </div>
   );
 };
