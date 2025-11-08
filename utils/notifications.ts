@@ -31,7 +31,7 @@ WHAT'S NEXT:
 ${data.helperName} will reach out to you shortly to coordinate shopping and delivery details. Please have your payment method ready (Venmo, Zelle, Cash App, or cash).
 
 NEED HELP?
-If you don't hear from your helper within a few hours, you can view your request status at thehelplist.co or contact us at safety@thehelplist.co.
+If you don't hear from your helper within a few hours, you can view your request status at thehelplist.co or contact us at help@thehelplist.co.
 
 Thank you for using The Help List!
 🤝 Neighbors helping neighbors`;

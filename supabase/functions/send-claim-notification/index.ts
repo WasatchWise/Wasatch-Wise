@@ -1,7 +1,7 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 
 const SENDGRID_API_KEY = Deno.env.get('SENDGRID_API_KEY')!
-const FROM_EMAIL = Deno.env.get('SENDGRID_FROM_EMAIL') || 'noreply@thehelplist.co'
+const FROM_EMAIL = Deno.env.get('SENDGRID_FROM_EMAIL') || 'help@thehelplist.co'
 
 interface NotificationRequest {
   to: string
@@ -60,7 +60,7 @@ WHAT'S NEXT:
 ${helperName} will reach out to you shortly to coordinate shopping and delivery details. Please have your payment method ready (Venmo, Zelle, Cash App, or cash).
 
 NEED HELP?
-If you don't hear from your helper within a few hours, you can view your request status at thehelplist.co or contact us at safety@thehelplist.co.
+If you don't hear from your helper within a few hours, you can view your request status at thehelplist.co or contact us at help@thehelplist.co.
 
 Thank you for using The Help List!
 🤝 Neighbors helping neighbors`,
@@ -113,7 +113,7 @@ Thank you for using The Help List!
       <p style="margin: 0; color: #92400E; font-size: 14px;">
         <strong>Need Help?</strong> If you don't hear from your helper within a few hours,
         <a href="https://thehelplist.co" style="color: #6C5CE7;">check your request status</a>
-        or contact us at <a href="mailto:safety@thehelplist.co" style="color: #6C5CE7;">safety@thehelplist.co</a>
+        or contact us at <a href="mailto:help@thehelplist.co" style="color: #6C5CE7;">help@thehelplist.co</a>
       </p>
     </div>
 

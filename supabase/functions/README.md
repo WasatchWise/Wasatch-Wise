@@ -46,7 +46,7 @@ Edge Functions need access to the SendGrid API key. Set it as a secret:
 
 ```bash
 supabase secrets set SENDGRID_API_KEY=<your-sendgrid-api-key>
-supabase secrets set SENDGRID_FROM_EMAIL=noreply@thehelplist.co
+supabase secrets set SENDGRID_FROM_EMAIL=help@thehelplist.co
 ```
 
 **Note:** Get your SendGrid API key from the project's `.env.local` file or from SendGrid dashboard.

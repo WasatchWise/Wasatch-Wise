@@ -163,7 +163,7 @@ export const CommunityGuidelines: React.FC = () => {
 
               <div className="mt-4 p-4 bg-white rounded border border-red-200">
                 <p className="font-bold text-secure-slate mb-2">How to Report:</p>
-                <p className="text-sm mb-2">Email us at: <a href="mailto:safety@thehelplist.co" className="text-trust-teal font-mono underline">safety@thehelplist.co</a></p>
+                <p className="text-sm mb-2">Email us at: <a href="mailto:help@thehelplist.co" className="text-trust-teal font-mono underline">help@thehelplist.co</a></p>
                 <p className="text-sm text-gray-600">Include the requester/helper name, date, and what happened. We take all reports seriously.</p>
               </div>
             </div>
