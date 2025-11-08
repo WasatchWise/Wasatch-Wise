@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Request } from '../types';
 import { LockIcon, UserIcon } from './icons';
+import { CombinedListModal } from './CombinedListModal';
 
 interface MyTasksProps {
   tasks: Request[];
@@ -101,6 +102,7 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, onComplete, onOpenGroceryHelp
 
 export const MyTasks: React.FC<MyTasksProps> = ({ tasks, onComplete, onOpenGroceryHelper }) => {
   const [sortStateIndex, setSortStateIndex] = useState(0);
+  const [showCombinedList, setShowCombinedList] = useState(false);
   const sortConfig = sortStates[sortStateIndex];
 
   const sortedTasks = useMemo(() => {
@@ -133,6 +135,14 @@ export const MyTasks: React.FC<MyTasksProps> = ({ tasks, onComplete, onOpenGroce
         <h2 className="text-3xl font-bold font-display text-secure-slate">Your Claimed Requests</h2>
         {tasks.length > 0 && (
           <div className="flex items-center space-x-2 self-end sm:self-center">
+            {tasks.length > 1 && (
+              <button
+                onClick={() => setShowCombinedList(true)}
+                className="px-4 py-2 bg-sanctuary-green text-white font-semibold rounded-lg hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sanctuary-green transition-colors text-sm flex items-center gap-2"
+              >
+                🛒 Combined List
+              </button>
+            )}
             <button
                 onClick={handleSortChange}
                 className="p-2 rounded-md border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-dignity-purple"
@@ -164,6 +174,7 @@ export const MyTasks: React.FC<MyTasksProps> = ({ tasks, onComplete, onOpenGroce
               ))}
           </div>
       )}
+      {showCombinedList && <CombinedListModal tasks={tasks} onClose={() => setShowCombinedList(false)} />}
     </div>
   );
 };

@@ -1,12 +1,14 @@
 import React, { useState, useMemo } from 'react';
 import { AvailableRequest } from '../types';
 import { MapPinIcon, ShareIcon, ShoppingBagIcon, UserIcon } from './icons';
+import { UpdateIndicator } from './UpdateIndicator';
 
 interface RequestListProps {
   requests: AvailableRequest[];
   claimRequest: (id: string) => void;
   onOpenGroceryHelper: (request: AvailableRequest) => void;
   onShare: (request: AvailableRequest) => void;
+  lastUpdated?: Date;
 }
 
 interface RequestCardProps {
@@ -96,8 +98,9 @@ const RequestCard: React.FC<RequestCardProps> = ({ request, onClaim, onOpenGroce
 };
 
 
-export const RequestList: React.FC<RequestListProps> = ({ requests, claimRequest, onOpenGroceryHelper, onShare }) => {
+export const RequestList: React.FC<RequestListProps> = ({ requests, claimRequest, onOpenGroceryHelper, onShare, lastUpdated }) => {
   const [selectedCity, setSelectedCity] = useState<string>('all');
+  const [sortBy, setSortBy] = useState<'urgency' | 'distance'>('urgency');
 
   // Extract unique cities from requests
   const availableCities = useMemo(() => {
@@ -109,7 +112,7 @@ export const RequestList: React.FC<RequestListProps> = ({ requests, claimRequest
     return Array.from(cities).sort();
   }, [requests]);
 
-  // Filter requests based on selected city
+  // Filter and sort requests
   const filteredRequests = useMemo(() => {
     const filtered = selectedCity === 'all'
       ? requests
@@ -118,40 +121,70 @@ export const RequestList: React.FC<RequestListProps> = ({ requests, claimRequest
           return city === selectedCity;
         });
 
-    // Sort by urgency level (today first)
-    const urgencyOrder = { 'today': 0, 'tomorrow': 1, 'this_week': 2, 'flexible': 3 };
+    // Sort based on selected criteria
     return [...filtered].sort((a, b) => {
-      const urgencyA = urgencyOrder[a.urgency_level as keyof typeof urgencyOrder] ?? 4;
-      const urgencyB = urgencyOrder[b.urgency_level as keyof typeof urgencyOrder] ?? 4;
-      if (urgencyA !== urgencyB) return urgencyA - urgencyB;
-      // If same urgency, sort by created_at (oldest first)
-      return new Date(a.created_at).getTime() - new Date(b.created_at).getTime();
+      if (sortBy === 'distance') {
+        // Sort by distance (closest first)
+        const distA = a.distance_meters || 999999;
+        const distB = b.distance_meters || 999999;
+        return distA - distB;
+      } else {
+        // Sort by urgency level (today first)
+        const urgencyOrder = { 'today': 0, 'tomorrow': 1, 'this_week': 2, 'flexible': 3 };
+        const urgencyA = urgencyOrder[a.urgency_level as keyof typeof urgencyOrder] ?? 4;
+        const urgencyB = urgencyOrder[b.urgency_level as keyof typeof urgencyOrder] ?? 4;
+        if (urgencyA !== urgencyB) return urgencyA - urgencyB;
+        // If same urgency, sort by created_at (oldest first)
+        return new Date(a.created_at).getTime() - new Date(b.created_at).getTime();
+      }
     });
-  }, [requests, selectedCity]);
+  }, [requests, selectedCity, sortBy]);
 
   return (
     <div>
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
-          <h2 className="text-3xl font-bold font-display text-secure-slate mb-4 sm:mb-0">Open Requests</h2>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-4">
+          <div className="flex flex-col gap-2">
+            <h2 className="text-3xl font-bold font-display text-secure-slate">Open Requests</h2>
+            {lastUpdated && <UpdateIndicator lastUpdated={lastUpdated} />}
+          </div>
 
-          {availableCities.length > 1 && (
+          <div className="flex flex-col sm:flex-row gap-3">
+            {/* Sort selector */}
             <div className="flex items-center gap-2">
-              <label htmlFor="city-filter" className="text-sm font-medium text-gray-700">
-                Filter by city:
+              <label htmlFor="sort-by" className="text-sm font-medium text-gray-700">
+                Sort by:
               </label>
               <select
-                id="city-filter"
-                value={selectedCity}
-                onChange={(e) => setSelectedCity(e.target.value)}
+                id="sort-by"
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value as 'urgency' | 'distance')}
                 className="px-4 py-2 bg-white border border-surface-tertiary rounded-lg text-sm text-secure-slate focus:outline-none focus:ring-2 focus:ring-dignity-purple focus:border-transparent"
               >
-                <option value="all">All Cities</option>
-                {availableCities.map(city => (
-                  <option key={city} value={city}>{city}</option>
-                ))}
+                <option value="urgency">Urgency</option>
+                <option value="distance">Distance</option>
               </select>
             </div>
-          )}
+
+            {/* City filter */}
+            {availableCities.length > 1 && (
+              <div className="flex items-center gap-2">
+                <label htmlFor="city-filter" className="text-sm font-medium text-gray-700">
+                  City:
+                </label>
+                <select
+                  id="city-filter"
+                  value={selectedCity}
+                  onChange={(e) => setSelectedCity(e.target.value)}
+                  className="px-4 py-2 bg-white border border-surface-tertiary rounded-lg text-sm text-secure-slate focus:outline-none focus:ring-2 focus:ring-dignity-purple focus:border-transparent"
+                >
+                  <option value="all">All Cities</option>
+                  {availableCities.map(city => (
+                    <option key={city} value={city}>{city}</option>
+                  ))}
+                </select>
+              </div>
+            )}
+          </div>
         </div>
 
         {filteredRequests.length === 0 ? (

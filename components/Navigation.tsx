@@ -1,8 +1,8 @@
 import React from 'react';
 
 interface NavigationProps {
-  currentPage: 'home' | 'about';
-  onNavigate: (page: 'home' | 'about') => void;
+  currentPage: 'home' | 'about' | 'safety';
+  onNavigate: (page: 'home' | 'about' | 'safety') => void;
   onShowHelp?: () => void;
 }
 
@@ -40,6 +40,16 @@ export const Navigation: React.FC<NavigationProps> = ({ currentPage, onNavigate,
               }`}
             >
               About
+            </button>
+            <button
+              onClick={() => onNavigate('safety')}
+              className={`text-sm font-medium transition-colors duration-200 ${
+                currentPage === 'safety'
+                  ? 'text-dignity-purple border-b-2 border-dignity-purple'
+                  : 'text-gray-600 hover:text-dignity-purple'
+              }`}
+            >
+              Safety
             </button>
             {onShowHelp && (
               <button

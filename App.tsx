@@ -10,11 +10,14 @@ import { Resources } from './components/Resources';
 import { MyRequests } from './components/MyRequests';
 import { GroceryHelperModal } from './components/GroceryHelperModal';
 import { WelcomeModal } from './components/WelcomeModal';
+import { InstallBanner } from './components/InstallBanner';
+import { CommunityGuidelines } from './components/CommunityGuidelines';
 import { Request, RequestStatus, AvailableRequest, PrivacyLevel } from './types';
 import { HelpListAPI } from './services/supabaseService';
+import { openNotificationPrompt } from './utils/notifications';
 
 const App: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState<'home' | 'about'>('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'about' | 'safety'>('home');
   const [availableRequests, setAvailableRequests] = useState<AvailableRequest[]>([]);
   const [myTasks, setMyTasks] = useState<Request[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -24,6 +27,7 @@ const App: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedRequest, setSelectedRequest] = useState<Request | AvailableRequest | null>(null);
   const [showWelcome, setShowWelcome] = useState(false);
+  const [lastUpdated, setLastUpdated] = useState<Date>(new Date());
 
   const HELPER_ID = "00000000-0000-0000-0000-000000000001"; // Placeholder UUID
   const HELPER_DISPLAY_NAME = "HelperBunny42";
@@ -43,6 +47,8 @@ const App: React.FC = () => {
 
       if (myTasksRes.error) throw new Error(myTasksRes.error.message);
       setMyTasks(myTasksRes.data || []);
+
+      setLastUpdated(new Date());
 
     } catch (e: any) {
       setError(`Could not load requests: ${e.message}. Please try refreshing the page.`);
@@ -100,14 +106,32 @@ const App: React.FC = () => {
 
   const claimRequest = useCallback(async (id: string) => {
     try {
+      // Find the request before claiming to get requester info
+      const requestToClaim = availableRequests.find(req => req.id === id);
+
       const res = await HelpListAPI.claimRequest(id, HELPER_ID, HELPER_DISPLAY_NAME);
       if (res.error) throw new Error(res.error.message);
+
+      // Prompt helper to notify requester
+      if (requestToClaim && requestToClaim.contactInfo && requestToClaim.contactMethod) {
+        setTimeout(() => {
+          openNotificationPrompt({
+            requesterName: requestToClaim.requester_display_name,
+            helperName: HELPER_DISPLAY_NAME,
+            need: requestToClaim.need,
+            contactMethod: requestToClaim.contactMethod,
+            contactInfo: requestToClaim.contactInfo,
+            urgency: requestToClaim.urgency_level,
+          });
+        }, 500); // Small delay so the UI updates first
+      }
+
       await fetchAllRequests();
     } catch (e: any) {
       console.error("Failed to claim request:", e);
       alert(`There was an error claiming this request: ${e.message}. Please try again.`);
     }
-  }, [fetchAllRequests]);
+  }, [fetchAllRequests, availableRequests]);
 
   const completeRequest = useCallback(async (id: string) => {
     try {
@@ -177,6 +201,10 @@ const App: React.FC = () => {
 
       {currentPage === 'about' ? (
         <About />
+      ) : currentPage === 'safety' ? (
+        <main className="container mx-auto p-4 sm:p-6 lg:p-8 flex-grow">
+          <CommunityGuidelines />
+        </main>
       ) : (
         <>
           <Header activeView={activeView} setActiveView={setActiveView} />
@@ -200,7 +228,7 @@ const App: React.FC = () => {
               <div>
                 {isLoading ? <LoadingIndicator /> : error ? <ErrorIndicator /> : (
                   <>
-                    <RequestList requests={availableRequests} claimRequest={claimRequest} onOpenGroceryHelper={openGroceryHelper} onShare={handleShareRequest} />
+                    <RequestList requests={availableRequests} claimRequest={claimRequest} onOpenGroceryHelper={openGroceryHelper} onShare={handleShareRequest} lastUpdated={lastUpdated} />
                     <MyTasks tasks={myTasks} onComplete={completeRequest} onOpenGroceryHelper={openGroceryHelper} />
                   </>
                 )}
@@ -213,6 +241,7 @@ const App: React.FC = () => {
       <Footer />
       {isModalOpen && <GroceryHelperModal request={selectedRequest} onClose={closeGroceryHelper} />}
       {showWelcome && <WelcomeModal onClose={handleCloseWelcome} />}
+      <InstallBanner />
     </div>
   );
 };
