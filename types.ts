@@ -22,7 +22,7 @@ export enum UserRole {
   ADMIN = 'admin',
 }
 
-// Request status from new schema
+// Request status from database schema
 export enum RequestStatus {
   DRAFT = 'draft',
   ACTIVE = 'active',
@@ -32,10 +32,6 @@ export enum RequestStatus {
   DELIVERED = 'delivered',
   CANCELLED = 'cancelled',
   EXPIRED = 'expired',
-  // Legacy statuses for compatibility
-  PENDING = 'PENDING',
-  IN_PROGRESS = 'IN_PROGRESS',
-  COMPLETED = 'COMPLETED',
 }
 
 

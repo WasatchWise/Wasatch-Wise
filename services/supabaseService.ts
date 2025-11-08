@@ -28,11 +28,6 @@ const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 const hasSupabaseConfig = Boolean(supabaseUrl && supabaseAnonKey);
 
-// Build-time verification
-console.log('[Build] VITE_SUPABASE_URL:', supabaseUrl ? `${supabaseUrl.substring(0, 30)}...` : 'MISSING');
-console.log('[Build] VITE_SUPABASE_ANON_KEY:', supabaseAnonKey ? 'PRESENT' : 'MISSING');
-console.log('[Build] Supabase client will be:', hasSupabaseConfig ? 'INITIALIZED' : 'NULL (mock mode)');
-
 const authOptions: Record<string, unknown> = {
   persistSession: true,
   autoRefreshToken: true,
@@ -656,7 +651,6 @@ export class HelpListAPI {
           RequestStatus.CLAIMED,
           RequestStatus.SHOPPING,
           RequestStatus.DELIVERING,
-          RequestStatus.IN_PROGRESS,
         ])
         .order('created_at', { ascending: false });
 
