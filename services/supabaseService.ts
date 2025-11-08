@@ -1,8 +1,9 @@
 // =====================================================
 // THE HELP LIST - SUPABASE CLIENT & API
 // =====================================================
-// Version: 1.0.0
+// Version: 1.0.1
 // Privacy-First Architecture
+// Live Database Connection
 // =====================================================
 
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
