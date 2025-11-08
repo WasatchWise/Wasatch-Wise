@@ -30,8 +30,14 @@ const RequestCard: React.FC<RequestCardProps> = ({ request, onClaim, onOpenGroce
       }
     };
 
+    const getDistanceDisplay = () => {
+      if (!request.distance_meters) return null;
+      const miles = (request.distance_meters / 1609.34).toFixed(1);
+      return parseFloat(miles) < 10 ? `${miles} mi` : null;
+    };
+
     return (
-        <div className="bg-surface-primary rounded-xl shadow-lg p-6 flex flex-col justify-between hover:shadow-xl transition-shadow duration-300 border border-surface-tertiary">
+        <div className="bg-surface-primary rounded-xl shadow-lg p-6 flex flex-col justify-between hover:shadow-xl hover:scale-[1.02] transition-all duration-300 border border-surface-tertiary animate-fade-in">
             <div>
                 <div className="flex items-center justify-between mb-4 pb-4 border-b border-surface-tertiary">
                     <div className="flex items-center">
@@ -47,9 +53,16 @@ const RequestCard: React.FC<RequestCardProps> = ({ request, onClaim, onOpenGroce
                         <ShoppingBagIcon className="w-5 h-5 mr-3 flex-shrink-0 mt-1 text-gray-400" />
                         <p>{request.need}</p>
                     </div>
-                    <div className="flex items-center">
-                        <MapPinIcon className="w-5 h-5 mr-3 flex-shrink-0 text-gray-400" />
-                        <p>{request.city || request.location_description}</p>
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center">
+                          <MapPinIcon className="w-5 h-5 mr-3 flex-shrink-0 text-gray-400" />
+                          <p>{request.city || request.location_description}</p>
+                        </div>
+                        {getDistanceDisplay() && (
+                          <span className="text-xs font-semibold text-trust-teal bg-trust-teal/10 px-2 py-1 rounded-full">
+                            {getDistanceDisplay()} away
+                          </span>
+                        )}
                     </div>
                 </div>
             </div>

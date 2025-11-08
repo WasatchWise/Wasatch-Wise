@@ -1,0 +1,36 @@
+{
+  "name": "The Help List",
+  "short_name": "Help List",
+  "description": "Privacy-first platform for neighbors helping neighbors with groceries and essentials",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F8F9FA",
+  "theme_color": "#6C5CE7",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["lifestyle", "social", "utilities"],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Make a Request",
+      "short_name": "Request",
+      "description": "Request help from neighbors",
+      "url": "/?view=needHelp",
+      "icons": []
+    },
+    {
+      "name": "Offer Help",
+      "short_name": "Help",
+      "description": "See requests and offer help",
+      "url": "/?view=offerHelp",
+      "icons": []
+    }
+  ]
+}

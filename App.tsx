@@ -54,6 +54,16 @@ const App: React.FC = () => {
 
   useEffect(() => {
     fetchAllRequests();
+
+    // Real-time subscriptions (only if using Supabase)
+    if (typeof window !== 'undefined') {
+      // Poll for updates every 30 seconds as fallback
+      const interval = setInterval(() => {
+        fetchAllRequests();
+      }, 30000);
+
+      return () => clearInterval(interval);
+    }
   }, [fetchAllRequests]);
 
   // Check for first visit

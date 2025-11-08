@@ -1,5 +1,6 @@
 import React from 'react';
 import { FutureVision } from './FutureVision';
+import { ImpactDashboard } from './ImpactDashboard';
 
 export const About: React.FC = () => {
   return (
@@ -14,6 +15,9 @@ export const About: React.FC = () => {
             We're building the world's first privacy-first platform for neighbors helping neighbors.
           </p>
         </div>
+
+        {/* Impact Dashboard */}
+        <ImpactDashboard />
 
         {/* Mission */}
         <div className="bg-white rounded-2xl shadow-lg p-8 mb-8 max-w-4xl mx-auto">
