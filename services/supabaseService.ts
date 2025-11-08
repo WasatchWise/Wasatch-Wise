@@ -364,6 +364,7 @@ class MockHelpListAPI {
     city: string;
     contactMethod: ContactMethod;
     contactInfo: string;
+    urgency?: 'today' | 'tomorrow' | 'this_week' | 'flexible';
   }): Promise<ApiResponse<Request>> {
     const requests = readRequests();
 
@@ -385,7 +386,7 @@ class MockHelpListAPI {
       city: requestData.city,
       items,
       item_count: items.length,
-      urgency_level: 'today',
+      urgency_level: requestData.urgency || 'flexible',
       delivery_privacy: PrivacyLevel.HIGH,
       location_description: requestData.city,
       status: RequestStatus.ACTIVE,
@@ -523,6 +524,7 @@ export class HelpListAPI {
     city: string;
     contactMethod: ContactMethod;
     contactInfo: string;
+    urgency?: 'today' | 'tomorrow' | 'this_week' | 'flexible';
   }): Promise<ApiResponse<Request>> {
     if (!supabase) {
       return MockHelpListAPI.createRequest(requestData);
@@ -547,7 +549,7 @@ export class HelpListAPI {
           need: requestData.need,
           city: requestData.city,
           items,
-          urgency_level: 'today',
+          urgency_level: requestData.urgency || 'flexible',
           delivery_privacy: PrivacyLevel.HIGH,
           location_description: requestData.city,
           status: RequestStatus.ACTIVE,

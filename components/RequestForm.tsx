@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { UserIcon, ShoppingBagIcon, MapPinIcon, AtSymbolIcon, PhoneIcon, ShieldIcon } from './icons';
 
 interface RequestFormProps {
-  addRequest: (request: { displayName: string, need: string, city: string, contactMethod: 'text' | 'email', contactInfo: string }) => Promise<void>;
+  addRequest: (request: { displayName: string, need: string, city: string, contactMethod: 'text' | 'email', contactInfo: string, urgency: 'today' | 'tomorrow' | 'this_week' | 'flexible' }) => Promise<void>;
 }
 
 const COMMON_NEEDS = [
@@ -18,6 +18,7 @@ export const RequestForm: React.FC<RequestFormProps> = ({ addRequest }) => {
   const [need, setNeed] = useState('');
   const [selectedCommonNeeds, setSelectedCommonNeeds] = useState<string[]>([]);
   const [customNeed, setCustomNeed] = useState('');
+  const [urgency, setUrgency] = useState<'today' | 'tomorrow' | 'this_week' | 'flexible'>('flexible');
   const [city, setCity] = useState('');
   const [contactMethod, setContactMethod] = useState<'text' | 'email'>('text');
   const [contactInfo, setContactInfo] = useState('');
@@ -53,11 +54,12 @@ export const RequestForm: React.FC<RequestFormProps> = ({ addRequest }) => {
     }
     setIsSubmitting(true);
     try {
-      await addRequest({ displayName, need: finalNeed, city, contactMethod, contactInfo });
+      await addRequest({ displayName, need: finalNeed, city, contactMethod, contactInfo, urgency });
       setDisplayName('');
       setNeed('');
       setSelectedCommonNeeds([]);
       setCustomNeed('');
+      setUrgency('flexible');
       setCity('');
       setContactInfo('');
       setSubmitted(true);
@@ -111,6 +113,22 @@ export const RequestForm: React.FC<RequestFormProps> = ({ addRequest }) => {
             </p>
         </div>
 
+        {/* Payment Clarity */}
+        <div className="bg-sanctuary-green/10 rounded-lg p-4 border-l-4 border-sanctuary-green">
+          <h3 className="font-bold text-sanctuary-green text-sm mb-2">💚 How Payment Works</h3>
+          <p className="text-sm text-gray-700 mb-2">
+            You'll coordinate payment directly with your helper. Most people use:
+          </p>
+          <ul className="text-sm text-gray-700 space-y-1 ml-4">
+            <li>• Venmo, Zelle, or Cash App</li>
+            <li>• Cash on delivery</li>
+            <li>• Or they might cover it as a gift</li>
+          </ul>
+          <p className="text-xs text-gray-600 mt-2 italic">
+            Discuss details when your helper contacts you. There's no pressure - just neighbors helping neighbors.
+          </p>
+        </div>
+
         <InputField id="displayName" label="Username or First Name" value={displayName} onChange={(e) => setDisplayName(e.target.value)} placeholder="e.g., SunflowerMom" icon={<UserIcon className="w-5 h-5 text-gray-400" />} />
 
         {/* What do you need - checkboxes + custom field */}
@@ -145,6 +163,25 @@ export const RequestForm: React.FC<RequestFormProps> = ({ addRequest }) => {
           </div>
           <p className="mt-2 text-xs text-gray-500">
             Check common items above or describe your specific need. We're here for immediate, practical help.
+          </p>
+        </div>
+
+        {/* Urgency Selector */}
+        <div>
+          <label htmlFor="urgency" className="block text-sm font-medium text-secure-slate mb-2">When do you need this?</label>
+          <select
+            id="urgency"
+            value={urgency}
+            onChange={(e) => setUrgency(e.target.value as 'today' | 'tomorrow' | 'this_week' | 'flexible')}
+            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-dignity-purple focus:border-dignity-purple text-sm"
+          >
+            <option value="today">Today (next 6 hours)</option>
+            <option value="tomorrow">Tomorrow</option>
+            <option value="this_week">This week</option>
+            <option value="flexible">Flexible (no rush)</option>
+          </select>
+          <p className="mt-2 text-xs text-gray-500">
+            This helps us match you with helpers who are available when you need them.
           </p>
         </div>
 

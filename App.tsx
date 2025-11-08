@@ -7,6 +7,7 @@ import { RequestForm } from './components/RequestForm';
 import { RequestList } from './components/RequestList';
 import { MyTasks } from './components/MyTasks';
 import { Resources } from './components/Resources';
+import { MyRequests } from './components/MyRequests';
 import { GroceryHelperModal } from './components/GroceryHelperModal';
 import { WelcomeModal } from './components/WelcomeModal';
 import { Request, RequestStatus, AvailableRequest, PrivacyLevel } from './types';
@@ -19,7 +20,7 @@ const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [activeView, setActiveView] = useState<'needHelp' | 'offerHelp'>('offerHelp');
-  const [needHelpView, setNeedHelpView] = useState<'form' | 'resources'>('form');
+  const [needHelpView, setNeedHelpView] = useState<'form' | 'myRequests' | 'resources'>('form');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedRequest, setSelectedRequest] = useState<Request | AvailableRequest | null>(null);
   const [showWelcome, setShowWelcome] = useState(false);
@@ -68,10 +69,17 @@ const App: React.FC = () => {
     setShowWelcome(false);
   }, []);
 
-  const addRequest = useCallback(async (newRequestData: { displayName: string, need: string, city: string, contactMethod: 'text' | 'email', contactInfo: string }) => {
+  const addRequest = useCallback(async (newRequestData: { displayName: string, need: string, city: string, contactMethod: 'text' | 'email', contactInfo: string, urgency: 'today' | 'tomorrow' | 'this_week' | 'flexible' }) => {
     try {
       const res = await HelpListAPI.createRequest(newRequestData);
       if (res.error) throw new Error(res.error.message);
+
+      // Track this request in localStorage for "My Requests"
+      if (res.data?.id) {
+        const myRequestIds = JSON.parse(localStorage.getItem('helplist::my_request_ids') || '[]');
+        localStorage.setItem('helplist::my_request_ids', JSON.stringify([...myRequestIds, res.data.id]));
+      }
+
       await fetchAllRequests();
     } catch (e: any) {
       console.error("Failed to add request:", e);
@@ -167,10 +175,13 @@ const App: React.FC = () => {
               <div className="max-w-2xl mx-auto">
                 <div className="mb-6 bg-surface-primary p-1 rounded-lg shadow-sm border border-surface-tertiary flex space-x-1">
                   <SubNavButton label="Make a Request" isActive={needHelpView === 'form'} onClick={() => setNeedHelpView('form')} />
+                  <SubNavButton label="My Requests" isActive={needHelpView === 'myRequests'} onClick={() => setNeedHelpView('myRequests')} />
                   <SubNavButton label="Find Resources" isActive={needHelpView === 'resources'} onClick={() => setNeedHelpView('resources')} />
                 </div>
                 {needHelpView === 'form' ? (
                   <RequestForm addRequest={addRequest} />
+                ) : needHelpView === 'myRequests' ? (
+                  <MyRequests />
                 ) : (
                   <Resources />
                 )}

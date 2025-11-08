@@ -43,11 +43,45 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, onComplete, onOpenGroceryHelp
                 </div>
             )}
         </div>
-        <p className="text-gray-700 mb-4">{task.need || task.items.map(i => i.name).join(', ')}</p>
-        <div className="flex items-center p-3 bg-dignity-purple/10 rounded-md mb-4">
-            <LockIcon className="w-5 h-5 text-dignity-purple mr-3"/>
-            <span className="font-mono text-dignity-purple text-sm">Contact requester via secure, anonymous methods.</span>
-        </div>
+        <p className="text-gray-700 mb-4">{task.need || task.items?.map(i => i.name).join(', ')}</p>
+
+        {/* Contact Information */}
+        {task.contactInfo && (
+          <div className="bg-sanctuary-green/10 rounded-lg p-4 border-l-4 border-sanctuary-green mb-4">
+            <h4 className="font-bold text-sanctuary-green text-sm mb-2">📞 Contact Requester</h4>
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-gray-700 font-medium">
+                  {task.contactMethod === 'text' ? 'Phone:' : 'Email:'}
+                </span>
+                <span className="text-sm font-mono text-secure-slate">
+                  {task.contactInfo}
+                </span>
+              </div>
+              <div className="flex gap-2">
+                {task.contactMethod === 'text' ? (
+                  <a
+                    href={`sms:${task.contactInfo}`}
+                    className="px-4 py-2 bg-sanctuary-green text-white rounded-md text-sm font-semibold hover:bg-opacity-90 transition-colors"
+                  >
+                    Send Text
+                  </a>
+                ) : (
+                  <a
+                    href={`mailto:${task.contactInfo}`}
+                    className="px-4 py-2 bg-sanctuary-green text-white rounded-md text-sm font-semibold hover:bg-opacity-90 transition-colors"
+                  >
+                    Send Email
+                  </a>
+                )}
+              </div>
+            </div>
+            <p className="text-xs text-gray-600 mt-2">
+              Reach out to coordinate shopping, delivery, and payment details.
+            </p>
+          </div>
+        )}
+
         <div className="flex flex-col sm:flex-row gap-2">
             <button
                 onClick={() => onOpenGroceryHelper(task)}
