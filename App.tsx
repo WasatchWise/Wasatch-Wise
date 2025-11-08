@@ -8,6 +8,7 @@ import { RequestList } from './components/RequestList';
 import { MyTasks } from './components/MyTasks';
 import { Resources } from './components/Resources';
 import { GroceryHelperModal } from './components/GroceryHelperModal';
+import { WelcomeModal } from './components/WelcomeModal';
 import { Request, RequestStatus, AvailableRequest, PrivacyLevel } from './types';
 import { HelpListAPI } from './services/supabaseService';
 
@@ -21,6 +22,7 @@ const App: React.FC = () => {
   const [needHelpView, setNeedHelpView] = useState<'form' | 'resources'>('form');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedRequest, setSelectedRequest] = useState<Request | AvailableRequest | null>(null);
+  const [showWelcome, setShowWelcome] = useState(false);
 
   const HELPER_ID = "00000000-0000-0000-0000-000000000001"; // Placeholder UUID
   const HELPER_DISPLAY_NAME = "HelperBunny42";
@@ -52,6 +54,19 @@ const App: React.FC = () => {
   useEffect(() => {
     fetchAllRequests();
   }, [fetchAllRequests]);
+
+  // Check for first visit
+  useEffect(() => {
+    const hasVisited = localStorage.getItem('helplist::has_visited');
+    if (!hasVisited) {
+      setShowWelcome(true);
+    }
+  }, []);
+
+  const handleCloseWelcome = useCallback(() => {
+    localStorage.setItem('helplist::has_visited', 'true');
+    setShowWelcome(false);
+  }, []);
 
   const addRequest = useCallback(async (newRequestData: { displayName: string, need: string, city: string, contactMethod: 'text' | 'email', contactInfo: string }) => {
     try {
@@ -140,7 +155,7 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-surface-secondary flex flex-col">
-      <Navigation currentPage={currentPage} onNavigate={setCurrentPage} />
+      <Navigation currentPage={currentPage} onNavigate={setCurrentPage} onShowHelp={() => setShowWelcome(true)} />
 
       {currentPage === 'about' ? (
         <About />
@@ -176,6 +191,7 @@ const App: React.FC = () => {
 
       <Footer />
       {isModalOpen && <GroceryHelperModal request={selectedRequest} onClose={closeGroceryHelper} />}
+      {showWelcome && <WelcomeModal onClose={handleCloseWelcome} />}
     </div>
   );
 };

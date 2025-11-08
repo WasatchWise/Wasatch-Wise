@@ -3,9 +3,10 @@ import React from 'react';
 interface NavigationProps {
   currentPage: 'home' | 'about';
   onNavigate: (page: 'home' | 'about') => void;
+  onShowHelp?: () => void;
 }
 
-export const Navigation: React.FC<NavigationProps> = ({ currentPage, onNavigate }) => {
+export const Navigation: React.FC<NavigationProps> = ({ currentPage, onNavigate, onShowHelp }) => {
   return (
     <nav className="bg-white border-b border-surface-tertiary shadow-sm">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -40,6 +41,15 @@ export const Navigation: React.FC<NavigationProps> = ({ currentPage, onNavigate 
             >
               About
             </button>
+            {onShowHelp && (
+              <button
+                onClick={onShowHelp}
+                className="text-sm font-medium text-gray-600 hover:text-dignity-purple transition-colors duration-200"
+                title="Show quick start guide"
+              >
+                ?
+              </button>
+            )}
           </div>
         </div>
       </div>
