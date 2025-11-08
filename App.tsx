@@ -1,5 +1,8 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { Header } from './components/Header';
+import { Navigation } from './components/Navigation';
+import { Footer } from './components/Footer';
+import { About } from './components/About';
 import { RequestForm } from './components/RequestForm';
 import { RequestList } from './components/RequestList';
 import { MyTasks } from './components/MyTasks';
@@ -9,6 +12,7 @@ import { Request, RequestStatus, AvailableRequest, PrivacyLevel } from './types'
 import { HelpListAPI } from './services/supabaseService';
 
 const App: React.FC = () => {
+  const [currentPage, setCurrentPage] = useState<'home' | 'about'>('home');
   const [availableRequests, setAvailableRequests] = useState<AvailableRequest[]>([]);
   const [myTasks, setMyTasks] = useState<Request[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -135,32 +139,42 @@ const App: React.FC = () => {
   );
 
   return (
-    <div className="min-h-screen bg-surface-secondary">
-      <Header activeView={activeView} setActiveView={setActiveView} />
-      <main className="container mx-auto p-4 sm:p-6 lg:p-8">
-        {activeView === 'needHelp' ? (
-          <div className="max-w-2xl mx-auto">
-            <div className="mb-6 bg-surface-primary p-1 rounded-lg shadow-sm border border-surface-tertiary flex space-x-1">
-              <SubNavButton label="Make a Request" isActive={needHelpView === 'form'} onClick={() => setNeedHelpView('form')} />
-              <SubNavButton label="Find Resources" isActive={needHelpView === 'resources'} onClick={() => setNeedHelpView('resources')} />
-            </div>
-            {needHelpView === 'form' ? (
-              <RequestForm addRequest={addRequest} />
+    <div className="min-h-screen bg-surface-secondary flex flex-col">
+      <Navigation currentPage={currentPage} onNavigate={setCurrentPage} />
+
+      {currentPage === 'about' ? (
+        <About />
+      ) : (
+        <>
+          <Header activeView={activeView} setActiveView={setActiveView} />
+          <main className="container mx-auto p-4 sm:p-6 lg:p-8 flex-grow">
+            {activeView === 'needHelp' ? (
+              <div className="max-w-2xl mx-auto">
+                <div className="mb-6 bg-surface-primary p-1 rounded-lg shadow-sm border border-surface-tertiary flex space-x-1">
+                  <SubNavButton label="Make a Request" isActive={needHelpView === 'form'} onClick={() => setNeedHelpView('form')} />
+                  <SubNavButton label="Find Resources" isActive={needHelpView === 'resources'} onClick={() => setNeedHelpView('resources')} />
+                </div>
+                {needHelpView === 'form' ? (
+                  <RequestForm addRequest={addRequest} />
+                ) : (
+                  <Resources />
+                )}
+              </div>
             ) : (
-              <Resources />
+              <div>
+                {isLoading ? <LoadingIndicator /> : error ? <ErrorIndicator /> : (
+                  <>
+                    <RequestList requests={availableRequests} claimRequest={claimRequest} onOpenGroceryHelper={openGroceryHelper} onShare={handleShareRequest} />
+                    <MyTasks tasks={myTasks} onComplete={completeRequest} onOpenGroceryHelper={openGroceryHelper} />
+                  </>
+                )}
+              </div>
             )}
-          </div>
-        ) : (
-          <div>
-             {isLoading ? <LoadingIndicator /> : error ? <ErrorIndicator /> : (
-              <>
-                <RequestList requests={availableRequests} claimRequest={claimRequest} onOpenGroceryHelper={openGroceryHelper} onShare={handleShareRequest} />
-                <MyTasks tasks={myTasks} onComplete={completeRequest} onOpenGroceryHelper={openGroceryHelper} />
-              </>
-            )}
-          </div>
-        )}
-      </main>
+          </main>
+        </>
+      )}
+
+      <Footer />
       {isModalOpen && <GroceryHelperModal request={selectedRequest} onClose={closeGroceryHelper} />}
     </div>
   );
