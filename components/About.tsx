@@ -28,6 +28,72 @@ export const About: React.FC = () => {
           </p>
         </div>
 
+        {/* How We're Different */}
+        <div className="bg-gradient-to-br from-dignity-purple/5 to-trust-teal/5 rounded-2xl shadow-lg p-8 mb-8 max-w-4xl mx-auto border border-dignity-purple/20">
+          <h2 className="text-2xl font-bold text-secure-slate font-display mb-4">How We're Different</h2>
+          <p className="text-gray-700 mb-6">
+            You might wonder: "Isn't this just GoFundMe for groceries?" Not quite. Here's the difference:
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-white rounded-xl p-5 shadow-sm">
+              <h3 className="font-bold text-gray-400 text-sm mb-3">Crowdfunding Platforms</h3>
+              <ul className="space-y-2 text-sm text-gray-600">
+                <li className="flex items-start gap-2">
+                  <span className="text-gray-400 mt-0.5">•</span>
+                  <span>Money changes hands (fundraising)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-gray-400 mt-0.5">•</span>
+                  <span>Campaigns take weeks or months</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-gray-400 mt-0.5">•</span>
+                  <span>Requires vulnerability & storytelling</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-gray-400 mt-0.5">•</span>
+                  <span>Public appeals to strangers nationwide</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-gray-400 mt-0.5">•</span>
+                  <span>Success = enough money raised</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-white rounded-xl p-5 shadow-sm border-2 border-sanctuary-green">
+              <h3 className="font-bold text-sanctuary-green text-sm mb-3">The Help List</h3>
+              <ul className="space-y-2 text-sm text-gray-700">
+                <li className="flex items-start gap-2">
+                  <span className="text-sanctuary-green mt-0.5">✓</span>
+                  <span>Direct action (someone physically helps)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-sanctuary-green mt-0.5">✓</span>
+                  <span>Happens TODAY or tomorrow</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-sanctuary-green mt-0.5">✓</span>
+                  <span>No explanations needed</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-sanctuary-green mt-0.5">✓</span>
+                  <span>Private, hyperlocal neighbors</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-sanctuary-green mt-0.5">✓</span>
+                  <span>Success = groceries in your hands</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <p className="mt-6 text-center text-sm font-semibold text-dignity-purple">
+            When you need groceries today, not money next week.
+          </p>
+        </div>
+
         {/* How It Works */}
         <div className="bg-white rounded-2xl shadow-lg p-8 mb-8 max-w-4xl mx-auto">
           <h2 className="text-2xl font-bold text-secure-slate font-display mb-6">How It Works</h2>

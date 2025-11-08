@@ -5,26 +5,59 @@ interface RequestFormProps {
   addRequest: (request: { displayName: string, need: string, city: string, contactMethod: 'text' | 'email', contactInfo: string }) => Promise<void>;
 }
 
+const COMMON_NEEDS = [
+  "Groceries for family",
+  "Baby essentials (diapers, formula)",
+  "Medicine/pharmacy pickup",
+  "Pet food",
+  "Household basics (toilet paper, soap, etc.)"
+];
+
 export const RequestForm: React.FC<RequestFormProps> = ({ addRequest }) => {
   const [displayName, setDisplayName] = useState('');
   const [need, setNeed] = useState('');
+  const [selectedCommonNeeds, setSelectedCommonNeeds] = useState<string[]>([]);
+  const [customNeed, setCustomNeed] = useState('');
   const [city, setCity] = useState('');
   const [contactMethod, setContactMethod] = useState<'text' | 'email'>('text');
   const [contactInfo, setContactInfo] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const toggleCommonNeed = (needText: string) => {
+    setSelectedCommonNeeds(prev =>
+      prev.includes(needText)
+        ? prev.filter(n => n !== needText)
+        : [...prev, needText]
+    );
+  };
+
+  const combinedNeed = () => {
+    const parts = [];
+    if (selectedCommonNeeds.length > 0) {
+      parts.push(selectedCommonNeeds.join(', '));
+    }
+    if (customNeed.trim()) {
+      parts.push(customNeed.trim());
+    }
+    return parts.join('. Also: ');
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!displayName || !need || !city || !contactInfo) {
-      alert('Please fill out all fields.');
+    const finalNeed = combinedNeed();
+
+    if (!displayName || !finalNeed || !city || !contactInfo) {
+      alert('Please fill out all fields and select or describe what you need.');
       return;
     }
     setIsSubmitting(true);
     try {
-      await addRequest({ displayName, need, city, contactMethod, contactInfo });
+      await addRequest({ displayName, need: finalNeed, city, contactMethod, contactInfo });
       setDisplayName('');
       setNeed('');
+      setSelectedCommonNeeds([]);
+      setCustomNeed('');
       setCity('');
       setContactInfo('');
       setSubmitted(true);
@@ -79,7 +112,42 @@ export const RequestForm: React.FC<RequestFormProps> = ({ addRequest }) => {
         </div>
 
         <InputField id="displayName" label="Username or First Name" value={displayName} onChange={(e) => setDisplayName(e.target.value)} placeholder="e.g., SunflowerMom" icon={<UserIcon className="w-5 h-5 text-gray-400" />} />
-        <InputField id="need" label="What do you need?" value={need} onChange={(e) => setNeed(e.target.value)} placeholder="Groceries for a family of 4" icon={<ShoppingBagIcon className="w-5 h-5 text-gray-400" />} />
+
+        {/* What do you need - checkboxes + custom field */}
+        <div>
+          <label className="block text-sm font-medium text-secure-slate mb-3">What do you need?</label>
+          <div className="space-y-2 mb-3">
+            {COMMON_NEEDS.map((commonNeed) => (
+              <label key={commonNeed} className="flex items-start cursor-pointer hover:bg-surface-secondary p-2 rounded-md transition-colors">
+                <input
+                  type="checkbox"
+                  checked={selectedCommonNeeds.includes(commonNeed)}
+                  onChange={() => toggleCommonNeed(commonNeed)}
+                  className="mt-0.5 h-4 w-4 text-dignity-purple focus:ring-dignity-purple border-gray-300 rounded"
+                />
+                <span className="ml-3 text-sm text-gray-700">{commonNeed}</span>
+              </label>
+            ))}
+          </div>
+
+          <div className="relative rounded-md shadow-sm">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-start pt-3 pointer-events-none">
+              <ShoppingBagIcon className="w-5 h-5 text-gray-400" />
+            </div>
+            <textarea
+              id="customNeed"
+              rows={2}
+              className="focus:ring-dignity-purple focus:border-dignity-purple block w-full pl-10 sm:text-sm border-gray-300 rounded-md py-2"
+              placeholder="Or describe something else you need..."
+              value={customNeed}
+              onChange={(e) => setCustomNeed(e.target.value)}
+            />
+          </div>
+          <p className="mt-2 text-xs text-gray-500">
+            Check common items above or describe your specific need. We're here for immediate, practical help.
+          </p>
+        </div>
+
         <InputField id="city" label="What city do you live in?" value={city} onChange={(e) => setCity(e.target.value)} placeholder="Longmont, CO" icon={<MapPinIcon className="w-5 h-5 text-gray-400" />} helperText="Just the city is enough to find helpers nearby."/>
 
         <div>
