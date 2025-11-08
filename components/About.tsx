@@ -1,5 +1,5 @@
 import React from 'react';
-import { LegendaryVision } from './LegendaryVision';
+import { FutureVision } from './FutureVision';
 
 export const About: React.FC = () => {
   return (
@@ -103,7 +103,7 @@ export const About: React.FC = () => {
         </div>
 
         {/* The Vision - Full Blueprint */}
-        <LegendaryVision />
+        <FutureVision />
       </div>
     </div>
   );
