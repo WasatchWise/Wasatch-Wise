@@ -28,6 +28,11 @@ const supabaseUrl = (import.meta as any)?.env?.VITE_SUPABASE_URL ?? (import.meta
 const supabaseAnonKey = (import.meta as any)?.env?.VITE_SUPABASE_ANON_KEY ?? (import.meta as any)?.env?.PUBLIC_SUPABASE_ANON_KEY;
 const hasSupabaseConfig = Boolean(supabaseUrl && supabaseAnonKey);
 
+// Build-time verification
+console.log('[Build] VITE_SUPABASE_URL:', supabaseUrl ? `${supabaseUrl.substring(0, 30)}...` : 'MISSING');
+console.log('[Build] VITE_SUPABASE_ANON_KEY:', supabaseAnonKey ? 'PRESENT' : 'MISSING');
+console.log('[Build] Supabase client will be:', hasSupabaseConfig ? 'INITIALIZED' : 'NULL (mock mode)');
+
 const authOptions: Record<string, unknown> = {
   persistSession: true,
   autoRefreshToken: true,
