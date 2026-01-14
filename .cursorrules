@@ -1,0 +1,32 @@
+# WasatchWise Project Context
+
+## Tech Stack
+- Next.js 15 (App Router, Server Actions, React Server Components)
+- TypeScript strict mode
+- Supabase (Postgres + Auth + Storage)
+- Tailwind CSS
+- Vercel hosting
+
+## Code Style
+- Use functional components (no classes)
+- Prefer Server Components (add 'use client' only when needed)
+- Use Zod for validation
+- Use Server Actions for mutations (avoid API routes unless needed for webhooks)
+- Database queries: use Supabase client (not Prisma/Drizzle)
+
+## File Naming
+- Components: PascalCase (e.g., `HeroSection.tsx`)
+- Actions/utilities: camelCase (e.g., `submitQuiz.ts`)
+- Routes: lowercase-with-hyphens (e.g., `ai-readiness-quiz/`)
+
+## AI Integration Patterns
+- Claude API: use for text generation, analysis
+- HeyGen API: use for personalized videos
+- ElevenLabs API: use for voice synthesis
+- Always log AI usage to `ai_content_log` table
+
+## Database
+- Use Supabase client (not raw SQL in app code)
+- Migrations in `supabase/migrations/`
+- Enable RLS on all client-facing tables
+

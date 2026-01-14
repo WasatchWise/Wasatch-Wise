@@ -1,0 +1,88 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "WasatchWise" [ref=e5]:
+        - /url: /
+      - navigation [ref=e6]:
+        - link "Services" [ref=e7]:
+          - /url: /services
+        - link "Methodology" [ref=e8]:
+          - /url: /methodology
+        - link "Case Studies" [ref=e9]:
+          - /url: /case-studies
+        - link "Resources" [ref=e10]:
+          - /url: /resources
+        - link "Ask Dan" [ref=e11]:
+          - /url: /tools/ask-dan
+      - link "Contact" [ref=e13]:
+        - /url: /contact
+  - main [ref=e14]:
+    - generic [ref=e17]:
+      - heading "Contact Us" [level=1] [ref=e18]
+      - paragraph [ref=e19]: Have questions? Want to book a Cognitive Audit? We'd love to hear from you.
+      - generic [ref=e20]:
+        - generic [ref=e21]:
+          - generic [ref=e22]: Name
+          - textbox [ref=e23]
+        - generic [ref=e24]:
+          - generic [ref=e25]: Email
+          - textbox [ref=e26]
+        - generic [ref=e27]:
+          - generic [ref=e28]: Organization
+          - textbox [ref=e29]
+        - generic [ref=e30]:
+          - generic [ref=e31]: Your Role (Optional)
+          - textbox [ref=e32]
+        - generic [ref=e33]:
+          - generic [ref=e34]: Message
+          - textbox [ref=e35]
+        - button "Send Message" [ref=e36] [cursor=pointer]
+  - contentinfo [ref=e37]:
+    - generic [ref=e38]:
+      - generic [ref=e39]:
+        - generic [ref=e40]:
+          - heading "WasatchWise" [level=3] [ref=e41]
+          - paragraph [ref=e42]: AI governance for school districts that actually works.
+        - generic [ref=e43]:
+          - heading "Services" [level=4] [ref=e44]
+          - list [ref=e45]:
+            - listitem [ref=e46]:
+              - link "Cognitive Audit" [ref=e47]:
+                - /url: /services/cognitive-audit
+            - listitem [ref=e48]:
+              - link "90-Day Protocol" [ref=e49]:
+                - /url: /services/compliance-protocol
+        - generic [ref=e50]:
+          - heading "Resources" [level=4] [ref=e51]
+          - list [ref=e52]:
+            - listitem [ref=e53]:
+              - link "Blog" [ref=e54]:
+                - /url: /resources/blog
+            - listitem [ref=e55]:
+              - link "Downloads" [ref=e56]:
+                - /url: /resources/downloads
+            - listitem [ref=e57]:
+              - link "AI Readiness Quiz" [ref=e58]:
+                - /url: /tools/ai-readiness-quiz
+        - generic [ref=e59]:
+          - heading "Company" [level=4] [ref=e60]
+          - list [ref=e61]:
+            - listitem [ref=e62]:
+              - link "About" [ref=e63]:
+                - /url: /about
+            - listitem [ref=e64]:
+              - link "Contact" [ref=e65]:
+                - /url: /contact
+      - paragraph [ref=e67]: © 2026 WasatchWise LLC. All rights reserved.
+  - status [ref=e68]:
+    - generic [ref=e69]:
+      - img [ref=e71]
+      - generic [ref=e73]:
+        - text: Static route
+        - button "Hide static indicator" [ref=e74] [cursor=pointer]:
+          - img [ref=e75]
+  - alert [ref=e78]
+```
