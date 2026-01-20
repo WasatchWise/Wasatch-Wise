@@ -1,11 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 
+export const dynamic = 'force-dynamic';
+
 // Use Service Role to bypass RLS (since this is a public lookup)
-const supabaseAdmin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
+function getSupabaseAdmin() {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+  if (!url || !serviceKey) {
+    throw new Error('Supabase environment variables are required');
+  }
+
+  return createClient(url, serviceKey);
+}
 
 interface Control {
   id: string;
@@ -83,6 +91,7 @@ function computeDistrictStatuses(
  */
 export async function GET() {
   try {
+    const supabaseAdmin = getSupabaseAdmin();
     // Fetch all data in parallel
     const [
       { data: districts, error: districtsError },
@@ -135,6 +144,7 @@ interface CreateDistrictBody {
  */
 export async function POST(req: NextRequest) {
   try {
+    const supabaseAdmin = getSupabaseAdmin();
     const body: CreateDistrictBody = await req.json();
     const { name, state, size_band, contacts } = body;
 
