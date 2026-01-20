@@ -106,8 +106,8 @@ Analyze these results and provide your assessment.`;
     let analysis: AuditAnalysis;
     try {
       // Extract JSON from response (handle markdown code blocks)
-      const jsonMatch = response.match(/\{[\s\S]*\}/);
-      const jsonString = jsonMatch ? jsonMatch[0] : response;
+      const jsonMatch = outputText.match(/\{[\s\S]*\}/);
+      const jsonString = jsonMatch ? jsonMatch[0] : outputText;
       analysis = JSON.parse(jsonString);
     } catch (parseError) {
       // Fallback if JSON parsing fails

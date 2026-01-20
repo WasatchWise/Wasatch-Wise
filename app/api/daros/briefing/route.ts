@@ -1,7 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createBriefingArtifacts } from '@/lib/daros/briefing';
-import { createClient } from '@/lib/supabase/server';
-
 /**
  * POST /api/daros/briefing/complete
  * Complete a briefing session and generate artifacts

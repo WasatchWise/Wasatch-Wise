@@ -64,18 +64,8 @@ export default function AskDanPage() {
     inputRef.current?.focus();
   }, []);
 
-  const handleRetry = useCallback(() => {
-    if (conversation.length > 0) {
-      const lastUserMessage = [...conversation].reverse().find(msg => msg.role === 'user');
-      if (lastUserMessage) {
-        setRetryCount(prev => prev + 1);
-        setError(null);
-        handleSubmit(new Event('submit') as any, lastUserMessage.content);
-      }
-    }
-  }, [conversation]);
-
-  const handleSubmit = async (e: React.FormEvent, overrideMessage?: string) => {
+  const handleSubmit = useCallback(
+    async (e: React.FormEvent, overrideMessage?: string) => {
     e.preventDefault();
     const messageToSend = overrideMessage || message;
     if (!messageToSend.trim() || isStreaming) return;
@@ -178,7 +168,18 @@ export default function AskDanPage() {
     } finally {
       setIsStreaming(false);
     }
-  };
+  }, [conversation, isStreaming, message]);
+
+  const handleRetry = useCallback(() => {
+    if (conversation.length > 0) {
+      const lastUserMessage = [...conversation].reverse().find(msg => msg.role === 'user');
+      if (lastUserMessage) {
+        setRetryCount(prev => prev + 1);
+        setError(null);
+        handleSubmit(new Event('submit') as any, lastUserMessage.content);
+      }
+    }
+  }, [conversation, handleSubmit]);
 
   const handleExamplePrompt = (prompt: string) => {
     setMessage(prompt);

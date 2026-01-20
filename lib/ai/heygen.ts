@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { createClient } from '@/lib/supabase/server';
 import { retry } from '@/lib/utils/retry';
 import { logger } from '@/lib/utils/logger';
@@ -39,13 +38,17 @@ export async function createHeyGenVideo({
 
   try {
     // Generate video with retry logic
-    const response = await logger.logAPICall('HeyGen', 'generate', () =>
+    const videoId = await logger.logAPICall('HeyGen', 'generate', () =>
       retry(
-        () =>
-          withTimeout(
-            axios.post(
-              `${HEYGEN_API_URL}/v2/video/generate`,
-              {
+        async () => {
+          const response = await withTimeout(
+            fetch(`${HEYGEN_API_URL}/v2/video/generate`, {
+              method: 'POST',
+              headers: {
+                'X-Api-Key': HEYGEN_API_KEY,
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
                 video_inputs: [
                   {
                     character: {
@@ -62,26 +65,33 @@ export async function createHeyGenVideo({
                 ],
                 dimension: { width: 1920, height: 1080 },
                 title,
-              },
-              {
-                headers: {
-                  'X-Api-Key': HEYGEN_API_KEY,
-                  'Content-Type': 'application/json',
-                },
-                timeout: API_TIMEOUTS.heygen,
-              }
-            ),
+              }),
+            }),
             API_TIMEOUTS.heygen,
             'HeyGen video generation request timed out'
-          ),
+          );
+
+          if (!response.ok) {
+            const error = new Error(
+              `HeyGen API error: ${response.status} ${response.statusText}`
+            ) as Error & { status?: number };
+            error.status = response.status;
+            throw error;
+          }
+
+          const data = (await response.json()) as { data?: { video_id?: string } };
+          return data?.data?.video_id || '';
+        },
         {
           maxAttempts: 2, // Only retry once for video generation
           retryable: (error): boolean => {
-            if (axios.isAxiosError(error)) {
+            if (error instanceof Error) {
+              const status = 'status' in error ? (error.status as number | undefined) : undefined;
               return (
-                error.code === 'ECONNRESET' ||
-                error.code === 'ETIMEDOUT' ||
-                (error.response?.status !== undefined && error.response.status >= 500)
+                error.message.includes('timeout') ||
+                error.message.includes('network') ||
+                error.message.includes('ECONNRESET') ||
+                (status !== undefined && status >= 500)
               );
             }
             return false;
@@ -89,8 +99,6 @@ export async function createHeyGenVideo({
         }
       )
     );
-
-    const videoId = response.data?.data?.video_id;
 
     if (!videoId) {
       throw new Error('No video ID returned from HeyGen API');
@@ -113,28 +121,35 @@ export async function createHeyGenVideo({
       attempts++;
 
       try {
-        const statusRes = await withTimeout(
-          axios.get(
-            `${HEYGEN_API_URL}/v1/video_status.get?video_id=${videoId}`,
-            {
-              headers: { 'X-Api-Key': HEYGEN_API_KEY },
-              timeout: 5000,
-            }
-          ),
+        const statusResponse = await withTimeout(
+          fetch(`${HEYGEN_API_URL}/v1/video_status.get?video_id=${videoId}`, {
+            headers: { 'X-Api-Key': HEYGEN_API_KEY },
+          }),
           5000,
           'Status check timed out'
         );
 
-        const status = statusRes.data?.data?.status;
+        if (!statusResponse.ok) {
+          const error = new Error(
+            `HeyGen status error: ${statusResponse.status} ${statusResponse.statusText}`
+          ) as Error & { status?: number };
+          error.status = statusResponse.status;
+          throw error;
+        }
+
+        const statusData = (await statusResponse.json()) as {
+          data?: { status?: string; video_url?: string; error?: string };
+        };
+        const status = statusData.data?.status;
 
         if (status === 'completed') {
-          videoUrl = statusRes.data.data.video_url;
+          videoUrl = statusData.data?.video_url || '';
           if (!videoUrl) {
             throw new Error('Video URL not found in completed response');
           }
         } else if (status === 'failed') {
           throw new Error(
-            `HeyGen video generation failed: ${statusRes.data?.data?.error || 'Unknown error'}`
+            `HeyGen video generation failed: ${statusData.data?.error || 'Unknown error'}`
           );
         }
         // Continue polling if status is 'processing' or other

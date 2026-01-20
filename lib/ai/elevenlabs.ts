@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { retry } from '@/lib/utils/retry';
 import { logger } from '@/lib/utils/logger';
 import { ExternalAPIError } from '@/lib/utils/errors';
@@ -41,40 +40,55 @@ export async function textToSpeech({
   }
 
   try {
-    const response = await logger.logAPICall('ElevenLabs', 'textToSpeech', () =>
+    const audioBuffer = await logger.logAPICall('ElevenLabs', 'textToSpeech', () =>
       retry(
-        () =>
-          withTimeout(
-            axios.post(
-              `${ELEVENLABS_API_URL}/text-to-speech/${voiceId}`,
-              {
+        async () => {
+          const response = await withTimeout(
+            fetch(`${ELEVENLABS_API_URL}/text-to-speech/${voiceId}`, {
+              method: 'POST',
+              headers: {
+                'xi-api-key': ELEVENLABS_API_KEY,
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
                 text,
                 model_id: modelId,
                 voice_settings: {
                   stability,
                   similarity_boost: similarityBoost,
                 },
-              },
-              {
-                headers: {
-                  'xi-api-key': ELEVENLABS_API_KEY,
-                  'Content-Type': 'application/json',
-                },
-                responseType: 'arraybuffer',
-                timeout: API_TIMEOUTS.elevenlabs,
-              }
-            ),
+              }),
+            }),
             API_TIMEOUTS.elevenlabs,
             'ElevenLabs TTS request timed out'
-          ),
+          );
+
+          if (!response.ok) {
+            const error = new Error(
+              `ElevenLabs API error: ${response.status} ${response.statusText}`
+            ) as Error & { status?: number };
+            error.status = response.status;
+            throw error;
+          }
+
+          const buffer = await response.arrayBuffer();
+
+          if (!buffer || buffer.byteLength === 0) {
+            throw new Error('Empty audio response from ElevenLabs');
+          }
+
+          return buffer;
+        },
         {
           maxAttempts: 3,
           retryable: (error): boolean => {
-            if (axios.isAxiosError(error)) {
+            if (error instanceof Error) {
+              const status = 'status' in error ? (error.status as number | undefined) : undefined;
               return (
-                error.code === 'ECONNRESET' ||
-                error.code === 'ETIMEDOUT' ||
-                (error.response?.status !== undefined && error.response.status >= 500)
+                error.message.includes('timeout') ||
+                error.message.includes('network') ||
+                error.message.includes('ECONNRESET') ||
+                (status !== undefined && status >= 500)
               );
             }
             return false;
@@ -83,11 +97,7 @@ export async function textToSpeech({
       )
     );
 
-    if (!response.data || response.data.byteLength === 0) {
-      throw new Error('Empty audio response from ElevenLabs');
-    }
-
-    return response.data;
+    return audioBuffer;
   } catch (error) {
     logger.error('ElevenLabs API error', error, {
       voiceId,

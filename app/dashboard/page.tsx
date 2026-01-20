@@ -2,12 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Button } from '@/components/shared/Button';
-
-// Set page title for accessibility
-if (typeof document !== 'undefined') {
-  document.title = 'District AI Readiness Dashboard | WasatchWise';
-}
 
 interface District {
   id: string;
@@ -19,19 +15,44 @@ interface District {
 }
 
 export default function DashboardPage() {
+  const router = useRouter();
   const [districts, setDistricts] = useState<District[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Set page title
+  useEffect(() => {
+    document.title = 'District AI Readiness Dashboard | WasatchWise';
+  }, []);
 
   useEffect(() => {
-    // TODO: Fetch districts from API
-    // For now, show placeholder with sample data for testing
-    setDistricts([
-      { id: '1', name: 'Sample District', state: 'UT', size_band: 'Large', created_at: new Date().toISOString(), status: 'green' },
-      { id: '2', name: 'Test District', state: 'UT', size_band: 'Medium', created_at: new Date().toISOString(), status: 'yellow' },
-      { id: '3', name: 'Demo District', state: 'UT', size_band: 'Small', created_at: new Date().toISOString(), status: 'red' },
-    ]);
-    setLoading(false);
+    async function fetchDistricts() {
+      try {
+        setError(null);
+        const response = await fetch('/api/daros/districts');
+        if (!response.ok) {
+          throw new Error('Failed to fetch districts');
+        }
+        const data = await response.json();
+        setDistricts(data.districts || []);
+      } catch (err) {
+        const message = err instanceof Error ? err.message : 'Failed to load districts';
+        console.error('Error fetching districts:', err);
+        setError(message);
+        setDistricts([]);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchDistricts();
   }, []);
+
+  const handleFixDistrict = (e: React.MouseEvent, districtId: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    // Navigate to the district's controls tab to fix issues
+    router.push(`/dashboard/districts/${districtId}?tab=controls`);
+  };
 
   const getStatusColor = (status?: 'red' | 'yellow' | 'green') => {
     switch (status) {
@@ -62,13 +83,18 @@ export default function DashboardPage() {
   return (
     <main className="min-h-screen bg-gray-50" role="main">
       <div className="max-w-7xl mx-auto px-6 py-12">
-        <header className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">
-            District AI Readiness OS
-          </h1>
-          <p className="text-gray-600">
-            Manage districts, briefing sessions, and generate governance artifacts
-          </p>
+        <header className="mb-8 flex justify-between items-start">
+          <div>
+            <h1 className="text-4xl font-bold text-gray-900 mb-2">
+              District AI Readiness OS
+            </h1>
+            <p className="text-gray-600">
+              Manage districts, briefing sessions, and generate governance artifacts
+            </p>
+          </div>
+          <Button variant="outline" data-export="board-summary">
+            Export Board Summary
+          </Button>
         </header>
 
         {/* Status Overview - Traffic Light Pattern */}
@@ -115,6 +141,16 @@ export default function DashboardPage() {
 
           {loading ? (
             <div className="p-12 text-center text-gray-500">Loading districts...</div>
+          ) : error ? (
+            <div className="p-12 text-center">
+              <p className="text-red-600 mb-4">{error}</p>
+              <Button
+                variant="outline"
+                onClick={() => window.location.reload()}
+              >
+                Try Again
+              </Button>
+            </div>
           ) : districts.length === 0 ? (
             <div className="p-12 text-center">
               <p className="text-gray-500 mb-4">No districts yet</p>
@@ -151,11 +187,7 @@ export default function DashboardPage() {
                         <Button
                           variant="primary"
                           size="sm"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            // Handle fix action
-                          }}
-                          data-pending="fix"
+                          onClick={(e) => handleFixDistrict(e, district.id)}
                         >
                           Fix
                         </Button>

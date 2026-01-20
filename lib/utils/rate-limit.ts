@@ -1,29 +1,53 @@
 /**
  * Rate limiting utilities
+ *
+ * NOTE: This implementation uses in-memory storage which works for single-instance
+ * deployments. For serverless/edge environments (Vercel, Cloudflare Workers),
+ * consider using Redis, Upstash, or a similar distributed store for production.
+ *
+ * For Vercel deployment, recommended alternatives:
+ * - @upstash/ratelimit (Redis-based, serverless-friendly)
+ * - Vercel KV with custom rate limiting logic
  */
 
+interface RateLimitRecord {
+  count: number;
+  resetTime: number;
+}
+
 interface RateLimitStore {
-  [key: string]: {
-    count: number;
-    resetTime: number;
-  };
+  [key: string]: RateLimitRecord;
+}
+
+interface RateLimitResult {
+  allowed: boolean;
+  remaining: number;
+  resetTime: number;
 }
 
 class RateLimiter {
   private store: RateLimitStore = {};
+  private cleanupInterval: ReturnType<typeof setInterval> | null = null;
+
+  constructor() {
+    // Start cleanup interval in non-edge environments
+    if (typeof setInterval !== 'undefined' && typeof window === 'undefined') {
+      this.cleanupInterval = setInterval(() => this.cleanup(), 5 * 60 * 1000);
+    }
+  }
 
   /**
    * Check if request should be rate limited
    * @param key - Unique identifier (IP, user ID, etc.)
    * @param limit - Maximum requests allowed
    * @param windowMs - Time window in milliseconds
-   * @returns true if rate limited, false otherwise
+   * @returns Object with allowed status, remaining requests, and reset time
    */
   check(
     key: string,
     limit: number = 10,
     windowMs: number = 60000 // 1 minute default
-  ): { allowed: boolean; remaining: number; resetTime: number } {
+  ): RateLimitResult {
     const now = Date.now();
     const record = this.store[key];
 
@@ -57,9 +81,9 @@ class RateLimiter {
   }
 
   /**
-   * Clean up expired entries
+   * Clean up expired entries to prevent memory leaks
    */
-  cleanup() {
+  cleanup(): void {
     const now = Date.now();
     for (const key in this.store) {
       if (now > this.store[key].resetTime) {
@@ -67,14 +91,20 @@ class RateLimiter {
       }
     }
   }
+
+  /**
+   * Stop the cleanup interval (useful for testing)
+   */
+  destroy(): void {
+    if (this.cleanupInterval) {
+      clearInterval(this.cleanupInterval);
+      this.cleanupInterval = null;
+    }
+  }
 }
 
+// Singleton instance
 export const rateLimiter = new RateLimiter();
-
-// Cleanup every 5 minutes
-if (typeof setInterval !== 'undefined') {
-  setInterval(() => rateLimiter.cleanup(), 5 * 60 * 1000);
-}
 
 /**
  * Get rate limit key from request

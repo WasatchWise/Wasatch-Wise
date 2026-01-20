@@ -11,7 +11,7 @@ export function normalizeDistrictName(csvName: string): string | null {
   const normalized = csvName.trim();
   
   // Direct mappings for common variations
-  const mappings: Record<string, string> = {
+  const mappings: Record<string, string | null> = {
     // Common abbreviations
     'Provo': 'Provo City School District',
     'Granite': 'Granite School District',
