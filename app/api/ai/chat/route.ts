@@ -1,4 +1,4 @@
-import { NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import Anthropic from '@anthropic-ai/sdk';
 import { withErrorHandling, sanitizeRequestBody } from '@/lib/utils/api-wrapper';
 import { ValidationError } from '@/lib/utils/errors';
@@ -77,7 +77,7 @@ async function handler(req: NextRequest) {
     },
   });
 
-  return new Response(stream, {
+  return new NextResponse(stream, {
     headers: {
       'Content-Type': 'text/event-stream',
       'Cache-Control': 'no-cache',
