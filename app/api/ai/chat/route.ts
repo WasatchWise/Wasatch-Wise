@@ -63,7 +63,7 @@ async function handler(req: NextRequest) {
         });
 
         for await (const chunk of stream) {
-          if (chunk.type === 'content_block_delta' && chunk.delta.type === 'text') {
+          if (chunk.type === 'content_block_delta' && chunk.delta.type === 'text_delta') {
             const text = chunk.delta.text;
             controller.enqueue(new TextEncoder().encode(`data: ${JSON.stringify({ text })}\n\n`));
           }
