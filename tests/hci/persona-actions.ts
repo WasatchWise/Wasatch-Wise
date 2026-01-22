@@ -67,13 +67,20 @@ export class PersonaActor {
       case 'F-pattern':
         // Superintendents scan headers and left-aligned text quickly.
         // They expect key info in the top-left quadrant.
-        await expect(element).toBeVisible({ timeout: 2000 });
+        // Check if multiple elements match
+        const count = await element.count();
+        if (count > 1) {
+          console.log(`[DAROS Actor] Found ${count} elements for "${label}", verifying first one...`);
+          await expect(element.first()).toBeVisible({ timeout: 2000 });
+        } else {
+          await expect(element).toBeVisible({ timeout: 2000 });
+        }
 
         // Simulate quick, non-thorough scan
         await this.page.waitForTimeout(300);
 
         // Verify it's in a prominent position (simplified check)
-        const fBox = await element.boundingBox();
+        const fBox = await (count > 1 ? element.first() : element).boundingBox();
         if (fBox && this.persona.toleranceForComplexity === 'low') {
           // Should be in upper portion of viewport
           if (fBox.y > 600) {
@@ -252,7 +259,7 @@ export class PersonaActor {
     const tabCount = await tabs.count();
 
     for (let i = 0; i < Math.min(3, tabCount); i++) {
-      await tabs.nth(i % tabCount).click().catch(() => {});
+      await tabs.nth(i % tabCount).click().catch(() => { });
       await this.page.waitForTimeout(150);
     }
 

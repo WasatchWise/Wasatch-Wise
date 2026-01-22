@@ -4,7 +4,6 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import { Button } from '@/components/shared/Button';
 import { Form, Input } from '@/components/shared/Form';
-import wisebotIcon from '@/wisebot.png';
 
 // Set page title for accessibility
 if (typeof document !== 'undefined') {
@@ -199,8 +198,10 @@ export default function WiseBotPage() {
         <header className="text-center mb-8">
           <div className="mx-auto mb-4 h-20 w-20 rounded-full bg-blue-50 flex items-center justify-center">
             <Image
-              src={wisebotIcon}
+              src="/wisebot.png"
               alt="WiseBot icon"
+              width={48}
+              height={48}
               className="h-12 w-12"
               priority
             />

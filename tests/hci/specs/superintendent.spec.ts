@@ -292,7 +292,7 @@ darosTest.describe('DAROS Archetype: Superintendent (Dr. Martinez)', () => {
         );
 
         if ((await onePagerButton.count()) > 0) {
-          await actor.makeDecision(await onePagerButton.first().getAttribute('class') || 'button');
+          await actor.makeDecision('[data-export="board-summary"]');
 
           // Should complete within budget
           expect(darosMetrics.totalClicks).toBeLessThanOrEqual(

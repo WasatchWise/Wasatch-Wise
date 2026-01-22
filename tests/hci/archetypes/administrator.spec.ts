@@ -186,7 +186,7 @@ test.describe('Administrator Archetype - Traffic Light Dashboard', () => {
 
         if (box) {
           // Should be in viewport without scrolling
-          expect(box.top).toBeLessThan(600);
+          expect(box.y).toBeLessThan(600);
         }
       }
     });

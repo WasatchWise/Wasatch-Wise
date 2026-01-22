@@ -180,7 +180,12 @@ test.describe('Information Density - Cognitive Throttling', () => {
       const paragraphs = page.locator('p');
 
       for (const p of (await paragraphs.all()).slice(0, 5)) {
-        const width = await p.evaluate(el => el.offsetWidth);
+        const width = await p.evaluate((el) => {
+          if (el instanceof HTMLElement) {
+            return el.offsetWidth;
+          }
+          return el.getBoundingClientRect().width;
+        });
         const fontSize = await p.evaluate(el =>
           parseFloat(window.getComputedStyle(el).fontSize)
         );

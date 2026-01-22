@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import aaaLogo from '@/AAA.png';
 import { Button } from '@/components/shared/Button';
 
 export default function AdultAIAcademyPage() {
@@ -9,8 +8,10 @@ export default function AdultAIAcademyPage() {
         <header className="text-center mb-12">
           <div className="mx-auto mb-6 h-48 w-48 rounded-3xl bg-white shadow-sm flex items-center justify-center">
             <Image
-              src={aaaLogo}
+              src="/AAA.png"
               alt="Adult AI Academy logo"
+              width={160}
+              height={160}
               className="h-40 w-40"
               priority
             />

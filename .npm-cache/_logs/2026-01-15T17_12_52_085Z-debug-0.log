@@ -1,0 +1,450 @@
+0 verbose cli /opt/homebrew/Cellar/node@22/22.18.0/bin/node /opt/homebrew/opt/node@22/bin/npm
+1 info using npm@10.9.3
+2 info using node@v22.18.0
+3 silly config load:file:/opt/homebrew/Cellar/node@22/22.18.0/lib/node_modules/npm/npmrc
+4 silly config load:file:/Users/johnlyman/Desktop/wasatchwise/.npmrc
+5 silly config load:file:/Users/johnlyman/.npmrc
+6 silly config load:file:/opt/homebrew/etc/npmrc
+7 verbose title npm install caniuse-lite baseline-browser-mapping
+8 verbose argv "install" "caniuse-lite" "baseline-browser-mapping"
+9 verbose logfile logs-max:10 dir:/Users/johnlyman/Desktop/wasatchwise/.npm-cache/_logs/2026-01-15T17_12_52_085Z-
+10 verbose logfile /Users/johnlyman/Desktop/wasatchwise/.npm-cache/_logs/2026-01-15T17_12_52_085Z-debug-0.log
+11 silly logfile start cleaning logs, removing 1 files
+12 silly packumentCache heap:2197815296 maxSize:549453824 maxEntrySize:274726912
+13 silly logfile done cleaning log files
+14 silly idealTree buildDeps
+15 silly fetch manifest caniuse-lite@*
+16 silly packumentCache full:https://registry.npmjs.org/caniuse-lite cache-miss
+17 verbose shrinkwrap failed to load node_modules/.package-lock.json out of date, updated: node_modules/@next/eslint-plugin-next
+18 http cache https://registry.npmjs.org/caniuse-lite 31ms (cache hit)
+19 silly packumentCache full:https://registry.npmjs.org/caniuse-lite set size:2242439 disposed:false
+20 silly fetch manifest baseline-browser-mapping@*
+21 silly packumentCache full:https://registry.npmjs.org/baseline-browser-mapping cache-miss
+22 http cache https://registry.npmjs.org/baseline-browser-mapping 3ms (cache hit)
+23 silly packumentCache full:https://registry.npmjs.org/baseline-browser-mapping set size:367517 disposed:false
+24 silly placeDep ROOT baseline-browser-mapping@2.9.14 REPLACE for: wasatchwise@0.1.0 want: *
+25 silly placeDep ROOT caniuse-lite@1.0.30001764 OK for: wasatchwise@0.1.0 want: *
+26 silly fetch manifest react@^18.2.0
+27 silly packumentCache full:https://registry.npmjs.org/react cache-miss
+28 http fetch GET 200 https://registry.npmjs.org/react 291ms (cache revalidated)
+29 silly packumentCache full:https://registry.npmjs.org/react set size:6386325 disposed:false
+30 warn ERESOLVE overriding peer dependency {
+30 warn ERESOLVE   code: 'ERESOLVE',
+30 warn ERESOLVE   edge: {
+30 warn ERESOLVE     type: 'peer',
+30 warn ERESOLVE     name: 'react',
+30 warn ERESOLVE     spec: '^18.2.0',
+30 warn ERESOLVE     error: 'INVALID',
+30 warn ERESOLVE     from: {
+30 warn ERESOLVE       name: '@react-email/body',
+30 warn ERESOLVE       version: '0.0.8',
+30 warn ERESOLVE       location: 'node_modules/@react-email/body',
+30 warn ERESOLVE       isWorkspace: false,
+30 warn ERESOLVE       dependents: [Array]
+30 warn ERESOLVE     }
+30 warn ERESOLVE   },
+30 warn ERESOLVE   dep: {
+30 warn ERESOLVE     name: 'react',
+30 warn ERESOLVE     version: '18.3.1',
+30 warn ERESOLVE     whileInstalling: {
+30 warn ERESOLVE       name: '@react-email/body',
+30 warn ERESOLVE       version: '0.0.8',
+30 warn ERESOLVE       path: '/Users/johnlyman/Desktop/wasatchwise/node_modules/@react-email/body'
+30 warn ERESOLVE     },
+30 warn ERESOLVE     location: 'node_modules/react',
+30 warn ERESOLVE     isWorkspace: false,
+30 warn ERESOLVE     dependents: [ [Object] ]
+30 warn ERESOLVE   },
+30 warn ERESOLVE   force: false,
+30 warn ERESOLVE   isMine: false,
+30 warn ERESOLVE   strictPeerDeps: false,
+30 warn ERESOLVE   current: {
+30 warn ERESOLVE     name: 'react',
+30 warn ERESOLVE     version: '19.0.0',
+30 warn ERESOLVE     location: 'node_modules/react',
+30 warn ERESOLVE     isWorkspace: false,
+30 warn ERESOLVE     dependents: [
+30 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+30 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+30 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+30 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+30 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+30 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+30 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+30 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+30 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+30 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+30 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+30 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+30 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+30 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+30 warn ERESOLVE       [Object], [Object], [Object], [Object]
+30 warn ERESOLVE     ]
+30 warn ERESOLVE   },
+30 warn ERESOLVE   peerConflict: {
+30 warn ERESOLVE     current: {
+30 warn ERESOLVE       name: 'react',
+30 warn ERESOLVE       version: '19.0.0',
+30 warn ERESOLVE       location: 'node_modules/react',
+30 warn ERESOLVE       isWorkspace: false,
+30 warn ERESOLVE       dependents: [Array]
+30 warn ERESOLVE     },
+30 warn ERESOLVE     peer: {
+30 warn ERESOLVE       name: 'react',
+30 warn ERESOLVE       version: '18.3.1',
+30 warn ERESOLVE       whileInstalling: [Object],
+30 warn ERESOLVE       location: 'node_modules/react',
+30 warn ERESOLVE       isWorkspace: false,
+30 warn ERESOLVE       dependents: [Array]
+30 warn ERESOLVE     }
+30 warn ERESOLVE   }
+30 warn ERESOLVE }
+31 warn ERESOLVE overriding peer dependency {
+31 warn ERESOLVE   code: 'ERESOLVE',
+31 warn ERESOLVE   edge: {
+31 warn ERESOLVE     type: 'peer',
+31 warn ERESOLVE     name: 'react',
+31 warn ERESOLVE     spec: '^18.2.0',
+31 warn ERESOLVE     error: 'INVALID',
+31 warn ERESOLVE     from: {
+31 warn ERESOLVE       name: '@react-email/button',
+31 warn ERESOLVE       version: '0.0.15',
+31 warn ERESOLVE       location: 'node_modules/@react-email/button',
+31 warn ERESOLVE       isWorkspace: false,
+31 warn ERESOLVE       dependents: [Array]
+31 warn ERESOLVE     }
+31 warn ERESOLVE   },
+31 warn ERESOLVE   dep: {
+31 warn ERESOLVE     name: 'react',
+31 warn ERESOLVE     version: '18.3.1',
+31 warn ERESOLVE     whileInstalling: {
+31 warn ERESOLVE       name: '@react-email/button',
+31 warn ERESOLVE       version: '0.0.15',
+31 warn ERESOLVE       path: '/Users/johnlyman/Desktop/wasatchwise/node_modules/@react-email/button'
+31 warn ERESOLVE     },
+31 warn ERESOLVE     location: 'node_modules/react',
+31 warn ERESOLVE     isWorkspace: false,
+31 warn ERESOLVE     dependents: [ [Object] ]
+31 warn ERESOLVE   },
+31 warn ERESOLVE   force: false,
+31 warn ERESOLVE   isMine: false,
+31 warn ERESOLVE   strictPeerDeps: false,
+31 warn ERESOLVE   current: {
+31 warn ERESOLVE     name: 'react',
+31 warn ERESOLVE     version: '19.0.0',
+31 warn ERESOLVE     location: 'node_modules/react',
+31 warn ERESOLVE     isWorkspace: false,
+31 warn ERESOLVE     dependents: [
+31 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+31 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+31 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+31 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+31 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+31 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+31 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+31 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+31 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+31 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+31 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+31 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+31 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+31 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+31 warn ERESOLVE       [Object], [Object], [Object], [Object]
+31 warn ERESOLVE     ]
+31 warn ERESOLVE   },
+31 warn ERESOLVE   peerConflict: {
+31 warn ERESOLVE     current: {
+31 warn ERESOLVE       name: 'react',
+31 warn ERESOLVE       version: '19.0.0',
+31 warn ERESOLVE       location: 'node_modules/react',
+31 warn ERESOLVE       isWorkspace: false,
+31 warn ERESOLVE       dependents: [Array]
+31 warn ERESOLVE     },
+31 warn ERESOLVE     peer: {
+31 warn ERESOLVE       name: 'react',
+31 warn ERESOLVE       version: '18.3.1',
+31 warn ERESOLVE       whileInstalling: [Object],
+31 warn ERESOLVE       location: 'node_modules/react',
+31 warn ERESOLVE       isWorkspace: false,
+31 warn ERESOLVE       dependents: [Array]
+31 warn ERESOLVE     }
+31 warn ERESOLVE   }
+31 warn ERESOLVE }
+32 warn ERESOLVE overriding peer dependency {
+32 warn ERESOLVE   code: 'ERESOLVE',
+32 warn ERESOLVE   edge: {
+32 warn ERESOLVE     type: 'peer',
+32 warn ERESOLVE     name: 'react',
+32 warn ERESOLVE     spec: '^18.2.0',
+32 warn ERESOLVE     error: 'INVALID',
+32 warn ERESOLVE     from: {
+32 warn ERESOLVE       name: '@react-email/code-block',
+32 warn ERESOLVE       version: '0.0.4',
+32 warn ERESOLVE       location: 'node_modules/@react-email/code-block',
+32 warn ERESOLVE       isWorkspace: false,
+32 warn ERESOLVE       dependents: [Array]
+32 warn ERESOLVE     }
+32 warn ERESOLVE   },
+32 warn ERESOLVE   dep: {
+32 warn ERESOLVE     name: 'react',
+32 warn ERESOLVE     version: '18.3.1',
+32 warn ERESOLVE     whileInstalling: {
+32 warn ERESOLVE       name: '@react-email/code-block',
+32 warn ERESOLVE       version: '0.0.4',
+32 warn ERESOLVE       path: '/Users/johnlyman/Desktop/wasatchwise/node_modules/@react-email/code-block'
+32 warn ERESOLVE     },
+32 warn ERESOLVE     location: 'node_modules/react',
+32 warn ERESOLVE     isWorkspace: false,
+32 warn ERESOLVE     dependents: [ [Object] ]
+32 warn ERESOLVE   },
+32 warn ERESOLVE   force: false,
+32 warn ERESOLVE   isMine: false,
+32 warn ERESOLVE   strictPeerDeps: false,
+32 warn ERESOLVE   current: {
+32 warn ERESOLVE     name: 'react',
+32 warn ERESOLVE     version: '19.0.0',
+32 warn ERESOLVE     location: 'node_modules/react',
+32 warn ERESOLVE     isWorkspace: false,
+32 warn ERESOLVE     dependents: [
+32 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+32 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+32 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+32 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+32 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+32 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+32 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+32 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+32 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+32 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+32 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+32 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+32 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+32 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+32 warn ERESOLVE       [Object], [Object], [Object], [Object]
+32 warn ERESOLVE     ]
+32 warn ERESOLVE   },
+32 warn ERESOLVE   peerConflict: {
+32 warn ERESOLVE     current: {
+32 warn ERESOLVE       name: 'react',
+32 warn ERESOLVE       version: '19.0.0',
+32 warn ERESOLVE       location: 'node_modules/react',
+32 warn ERESOLVE       isWorkspace: false,
+32 warn ERESOLVE       dependents: [Array]
+32 warn ERESOLVE     },
+32 warn ERESOLVE     peer: {
+32 warn ERESOLVE       name: 'react',
+32 warn ERESOLVE       version: '18.3.1',
+32 warn ERESOLVE       whileInstalling: [Object],
+32 warn ERESOLVE       location: 'node_modules/react',
+32 warn ERESOLVE       isWorkspace: false,
+32 warn ERESOLVE       dependents: [Array]
+32 warn ERESOLVE     }
+32 warn ERESOLVE   }
+32 warn ERESOLVE }
+33 warn ERESOLVE overriding peer dependency {
+33 warn ERESOLVE   code: 'ERESOLVE',
+33 warn ERESOLVE   edge: {
+33 warn ERESOLVE     type: 'peer',
+33 warn ERESOLVE     name: 'react',
+33 warn ERESOLVE     spec: '^18.2.0',
+33 warn ERESOLVE     error: 'INVALID',
+33 warn ERESOLVE     from: {
+33 warn ERESOLVE       name: '@react-email/code-inline',
+33 warn ERESOLVE       version: '0.0.2',
+33 warn ERESOLVE       location: 'node_modules/@react-email/code-inline',
+33 warn ERESOLVE       isWorkspace: false,
+33 warn ERESOLVE       dependents: [Array]
+33 warn ERESOLVE     }
+33 warn ERESOLVE   },
+33 warn ERESOLVE   dep: {
+33 warn ERESOLVE     name: 'react',
+33 warn ERESOLVE     version: '18.3.1',
+33 warn ERESOLVE     whileInstalling: {
+33 warn ERESOLVE       name: '@react-email/code-inline',
+33 warn ERESOLVE       version: '0.0.2',
+33 warn ERESOLVE       path: '/Users/johnlyman/Desktop/wasatchwise/node_modules/@react-email/code-inline'
+33 warn ERESOLVE     },
+33 warn ERESOLVE     location: 'node_modules/react',
+33 warn ERESOLVE     isWorkspace: false,
+33 warn ERESOLVE     dependents: [ [Object] ]
+33 warn ERESOLVE   },
+33 warn ERESOLVE   force: false,
+33 warn ERESOLVE   isMine: false,
+33 warn ERESOLVE   strictPeerDeps: false,
+33 warn ERESOLVE   current: {
+33 warn ERESOLVE     name: 'react',
+33 warn ERESOLVE     version: '19.0.0',
+33 warn ERESOLVE     location: 'node_modules/react',
+33 warn ERESOLVE     isWorkspace: false,
+33 warn ERESOLVE     dependents: [
+33 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+33 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+33 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+33 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+33 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+33 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+33 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+33 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+33 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+33 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+33 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+33 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+33 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+33 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+33 warn ERESOLVE       [Object], [Object], [Object], [Object]
+33 warn ERESOLVE     ]
+33 warn ERESOLVE   },
+33 warn ERESOLVE   peerConflict: {
+33 warn ERESOLVE     current: {
+33 warn ERESOLVE       name: 'react',
+33 warn ERESOLVE       version: '19.0.0',
+33 warn ERESOLVE       location: 'node_modules/react',
+33 warn ERESOLVE       isWorkspace: false,
+33 warn ERESOLVE       dependents: [Array]
+33 warn ERESOLVE     },
+33 warn ERESOLVE     peer: {
+33 warn ERESOLVE       name: 'react',
+33 warn ERESOLVE       version: '18.3.1',
+33 warn ERESOLVE       whileInstalling: [Object],
+33 warn ERESOLVE       location: 'node_modules/react',
+33 warn ERESOLVE       isWorkspace: false,
+33 warn ERESOLVE       dependents: [Array]
+33 warn ERESOLVE     }
+33 warn ERESOLVE   }
+33 warn ERESOLVE }
+34 warn ERESOLVE overriding peer dependency {
+34 warn ERESOLVE   code: 'ERESOLVE',
+34 warn ERESOLVE   edge: {
+34 warn ERESOLVE     type: 'peer',
+34 warn ERESOLVE     name: 'react',
+34 warn ERESOLVE     spec: '^18.2.0',
+34 warn ERESOLVE     error: 'INVALID',
+34 warn ERESOLVE     from: {
+34 warn ERESOLVE       name: '@react-email/column',
+34 warn ERESOLVE       version: '0.0.10',
+34 warn ERESOLVE       location: 'node_modules/@react-email/column',
+34 warn ERESOLVE       isWorkspace: false,
+34 warn ERESOLVE       dependents: [Array]
+34 warn ERESOLVE     }
+34 warn ERESOLVE   },
+34 warn ERESOLVE   dep: {
+34 warn ERESOLVE     name: 'react',
+34 warn ERESOLVE     version: '18.3.1',
+34 warn ERESOLVE     whileInstalling: {
+34 warn ERESOLVE       name: '@react-email/column',
+34 warn ERESOLVE       version: '0.0.10',
+34 warn ERESOLVE       path: '/Users/johnlyman/Desktop/wasatchwise/node_modules/@react-email/column'
+34 warn ERESOLVE     },
+34 warn ERESOLVE     location: 'node_modules/react',
+34 warn ERESOLVE     isWorkspace: false,
+34 warn ERESOLVE     dependents: [ [Object] ]
+34 warn ERESOLVE   },
+34 warn ERESOLVE   force: false,
+34 warn ERESOLVE   isMine: false,
+34 warn ERESOLVE   strictPeerDeps: false,
+34 warn ERESOLVE   current: {
+34 warn ERESOLVE     name: 'react',
+34 warn ERESOLVE     version: '19.0.0',
+34 warn ERESOLVE     location: 'node_modules/react',
+34 warn ERESOLVE     isWorkspace: false,
+34 warn ERESOLVE     dependents: [
+34 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+34 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+34 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+34 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+34 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+34 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+34 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+34 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+34 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+34 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+34 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+34 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+34 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+34 warn ERESOLVE       [Object], [Object], [Object], [Object], [Object],
+34 warn ERESOLVE       [Object], [Object], [Object], [Object]
+34 warn ERESOLVE     ]
+34 warn ERESOLVE   },
+34 warn ERESOLVE   peerConflict: {
+34 warn ERESOLVE     current: {
+34 warn ERESOLVE       name: 'react',
+34 warn ERESOLVE       version: '19.0.0',
+34 warn ERESOLVE       location: 'node_modules/react',
+34 warn ERESOLVE       isWorkspace: false,
+34 warn ERESOLVE       dependents: [Array]
+34 warn ERESOLVE     },
+34 warn ERESOLVE     peer: {
+34 warn ERESOLVE       name: 'react',
+34 warn ERESOLVE       version: '18.3.1',
+34 warn ERESOLVE       whileInstalling: [Object],
+34 warn ERESOLVE       location: 'node_modules/react',
+34 warn ERESOLVE       isWorkspace: false,
+34 warn ERESOLVE       dependents: [Array]
+34 warn ERESOLVE     }
+34 warn ERESOLVE   }
+34 warn ERESOLVE }
+35 verbose stack Error: could not resolve
+35 verbose stack     at PlaceDep.failPeerConflict (/opt/homebrew/Cellar/node@22/22.18.0/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/place-dep.js:503:25)
+35 verbose stack     at new PlaceDep (/opt/homebrew/Cellar/node@22/22.18.0/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/place-dep.js:157:21)
+35 verbose stack     at #buildDepStep (/opt/homebrew/Cellar/node@22/22.18.0/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/build-ideal-tree.js:920:18)
+35 verbose stack     at async Arborist.buildIdealTree (/opt/homebrew/Cellar/node@22/22.18.0/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/build-ideal-tree.js:181:7)
+35 verbose stack     at async Promise.all (index 1)
+35 verbose stack     at async Arborist.reify (/opt/homebrew/Cellar/node@22/22.18.0/lib/node_modules/npm/node_modules/@npmcli/arborist/lib/arborist/reify.js:131:5)
+35 verbose stack     at async Install.exec (/opt/homebrew/Cellar/node@22/22.18.0/lib/node_modules/npm/lib/commands/install.js:150:5)
+35 verbose stack     at async Npm.exec (/opt/homebrew/Cellar/node@22/22.18.0/lib/node_modules/npm/lib/npm.js:207:9)
+35 verbose stack     at async module.exports (/opt/homebrew/Cellar/node@22/22.18.0/lib/node_modules/npm/lib/cli/entry.js:74:5)
+36 error code ERESOLVE
+37 error ERESOLVE could not resolve
+38 error
+39 error While resolving: @react-email/components@0.0.20
+39 error Found: react@19.0.0
+39 error node_modules/react
+39 error   peer react@">=16.8.0" from @floating-ui/react-dom@2.1.6
+39 error   node_modules/@floating-ui/react-dom
+39 error     @floating-ui/react-dom@"^2.0.0" from @radix-ui/react-popper@1.2.0
+39 error     node_modules/@radix-ui/react-popper
+39 error       @radix-ui/react-popper@"1.2.0" from @radix-ui/react-popover@1.1.1
+39 error       node_modules/@radix-ui/react-popover
+39 error         @radix-ui/react-popover@"1.1.1" from react-email@2.1.6
+39 error         node_modules/react-email
+39 error       1 more (@radix-ui/react-tooltip)
+39 error   peer react@"^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc" from @radix-ui/react-arrow@1.1.0
+39 error   node_modules/@radix-ui/react-arrow
+39 error     @radix-ui/react-arrow@"1.1.0" from @radix-ui/react-popper@1.2.0
+39 error     node_modules/@radix-ui/react-popper
+39 error       @radix-ui/react-popper@"1.2.0" from @radix-ui/react-popover@1.1.1
+39 error       node_modules/@radix-ui/react-popover
+39 error         @radix-ui/react-popover@"1.1.1" from react-email@2.1.6
+39 error         node_modules/react-email
+39 error       1 more (@radix-ui/react-tooltip)
+39 error   72 more (@radix-ui/react-collapsible, ...)
+39 error
+39 error Could not resolve dependency:
+39 error peer react@"^18.2.0" from @react-email/components@0.0.20
+39 error node_modules/@react-email/components
+39 error   @react-email/components@"^0.0.20" from the root project
+39 error
+39 error Conflicting peer dependency: react@18.3.1
+39 error node_modules/react
+39 error   peer react@"^18.2.0" from @react-email/components@0.0.20
+39 error   node_modules/@react-email/components
+39 error     @react-email/components@"^0.0.20" from the root project
+39 error
+39 error Fix the upstream dependency conflict, or retry
+39 error this command with --force or --legacy-peer-deps
+39 error to accept an incorrect (and potentially broken) dependency resolution.
+40 error
+40 error
+40 error For a full report see:
+40 error /Users/johnlyman/Desktop/wasatchwise/.npm-cache/_logs/2026-01-15T17_12_52_085Z-eresolve-report.txt
+41 silly unfinished npm timer reify 1768497172328
+42 silly unfinished npm timer reify:loadTrees 1768497172329
+43 silly unfinished npm timer idealTree:buildDeps 1768497172489
+44 silly unfinished npm timer idealTree:node_modules/@react-email/components 1768497172941
+45 verbose cwd /Users/johnlyman/Desktop/wasatchwise
+46 verbose os Darwin 25.2.0
+47 verbose node v22.18.0
+48 verbose npm  v10.9.3
+49 verbose exit 1
+50 verbose code 1
+51 error A complete log of this run can be found in: /Users/johnlyman/Desktop/wasatchwise/.npm-cache/_logs/2026-01-15T17_12_52_085Z-debug-0.log
