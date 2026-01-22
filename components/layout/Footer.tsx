@@ -50,6 +50,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/ask-before-your-app" className="hover:text-white">
+                  Ask Before Your App
+                </Link>
+              </li>
+              <li>
                 <Link href="/clarion" className="hover:text-white">
                   Clarion Brief
                 </Link>

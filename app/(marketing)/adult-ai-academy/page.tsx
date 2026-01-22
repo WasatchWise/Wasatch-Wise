@@ -1,62 +1,205 @@
 import Image from 'next/image';
 import { Button } from '@/components/shared/Button';
+import { CheckCircle } from 'lucide-react';
 
 export default function AdultAIAcademyPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-orange-50 to-white py-16">
-      <div className="max-w-5xl mx-auto px-6">
-        <header className="text-center mb-12">
-          <div className="mx-auto mb-6 h-48 w-48 rounded-3xl bg-white shadow-sm flex items-center justify-center">
+    <main className="min-h-screen bg-gradient-to-b from-orange-50 to-white py-12 sm:py-16 md:py-20">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        {/* Hero Section */}
+        <header className="text-center mb-12 sm:mb-16">
+          <div className="mx-auto mb-6 sm:mb-8 h-32 w-32 sm:h-48 sm:w-48 rounded-3xl bg-white shadow-sm flex items-center justify-center">
             <Image
               src="/AAA.png"
               alt="Adult AI Academy logo"
               width={160}
               height={160}
-              className="h-40 w-40"
+              className="h-28 w-28 sm:h-40 sm:w-40"
               priority
             />
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-4 leading-tight">
             Adult AI Academy
           </h1>
-          <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-            Practical AI literacy for leaders and teams—clear, responsible, and
-            ready for real-world use.
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+            Practical AI literacy for educators—clear, responsible, and ready for real-world use in K-12 classrooms.
           </p>
         </header>
 
-        <section className="bg-white rounded-2xl shadow-sm border border-orange-100 p-8 md:p-10">
-          <div className="grid md:grid-cols-3 gap-6 text-left">
-            <div>
-              <h2 className="text-lg font-semibold text-gray-900 mb-2">
-                Foundation
-              </h2>
-              <p className="text-gray-600">
-                Core concepts, safety, and policy-ready guidance for adult learners.
+        {/* What We Offer */}
+        <section className="bg-white rounded-2xl shadow-sm border border-orange-100 p-6 sm:p-8 md:p-10 mb-12">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 text-center">
+            What We Offer
+          </h2>
+          <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
+            <div className="border-l-4 border-orange-500 pl-4 sm:pl-6">
+              <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-3">
+                Foundation Courses
+              </h3>
+              <p className="text-sm sm:text-base text-gray-600 mb-4 leading-relaxed">
+                Core AI concepts, safety principles, and policy-ready guidance for adult learners who are new to AI tools.
+              </p>
+              <ul className="space-y-2 text-sm sm:text-base text-gray-700">
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" />
+                  <span>AI basics for educators</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" />
+                  <span>FERPA and COPPA compliance</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" />
+                  <span>Policy development basics</span>
+                </li>
+              </ul>
+            </div>
+            <div className="border-l-4 border-orange-500 pl-4 sm:pl-6">
+              <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-3">
+                Application Workshops
+              </h3>
+              <p className="text-sm sm:text-base text-gray-600 mb-4 leading-relaxed">
+                Hands-on training for using AI tools in instruction, operations, and communication—beyond basic prompting.
+              </p>
+              <ul className="space-y-2 text-sm sm:text-base text-gray-700">
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" />
+                  <span>Lesson planning with AI</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" />
+                  <span>Assessment redesign</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" />
+                  <span>Bias detection and evaluation</span>
+                </li>
+              </ul>
+            </div>
+            <div className="border-l-4 border-orange-500 pl-4 sm:pl-6">
+              <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-3">
+                Governance Training
+              </h3>
+              <p className="text-sm sm:text-base text-gray-600 mb-4 leading-relaxed">
+                Responsible AI adoption aligned with district policies and compliance requirements for administrators and leaders.
+              </p>
+              <ul className="space-y-2 text-sm sm:text-base text-gray-700">
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" />
+                  <span>Tool vetting workflows</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" />
+                  <span>Risk assessment methods</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" />
+                  <span>Compliance verification</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* Who It's For */}
+        <section className="mb-12">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 text-center">
+            Who It's For
+          </h2>
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+            <div className="bg-white rounded-lg border border-orange-100 p-5 sm:p-6 text-center">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Teachers</h3>
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                Learn to use AI tools safely and effectively in your classroom while protecting student data.
               </p>
             </div>
-            <div>
-              <h2 className="text-lg font-semibold text-gray-900 mb-2">
-                Application
-              </h2>
-              <p className="text-gray-600">
-                Hands-on use cases for instruction, operations, and communication.
+            <div className="bg-white rounded-lg border border-orange-100 p-5 sm:p-6 text-center">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Principals</h3>
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                Build AI literacy across your school with training that aligns to district policies.
               </p>
             </div>
-            <div>
-              <h2 className="text-lg font-semibold text-gray-900 mb-2">
-                Governance
-              </h2>
-              <p className="text-gray-600">
-                Responsible AI adoption aligned with district and compliance needs.
+            <div className="bg-white rounded-lg border border-orange-100 p-5 sm:p-6 text-center sm:col-span-2 md:col-span-1">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Instructional Coaches</h3>
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                Support teachers with practical AI training that goes beyond surface-level prompting.
               </p>
             </div>
           </div>
-          <div className="mt-8 flex justify-center">
-            <Button href="/contact" variant="primary" size="lg">
-              Learn More
+        </section>
+
+        {/* Pricing */}
+        <section className="bg-white rounded-2xl shadow-sm border border-orange-100 p-6 sm:p-8 md:p-10 mb-12">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 text-center">
+            Training Options
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto">
+            <div className="border border-gray-200 rounded-lg p-6">
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Individual Courses</h3>
+              <p className="text-2xl font-bold text-orange-500 mb-3">$497 - $1,497</p>
+              <p className="text-sm sm:text-base text-gray-600 mb-4 leading-relaxed">
+                Self-paced online courses with practical exercises and certification upon completion.
+              </p>
+              <ul className="space-y-2 text-sm text-gray-700 mb-4">
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-orange-500 mt-0.5 flex-shrink-0" />
+                  <span>Access to course materials</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-orange-500 mt-0.5 flex-shrink-0" />
+                  <span>Certificate of completion</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-orange-500 mt-0.5 flex-shrink-0" />
+                  <span>Community forum access</span>
+                </li>
+              </ul>
+            </div>
+            <div className="border-2 border-orange-500 rounded-lg p-6 relative">
+              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                <span className="bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                  Most Popular
+                </span>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Workshops & Certifications</h3>
+              <p className="text-2xl font-bold text-orange-500 mb-3">$1,997 - $2,997</p>
+              <p className="text-sm sm:text-base text-gray-600 mb-4 leading-relaxed">
+                Live workshops with hands-on training, group collaboration, and advanced certification.
+              </p>
+              <ul className="space-y-2 text-sm text-gray-700 mb-4">
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-orange-500 mt-0.5 flex-shrink-0" />
+                  <span>Live instructor-led sessions</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-orange-500 mt-0.5 flex-shrink-0" />
+                  <span>Advanced certification</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-orange-500 mt-0.5 flex-shrink-0" />
+                  <span>Ongoing support and resources</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section className="text-center">
+          <p className="text-base sm:text-lg text-gray-700 mb-6 leading-relaxed">
+            Ready to build AI literacy in your school or district?
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button href="/contact?service=Adult%20AI%20Academy" variant="primary" size="lg">
+              Get Started
+            </Button>
+            <Button href="/tools/ai-readiness-quiz" variant="outline" size="lg">
+              Take Free Assessment
             </Button>
           </div>
+          <p className="mt-4 text-sm text-gray-500">
+            Or explore our <a href="/" className="text-orange-500 hover:text-orange-600 underline">enterprise solutions</a> for districts
+          </p>
         </section>
       </div>
     </main>
