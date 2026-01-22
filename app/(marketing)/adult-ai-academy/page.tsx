@@ -3,7 +3,7 @@ import { Button } from '@/components/shared/Button';
 
 export default function AdultAIAcademyPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-blue-50 to-white py-16">
+    <main className="min-h-screen bg-gradient-to-b from-orange-50 to-white py-16">
       <div className="max-w-5xl mx-auto px-6">
         <header className="text-center mb-12">
           <div className="mx-auto mb-6 h-48 w-48 rounded-3xl bg-white shadow-sm flex items-center justify-center">
@@ -25,7 +25,7 @@ export default function AdultAIAcademyPage() {
           </p>
         </header>
 
-        <section className="bg-white rounded-2xl shadow-sm border border-blue-100 p-8 md:p-10">
+        <section className="bg-white rounded-2xl shadow-sm border border-orange-100 p-8 md:p-10">
           <div className="grid md:grid-cols-3 gap-6 text-left">
             <div>
               <h2 className="text-lg font-semibold text-gray-900 mb-2">

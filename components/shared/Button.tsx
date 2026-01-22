@@ -24,11 +24,11 @@ export function Button({
   };
   const variants = {
     primary:
-      'bg-blue-600 text-white hover:bg-blue-700 shadow-lg hover:shadow-xl',
+      'bg-orange-500 text-white hover:bg-orange-600 shadow-lg hover:shadow-xl',
     secondary:
       'bg-gray-200 text-gray-900 hover:bg-gray-300 shadow-md hover:shadow-lg',
     outline:
-      'border-2 border-blue-600 text-blue-600 hover:bg-blue-50 shadow-sm hover:shadow-md',
+      'border-2 border-orange-500 text-orange-500 hover:bg-orange-50 shadow-sm hover:shadow-md',
   };
 
   const classes = `${baseStyles} ${sizeStyles[size]} ${variants[variant]} ${className}`;

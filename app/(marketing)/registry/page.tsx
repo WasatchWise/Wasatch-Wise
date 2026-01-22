@@ -36,7 +36,7 @@ export default async function VendorRegistryPage({
     <main className="min-h-screen bg-white py-16">
       <div className="max-w-7xl mx-auto px-6">
         <header className="text-center mb-12">
-          <p className="text-sm uppercase tracking-wider text-blue-600 font-semibold mb-2">
+          <p className="text-sm uppercase tracking-wider text-orange-500 font-semibold mb-2">
             SDPC Registry
           </p>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -57,11 +57,11 @@ export default async function VendorRegistryPage({
               name="q"
               defaultValue={query}
               placeholder="Search by vendor name"
-              className="flex-1 rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600"
+              className="flex-1 rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
             />
             <button
               type="submit"
-              className="rounded-lg bg-blue-600 px-4 py-2 text-white font-semibold hover:bg-blue-700"
+              className="rounded-lg bg-orange-500 px-4 py-2 text-white font-semibold hover:bg-orange-600"
             >
               Search
             </button>
@@ -95,7 +95,7 @@ export default async function VendorRegistryPage({
                     )}
                   </div>
                   {vendor.sdpc_member && (
-                    <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-700">
+                    <span className="inline-flex items-center rounded-full bg-orange-50 px-2 py-1 text-xs font-semibold text-orange-700">
                       SDPC Member
                     </span>
                   )}
@@ -110,7 +110,7 @@ export default async function VendorRegistryPage({
                   {vendor.website && (
                     <Link
                       href={vendor.website}
-                      className="text-blue-600 hover:text-blue-700 underline"
+                      className="text-orange-500 hover:text-orange-600 underline"
                       target="_blank"
                       rel="noreferrer"
                     >

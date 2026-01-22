@@ -10,7 +10,7 @@
     --card-foreground: 240 10% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
+    --primary: 20 80% 52%; /* Orange #E87722 */
     --primary-foreground: 0 0% 98%;
     --secondary: 240 4.8% 95.9%;
     --secondary-foreground: 240 5.9% 10%;
@@ -22,7 +22,7 @@
     --destructive-foreground: 0 0% 98%;
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
-    --ring: 240 5.9% 10%;
+    --ring: 20 80% 52%; /* Orange #E87722 */
     --radius: 0.5rem;
     color-scheme: light;
   }
@@ -31,15 +31,15 @@
 body {
   @apply bg-zinc-50;
   background-image: 
-    radial-gradient(at 0% 0%, hsla(210,100%,98%,1) 0, transparent 50%), 
-    radial-gradient(at 50% 0%, hsla(199,89%,95%,1) 0, transparent 50%), 
-    radial-gradient(at 100% 0%, hsla(210,100%,98%,1) 0, transparent 50%);
+    radial-gradient(at 0% 0%, hsla(20,100%,98%,1) 0, transparent 50%), 
+    radial-gradient(at 50% 0%, hsla(20,80%,95%,1) 0, transparent 50%), 
+    radial-gradient(at 100% 0%, hsla(20,100%,98%,1) 0, transparent 50%);
   background-attachment: fixed;
 }
 
 ::selection {
-  background: rgba(0, 135, 200, 0.1);
-  color: #0087c8;
+  background: rgba(232, 119, 34, 0.1);
+  color: #E87722;
 }
 
 @layer components {

@@ -271,7 +271,7 @@ export function QuizPageClient() {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-3 py-2 border border-zinc-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-zinc-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     placeholder="you@district.org"
                     required
                   />
@@ -285,7 +285,7 @@ export function QuizPageClient() {
                     type="text"
                     value={organizationName}
                     onChange={(e) => setOrganizationName(e.target.value)}
-                    className="w-full px-3 py-2 border border-zinc-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-zinc-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     placeholder="Alpine School District"
                     required
                   />
@@ -299,7 +299,7 @@ export function QuizPageClient() {
                     type="text"
                     value={role}
                     onChange={(e) => setRole(e.target.value)}
-                    className="w-full px-3 py-2 border border-zinc-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-zinc-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     placeholder="IT Director, Superintendent, etc."
                   />
                 </div>
@@ -385,7 +385,7 @@ export function QuizPageClient() {
                 <Button
                   onClick={handleSubmit}
                   disabled={!currentAnswer || isSubmitting}
-                  className="flex-1 bg-blue-600 hover:bg-blue-700"
+                  className="flex-1 bg-orange-500 hover:bg-orange-600"
                 >
                   {isSubmitting ? "Submitting..." : "Complete Audit"}
                 </Button>

@@ -193,10 +193,10 @@ export default function WiseBotPage() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-blue-50 to-white py-12" role="main">
+    <main className="min-h-screen bg-gradient-to-br from-orange-50 to-white py-12" role="main">
       <div className="max-w-4xl mx-auto px-6">
         <header className="text-center mb-8">
-          <div className="mx-auto mb-4 h-20 w-20 rounded-full bg-blue-50 flex items-center justify-center">
+          <div className="mx-auto mb-4 h-20 w-20 rounded-full bg-orange-50 flex items-center justify-center">
             <Image
               src="/wisebot.png"
               alt="WiseBot icon"
@@ -235,7 +235,7 @@ export default function WiseBotPage() {
                 <input
                   type="text"
                   placeholder="Type a command..."
-                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                   autoFocus
                   onKeyDown={(e) => {
                     if (e.key === 'Escape') {
@@ -272,7 +272,7 @@ export default function WiseBotPage() {
                   <button
                     key={idx}
                     onClick={() => handleExamplePrompt(prompt)}
-                    className="px-4 py-2 text-sm bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition-colors"
+                    className="px-4 py-2 text-sm bg-orange-50 text-orange-700 rounded-lg hover:bg-orange-100 transition-colors"
                     type="button"
                   >
                     {prompt}
@@ -306,7 +306,7 @@ export default function WiseBotPage() {
                     <div
                       className={`max-w-[80%] rounded-lg p-4 ${
                         msg.role === 'user'
-                          ? 'bg-blue-600 text-white'
+                          ? 'bg-orange-500 text-white'
                           : 'bg-gray-100 text-gray-900'
                       }`}
                       role={msg.role === 'user' ? 'user-message' : 'assistant-message'}
@@ -320,7 +320,7 @@ export default function WiseBotPage() {
                   <div className="flex justify-start">
                     <div className="bg-gray-100 rounded-lg p-4 max-w-[80%]">
                       <p className="whitespace-pre-wrap">{streamingContent}</p>
-                      <span className="inline-block w-2 h-4 bg-blue-600 ml-1 animate-pulse" aria-hidden="true" />
+                      <span className="inline-block w-2 h-4 bg-orange-500 ml-1 animate-pulse" aria-hidden="true" />
                     </div>
                   </div>
                 )}

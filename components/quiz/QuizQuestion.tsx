@@ -36,7 +36,7 @@ export function QuizQuestion({ question, value, onChange }: QuizQuestionProps) {
               return (
               <div
                 key={optionId}
-                className="flex items-center space-x-3 p-3 rounded-lg border border-zinc-200 hover:border-blue-300 hover:bg-blue-50/50 transition-colors cursor-pointer"
+                className="flex items-center space-x-3 p-3 rounded-lg border border-zinc-200 hover:border-orange-300 hover:bg-orange-50/50 transition-colors cursor-pointer"
                 onClick={() => onChange(option.value)}
               >
                 <RadioGroupItem value={option.value} id={optionId} />

@@ -222,7 +222,7 @@ export default function QuizPage() {
       <div className="max-w-3xl mx-auto px-6">
         <article className="bg-white rounded-lg shadow-lg p-8">
           <div className="mb-6">
-            <p className="text-sm uppercase tracking-wider text-blue-600 font-semibold mb-2">
+            <p className="text-sm uppercase tracking-wider text-orange-500 font-semibold mb-2">
               AI Readiness Quiz
             </p>
             <h1 className="text-3xl font-bold text-gray-900 mb-2">
@@ -247,7 +247,7 @@ export default function QuizPage() {
               aria-label={`Quiz progress: ${Math.round(progress)}%`}
             >
               <div
-                className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                className="bg-orange-500 h-2 rounded-full transition-all duration-300"
                 style={{ width: `${progress}%` }}
                 data-progress={Math.round(progress)}
               />
@@ -259,7 +259,7 @@ export default function QuizPage() {
               <button
                 key={option}
                 onClick={() => handleAnswer(currentQuestion.id, option)}
-                className="w-full text-left p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-all"
+                className="w-full text-left p-4 border-2 border-gray-200 rounded-lg hover:border-orange-500 hover:bg-orange-50 transition-all"
               >
                 {option}
               </button>

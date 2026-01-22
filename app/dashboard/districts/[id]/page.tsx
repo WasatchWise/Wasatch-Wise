@@ -83,7 +83,7 @@ export default function DistrictDetailPage() {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <p className="text-red-600 mb-4">{error}</p>
-          <Link href="/dashboard" className="text-blue-600 hover:text-blue-700">
+          <Link href="/dashboard" className="text-orange-500 hover:text-orange-600">
             ← Back to Dashboard
           </Link>
         </div>
@@ -95,7 +95,7 @@ export default function DistrictDetailPage() {
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-6 py-12">
         <div className="mb-6">
-          <Link href="/dashboard" className="text-blue-600 hover:text-blue-700 text-sm mb-4 inline-block">
+          <Link href="/dashboard" className="text-orange-500 hover:text-orange-600 text-sm mb-4 inline-block">
             ← Back to Dashboard
           </Link>
           <h1 className="text-4xl font-bold text-gray-900 mb-2">
@@ -114,7 +114,7 @@ export default function DistrictDetailPage() {
                 key={tab}
                 onClick={() => setActiveTab(tab)}
                 className={`py-4 px-1 border-b-2 font-medium text-sm ${activeTab === tab
-                  ? 'border-blue-500 text-blue-600'
+                  ? 'border-orange-500 text-orange-500'
                   : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                   }`}
               >
@@ -542,7 +542,7 @@ function VendorsTab({ data, districtId }: { data: DistrictData | null; districtI
                         href={dv.vendor.website}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-xs text-blue-600 hover:underline"
+                        className="text-xs text-orange-500 hover:underline"
                       >
                         {dv.vendor.website}
                       </a>

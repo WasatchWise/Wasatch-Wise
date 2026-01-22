@@ -5,7 +5,7 @@ export function SolutionSection() {
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-12">
-          <p className="text-sm uppercase tracking-wider text-blue-600 font-semibold mb-2">
+          <p className="text-sm uppercase tracking-wider text-orange-500 font-semibold mb-2">
             The Solution
           </p>
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -17,7 +17,7 @@ export function SolutionSection() {
           </p>
         </div>
         <div className="grid md:grid-cols-3 gap-8 mb-12">
-          <div className="border-l-4 border-blue-600 pl-6">
+          <div className="border-l-4 border-orange-500 pl-6">
             <h3 className="text-xl font-semibold mb-3">Weeks 1-4: Governance</h3>
             <p className="text-gray-700 mb-4">
               Board-approved AI use policy, FERPA-safe workflows, and clear
@@ -29,7 +29,7 @@ export function SolutionSection() {
               <li>✓ Admin + teacher communication plan</li>
             </ul>
           </div>
-          <div className="border-l-4 border-blue-600 pl-6">
+          <div className="border-l-4 border-orange-500 pl-6">
             <h3 className="text-xl font-semibold mb-3">Weeks 5-8: Deep Literacy</h3>
             <p className="text-gray-700 mb-4">
               Training that moves beyond prompting to evaluation, bias detection,
@@ -41,7 +41,7 @@ export function SolutionSection() {
               <li>✓ Assessment redesign playbooks</li>
             </ul>
           </div>
-          <div className="border-l-4 border-blue-600 pl-6">
+          <div className="border-l-4 border-orange-500 pl-6">
             <h3 className="text-xl font-semibold mb-3">Weeks 9-12: Trust + Verification</h3>
             <p className="text-gray-700 mb-4">
               Compliance verification, district-wide reporting, and a support plan

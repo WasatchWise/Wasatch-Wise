@@ -81,7 +81,7 @@ function ResultsContent() {
     return (
       <div className="min-h-screen bg-gradient-to-b from-zinc-50 to-white flex items-center justify-center">
         <div className="text-center">
-          <div className="w-12 h-12 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mx-auto mb-4" />
+          <div className="w-12 h-12 border-4 border-orange-200 border-t-orange-500 rounded-full animate-spin mx-auto mb-4" />
           <p className="text-zinc-600">Loading your results...</p>
         </div>
       </div>
@@ -225,7 +225,7 @@ function ResultsContent() {
           <Card>
             <CardContent className="pt-6">
               <div className="text-center space-y-4">
-                <div className="w-12 h-12 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mx-auto" />
+                <div className="w-12 h-12 border-4 border-orange-200 border-t-orange-500 rounded-full animate-spin mx-auto" />
                 <p className="text-zinc-600">AI analysis in progress. This page will update automatically...</p>
               </div>
             </CardContent>
@@ -265,7 +265,7 @@ export default function ResultsPage() {
       fallback={
         <div className="min-h-screen bg-gradient-to-b from-zinc-50 to-white flex items-center justify-center">
           <div className="text-center">
-            <div className="w-12 h-12 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mx-auto mb-4" />
+            <div className="w-12 h-12 border-4 border-orange-200 border-t-orange-500 rounded-full animate-spin mx-auto mb-4" />
             <p className="text-zinc-600">Loading...</p>
           </div>
         </div>

@@ -5,7 +5,7 @@ export function ServicesSection() {
     <section id="services" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-12">
-          <p className="text-sm uppercase tracking-wider text-blue-600 font-semibold mb-2">
+          <p className="text-sm uppercase tracking-wider text-orange-500 font-semibold mb-2">
             Services
           </p>
           <h2 className="text-4xl font-bold text-gray-900 mb-4">

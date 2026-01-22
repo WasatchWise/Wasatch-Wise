@@ -27,6 +27,18 @@ export default {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
         },
+        orange: {
+          50: "#FFF5ED",
+          100: "#FFE5D1",
+          200: "#FFC9A3",
+          300: "#FFA76B",
+          400: "#FF8533",
+          500: "#E87722", // Main brand orange
+          600: "#D66810", // Hover state
+          700: "#C45500",
+          800: "#A04400",
+          900: "#6B2E00",
+        },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",

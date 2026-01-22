@@ -65,9 +65,9 @@ export function AnalysisLoader() {
               <div className="flex items-center justify-center h-32">
                 <div className="relative">
                   {/* Animated spinner */}
-                  <div className="w-16 h-16 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin" />
+                  <div className="w-16 h-16 border-4 border-orange-200 border-t-orange-500 rounded-full animate-spin" />
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-8 h-8 bg-blue-600 rounded-full opacity-20 animate-pulse" />
+                    <div className="w-8 h-8 bg-orange-500 rounded-full opacity-20 animate-pulse" />
                   </div>
                 </div>
               </div>
@@ -89,7 +89,7 @@ export function AnalysisLoader() {
                       index < currentStage
                         ? 'opacity-50 text-zinc-400'
                         : index === currentStage
-                        ? 'opacity-100 text-blue-600 font-medium'
+                        ? 'opacity-100 text-orange-500 font-medium'
                         : 'opacity-30 text-zinc-300'
                     }`}
                   >
@@ -98,7 +98,7 @@ export function AnalysisLoader() {
                         index < currentStage
                           ? 'bg-green-500'
                           : index === currentStage
-                          ? 'bg-blue-600 animate-pulse'
+                          ? 'bg-orange-500 animate-pulse'
                           : 'bg-zinc-300'
                       }`}
                     />
