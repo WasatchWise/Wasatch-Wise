@@ -4,7 +4,10 @@ import { ExternalAPIError } from '@/lib/utils/errors';
 import { withTimeout, API_TIMEOUTS } from '@/lib/utils/timeout';
 
 const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY!;
-const ELEVENLABS_VOICE_ID = process.env.ELEVENLABS_VOICE_ID || 'Liam'; // Dan's voice
+const ELEVENLABS_VOICE_ID =
+  process.env.ELEVENLABS_JOHN_VOICE_ID ||
+  process.env.ELEVENLABS_VOICE_ID ||
+  'Liam';
 const ELEVENLABS_API_URL = 'https://api.elevenlabs.io/v1';
 
 export interface ElevenLabsOptions {

@@ -72,7 +72,7 @@ wasatchwise/
 │   │   └── layout.tsx        # Marketing layout
 │   ├── (tools)/              # Interactive tools
 │   │   ├── ai-readiness-quiz/  # Quiz tool
-│   │   └── ask-dan/          # AI chatbot
+│   │   └── wisebot/          # AI assistant
 │   ├── (portal)/             # Client portal (auth required)
 │   ├── api/                  # API routes
 │   │   ├── ai/               # AI endpoints
@@ -116,7 +116,7 @@ wasatchwise/
 - Email-gated results
 - Personalized recommendations via Claude
 
-### 3. Ask Dan Chatbot
+### 3. WiseBot Assistant
 - Claude-powered conversational AI
 - ElevenLabs voice synthesis
 - Real-time chat interface
@@ -166,7 +166,7 @@ See `lib/supabase/schema.sql` for the complete database schema. Key tables:
 
 ### HeyGen API
 - Personalized video outreach
-- Dan character explainers
+- John avatar explainers
 - Case study testimonials
 
 ### ElevenLabs API
@@ -186,7 +186,7 @@ See `lib/supabase/schema.sql` for the complete database schema. Key tables:
 
 - [ ] Set up Supabase database
 - [ ] Configure API keys
-- [ ] Create HeyGen Dan character avatar
+- [ ] Create HeyGen John avatar
 - [ ] Set up ElevenLabs voice clone
 - [ ] Deploy to Vercel
 - [ ] Set up custom domain

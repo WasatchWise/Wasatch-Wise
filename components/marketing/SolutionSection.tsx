@@ -9,48 +9,48 @@ export function SolutionSection() {
             The Solution
           </p>
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            90-Day Compliance Protocol
+            90-Day Governance + Training Protocol
           </h2>
           <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-            A proven framework to go from zero AI governance to full compliance
-            in 90 days—without overwhelming your team.
+            A proven framework to move from scattered AI usage to clear governance and
+            deep teacher readiness—without overwhelming your team.
           </p>
         </div>
         <div className="grid md:grid-cols-3 gap-8 mb-12">
           <div className="border-l-4 border-blue-600 pl-6">
             <h3 className="text-xl font-semibold mb-3">Weeks 1-4: Governance</h3>
             <p className="text-gray-700 mb-4">
-              Board-approved AI use policy, FERPA compliance framework, and
-              clear guidelines for teachers.
+              Board-approved AI use policy, FERPA-safe workflows, and clear
+              guidance that reduces the teacher verification burden.
             </p>
             <ul className="space-y-2 text-gray-600">
               <li>✓ Policy drafting & board approval</li>
-              <li>✓ Legal review & compliance check</li>
-              <li>✓ Communication strategy</li>
+              <li>✓ Tool vetting & data safeguards</li>
+              <li>✓ Admin + teacher communication plan</li>
             </ul>
           </div>
           <div className="border-l-4 border-blue-600 pl-6">
-            <h3 className="text-xl font-semibold mb-3">Weeks 5-8: Onboarding</h3>
+            <h3 className="text-xl font-semibold mb-3">Weeks 5-8: Deep Literacy</h3>
             <p className="text-gray-700 mb-4">
-              Teacher training, tool evaluation process, and pilot program with
-              early adopters.
+              Training that moves beyond prompting to evaluation, bias detection,
+              and assessment redesign.
             </p>
             <ul className="space-y-2 text-gray-600">
-              <li>✓ Professional development sessions</li>
-              <li>✓ Tool approval workflow</li>
-              <li>✓ Pilot program launch</li>
+              <li>✓ PD sessions for admin + teachers</li>
+              <li>✓ AI evaluation + bias checklists</li>
+              <li>✓ Assessment redesign playbooks</li>
             </ul>
           </div>
           <div className="border-l-4 border-blue-600 pl-6">
-            <h3 className="text-xl font-semibold mb-3">Weeks 9-12: Audit</h3>
+            <h3 className="text-xl font-semibold mb-3">Weeks 9-12: Trust + Verification</h3>
             <p className="text-gray-700 mb-4">
-              Full district audit, compliance verification, and ongoing support
-              framework.
+              Compliance verification, district-wide reporting, and a support plan
+              that works for rural, suburban, and Title I contexts.
             </p>
             <ul className="space-y-2 text-gray-600">
               <li>✓ Cognitive Audit assessment</li>
-              <li>✓ Compliance verification</li>
-              <li>✓ Annual retainer setup</li>
+              <li>✓ Compliance verification & reporting</li>
+              <li>✓ Ongoing support roadmap</li>
             </ul>
           </div>
         </div>

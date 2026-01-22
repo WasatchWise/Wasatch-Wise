@@ -17,7 +17,10 @@ export interface HeyGenVideoOptions {
 }
 
 export async function createHeyGenVideo({
-  avatarId = process.env.HEYGEN_AVATAR_ID || '2d1fcc53313c4fcb9db3eb4b323a92e6', // Dan (Wasatch County) default
+  avatarId =
+    process.env.HEYGEN_JOHN_AVATAR_ID ||
+    process.env.HEYGEN_AVATAR_ID ||
+    '2d1fcc53313c4fcb9db3eb4b323a92e6',
   script,
   title,
   clientId,

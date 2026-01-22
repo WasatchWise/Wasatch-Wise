@@ -8,19 +8,19 @@ export function Footer() {
           <div>
             <h3 className="text-white text-xl font-bold mb-4">WasatchWise</h3>
             <p className="text-sm">
-              AI governance for school districts that actually works.
+              AI governance and deep training for school districts that actually works.
             </p>
           </div>
           <div>
             <h4 className="text-white font-semibold mb-4">Services</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/services/cognitive-audit" className="hover:text-white">
+                <Link href="/#services" className="hover:text-white">
                   Cognitive Audit
                 </Link>
               </li>
               <li>
-                <Link href="/services/compliance-protocol" className="hover:text-white">
+                <Link href="/#methodology" className="hover:text-white">
                   90-Day Protocol
                 </Link>
               </li>
@@ -30,18 +30,28 @@ export function Footer() {
             <h4 className="text-white font-semibold mb-4">Resources</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/resources/blog" className="hover:text-white">
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link href="/resources/downloads" className="hover:text-white">
-                  Downloads
-                </Link>
-              </li>
-              <li>
                 <Link href="/tools/ai-readiness-quiz" className="hover:text-white">
                   AI Readiness Quiz
+                </Link>
+              </li>
+              <li>
+                <Link href="/registry" className="hover:text-white">
+                  Vendor Registry
+                </Link>
+              </li>
+              <li>
+                <Link href="/tools/wisebot" className="hover:text-white">
+                  WiseBot
+                </Link>
+              </li>
+              <li>
+                <Link href="/adult-ai-academy" className="hover:text-white">
+                  Adult AI Academy
+                </Link>
+              </li>
+              <li>
+                <Link href="/clarion" className="hover:text-white">
+                  Clarion Brief
                 </Link>
               </li>
             </ul>
@@ -50,8 +60,8 @@ export function Footer() {
             <h4 className="text-white font-semibold mb-4">Company</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/about" className="hover:text-white">
-                  About
+                <Link href="/#case-studies" className="hover:text-white">
+                  Case Studies
                 </Link>
               </li>
               <li>

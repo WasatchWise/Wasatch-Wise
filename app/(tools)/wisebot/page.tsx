@@ -1,22 +1,24 @@
 'use client';
 
 import { useState, useRef, useEffect, useCallback } from 'react';
+import Image from 'next/image';
 import { Button } from '@/components/shared/Button';
 import { Form, Input } from '@/components/shared/Form';
+import wisebotIcon from '@/wisebot.png';
 
 // Set page title for accessibility
 if (typeof document !== 'undefined') {
-  document.title = 'Ask Dan - AI Governance Consultant | WasatchWise';
+  document.title = 'WiseBot - AI Governance Assistant | WasatchWise';
 }
 
 const EXAMPLE_PROMPTS = [
-  'What is FERPA compliance for AI tools?',
-  'How do I evaluate an AI tool for my district?',
-  'What are the risks of using ChatGPT in schools?',
-  'How can I build parent trust around AI?',
+  'How do we close the shadow AI policy gap?',
+  'What does training beyond prompting look like?',
+  'How do we evaluate bias in AI tools?',
+  'How do we address teacher skepticism and verification burden?',
 ];
 
-export default function AskDanPage() {
+export default function WiseBotPage() {
   const [message, setMessage] = useState('');
   const [conversation, setConversation] = useState<
     Array<{ role: 'user' | 'assistant'; content: string }>
@@ -49,7 +51,12 @@ export default function AskDanPage() {
         setShowCommandPalette(false);
       }
       // Focus input on '/' key
-      if (e.key === '/' && !showCommandPalette && document.activeElement?.tagName !== 'INPUT' && document.activeElement?.tagName !== 'TEXTAREA') {
+      if (
+        e.key === '/' &&
+        !showCommandPalette &&
+        document.activeElement?.tagName !== 'INPUT' &&
+        document.activeElement?.tagName !== 'TEXTAREA'
+      ) {
         e.preventDefault();
         inputRef.current?.focus();
       }
@@ -190,12 +197,20 @@ export default function AskDanPage() {
     <main className="min-h-screen bg-gradient-to-br from-blue-50 to-white py-12" role="main">
       <div className="max-w-4xl mx-auto px-6">
         <header className="text-center mb-8">
+          <div className="mx-auto mb-4 h-20 w-20 rounded-full bg-blue-50 flex items-center justify-center">
+            <Image
+              src={wisebotIcon}
+              alt="WiseBot icon"
+              className="h-12 w-12"
+              priority
+            />
+          </div>
           <h1 className="text-4xl font-bold text-gray-900 mb-2">
-            Ask Dan (AI Voice Assistant)
+            WiseBot (AI Assistant)
           </h1>
           <p className="text-gray-600">
-            Your AI governance consultant. Ask me anything about AI compliance,
-            FERPA, or district policies.
+            Your AI governance and training consultant. Ask about policy gaps,
+            shadow AI, evaluation, bias, and assessment redesign.
           </p>
           <p className="text-sm text-gray-500 mt-2">
             Press <kbd className="px-2 py-1 bg-gray-200 rounded text-xs">⌘K</kbd> for commands, <kbd className="px-2 py-1 bg-gray-200 rounded text-xs">/</kbd> to focus input
@@ -273,8 +288,11 @@ export default function AskDanPage() {
           >
             {conversation.length === 0 && !isStreaming ? (
               <div className="text-center text-gray-500 py-12">
-                <p className="text-lg mb-2">👋 Hi! I'm Dan.</p>
-                <p>Ask me about AI governance, compliance, or how WasatchWise can help your district.</p>
+                <p className="text-lg mb-2">👋 Hi! I'm WiseBot.</p>
+                <p>
+                  Ask me about governance, teacher training beyond prompts, or how to close
+                  the optimism gap.
+                </p>
               </div>
             ) : (
               <>
@@ -309,7 +327,7 @@ export default function AskDanPage() {
                 {isStreaming && !streamingContent && (
                   <div className="flex justify-start">
                     <div className="bg-gray-100 rounded-lg p-4">
-                      <p className="text-gray-500">Dan is thinking...</p>
+                      <p className="text-gray-500">WiseBot is thinking...</p>
                     </div>
                   </div>
                 )}
@@ -339,10 +357,10 @@ export default function AskDanPage() {
                 ref={inputRef}
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                placeholder="Ask Dan about AI governance..."
+                placeholder="Ask about shadow AI, training gaps, or policy..."
                 className="flex-1"
                 disabled={isStreaming}
-                aria-label="Ask Dan input"
+                aria-label="WiseBot input"
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' && !e.shiftKey) {
                     e.preventDefault();

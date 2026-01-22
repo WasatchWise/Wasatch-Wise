@@ -4,36 +4,51 @@ export function ProblemSection() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-12">
           <p className="text-sm uppercase tracking-wider text-red-600 font-semibold mb-2">
-            The Problem
+            The Opportunity + Risk
           </p>
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Your District is Flying Blind on AI
+            The Market is Huge, But the Gap is Growing
           </h2>
+          <p className="text-lg text-gray-700 max-w-3xl mx-auto">
+            Adoption is accelerating, but governance and training are not. That
+            gap is creating real exposure for districts—and a clear entry point
+            for the right partner.
+          </p>
         </div>
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="bg-white p-6 rounded-lg shadow-md">
             <div className="text-4xl mb-4">⚠️</div>
-            <h3 className="text-xl font-semibold mb-3">No Clear Policy</h3>
+            <h3 className="text-xl font-semibold mb-3">The "Shadow AI" Problem</h3>
             <p className="text-gray-700">
-              Teachers are using ChatGPT, Grammarly, and other AI tools without
-              any governance. Every use is a potential FERPA violation waiting
-              to happen.
+              Most districts still lack formal AI policy while leaders and
+              teachers are already using tools. Sensitive student data is being
+              shared without clear FERPA-safe guidance.
             </p>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-md">
-            <div className="text-4xl mb-4">😰</div>
-            <h3 className="text-xl font-semibold mb-3">Parent Trust Eroding</h3>
+            <div className="text-4xl mb-4">🧭</div>
+            <h3 className="text-xl font-semibold mb-3">Training Is One-Off</h3>
             <p className="text-gray-700">
-              Parents see AI headlines and worry. Without transparency, they
-              assume the worst. One data leak could destroy years of trust.
+              Half of teachers report any AI training, and it's often
+              surface-level. Districts are forced into DIY PD that never moves
+              beyond "how to prompt."
             </p>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-md">
-            <div className="text-4xl mb-4">🔥</div>
-            <h3 className="text-xl font-semibold mb-3">Teacher Burnout</h3>
+            <div className="text-4xl mb-4">🎯</div>
+            <h3 className="text-xl font-semibold mb-3">The Optimism Gap</h3>
             <p className="text-gray-700">
-              Teachers want to use AI to save time, but they're scared of
-              getting in trouble. So they either avoid it or use it secretly.
+              Administrators see efficiency gains. Teachers worry about
+              verification burden, bias, and being blamed when things go wrong.
+              Training must address both audiences.
+            </p>
+          </div>
+          <div className="bg-white p-6 rounded-lg shadow-md">
+            <div className="text-4xl mb-4">🌄</div>
+            <h3 className="text-xl font-semibold mb-3">The AI Divide</h3>
+            <p className="text-gray-700">
+              Rural and Title I districts lag most on policy and training. The
+              gap is widening right where students need safe AI access the most.
             </p>
           </div>
         </div>

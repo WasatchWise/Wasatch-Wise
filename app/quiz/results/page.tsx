@@ -133,7 +133,7 @@ function ResultsContent() {
           <CardHeader>
             <CardTitle className="text-3xl">Your AI Readiness Audit Results</CardTitle>
             <CardDescription>
-              Comprehensive analysis of your district's AI governance
+              A snapshot of governance, shadow AI exposure, and training depth
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -245,10 +245,11 @@ function ResultsContent() {
           <CardContent className="pt-6">
             <div className="text-center space-y-4">
               <p className="text-zinc-700">
-                Want a detailed consultation? Let's discuss your district's AI governance strategy.
+                Want a detailed consultation? We'll translate these results into a
+                90-day governance and training plan.
               </p>
-              <Button size="lg" className="w-full sm:w-auto">
-                Schedule Consultation
+              <Button size="lg" className="w-full sm:w-auto" asChild>
+                <a href="/contact">Book a Cognitive Audit</a>
               </Button>
             </div>
           </CardContent>

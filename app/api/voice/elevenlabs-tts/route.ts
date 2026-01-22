@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
     return new NextResponse(audioBuffer, {
       headers: {
         'Content-Type': 'audio/mpeg',
-        'Content-Disposition': 'attachment; filename="dan-response.mp3"',
+        'Content-Disposition': 'attachment; filename="wisebot-response.mp3"',
       },
     });
   } catch (error) {

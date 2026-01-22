@@ -18,9 +18,10 @@ export async function middleware(request: NextRequest) {
       process.env.NEXT_PUBLIC_SITE_URL,
       'http://localhost:3000',
       'https://wasatchwise.com',
+      'https://www.wasatchwise.com',
     ].filter((url): url is string => typeof url === 'string' && url.length > 0);
 
-    if (origin && allowedOrigins.some((allowed) => origin.includes(allowed))) {
+    if (origin && allowedOrigins.includes(origin)) {
       response.headers.set('Access-Control-Allow-Origin', origin);
     }
 

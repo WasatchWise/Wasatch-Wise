@@ -33,9 +33,10 @@ export default function ContactPage() {
     <div className="min-h-screen bg-gray-50 py-12">
       <div className="max-w-2xl mx-auto px-6">
         <div className="bg-white rounded-lg shadow-lg p-8">
-          <h1 className="text-4xl font-bold mb-2">Contact Us</h1>
+          <h1 className="text-4xl font-bold mb-2">Let’s Talk</h1>
           <p className="text-gray-600 mb-8">
-            Have questions? Want to book a Cognitive Audit? We'd love to hear from you.
+            If you’re seeing shadow AI, training gaps, or parent concerns, you’re not
+            alone. We’ll help you map the real risks and the fastest path forward.
           </p>
 
           {success ? (

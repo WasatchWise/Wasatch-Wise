@@ -137,7 +137,7 @@ export default function QuizPage() {
       <main className="min-h-screen bg-gray-50 py-12" role="main">
         <div className="max-w-3xl mx-auto px-6">
           <article className="bg-white rounded-lg shadow-lg p-8">
-            <h1 className="text-4xl font-bold mb-4">Your AI Readiness Score</h1>
+            <h1 className="text-4xl font-bold mb-4">Your AI Readiness Snapshot</h1>
             <div
               className={`text-6xl font-bold mb-6 p-8 rounded-lg text-center ${tierColors[results.tier as keyof typeof tierColors]}`}
             >
@@ -173,7 +173,11 @@ export default function QuizPage() {
       <main className="min-h-screen bg-gray-50 py-12" role="main">
         <div className="max-w-2xl mx-auto px-6">
           <article className="bg-white rounded-lg shadow-lg p-8">
-            <h1 className="text-3xl font-bold mb-6">Get Your Results</h1>
+            <h1 className="text-3xl font-bold mb-2">Get Your Results</h1>
+            <p className="text-gray-600 mb-6">
+              We’ll send a snapshot of your policy gaps, shadow AI exposure, and training
+              depth.
+            </p>
             <Form onSubmit={handleSubmit}>
               <FormField label="Email Address" error={error}>
                 <Input
@@ -217,6 +221,18 @@ export default function QuizPage() {
     <main className="min-h-screen bg-gray-50 py-12" role="main">
       <div className="max-w-3xl mx-auto px-6">
         <article className="bg-white rounded-lg shadow-lg p-8">
+          <div className="mb-6">
+            <p className="text-sm uppercase tracking-wider text-blue-600 font-semibold mb-2">
+              AI Readiness Quiz
+            </p>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">
+              Map your policy and training gaps in minutes
+            </h1>
+            <p className="text-gray-600 mb-6">
+              Designed for district leaders navigating shadow AI, teacher skepticism, and
+              parent trust.
+            </p>
+          </div>
           <div className="mb-6" data-testid="quiz-progress">
             <div className="flex justify-between text-sm text-gray-600 mb-2">
               <span>Question {step + 1} of {QUESTIONS.length}</span>
