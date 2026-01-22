@@ -112,20 +112,24 @@ ALTER TABLE subscriptions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE workshops ENABLE ROW LEVEL SECURITY;
 
 -- Public read access for pricing tiers and workshops
-CREATE POLICY IF NOT EXISTS "Pricing tiers are viewable by everyone"
+DROP POLICY IF EXISTS "Pricing tiers are viewable by everyone" ON pricing_tiers;
+CREATE POLICY "Pricing tiers are viewable by everyone"
   ON pricing_tiers FOR SELECT
   USING (true);
 
-CREATE POLICY IF NOT EXISTS "Workshops are viewable by everyone"
+DROP POLICY IF EXISTS "Workshops are viewable by everyone" ON workshops;
+CREATE POLICY "Workshops are viewable by everyone"
   ON workshops FOR SELECT
   USING (true);
 
 -- Subscriptions: users can read their own, service role can do everything
-CREATE POLICY IF NOT EXISTS "Users can view their own subscriptions"
+DROP POLICY IF EXISTS "Users can view their own subscriptions" ON subscriptions;
+CREATE POLICY "Users can view their own subscriptions"
   ON subscriptions FOR SELECT
   USING (contact_email = (SELECT email FROM auth.users WHERE id = auth.uid())::text);
 
-CREATE POLICY IF NOT EXISTS "Service role can manage subscriptions"
+DROP POLICY IF EXISTS "Service role can manage subscriptions" ON subscriptions;
+CREATE POLICY "Service role can manage subscriptions"
   ON subscriptions FOR ALL
   USING (auth.role() = 'service_role');
 

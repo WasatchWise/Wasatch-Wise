@@ -92,21 +92,25 @@ ALTER TABLE chat_messages ENABLE ROW LEVEL SECURITY;
 ALTER TABLE message_citations ENABLE ROW LEVEL SECURITY;
 
 -- Public read access for knowledge sources
-CREATE POLICY IF NOT EXISTS "Knowledge sources are viewable by everyone"
+DROP POLICY IF EXISTS "Knowledge sources are viewable by everyone" ON knowledge_sources;
+CREATE POLICY "Knowledge sources are viewable by everyone"
   ON knowledge_sources FOR SELECT
   USING (true);
 
 -- Chat sessions: users can read their own, service role can do everything
-CREATE POLICY IF NOT EXISTS "Users can view their own chat sessions"
+DROP POLICY IF EXISTS "Users can view their own chat sessions" ON chat_sessions;
+CREATE POLICY "Users can view their own chat sessions"
   ON chat_sessions FOR SELECT
   USING (user_email = (SELECT email FROM auth.users WHERE id = auth.uid())::text OR auth.role() = 'service_role');
 
-CREATE POLICY IF NOT EXISTS "Users can create their own chat sessions"
+DROP POLICY IF EXISTS "Users can create their own chat sessions" ON chat_sessions;
+CREATE POLICY "Users can create their own chat sessions"
   ON chat_sessions FOR INSERT
   WITH CHECK (true);
 
 -- Chat messages: users can read messages from their sessions
-CREATE POLICY IF NOT EXISTS "Users can view messages from their sessions"
+DROP POLICY IF EXISTS "Users can view messages from their sessions" ON chat_messages;
+CREATE POLICY "Users can view messages from their sessions"
   ON chat_messages FOR SELECT
   USING (
     EXISTS (
@@ -116,12 +120,14 @@ CREATE POLICY IF NOT EXISTS "Users can view messages from their sessions"
     )
   );
 
-CREATE POLICY IF NOT EXISTS "Users can create messages in their sessions"
+DROP POLICY IF EXISTS "Users can create messages in their sessions" ON chat_messages;
+CREATE POLICY "Users can create messages in their sessions"
   ON chat_messages FOR INSERT
   WITH CHECK (true);
 
 -- Message citations: same as messages
-CREATE POLICY IF NOT EXISTS "Users can view citations from their messages"
+DROP POLICY IF EXISTS "Users can view citations from their messages" ON message_citations;
+CREATE POLICY "Users can view citations from their messages"
   ON message_citations FOR SELECT
   USING (
     EXISTS (
