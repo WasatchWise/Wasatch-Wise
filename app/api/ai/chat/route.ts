@@ -12,6 +12,14 @@ const anthropic = new Anthropic({
 });
 
 async function handler(req: NextRequest) {
+  // Check API key before processing
+  if (!process.env.ANTHROPIC_API_KEY) {
+    return NextResponse.json(
+      { error: 'API configuration error: ANTHROPIC_API_KEY is not set' },
+      { status: 500 }
+    );
+  }
+
   const body = await req.json();
   const { message, conversationHistory = [] } = sanitizeRequestBody(body);
 
@@ -148,7 +156,18 @@ If the user's question closely matches one of the knowledge base entries above, 
         }
       } catch (error) {
         logger.error('Streaming error', error);
-        controller.error(error);
+        const errorMessage = error instanceof Error ? error.message : 'An unexpected error occurred';
+        // Send error through stream so client can read it
+        try {
+          controller.enqueue(
+            new TextEncoder().encode(
+              `data: ${JSON.stringify({ error: errorMessage })}\n\n`
+            )
+          );
+        } catch {
+          // If we can't send error through stream, just close
+        }
+        controller.close();
       }
     },
   });

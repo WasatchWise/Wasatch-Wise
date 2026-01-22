@@ -173,10 +173,15 @@ export function QuizPageClient() {
   const totalSteps = QUIZ_QUESTIONS.length + 1; // +1 for info step
   const progress = ((currentStep - 1) / (totalSteps - 1)) * 100;
 
-  const currentQuestion = QUIZ_QUESTIONS[currentStep - 1];
-  const currentAnswer = answers[currentQuestion?.id.toString()] || "";
+  // Step 1 is info page, steps 2-11 are questions 1-10
+  const questionIndex = currentStep - 2; // -2 because step 1 is info, step 2 is question 0
+  const currentQuestion = questionIndex >= 0 && questionIndex < QUIZ_QUESTIONS.length 
+    ? QUIZ_QUESTIONS[questionIndex] 
+    : null;
+  const currentAnswer = currentQuestion ? answers[currentQuestion.id.toString()] || "" : "";
 
   const handleAnswer = (value: string) => {
+    if (!currentQuestion) return;
     setAnswers({
       ...answers,
       [currentQuestion.id.toString()]: value,
@@ -184,7 +189,9 @@ export function QuizPageClient() {
   };
 
   const handleNext = () => {
-    if (currentStep < QUIZ_QUESTIONS.length) {
+    // Step 1 is info, steps 2-11 are questions 1-10
+    // So max step is QUIZ_QUESTIONS.length + 1 (which is 11)
+    if (currentStep < QUIZ_QUESTIONS.length + 1) {
       setStep(currentStep + 1);
     }
   };
@@ -331,7 +338,7 @@ export function QuizPageClient() {
           <CardHeader>
             <div className="flex items-center justify-between mb-4">
               <CardTitle className="text-2xl">
-                Question {currentStep} of {QUIZ_QUESTIONS.length}
+                Question {currentStep - 1} of {QUIZ_QUESTIONS.length}
               </CardTitle>
               <span className="text-sm text-zinc-500">{Math.round(progress)}% Complete</span>
             </div>
@@ -347,12 +354,12 @@ export function QuizPageClient() {
             )}
 
             <div className="flex gap-3 pt-4">
-              {currentStep > 1 && (
+              {currentStep > 2 && (
                 <Button variant="outline" onClick={handleBack} className="flex-1">
                   Back
                 </Button>
               )}
-              {currentStep < QUIZ_QUESTIONS.length ? (
+              {currentStep < QUIZ_QUESTIONS.length + 1 ? (
                 <Button onClick={handleNext} disabled={!currentAnswer} className="flex-1">
                   Next
                 </Button>
@@ -360,7 +367,7 @@ export function QuizPageClient() {
                 <Button
                   onClick={handleSubmit}
                   disabled={!currentAnswer || isSubmitting}
-                  className="flex-1"
+                  className="flex-1 bg-blue-600 hover:bg-blue-700"
                 >
                   {isSubmitting ? "Submitting..." : "Complete Audit"}
                 </Button>

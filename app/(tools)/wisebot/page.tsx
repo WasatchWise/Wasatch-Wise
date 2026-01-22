@@ -4,7 +4,6 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import { Button } from '@/components/shared/Button';
 import { Form, Input } from '@/components/shared/Form';
-import wisebotIcon from '@/wisebot.png';
 
 // Set page title for accessibility
 if (typeof document !== 'undefined') {
@@ -100,7 +99,14 @@ export default function WiseBotPage() {
       });
 
       if (!response.ok) {
-        throw new Error(`Failed to get response: ${response.statusText}`);
+        let errorMessage = `Failed to get response: ${response.statusText}`;
+        try {
+          const errorData = await response.json();
+          errorMessage = errorData.error || errorMessage;
+        } catch {
+          // If response isn't JSON, use status text
+        }
+        throw new Error(errorMessage);
       }
 
       const reader = response.body?.getReader();
@@ -122,12 +128,19 @@ export default function WiseBotPage() {
           if (line.startsWith('data: ')) {
             try {
               const data = JSON.parse(line.slice(6));
+              if (data.error) {
+                throw new Error(data.error);
+              }
               if (data.text) {
                 fullResponse += data.text;
                 setStreamingContent(fullResponse);
               }
             } catch (e) {
-              // Skip invalid JSON
+              // If it's an error from the stream, re-throw it
+              if (e instanceof Error && e.message) {
+                throw e;
+              }
+              // Otherwise skip invalid JSON
             }
           }
         }
@@ -199,8 +212,10 @@ export default function WiseBotPage() {
         <header className="text-center mb-8">
           <div className="mx-auto mb-4 h-20 w-20 rounded-full bg-blue-50 flex items-center justify-center">
             <Image
-              src={wisebotIcon}
+              src="/wisebot.png"
               alt="WiseBot icon"
+              width={48}
+              height={48}
               className="h-12 w-12"
               priority
             />
