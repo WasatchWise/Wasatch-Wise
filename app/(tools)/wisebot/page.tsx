@@ -194,32 +194,32 @@ export default function WiseBotPage() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-orange-50 to-white py-12" role="main">
-      <div className="max-w-4xl mx-auto px-6">
-        <header className="text-center mb-8">
-          <div className="mx-auto mb-4 h-20 w-20 rounded-full bg-orange-50 flex items-center justify-center">
+    <main className="min-h-screen bg-gradient-to-br from-orange-50 to-white py-8 sm:py-12" role="main">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6">
+        <header className="text-center mb-6 sm:mb-8">
+          <div className="mx-auto mb-3 sm:mb-4 h-16 w-16 sm:h-20 sm:w-20 rounded-full bg-orange-50 flex items-center justify-center">
             <Image
               src="/wisebot.png"
               alt="WiseBot icon"
               width={48}
               height={48}
-              className="h-12 w-12"
+              className="h-10 w-10 sm:h-12 sm:w-12"
               priority
             />
           </div>
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2 leading-tight">
             WiseBot (AI Assistant)
           </h1>
-          <p className="text-gray-600">
+          <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
             Your AI governance and training consultant. Ask about policy gaps,
             shadow AI, evaluation, bias, and assessment redesign.
           </p>
-          <div className="mt-2 text-sm text-gray-500 flex items-center justify-center gap-1">
-            <BookOpen className="w-4 h-4" />
+          <div className="mt-2 text-xs sm:text-sm text-gray-500 flex items-center justify-center gap-1">
+            <BookOpen className="w-3 h-3 sm:w-4 sm:h-4" />
             <span>Powered by 226+ expert sources with citations</span>
           </div>
-          <p className="text-sm text-gray-500 mt-2">
-            Press <kbd className="px-2 py-1 bg-gray-200 rounded text-xs">⌘K</kbd> for commands, <kbd className="px-2 py-1 bg-gray-200 rounded text-xs">/</kbd> to focus input
+          <p className="text-xs sm:text-sm text-gray-500 mt-1 sm:mt-2">
+            Press <kbd className="px-1.5 sm:px-2 py-0.5 sm:py-1 bg-gray-200 rounded text-xs">⌘K</kbd> for commands, <kbd className="px-1.5 sm:px-2 py-0.5 sm:py-1 bg-gray-200 rounded text-xs">/</kbd> to focus input
           </p>
         </header>
 
@@ -267,18 +267,19 @@ export default function WiseBotPage() {
           </div>
         )}
 
-        <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
+        <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 mb-4 sm:mb-6">
           {/* Example Prompts */}
           {conversation.length === 0 && (
-            <div className="mb-6">
-              <p className="text-sm font-medium text-gray-700 mb-3">Try asking:</p>
+            <div className="mb-4 sm:mb-6">
+              <p className="text-xs sm:text-sm font-medium text-gray-700 mb-2 sm:mb-3">Try asking:</p>
               <div className="flex flex-wrap gap-2">
                 {EXAMPLE_PROMPTS.map((prompt, idx) => (
                   <button
                     key={idx}
                     onClick={() => handleExamplePrompt(prompt)}
-                    className="px-4 py-2 text-sm bg-orange-50 text-orange-700 rounded-lg hover:bg-orange-100 transition-colors"
+                    className="px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm bg-orange-50 text-orange-700 rounded-lg hover:bg-orange-100 transition-colors"
                     type="button"
+                    aria-label={`Example prompt: ${prompt}`}
                   >
                     {prompt}
                   </button>
@@ -288,14 +289,15 @@ export default function WiseBotPage() {
           )}
 
           <div 
-            className="h-96 overflow-y-auto mb-4 space-y-4"
+            className="h-80 sm:h-96 overflow-y-auto mb-3 sm:mb-4 space-y-3 sm:space-y-4"
             role="log"
             aria-label="Conversation"
+            aria-live="polite"
           >
             {conversation.length === 0 && !isStreaming ? (
-              <div className="text-center text-gray-500 py-12">
-                <p className="text-lg mb-2">👋 Hi! I'm WiseBot.</p>
-                <p>
+              <div className="text-center text-gray-500 py-8 sm:py-12">
+                <p className="text-base sm:text-lg mb-2">👋 Hi! I'm WiseBot.</p>
+                <p className="text-sm sm:text-base">
                   Ask me about governance, teacher training beyond prompts, or how to close
                   the optimism gap.
                 </p>
@@ -309,36 +311,36 @@ export default function WiseBotPage() {
                     data-message={msg.role}
                   >
                     <div
-                      className={`max-w-[80%] rounded-lg p-4 ${
+                      className={`max-w-[85%] sm:max-w-[80%] rounded-lg p-3 sm:p-4 ${
                         msg.role === 'user'
                           ? 'bg-orange-500 text-white'
                           : 'bg-gray-100 text-gray-900'
                       }`}
                       role={msg.role === 'user' ? 'user-message' : 'assistant-message'}
                     >
-                      <p className="whitespace-pre-wrap">{msg.content}</p>
+                      <p className="text-sm sm:text-base whitespace-pre-wrap leading-relaxed">{msg.content}</p>
                     </div>
                     {/* Citations */}
                     {msg.citations && msg.citations.length > 0 && (
-                      <div className="mt-2 max-w-[80%] bg-orange-50 border border-orange-200 rounded-lg p-3">
-                        <div className="text-xs font-semibold text-orange-700 mb-2 flex items-center gap-1">
-                          <BookOpen className="w-3 h-3" />
-                          SOURCES CITED:
+                      <div className="mt-2 max-w-[85%] sm:max-w-[80%] bg-orange-50 border border-orange-200 rounded-lg p-2 sm:p-3">
+                        <div className="text-xs font-semibold text-orange-700 mb-1.5 sm:mb-2 flex items-center gap-1">
+                          <BookOpen className="w-3 h-3" aria-hidden="true" />
+                          <span>SOURCES CITED:</span>
                         </div>
-                        <div className="space-y-2">
+                        <div className="space-y-1.5 sm:space-y-2">
                           {msg.citations.map((citation) => (
                             <div
                               key={citation.number}
-                              className="text-xs bg-white rounded p-2 border border-orange-100"
+                              className="text-xs bg-white rounded p-1.5 sm:p-2 border border-orange-100"
                             >
                               <div className="font-semibold text-orange-600">
                                 [Source {citation.number}] {citation.title}
                               </div>
                               {citation.author && (
-                                <div className="text-gray-600 mt-0.5">By: {citation.author}</div>
+                                <div className="text-gray-600 mt-0.5 text-[11px]">By: {citation.author}</div>
                               )}
                               {citation.summary && (
-                                <div className="text-gray-500 italic mt-1 text-[10px]">
+                                <div className="text-gray-500 italic mt-1 text-[10px] leading-relaxed">
                                   {citation.summary.substring(0, 100)}...
                                 </div>
                               )}
@@ -348,8 +350,9 @@ export default function WiseBotPage() {
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   className="text-orange-500 hover:underline flex items-center gap-1 mt-1"
+                                  aria-label={`View source ${citation.number}: ${citation.title}`}
                                 >
-                                  View source <ExternalLink className="w-3 h-3" />
+                                  <span>View source</span> <ExternalLink className="w-3 h-3" aria-hidden="true" />
                                 </a>
                               )}
                             </div>
@@ -362,17 +365,17 @@ export default function WiseBotPage() {
                 {/* Streaming response */}
                 {isStreaming && streamingContent && (
                   <div className="flex justify-start">
-                    <div className="bg-gray-100 rounded-lg p-4 max-w-[80%]">
-                      <p className="whitespace-pre-wrap">{streamingContent}</p>
-                      <span className="inline-block w-2 h-4 bg-orange-500 ml-1 animate-pulse" aria-hidden="true" />
+                    <div className="bg-gray-100 rounded-lg p-3 sm:p-4 max-w-[85%] sm:max-w-[80%]">
+                      <p className="text-sm sm:text-base whitespace-pre-wrap leading-relaxed">{streamingContent}</p>
+                      <span className="inline-block w-2 h-4 bg-orange-500 ml-1 animate-pulse" aria-hidden="true" aria-label="Streaming" />
                     </div>
                   </div>
                 )}
                 {/* Loading indicator (non-blocking) */}
                 {isStreaming && !streamingContent && (
                   <div className="flex justify-start">
-                    <div className="bg-gray-100 rounded-lg p-4">
-                      <p className="text-gray-500">WiseBot is thinking...</p>
+                    <div className="bg-gray-100 rounded-lg p-3 sm:p-4">
+                      <p className="text-sm sm:text-base text-gray-500">WiseBot is thinking...</p>
                     </div>
                   </div>
                 )}
@@ -403,9 +406,10 @@ export default function WiseBotPage() {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder="Ask about shadow AI, training gaps, or policy..."
-                className="flex-1"
+                className="flex-1 text-sm sm:text-base"
                 disabled={isStreaming}
                 aria-label="WiseBot input"
+                aria-describedby="wisebot-input-help"
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' && !e.shiftKey) {
                     e.preventDefault();
@@ -418,10 +422,14 @@ export default function WiseBotPage() {
                 variant="primary" 
                 disabled={isStreaming || !message.trim()}
                 aria-label="Send message"
+                className="text-sm sm:text-base px-4 sm:px-6"
               >
                 {isStreaming ? 'Sending...' : 'Send'}
               </Button>
             </div>
+            <p id="wisebot-input-help" className="sr-only">
+              Type your question and press Enter or click Send to get an AI-powered response with citations
+            </p>
           </Form>
 
           {audioUrl && (

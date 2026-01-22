@@ -80,25 +80,25 @@ export default function PricingPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-orange-50 py-16 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-orange-50 py-12 sm:py-16 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold text-gray-900 mb-4">
+        <div className="text-center mb-12 sm:mb-16">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight">
             AI Governance <span className="text-orange-500">Built for Reality</span>
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Choose your entry point. Scale as you grow. We meet districts where they are—
             from board briefings to multi-year partnerships.
           </p>
-          <div className="mt-6 text-sm text-gray-500">
+          <div className="mt-4 sm:mt-6 text-xs sm:text-sm text-gray-500">
             <p>⚡ Most districts start with the <span className="font-semibold"> DAROS Briefing</span></p>
-            <p className="italic mt-2">"If ethical scope, I don't discount outcomes." — All pricing reflects true cost & value.</p>
+            <p className="italic mt-1 sm:mt-2">"If ethical scope, I don't discount outcomes." — All pricing reflects true cost & value.</p>
           </div>
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
+        <div className="grid md:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16">
           {tiers.map((tier) => (
             <Card 
               key={tier.name} 
@@ -149,11 +149,11 @@ export default function PricingPage() {
         </div>
 
         {/* Workshops Add-Ons */}
-        <div className="bg-white rounded-lg p-8 shadow-sm border border-gray-200">
-          <h2 className="text-3xl font-bold text-center mb-8">
+        <div className="bg-white rounded-lg p-6 sm:p-8 shadow-sm border border-gray-200">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8 leading-tight">
             <span className="text-orange-500">Workshops</span> (Add-On or Standalone)
           </h2>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
             {workshops.map((workshop) => (
               <Card key={workshop.name} className="hover:border-orange-500 transition-colors">
                 <CardHeader>
@@ -168,7 +168,7 @@ export default function PricingPage() {
         </div>
 
         {/* Footer Note */}
-        <div className="mt-12 text-center text-sm text-gray-600 space-y-2">
+        <div className="mt-8 sm:mt-12 text-center text-xs sm:text-sm text-gray-600 space-y-1.5 sm:space-y-2">
           <p>💡 <strong>Terms:</strong> 30% upfront, 40% on delivery, 30% at 60-day check-in. Minimum engagement: $2,000. On-site work: $2K/day + $1K for travel.</p>
           <p>🔄 <strong>Quick scope</strong> - I don't discount outcomes. Most districts transition from Briefing → Sprint → Ongoing partnership.</p>
         </div>

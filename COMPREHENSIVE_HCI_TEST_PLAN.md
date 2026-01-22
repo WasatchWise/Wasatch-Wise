@@ -11,16 +11,23 @@
 
 ## 🎯 Test Objectives
 
-1. **Validate Core User Journeys** - All primary user flows work correctly
-2. **Verify Orange Brand Identity** - Consistent orange (#E87722) branding throughout
-3. **Test New Features** - Pricing page, citation-enabled WiseBot
-4. **Check Accessibility** - WCAG 2.1 AA compliance
-5. **Test Responsive Design** - Mobile, tablet, desktop viewports
-6. **Validate AI Features** - WiseBot with 226+ source citations
-7. **Test Form Submissions** - Contact, quiz, email capture
-8. **Verify Navigation** - All internal links and routing
-9. **Check Performance** - Page load times and Core Web Vitals
-10. **Database Integration** - Pricing tiers, knowledge sources, citations
+### Primary Focus Areas (Deep Testing)
+1. **Aesthetics** - Visual design, color consistency, visual hierarchy, professional appearance
+2. **Accessibility** - WCAG 2.1 AA compliance, keyboard navigation, screen readers, ARIA labels
+3. **Look and Feel** - Overall design quality, brand personality, user perception
+4. **Text Size** - Readability, appropriate sizing, mobile optimization, line height
+5. **Mobile Responsiveness** - Touch targets, viewport handling, no horizontal scroll, form usability
+6. **Padding & Spacing** - Hero section padding, section spacing, card padding, visual rhythm
+
+### Secondary Objectives
+7. **Validate Core User Journeys** - All primary user flows work correctly
+8. **Verify Orange Brand Identity** - Consistent orange (#E87722) branding throughout
+9. **Test New Features** - Pricing page, citation-enabled WiseBot
+10. **Validate AI Features** - WiseBot with 226+ source citations
+11. **Test Form Submissions** - Contact, quiz, email capture
+12. **Verify Navigation** - All internal links and routing
+13. **Check Performance** - Page load times and Core Web Vitals
+14. **Database Integration** - Pricing tiers, knowledge sources, citations
 
 ---
 
@@ -435,11 +442,59 @@
 
 ---
 
-### 9. Accessibility Audit
+### 9. Aesthetics Deep Dive (NEW FOCUS AREA)
 
-**Test ID:** A11Y-001  
+**Test ID:** AESTHETICS-001  
 **Priority:** High  
-**Estimated Time:** 20 minutes
+**Estimated Time:** 15 minutes
+
+**Focus:** Visual design quality, brand consistency, professional appearance
+
+**Steps:**
+1. **Visual Hierarchy:**
+   - [ ] Hero section feels balanced (not excessive top padding)
+   - [ ] Headings clearly stand out from body text
+   - [ ] CTAs are visually prominent
+   - [ ] Information flows naturally top-to-bottom
+
+2. **Color Consistency:**
+   - [ ] Orange (#E87722) used consistently
+   - [ ] No blue colors visible
+   - [ ] Hover states use orange-600
+   - [ ] Gradients use orange tones
+
+3. **Spacing & Rhythm:**
+   - [ ] Sections have consistent vertical rhythm
+   - [ ] Cards have appropriate internal padding
+   - [ ] No cramped or overly spacious areas
+   - [ ] Mobile spacing feels intentional
+
+4. **Professional Appearance:**
+   - [ ] Design feels modern and polished
+   - [ ] No visual clutter
+   - [ ] Brand personality comes through
+   - [ ] Appropriate use of whitespace
+
+**Expected Results:**
+- ✅ Hero section balanced (not excessive padding)
+- ✅ Consistent orange branding
+- ✅ Professional, modern appearance
+- ✅ Good visual hierarchy
+- ✅ Appropriate spacing throughout
+
+**Screenshots Required:**
+- Full homepage (check spacing)
+- Hero section close-up
+- Section transitions
+- Card spacing detail
+
+---
+
+### 10. Accessibility Deep Dive (ENHANCED)
+
+**Test ID:** A11Y-002  
+**Priority:** High  
+**Estimated Time:** 25 minutes
 
 **Keyboard Navigation:**
 - [ ] Tab through all interactive elements
@@ -484,7 +539,201 @@
 
 ---
 
-### 10. Performance Testing
+### 10. Text Size & Readability (NEW FOCUS AREA)
+
+**Test ID:** TEXT-001  
+**Priority:** High  
+**Estimated Time:** 15 minutes
+
+**Focus:** Text sizing, readability, mobile optimization
+
+**Steps:**
+1. **Mobile Text Sizes (375px viewport):**
+   - [ ] Base text is ≥16px (readable without zoom)
+   - [ ] Headings scale appropriately (h1: 36px, h2: 30px)
+   - [ ] Small text (labels) is ≥12px
+   - [ ] No text too small to read comfortably
+
+2. **Desktop Text Sizes (1920px viewport):**
+   - [ ] Headings scale up appropriately
+   - [ ] Body text remains readable (not too large)
+   - [ ] Line length comfortable (max ~75 characters)
+
+3. **Line Height:**
+   - [ ] Body text has comfortable line spacing (1.5-1.75)
+   - [ ] Headings have tighter spacing (1.1-1.2)
+   - [ ] Lists have adequate spacing
+
+4. **Font Weight:**
+   - [ ] Headings are bold enough to stand out
+   - [ ] Body text is not too heavy
+   - [ ] Emphasis (bold) used appropriately
+
+**Expected Results:**
+- ✅ All text readable on mobile without zoom
+- ✅ Text sizes scale appropriately
+- ✅ Comfortable line height
+- ✅ Appropriate font weights
+
+**Screenshots Required:**
+- Mobile text sizes (zoom to 200% to verify)
+- Desktop text sizes
+- Line height examples
+
+---
+
+### 11. Mobile Responsiveness Deep Dive (ENHANCED)
+
+**Test ID:** MOBILE-001  
+**Priority:** Critical  
+**Estimated Time:** 20 minutes
+
+**Focus:** Mobile usability, touch targets, viewport handling
+
+**Steps:**
+1. **Viewport Handling (375px - iPhone SE):**
+   - [ ] No horizontal scrolling
+   - [ ] All content fits within viewport
+   - [ ] Images scale properly
+   - [ ] Forms are usable
+
+2. **Touch Targets:**
+   - [ ] All buttons ≥44x44px
+   - [ ] Links have adequate spacing
+   - [ ] Dropdown items are tappable
+   - [ ] Form inputs are easy to tap
+
+3. **Navigation:**
+   - [ ] Hamburger menu works
+   - [ ] Mobile menu is accessible
+   - [ ] Dropdowns work on touch
+   - [ ] All links are tappable
+
+4. **Forms:**
+   - [ ] Input fields are large enough
+   - [ ] Submit buttons are prominent
+   - [ ] Error messages visible
+   - [ ] Keyboard doesn't cover inputs
+
+5. **Content Layout:**
+   - [ ] Cards stack vertically
+   - [ ] Grids adapt to single column
+   - [ ] Text doesn't overflow
+   - [ ] Images don't break layout
+
+**Expected Results:**
+- ✅ No horizontal scrolling
+- ✅ All touch targets ≥44px
+- ✅ Navigation works perfectly
+- ✅ Forms are usable
+- ✅ Content adapts properly
+
+**Screenshots Required:**
+- Mobile homepage (375px)
+- Mobile pricing page
+- Mobile quiz interface
+- Mobile WiseBot chat
+- Touch target measurements
+
+---
+
+### 12. Padding & Spacing Analysis (NEW FOCUS AREA)
+
+**Test ID:** PADDING-001  
+**Priority:** High  
+**Estimated Time:** 15 minutes
+
+**Focus:** Hero padding, section spacing, visual rhythm
+
+**Steps:**
+1. **Hero Section Padding:**
+   - [ ] Top padding is reasonable (not excessive)
+   - [ ] Content feels balanced (not pushed down too far)
+   - [ ] Header + hero spacing feels intentional
+   - [ ] Mobile: Tighter but not cramped
+   - [ ] Desktop: Spacious but not wasteful
+
+2. **Section Spacing:**
+   - [ ] Consistent vertical rhythm between sections
+   - [ ] Sections don't feel too close together
+   - [ ] Sections don't feel too far apart
+   - [ ] Mobile: Reduced but still comfortable
+   - [ ] Desktop: Generous but not excessive
+
+3. **Card Padding:**
+   - [ ] Internal padding feels appropriate
+   - [ ] Content doesn't feel cramped
+   - [ ] Content doesn't feel lost in space
+   - [ ] Consistent across all cards
+
+4. **Element Spacing:**
+   - [ ] Gaps between elements are consistent
+   - [ ] Related items are grouped appropriately
+   - [ ] Unrelated items have clear separation
+   - [ ] Visual rhythm feels intentional
+
+**Expected Results:**
+- ✅ Hero section: Balanced, not excessive
+- ✅ Sections: Consistent vertical rhythm
+- ✅ Cards: Appropriate internal padding
+- ✅ Elements: Comfortable spacing
+- ✅ Overall: Professional, intentional spacing
+
+**Screenshots Required:**
+- Hero section (measure top padding)
+- Section transitions (measure spacing)
+- Card padding detail
+- Overall spacing rhythm
+
+---
+
+### 13. Look and Feel Assessment (NEW FOCUS AREA)
+
+**Test ID:** LOOKFEEL-001  
+**Priority:** Medium  
+**Estimated Time:** 10 minutes
+
+**Focus:** Overall design quality, brand personality, user perception
+
+**Steps:**
+1. **First Impression:**
+   - [ ] Design feels modern and professional
+   - [ ] Brand personality comes through
+   - [ ] Appropriate for K-12 education market
+   - [ ] Trustworthy and credible
+
+2. **Visual Consistency:**
+   - [ ] Consistent styling throughout
+   - [ ] No jarring style changes
+   - [ ] Components feel cohesive
+   - [ ] Brand identity is clear
+
+3. **Whitespace Usage:**
+   - [ ] Appropriate use of whitespace
+   - [ ] Not cluttered
+   - [ ] Not too sparse
+   - [ ] Breathing room for content
+
+4. **Visual Flow:**
+   - [ ] Eye moves naturally through page
+   - [ ] Important elements stand out
+   - [ ] Information hierarchy clear
+   - [ ] CTAs are prominent
+
+**Expected Results:**
+- ✅ Professional, modern design
+- ✅ Clear brand identity
+- ✅ Appropriate for target market
+- ✅ Good visual flow
+
+**Screenshots Required:**
+- Full homepage (first impression)
+- Key sections (visual flow)
+- Brand elements
+
+---
+
+### 14. Performance Testing
 
 **Test ID:** PERF-001  
 **Priority:** Medium  
