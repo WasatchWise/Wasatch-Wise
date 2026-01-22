@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { Button } from '@/components/shared/Button';
 import { CheckCircle } from 'lucide-react';
 
@@ -198,7 +199,7 @@ export default function AdultAIAcademyPage() {
             </Button>
           </div>
           <p className="mt-4 text-sm text-gray-500">
-            Or explore our <a href="/" className="text-orange-500 hover:text-orange-600 underline">enterprise solutions</a> for districts
+            Or explore our <Link href="/" className="text-orange-500 hover:text-orange-600 underline">enterprise solutions</Link> for districts
           </p>
         </section>
       </div>

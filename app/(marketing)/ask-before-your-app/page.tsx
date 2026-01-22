@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Button } from '@/components/shared/Button';
 import { CheckCircle, Shield, Search, FileCheck, AlertTriangle } from 'lucide-react';
 
@@ -241,7 +242,7 @@ export default function AskBeforeYourAppPage() {
             </Button>
           </div>
           <p className="mt-4 text-sm text-gray-500">
-            Districts: Explore our <a href="/" className="text-orange-500 hover:text-orange-600 underline">comprehensive governance services</a>
+            Districts: Explore our <Link href="/" className="text-orange-500 hover:text-orange-600 underline">comprehensive governance services</Link>
           </p>
         </section>
       </div>
