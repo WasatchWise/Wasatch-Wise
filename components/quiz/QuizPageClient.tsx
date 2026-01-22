@@ -331,6 +331,24 @@ export function QuizPageClient() {
   }
 
   // Quiz questions
+  // If no current question (shouldn't happen, but TypeScript safety)
+  if (!currentQuestion) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-zinc-50 to-white py-12 px-4">
+        <div className="max-w-2xl mx-auto">
+          <Card>
+            <CardContent className="p-6">
+              <p className="text-red-600">Invalid question. Please start over.</p>
+              <Button onClick={() => setStep(1)} className="mt-4">
+                Start Over
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-zinc-50 to-white py-12 px-4">
       <div className="max-w-2xl mx-auto">
