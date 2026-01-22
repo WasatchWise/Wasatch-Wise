@@ -12,7 +12,7 @@ type Vendor = {
 };
 
 export default async function VendorRegistryPage({ searchParams }: any) {
-  const params = searchParams ? await searchParams : {};
+  const params = await searchParams;
   const query = typeof params?.q === 'string' ? params.q.trim() : '';
   const supabase = await createClient();
 
