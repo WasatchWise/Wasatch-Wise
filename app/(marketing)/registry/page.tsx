@@ -11,13 +11,11 @@ type Vendor = {
   risk_tier: string | null;
 };
 
-type PageProps = {
-  searchParams?: Promise<{
-    q?: string;
-  }>;
-};
-
-export default async function VendorRegistryPage({ searchParams }: PageProps) {
+export default async function VendorRegistryPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ q?: string }>;
+}) {
   const params = await searchParams;
   const query = params?.q?.trim() ?? '';
   const supabase = await createClient();
