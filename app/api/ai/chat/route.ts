@@ -79,7 +79,7 @@ ${kbContext}
 If the user's question closely matches one of the knowledge base entries above, use that information as your primary source. Always cite the knowledge base as your source when you use it.`;
 
     // Track KB usage (service role if available)
-    if (process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY) {
+    if (process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY && kbResults && kbResults.length > 0) {
       const serviceClient = createSupabaseClient(
         process.env.NEXT_PUBLIC_SUPABASE_URL,
         process.env.SUPABASE_SERVICE_ROLE_KEY
