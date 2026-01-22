@@ -4,10 +4,27 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import { Button } from '@/components/shared/Button';
 import { Form, Input } from '@/components/shared/Form';
+import { BookOpen, ExternalLink } from 'lucide-react';
 
 // Set page title for accessibility
 if (typeof document !== 'undefined') {
   document.title = 'WiseBot - AI Governance Assistant | WasatchWise';
+}
+
+interface Citation {
+  number: number;
+  title: string;
+  author?: string;
+  type: string;
+  url?: string;
+  summary?: string;
+  topics?: string[];
+}
+
+interface Message {
+  role: 'user' | 'assistant';
+  content: string;
+  citations?: Citation[];
 }
 
 const EXAMPLE_PROMPTS = [
@@ -19,9 +36,8 @@ const EXAMPLE_PROMPTS = [
 
 export default function WiseBotPage() {
   const [message, setMessage] = useState('');
-  const [conversation, setConversation] = useState<
-    Array<{ role: 'user' | 'assistant'; content: string }>
-  >([]);
+  const [conversation, setConversation] = useState<Message[]>([]);
+  const [sessionId] = useState(() => crypto.randomUUID());
   const [streamingContent, setStreamingContent] = useState('');
   const [isStreaming, setIsStreaming] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -88,13 +104,13 @@ export default function WiseBotPage() {
     setConversation((prev) => [...prev, { role: 'user', content: userMessage }]);
 
     try {
-      // Stream response from Claude
-      const response = await fetch('/api/ai/chat', {
+      // Use new WiseBot API with citation support
+      const response = await fetch('/api/wisebot', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           message: userMessage,
-          conversationHistory: conversation,
+          sessionId: sessionId,
         }),
       });
 
@@ -109,45 +125,16 @@ export default function WiseBotPage() {
         throw new Error(errorMessage);
       }
 
-      const reader = response.body?.getReader();
-      const decoder = new TextDecoder();
-      let fullResponse = '';
+      const data = await response.json();
+      const fullResponse = data.response || '';
+      const citations = data.citations || [];
 
-      if (!reader) {
-        throw new Error('No response body');
-      }
-
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-
-        const chunk = decoder.decode(value);
-        const lines = chunk.split('\n');
-
-        for (const line of lines) {
-          if (line.startsWith('data: ')) {
-            try {
-              const data = JSON.parse(line.slice(6));
-              if (data.error) {
-                throw new Error(data.error);
-              }
-              if (data.text) {
-                fullResponse += data.text;
-                setStreamingContent(fullResponse);
-              }
-            } catch (e) {
-              // If it's an error from the stream, re-throw it
-              if (e instanceof Error && e.message) {
-                throw e;
-              }
-              // Otherwise skip invalid JSON
-            }
-          }
-        }
-      }
-
-      // Add complete response to conversation
-      setConversation((prev) => [...prev, { role: 'assistant', content: fullResponse }]);
+      // Add complete response to conversation with citations
+      setConversation((prev) => [...prev, { 
+        role: 'assistant', 
+        content: fullResponse,
+        citations: citations.length > 0 ? citations : undefined
+      }]);
       setStreamingContent('');
 
       // Convert to voice
@@ -227,6 +214,10 @@ export default function WiseBotPage() {
             Your AI governance and training consultant. Ask about policy gaps,
             shadow AI, evaluation, bias, and assessment redesign.
           </p>
+          <div className="mt-2 text-sm text-gray-500 flex items-center justify-center gap-1">
+            <BookOpen className="w-4 h-4" />
+            <span>Powered by 226+ expert sources with citations</span>
+          </div>
           <p className="text-sm text-gray-500 mt-2">
             Press <kbd className="px-2 py-1 bg-gray-200 rounded text-xs">⌘K</kbd> for commands, <kbd className="px-2 py-1 bg-gray-200 rounded text-xs">/</kbd> to focus input
           </p>
@@ -314,7 +305,7 @@ export default function WiseBotPage() {
                 {conversation.map((msg, idx) => (
                   <div
                     key={idx}
-                    className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                    className={`flex flex-col ${msg.role === 'user' ? 'items-end' : 'items-start'}`}
                     data-message={msg.role}
                   >
                     <div
@@ -327,6 +318,45 @@ export default function WiseBotPage() {
                     >
                       <p className="whitespace-pre-wrap">{msg.content}</p>
                     </div>
+                    {/* Citations */}
+                    {msg.citations && msg.citations.length > 0 && (
+                      <div className="mt-2 max-w-[80%] bg-orange-50 border border-orange-200 rounded-lg p-3">
+                        <div className="text-xs font-semibold text-orange-700 mb-2 flex items-center gap-1">
+                          <BookOpen className="w-3 h-3" />
+                          SOURCES CITED:
+                        </div>
+                        <div className="space-y-2">
+                          {msg.citations.map((citation) => (
+                            <div
+                              key={citation.number}
+                              className="text-xs bg-white rounded p-2 border border-orange-100"
+                            >
+                              <div className="font-semibold text-orange-600">
+                                [Source {citation.number}] {citation.title}
+                              </div>
+                              {citation.author && (
+                                <div className="text-gray-600 mt-0.5">By: {citation.author}</div>
+                              )}
+                              {citation.summary && (
+                                <div className="text-gray-500 italic mt-1 text-[10px]">
+                                  {citation.summary.substring(0, 100)}...
+                                </div>
+                              )}
+                              {citation.url && (
+                                <a
+                                  href={citation.url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-orange-500 hover:underline flex items-center gap-1 mt-1"
+                                >
+                                  View source <ExternalLink className="w-3 h-3" />
+                                </a>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 ))}
                 {/* Streaming response */}

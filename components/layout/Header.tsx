@@ -31,6 +31,9 @@ export function Header() {
             <Link href="/tools/wisebot" className="text-gray-700 hover:text-orange-500">
               WiseBot
             </Link>
+            <Link href="/pricing" className="text-gray-700 hover:text-orange-500">
+              Pricing
+            </Link>
           </nav>
           <div className="flex items-center gap-4">
             <Button href="/contact" variant="primary" size="sm">
