@@ -12,13 +12,14 @@ type Vendor = {
 };
 
 type PageProps = {
-  searchParams?: {
+  searchParams?: Promise<{
     q?: string;
-  };
+  }>;
 };
 
 export default async function VendorRegistryPage({ searchParams }: PageProps) {
-  const query = searchParams?.q?.trim() ?? '';
+  const params = await searchParams;
+  const query = params?.q?.trim() ?? '';
   const supabase = await createClient();
 
   let vendorQuery = supabase
