@@ -20,52 +20,128 @@ const QUIZ_QUESTIONS = [
   {
     id: 1,
     text: "Does your district have a board-approved AI use policy?",
-    options: ["Yes", "In Progress", "No"],
+    subtext: "AI tools are already in classrooms—policy is the safe harbor.",
+    options: [
+      {
+        value: "No",
+        label: "No policy exists",
+        narrative: "Most districts are here; shadow AI tends to thrive in this gap.",
+      },
+      {
+        value: "In Progress",
+        label: "Draft exists, not approved",
+        narrative: "Great start—approval is the moment policy becomes protection.",
+      },
+      {
+        value: "Yes",
+        label: "Approved policy in place",
+        narrative: "Strong foundation. You can now align training and tool vetting.",
+      },
+    ],
   },
   {
     id: 2,
     text: "What percentage of teachers use AI tools weekly?",
-    options: ["0%", "<25%", "25-50%", ">50%"],
+    subtext: "Adoption is rising quickly—visibility matters more than perfection.",
+    options: [
+      { value: "0%", label: "0%", narrative: "Low adoption now, but growth is inevitable." },
+      { value: "<25%", label: "<25%", narrative: "Early adoption often happens below the radar." },
+      { value: "25-50%", label: "25-50%", narrative: "Shadow AI is likely already operational." },
+      { value: ">50%", label: ">50%", narrative: "You need a formal governance + training track now." },
+    ],
   },
   {
     id: 3,
     text: "Have you conducted FERPA compliance training for staff using AI?",
-    options: ["Yes", "Planned", "No"],
+    subtext: "Teachers want to move fast, but they need guardrails.",
+    options: [
+      { value: "No", label: "No", narrative: "This is the #1 driver of hidden risk." },
+      { value: "Planned", label: "Planned", narrative: "Good intent—formalize it and track completion." },
+      { value: "Yes", label: "Yes", narrative: "Excellent. Now reinforce with tool-specific guidance." },
+    ],
   },
   {
     id: 4,
     text: "Do you have a process for evaluating AI tools before adoption?",
-    options: ["Yes, formal process", "Informal review", "No process"],
+    subtext: "Tool vetting is where policy meets real classroom use.",
+    options: [
+      {
+        value: "No process",
+        label: "No process",
+        narrative: "Shadow AI fills the vacuum when process is missing.",
+      },
+      {
+        value: "Informal review",
+        label: "Informal review",
+        narrative: "Informal reviews lead to inconsistency across schools.",
+      },
+      {
+        value: "Yes, formal process",
+        label: "Yes, formal process",
+        narrative: "Strong. Now standardize across departments.",
+      },
+    ],
   },
   {
     id: 5,
     text: "How would you rate parent trust in your district regarding data privacy?",
-    options: ["High", "Moderate", "Low", "Unsure"],
+    subtext: "Trust rises when families understand what’s being used and why.",
+    options: [
+      { value: "Low", label: "Low", narrative: "This is where transparency becomes essential." },
+      { value: "Unsure", label: "Unsure", narrative: "Uncertainty is a signal—communication can reset trust." },
+      { value: "Moderate", label: "Moderate", narrative: "You’re close. A clear AI story goes far." },
+      { value: "High", label: "High", narrative: "Strong asset. Keep it with ongoing disclosure." },
+    ],
   },
   {
     id: 6,
     text: "Have you experienced any AI-related incidents (data leaks, misuse, etc.)?",
-    options: ["No incidents", "Minor incidents", "Major incidents"],
+    subtext: "Incidents are often unreported; readiness is the differentiator.",
+    options: [
+      { value: "Major incidents", label: "Major incidents", narrative: "You need immediate containment and a reset plan." },
+      { value: "Minor incidents", label: "Minor incidents", narrative: "Early warning. Formalize policy and response now." },
+      { value: "No incidents", label: "No incidents", narrative: "Great—protect that with training and monitoring." },
+    ],
   },
   {
     id: 7,
     text: "Do you have dedicated staff for AI governance?",
-    options: ["Yes, full-time", "Yes, part-time", "No"],
+    subtext: "Ownership determines whether policy sticks or stalls.",
+    options: [
+      { value: "No", label: "No", narrative: "This often creates a leadership/teacher mismatch." },
+      { value: "Yes, part-time", label: "Yes, part-time", narrative: "A good start, but authority and time matter." },
+      { value: "Yes, full-time", label: "Yes, full-time", narrative: "Strong signal to your district and staff." },
+    ],
   },
   {
     id: 8,
     text: "How confident are teachers in using AI tools responsibly?",
-    options: ["Very confident", "Somewhat confident", "Not confident"],
+    subtext: "Confidence grows with training beyond prompts—evaluation and bias.",
+    options: [
+      { value: "Not confident", label: "Not confident", narrative: "Expect shadow AI and hesitancy without training." },
+      { value: "Somewhat confident", label: "Somewhat confident", narrative: "This is the optimism divide in practice." },
+      { value: "Very confident", label: "Very confident", narrative: "Great—now standardize expectations and tools." },
+    ],
   },
   {
     id: 9,
     text: "Do you track AI tool usage across the district?",
-    options: ["Yes, comprehensive tracking", "Partial tracking", "No tracking"],
+    subtext: "Inventory is the first step to governing shadow AI.",
+    options: [
+      { value: "No tracking", label: "No tracking", narrative: "Visibility gaps create exposure." },
+      { value: "Partial tracking", label: "Partial tracking", narrative: "You’re close—finish the inventory." },
+      { value: "Yes, comprehensive tracking", label: "Yes, comprehensive tracking", narrative: "Excellent—use it to guide training." },
+    ],
   },
   {
     id: 10,
     text: "Have you communicated AI policies to parents?",
-    options: ["Yes, clearly communicated", "Somewhat communicated", "Not communicated"],
+    subtext: "Transparency is the fastest path to trust.",
+    options: [
+      { value: "Not communicated", label: "Not communicated", narrative: "Parents fill silence with headlines." },
+      { value: "Somewhat communicated", label: "Somewhat communicated", narrative: "Clarify what’s allowed and why." },
+      { value: "Yes, clearly communicated", label: "Yes, clearly communicated", narrative: "Strong. Keep cadence and updates." },
+    ],
   },
 ];
 
