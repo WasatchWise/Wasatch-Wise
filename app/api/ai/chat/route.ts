@@ -85,14 +85,13 @@ If the user's question closely matches one of the knowledge base entries above, 
         process.env.SUPABASE_SERVICE_ROLE_KEY
       );
       const first = kbResults[0];
-      serviceClient
+      void serviceClient
         .from('knowledge_base')
         .update({
           view_count: (first.view_count ?? 0) + 1,
           last_viewed_at: new Date().toISOString(),
         })
         .eq('id', first.id)
-        .then()
         .catch(() => {
           // Non-blocking
         });
