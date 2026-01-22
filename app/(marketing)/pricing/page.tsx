@@ -76,7 +76,7 @@ export default function PricingPage() {
   const workshops = [
     { name: "Virtual Lunch & Learn", price: "$2,500", duration: "60 min", desc: "Quick awareness boost" },
     { name: "Virtual Workshop", price: "$4,500", duration: "2 hours", desc: "Deep-dive training" },
-    { name: "On-Site Full Day", price: "$8,000 + travel", duration: "8 hours", desc: "Immersive in-person experience" }
+    { name: "On-Site Full Day", price: "$12,000 + travel", duration: "8 hours", desc: "Immersive in-person experience (travel typically $1K-$2K)" }
   ];
 
   return (

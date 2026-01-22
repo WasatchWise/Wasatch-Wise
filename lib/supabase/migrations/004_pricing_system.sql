@@ -103,7 +103,7 @@ ON CONFLICT (slug) DO NOTHING;
 INSERT INTO workshops (name, duration_hours, price, description, max_participants) VALUES
 ('Virtual Lunch and Learn', 1, 2500, '60-minute interactive session', 50),
 ('Virtual Workshop', 2, 4500, '2-hour deep-dive training', 50),
-('On-site Full Day', 8, 8000, 'Full-day immersive training (travel costs additional)', 100)
+('On-site Full Day', 8, 12000, 'Full-day immersive training (travel costs additional, typically $1,000-$2,000)', 100)
 ON CONFLICT DO NOTHING;
 
 -- RLS Policies
