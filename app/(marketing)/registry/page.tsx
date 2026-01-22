@@ -14,9 +14,9 @@ type Vendor = {
 export default async function VendorRegistryPage({
   searchParams,
 }: {
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
-  const params = await searchParams;
+  const params = searchParams ? await searchParams : {};
   const query = typeof params.q === 'string' ? params.q.trim() : '';
   const supabase = await createClient();
 
