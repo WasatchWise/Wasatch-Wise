@@ -60,7 +60,8 @@ CREATE INDEX IF NOT EXISTS idx_knowledge_sources_search ON knowledge_sources
   USING gin(to_tsvector('english', coalesce(title, '') || ' ' || coalesce(summary, '') || ' ' || coalesce(author, '')));
 
 -- Updated_at trigger
-CREATE TRIGGER IF NOT EXISTS update_knowledge_sources_updated_at
+DROP TRIGGER IF EXISTS update_knowledge_sources_updated_at ON knowledge_sources;
+CREATE TRIGGER update_knowledge_sources_updated_at
   BEFORE UPDATE ON knowledge_sources
   FOR EACH ROW
   EXECUTE FUNCTION update_updated_at_column();

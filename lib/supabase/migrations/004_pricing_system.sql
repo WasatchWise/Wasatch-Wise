@@ -57,17 +57,20 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER IF NOT EXISTS update_pricing_tiers_updated_at
+DROP TRIGGER IF EXISTS update_pricing_tiers_updated_at ON pricing_tiers;
+CREATE TRIGGER update_pricing_tiers_updated_at
   BEFORE UPDATE ON pricing_tiers
   FOR EACH ROW
   EXECUTE FUNCTION update_updated_at_column();
 
-CREATE TRIGGER IF NOT EXISTS update_subscriptions_updated_at
+DROP TRIGGER IF EXISTS update_subscriptions_updated_at ON subscriptions;
+CREATE TRIGGER update_subscriptions_updated_at
   BEFORE UPDATE ON subscriptions
   FOR EACH ROW
   EXECUTE FUNCTION update_updated_at_column();
 
-CREATE TRIGGER IF NOT EXISTS update_workshops_updated_at
+DROP TRIGGER IF EXISTS update_workshops_updated_at ON workshops;
+CREATE TRIGGER update_workshops_updated_at
   BEFORE UPDATE ON workshops
   FOR EACH ROW
   EXECUTE FUNCTION update_updated_at_column();
