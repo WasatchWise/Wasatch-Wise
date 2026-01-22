@@ -66,7 +66,7 @@ async function handler(req: NextRequest) {
   const kbResultsCount = kbResults?.length ?? 0;
   const kbUsed = kbResultsCount > 0;
 
-  if (kbUsed) {
+  if (kbUsed && kbResults) {
     const kbContext = kbResults
       .map((kb) => `Q: ${kb.question}\nA: ${kb.answer}`)
       .join('\n\n');
