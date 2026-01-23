@@ -1,4 +1,4 @@
-import { createClient } from '@supabase/supabase-js';
+import { createAdminClient } from '@/lib/supabase/admin';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/shared/Button';
@@ -13,11 +13,8 @@ export default async function ReviewDetailPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  // Use service role key for admin dashboard (bypasses RLS)
-  const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
-  );
+  // Use admin client (service role key bypasses RLS)
+  const supabase = createAdminClient();
 
   // Get review details
   const { data: review, error } = await supabase

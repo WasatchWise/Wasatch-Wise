@@ -1,4 +1,4 @@
-import { createClient } from '@supabase/supabase-js';
+import { createAdminClient } from '@/lib/supabase/admin';
 import Link from 'next/link';
 import { Button } from '@/components/shared/Button';
 
@@ -6,11 +6,24 @@ import { Button } from '@/components/shared/Button';
 export const dynamic = 'force-dynamic';
 
 export default async function ReviewsDashboardPage() {
-  // Use service role key for admin dashboard (bypasses RLS)
-  const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
-  );
+  // Use admin client (service role key bypasses RLS)
+  let supabase;
+  try {
+    supabase = createAdminClient();
+  } catch (error) {
+    return (
+      <div className="min-h-screen bg-gray-50 py-8 sm:py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-6">
+            <h1 className="text-2xl font-bold text-red-900 mb-2">Configuration Error</h1>
+            <p className="text-red-700">
+              Missing Supabase admin credentials. Please ensure <code className="bg-red-100 px-2 py-1 rounded">SUPABASE_SERVICE_ROLE_KEY</code> is set in Vercel environment variables.
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
   
   // Get all reviews (service role for admin access)
   const { data: reviews, error } = await supabase
@@ -21,6 +34,17 @@ export default async function ReviewsDashboardPage() {
 
   if (error) {
     console.error('Error fetching reviews:', error);
+    return (
+      <div className="min-h-screen bg-gray-50 py-8 sm:py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+            <h1 className="text-2xl font-bold text-yellow-900 mb-2">Database Error</h1>
+            <p className="text-yellow-700 mb-2">Failed to fetch reviews from database.</p>
+            <p className="text-sm text-yellow-600">Error: {error.message}</p>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   const statusColors: Record<string, string> = {
