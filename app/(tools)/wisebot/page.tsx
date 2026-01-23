@@ -175,7 +175,7 @@ export default function WiseBotPage() {
     } finally {
       setIsStreaming(false);
     }
-  }, [conversation, isStreaming, message, sessionId]);
+  }, [sessionId]);
 
   const handleRetry = useCallback(() => {
     if (conversation.length > 0) {
