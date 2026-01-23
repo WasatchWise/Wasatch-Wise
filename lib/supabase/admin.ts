@@ -5,6 +5,8 @@ import { createClient } from '@supabase/supabase-js';
  * This bypasses Row Level Security (RLS) for admin operations.
  * 
  * ⚠️ SECURITY: Only use this in server-side code, never expose to client!
+ * 
+ * Updated: env var configured in Vercel
  */
 export function createAdminClient() {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
