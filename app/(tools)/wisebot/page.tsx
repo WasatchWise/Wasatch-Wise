@@ -175,8 +175,7 @@ export default function WiseBotPage() {
     } finally {
       setIsStreaming(false);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sessionId]);
+  }, [message, isStreaming, sessionId]);
 
   const handleRetry = useCallback(() => {
     if (conversation.length > 0) {
