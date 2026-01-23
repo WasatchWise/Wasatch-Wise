@@ -3,12 +3,13 @@ import { verifyStripeWebhook } from '@/lib/stripe/webhooks';
 import { createClient } from '@supabase/supabase-js';
 import Stripe from 'stripe';
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
-
 export async function POST(req: NextRequest) {
+  // Create Supabase client inside function to avoid build-time errors
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  );
+
   return verifyStripeWebhook(req, async (event: Stripe.Event) => {
     if (event.type === 'checkout.session.completed') {
       const session = event.data.object as Stripe.Checkout.Session;
