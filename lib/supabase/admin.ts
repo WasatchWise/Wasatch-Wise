@@ -12,9 +12,17 @@ export function createAdminClient() {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
+  // Debug: Log environment variable presence (server-side only, won't expose values)
+  if (process.env.NODE_ENV === 'development') {
+    console.log('[Admin Client] Env check:', {
+      hasUrl: !!supabaseUrl,
+      hasServiceKey: !!serviceRoleKey,
+    });
+  }
+
   if (!supabaseUrl || !serviceRoleKey) {
     throw new Error(
-      'Missing Supabase admin credentials. Ensure NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are set.'
+      'Missing Supabase admin credentials. Ensure NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are set in Vercel environment variables.'
     );
   }
 
