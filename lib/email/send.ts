@@ -1,7 +1,5 @@
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY!);
-
 export interface EmailOptions {
   to: string | string[];
   from?: string;
@@ -12,6 +10,9 @@ export interface EmailOptions {
 }
 
 export async function sendEmail(options: EmailOptions) {
+  // Create Resend client inside function to avoid build-time errors
+  const resend = new Resend(process.env.RESEND_API_KEY!);
+  
   const { to, from = 'John at WasatchWise <john@wasatchwise.com>', subject, html, react, text } = options;
 
   try {
