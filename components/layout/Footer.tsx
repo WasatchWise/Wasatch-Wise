@@ -50,8 +50,8 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/ask-before-your-app" className="hover:text-white">
-                  Ask Before Your App
+                <Link href="/ask-before-you-app" className="hover:text-white">
+                  Ask Before You App
                 </Link>
               </li>
               <li>

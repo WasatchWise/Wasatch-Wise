@@ -75,8 +75,8 @@ export function Header() {
                   <Link href="/adult-ai-academy" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-500">
                     Adult AI Academy
                   </Link>
-                  <Link href="/ask-before-your-app" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-500">
-                    Ask Before Your App
+                  <Link href="/ask-before-you-app" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-500">
+                    Ask Before You App
                   </Link>
                 </div>
               </div>
@@ -134,8 +134,8 @@ export function Header() {
                 <Link href="/adult-ai-academy" className="text-gray-700 hover:text-orange-500 transition-colors text-sm" onClick={() => setMobileMenuOpen(false)}>
                   Adult AI Academy
                 </Link>
-                <Link href="/ask-before-your-app" className="text-gray-700 hover:text-orange-500 transition-colors text-sm" onClick={() => setMobileMenuOpen(false)}>
-                  Ask Before Your App
+                <Link href="/ask-before-you-app" className="text-gray-700 hover:text-orange-500 transition-colors text-sm" onClick={() => setMobileMenuOpen(false)}>
+                  Ask Before You App
                 </Link>
               </div>
               <div className="pt-2 border-t border-gray-200">

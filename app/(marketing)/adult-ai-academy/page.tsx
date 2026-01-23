@@ -129,13 +129,26 @@ export default function AdultAIAcademyPage() {
           </div>
         </section>
 
+        {/* Coming Soon Notice */}
+        <section className="bg-orange-50 border-2 border-orange-200 rounded-2xl p-6 sm:p-8 mb-8 text-center">
+          <p className="text-lg sm:text-xl font-semibold text-orange-700 mb-2">
+            🚀 Launching Spring 2026
+          </p>
+          <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+            Adult AI Academy courses are currently in development. Join our waitlist to be notified when courses launch and receive early access pricing.
+          </p>
+        </section>
+
         {/* Pricing */}
         <section className="bg-white rounded-2xl shadow-sm border border-orange-100 p-6 sm:p-8 md:p-10 mb-12">
           <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 text-center">
-            Training Options
+            Training Options <span className="text-sm font-normal text-gray-500">(Coming Soon)</span>
           </h2>
-          <div className="grid md:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto">
-            <div className="border border-gray-200 rounded-lg p-6">
+          <div className="grid md:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto opacity-75">
+            <div className="border border-gray-200 rounded-lg p-6 relative">
+              <div className="absolute top-2 right-2">
+                <span className="bg-orange-500 text-white px-2 py-1 rounded text-xs font-semibold">Coming Soon</span>
+              </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">Individual Courses</h3>
               <p className="text-2xl font-bold text-orange-500 mb-3">$497 - $1,497</p>
               <p className="text-sm sm:text-base text-gray-600 mb-4 leading-relaxed">
@@ -161,6 +174,9 @@ export default function AdultAIAcademyPage() {
                 <span className="bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
                   Most Popular
                 </span>
+              </div>
+              <div className="absolute top-2 right-2">
+                <span className="bg-orange-500 text-white px-2 py-1 rounded text-xs font-semibold">Coming Soon</span>
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">Workshops & Certifications</h3>
               <p className="text-2xl font-bold text-orange-500 mb-3">$1,997 - $2,997</p>

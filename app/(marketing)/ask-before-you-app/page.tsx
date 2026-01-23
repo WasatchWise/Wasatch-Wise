@@ -2,14 +2,14 @@ import Link from 'next/link';
 import { Button } from '@/components/shared/Button';
 import { CheckCircle, Shield, Search, FileCheck, AlertTriangle } from 'lucide-react';
 
-export default function AskBeforeYourAppPage() {
+export default function AskBeforeYouAppPage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-orange-50 to-white py-12 sm:py-16 md:py-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Hero Section */}
         <header className="text-center mb-12 sm:mb-16">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-4 leading-tight">
-            Ask Before <span className="text-orange-500">Your App</span>
+            Ask Before <span className="text-orange-500">You App</span>
           </h1>
           <p className="text-lg sm:text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
             App safety reviews, AI detection, and privacy audits for K-12 tools—helping parents, teachers, and schools make informed decisions.
@@ -234,7 +234,7 @@ export default function AskBeforeYourAppPage() {
             Need an app reviewed? Get a professional safety assessment in 24-48 hours.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button href="/contact?service=Ask%20Before%20Your%20App" variant="primary" size="lg">
+            <Button href="/ask-before-you-app/request" variant="primary" size="lg">
               Request a Review
             </Button>
             <Button href="/" variant="outline" size="lg">
