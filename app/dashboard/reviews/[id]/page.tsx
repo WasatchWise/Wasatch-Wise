@@ -4,6 +4,9 @@ import Link from 'next/link';
 import { Button } from '@/components/shared/Button';
 import { ReviewWorkflowForm } from '@/components/dashboard/ReviewWorkflowForm';
 
+// Force dynamic rendering (don't pre-render at build time)
+export const dynamic = 'force-dynamic';
+
 export default async function ReviewDetailPage({
   params,
 }: {
