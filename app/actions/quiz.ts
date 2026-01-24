@@ -123,6 +123,33 @@ export async function submitQuiz(data: {
       lead_magnet: 'AI Readiness Quiz Results',
     });
 
+    // Send to Make.com webhook (if configured) - fire and forget
+    const makeWebhookUrl = process.env.MAKE_WEBHOOK_URL;
+    if (makeWebhookUrl) {
+      fetch(makeWebhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: data.email,
+          name: data.organizationName || '',
+          organization: data.organizationName || '',
+          role: data.role || '',
+          score: percentageScore,
+          tier: tier,
+          source: 'ai_readiness_quiz',
+        }),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            console.error('Make.com webhook failed:', response.status, response.statusText);
+          }
+        })
+        .catch((err) => {
+          // Silently fail - don't block quiz submission if webhook fails
+          console.error('Make.com webhook error:', err);
+        });
+    }
+
     // Generate personalized message with Claude
     const personalizedMessage = await generateWithClaude(
       `A school district just completed our AI readiness quiz. Their score is ${percentageScore}/100 (${tier}). Write a 2-paragraph personalized message explaining their result and recommending next steps. Be encouraging but direct about risks.`,

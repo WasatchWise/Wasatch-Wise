@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Analytics } from '@vercel/analytics/react';
 
 export const metadata: Metadata = {
   title: "WasatchWise | AI Governance for School Districts",
@@ -12,6 +13,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className="font-sans bg-white text-gray-900 antialiased">
         {children}
+        <Analytics mode={'production'} />
       </body>
     </html>
   );
