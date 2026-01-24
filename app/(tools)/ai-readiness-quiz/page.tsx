@@ -93,10 +93,14 @@ export default function QuizPage() {
   }, [step, answers]);
 
   const handleAnswer = (questionId: number, answer: string) => {
-    setAnswers({ ...answers, [questionId]: answer });
-    if (step < QUESTIONS.length - 1) {
-      setStep(step + 1);
-    }
+    setAnswers((prev) => ({ ...prev, [questionId]: answer }));
+
+    // Advance to the next step (including showing the email form after Q10)
+    const currentIndex = QUESTIONS.findIndex((q) => q.id === questionId);
+    setStep((prev) => {
+      const nextStep = currentIndex >= 0 ? currentIndex + 1 : prev + 1;
+      return Math.min(nextStep, QUESTIONS.length);
+    });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
