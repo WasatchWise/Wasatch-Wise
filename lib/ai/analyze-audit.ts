@@ -28,7 +28,8 @@ export interface AuditAnalysis {
 export async function analyzeAudit(
   auditId: string,
   scores: { compliance: number; safety: number; fluency: number },
-  answers: Record<string, string>
+  answers: Record<string, string>,
+  context?: { email: string; organization: string; role?: string }
 ): Promise<AuditAnalysis> {
   const supabase = await createClient();
 
@@ -60,8 +61,8 @@ Output ONLY valid JSON in this exact format:
 
 Quiz Answers:
 ${Object.entries(answers)
-  .map(([q, a]) => `Q${q}: ${a}`)
-  .join('\n')}
+      .map(([q, a]) => `Q${q}: ${a}`)
+      .join('\n')}
 
 Analyze these results and provide your assessment.`;
 
@@ -147,7 +148,7 @@ Analyze these results and provide your assessment.`;
     // Log AI usage to ai_logs table (TDD requirement)
     const { data: { user } } = await supabase.auth.getUser();
     const tokensUsed = response.usage.input_tokens + response.usage.output_tokens;
-    
+
     await supabase.from('ai_logs').insert({
       user_id: user?.id || null,
       feature_used: 'quiz_generator',
@@ -163,10 +164,27 @@ Analyze these results and provide your assessment.`;
       ),
     });
 
+    // Trigger Make.com Automation (Fire-and-forget)
+    if (process.env.MAKE_WEBHOOK_URL) {
+      fetch(process.env.MAKE_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          audit_id: auditId,
+          email: context?.email,
+          organization: context?.organization,
+          role: context?.role,
+          analysis: analysis,
+          scores: scores,
+          timestamp: new Date().toISOString()
+        })
+      }).catch(err => console.error('Make.com webhook failed:', err));
+    }
+
     return analysis;
   } catch (error) {
     console.error('AI analysis error:', error);
-    
+
     // Update status to indicate failure
     await supabase
       .from('audits')

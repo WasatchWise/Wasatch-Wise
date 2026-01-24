@@ -1,8 +1,20 @@
 'use server';
 
 import { quizSubmissionSchema } from '@/lib/utils/validation';
-import { createClient } from '@/lib/supabase/server';
+import { createAdminClient } from '@/lib/supabase/admin';
 import { generateWithClaude } from '@/lib/ai/claude';
+
+function fallbackQuizMessage(tier: 'red' | 'yellow' | 'green', score: number) {
+  switch (tier) {
+    case 'green':
+      return `Your score is ${score}/100 (green).\n\nYou have a strong foundation. The next step is to formalize what’s working (policy + tool vetting + training cadence), then improve visibility (AI tool inventory, incident reporting, and parent communication updates). If you want, we can help you turn this into a 90‑day governance plan.\n\nIf you’d like a quick next step: book a call and we’ll map the fastest path to “district-wide, consistent, and defensible.”`;
+    case 'yellow':
+      return `Your score is ${score}/100 (yellow).\n\nYou’re in the “partially ready” zone: some safeguards exist, but inconsistency creates risk (especially around training, tool evaluation, and communication). The biggest wins usually come from tightening policy language, standardizing staff guidance, and building a simple inventory + approval workflow.\n\nIf you’d like a quick next step: book a call and we’ll identify the 2–3 highest-impact fixes for the next 30 days.`;
+    case 'red':
+    default:
+      return `Your score is ${score}/100 (red).\n\nYou likely have meaningful exposure from shadow AI and uneven practices. The priority is establishing a clear policy baseline, training staff on FERPA-safe AI use, and creating a lightweight tool vetting process so classrooms don’t fill the gap with unapproved tools.\n\nIf you’d like a quick next step: book a call and we’ll outline an immediate “stabilize → govern → train” plan you can execute in weeks, not months.`;
+  }
+}
 
 const QUIZ_QUESTIONS = [
   {
@@ -104,8 +116,10 @@ export async function submitQuiz(data: {
       percentageScore >= 75 ? 'green' : percentageScore >= 50 ? 'yellow' : 'red';
 
     // Store in Supabase
-    const supabase = await createClient();
-    await supabase.from('quiz_results').insert({
+    // Use service-role client so lead capture works in production even when
+    // the public (anon) role does not have INSERT privileges on these tables.
+    const supabase = createAdminClient();
+    const { error: quizResultsError } = await supabase.from('quiz_results').insert({
       email: data.email,
       organization_name: data.organizationName,
       role: data.role,
@@ -113,8 +127,9 @@ export async function submitQuiz(data: {
       score: percentageScore,
       result_tier: tier,
     });
+    if (quizResultsError) throw quizResultsError;
 
-    await supabase.from('email_captures').insert({
+    const { error: emailCapturesError } = await supabase.from('email_captures').insert({
       email: data.email,
       name: data.organizationName,
       organization: data.organizationName,
@@ -122,48 +137,63 @@ export async function submitQuiz(data: {
       source: 'ai_readiness_quiz',
       lead_magnet: 'AI Readiness Quiz Results',
     });
+    if (emailCapturesError) throw emailCapturesError;
 
-    // Send to Make.com webhook (if configured) - fire and forget
+    // Send to Make.com webhook (if configured). Try to deliver before returning,
+    // but never fail the quiz if the webhook is down/misconfigured.
     const makeWebhookUrl = process.env.MAKE_WEBHOOK_URL;
     if (makeWebhookUrl) {
-      fetch(makeWebhookUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email: data.email,
-          name: data.organizationName || '',
-          organization: data.organizationName || '',
-          role: data.role || '',
-          score: percentageScore,
-          tier: tier,
-          source: 'ai_readiness_quiz',
-        }),
-      })
-        .then((response) => {
-          if (!response.ok) {
-            console.error('Make.com webhook failed:', response.status, response.statusText);
-          }
-        })
-        .catch((err) => {
-          // Silently fail - don't block quiz submission if webhook fails
-          console.error('Make.com webhook error:', err);
+      try {
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 2500);
+
+        const response = await fetch(makeWebhookUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: data.email,
+            name: data.organizationName || '',
+            organization: data.organizationName || '',
+            role: data.role || '',
+            score: percentageScore,
+            tier: tier,
+            source: 'ai_readiness_quiz',
+          }),
+          signal: controller.signal,
         });
+
+        clearTimeout(timeout);
+        if (!response.ok) {
+          console.error('Make.com webhook failed:', response.status, response.statusText);
+        }
+      } catch (err) {
+        console.error('Make.com webhook error:', err);
+      }
     }
 
     // Generate personalized message with Claude
-    const personalizedMessage = await generateWithClaude(
-      `A school district just completed our AI readiness quiz. Their score is ${percentageScore}/100 (${tier}). Write a 2-paragraph personalized message explaining their result and recommending next steps. Be encouraging but direct about risks.`,
-      {
-        contentType: 'quiz_results',
-        maxTokens: 300,
-      }
-    );
+    let personalizedMessage = fallbackQuizMessage(tier, percentageScore);
+    let messageSource: 'claude' | 'fallback' = 'fallback';
+    try {
+      personalizedMessage = await generateWithClaude(
+        `A school district just completed our AI readiness quiz. Their score is ${percentageScore}/100 (${tier}). Write a 2-paragraph personalized message explaining their result and recommending next steps. Be encouraging but direct about risks.`,
+        {
+          contentType: 'quiz_results',
+          maxTokens: 300,
+        }
+      );
+      messageSource = 'claude';
+    } catch (err) {
+      // Don't fail the quiz if Claude is unavailable/misconfigured.
+      console.error('Claude quiz message generation failed; using fallback.', err);
+    }
 
     return {
       success: true,
       overall_score: percentageScore,
       tier,
       message: personalizedMessage,
+      message_source: messageSource,
       question_scores: questionScores,
     };
   } catch (error) {

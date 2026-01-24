@@ -147,7 +147,7 @@ export async function submitAudit(
         .select('id')
         .eq('id', user.id)
         .single();
-      
+
       if (profile) {
         submittedBy = profile.id;
       }
@@ -179,7 +179,11 @@ export async function submitAudit(
     }
 
     // Trigger AI analysis (async - don't wait)
-    analyzeAudit(audit.id, scores, data.answers).catch((error) => {
+    analyzeAudit(audit.id, scores, data.answers, {
+      email: data.email,
+      organization: data.organizationName || '',
+      role: data.role
+    }).catch((error) => {
       console.error('AI analysis failed:', error);
       // Update status to indicate analysis failed
       supabase
