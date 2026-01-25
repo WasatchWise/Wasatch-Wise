@@ -164,12 +164,15 @@ Analyze these results and provide your assessment.`;
       ),
     });
 
-    // Trigger Make.com Automation (Fire-and-forget)
-    if (process.env.MAKE_WEBHOOK_URL) {
-      fetch(process.env.MAKE_WEBHOOK_URL, {
+    // Trigger N8N Universal Lead Router (prioritize new var, fallback to old)
+    const webhookUrl = process.env.LEAD_ROUTER_WEBHOOK_URL || process.env.MAKE_WEBHOOK_URL;
+
+    if (webhookUrl) {
+      fetch(webhookUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          source: 'quiz_audit', // Distinguish source
           audit_id: auditId,
           email: context?.email,
           organization: context?.organization,
@@ -178,7 +181,7 @@ Analyze these results and provide your assessment.`;
           scores: scores,
           timestamp: new Date().toISOString()
         })
-      }).catch(err => console.error('Make.com webhook failed:', err));
+      }).catch(err => console.error('Lead router webhook failed:', err));
     }
 
     return analysis;

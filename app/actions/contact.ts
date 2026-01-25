@@ -61,6 +61,24 @@ export async function submitContactForm(formData: FormData) {
       `,
     });
 
+    // Trigger N8N Universal Lead Router
+    const webhookUrl = process.env.LEAD_ROUTER_WEBHOOK_URL;
+    if (webhookUrl) {
+      fetch(webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          source: 'contact_form',
+          name: validated.name,
+          email: validated.email,
+          organization: validated.organization,
+          role: validated.role,
+          message: validated.message,
+          timestamp: new Date().toISOString()
+        })
+      }).catch(err => console.error('Lead router webhook failed:', err));
+    }
+
     return { success: true };
   } catch (error) {
     console.error('Contact form error:', error);
