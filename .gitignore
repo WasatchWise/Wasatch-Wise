@@ -25,6 +25,9 @@ build
 # npm cache (should never be committed)
 .npm-cache/
 
+# audit/artifact outputs (may contain captured secrets)
+apps/slctrips/artifacts/
+
 # large app-specific directories
 apps/gmc-mag/GMC/
 apps/gmc-mag/GMC*/

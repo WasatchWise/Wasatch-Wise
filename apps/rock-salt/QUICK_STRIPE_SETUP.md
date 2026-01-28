@@ -5,7 +5,7 @@
 **Stripe Keys:**
 - ✅ `STRIPE_SECRET_KEY` - Already in Vercel
 - ✅ `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` - Already in Vercel
-- ✅ `STRIPE_WEBHOOK_SECRET` - **Add this now:** `whsec_gUYrSnSBiCcqpDR1Q5CxoPpvYtxpSLlD`
+- ✅ `STRIPE_WEBHOOK_SECRET` - **Add this now:** (get from Stripe Dashboard → Webhooks → Signing secret)
 
 ## 🚀 Add Webhook Secret to Vercel
 
@@ -13,7 +13,7 @@
 2. Click "Create new"
 3. Fill in:
    - **Key**: `STRIPE_WEBHOOK_SECRET`
-   - **Value**: `whsec_gUYrSnSBiCcqpDR1Q5CxoPpvYtxpSLlD`
+   - **Value**: (paste from Stripe Dashboard → Webhooks → Signing secret)
    - **Environment**: All Environments
    - **Sensitive**: ✅ Enable (recommended)
 4. Click "Save"

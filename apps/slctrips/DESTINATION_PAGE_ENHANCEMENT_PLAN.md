@@ -218,7 +218,7 @@ interface RoadWarriorAlertProps {
 ### YouTube Data API
 **Integration Points:**
 - Video embed with related content
-- API Key: `AIzaSyDKBoNppz8Wxnh7ri9GLs6LatMjrg7-as8`
+- API Key: (set in env as YOUTUBE_API_KEY)
 - Auto-fetch related destination videos
 
 ---
@@ -458,7 +458,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 
 ```bash
 # YouTube Data API
-YOUTUBE_API_KEY=AIzaSyDKBoNppz8Wxnh7ri9GLs6LatMjrg7-as8
+YOUTUBE_API_KEY=<your-youtube-api-key>
 
 # Viator Tours
 VIATOR_API_KEY=27667c52-5c00-4e88-959f-edfd717ec22b
@@ -472,7 +472,7 @@ AMAZON_AFFILIATE_LINK=https://www.amazon.com/b?node=48482381011&linkCode=ll2&tag
 AMAZON_AFFILIATE_SHORT=https://amzn.to/3X83cfW
 
 # Google APIs (already configured)
-GOOGLE_PLACES_API_KEY=AIzaSyBvOkBwGJgZhY8LE9bKVvT7lQHgW4Wjzm8
+GOOGLE_PLACES_API_KEY=<your-google-places-api-key>
 ```
 
 ---

@@ -35,7 +35,7 @@
 **Stripe (Payments) - LIVE MODE**
 - NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ✅ pk_live_51RXrCfLRKGH1pF11...
 - STRIPE_SECRET_KEY: ✅ sk_live_51RXrCfLRKGH1pF11...
-- STRIPE_WEBHOOK_SECRET: ✅ whsec_KQmt4gaRh4eLSMUKBObjejj6iWSx6I0v
+- STRIPE_WEBHOOK_SECRET: ✅ (set in Vercel — get from Stripe Dashboard)
 
 **Sentry (Error Tracking)**
 - NEXT_PUBLIC_SENTRY_DSN: ✅ Configured

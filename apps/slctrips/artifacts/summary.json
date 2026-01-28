@@ -56,9 +56,9 @@
     ],
     "secret_hits_count": 50,
     "secret_exposure": {
-      "database_password": "5w55dmaWp!CJGvn exposed in DEPLOYMENT_MISSION_BRIEF.md, VERCEL_ENV_VARS.md, .mcp.json",
-      "supabase_url": "mkepcjzqnbowrgbvjfem.supabase.co exposed in multiple docs",
-      "google_places_api_key": "AIzaSyBvOkBwGJgZhY8LE9bKVvT7lQHgW4Wjzm8 in VERCEL_ENV_VARS.md"
+      "database_password": "[REDACTED]",
+      "supabase_url": "[REDACTED]",
+      "google_places_api_key": "[REDACTED]"
     }
   },
   "vercel": {
