@@ -16,7 +16,7 @@ Based on your Vercel dashboard, you have:
 ### Critical - Add These Now:
 
 1. **STRIPE_WEBHOOK_SECRET** ⚠️ **REQUIRED** - **PROVIDED**
-   - Value: `whsec_gUYrSnSBiCcqpDR1Q5CxoPpvYtxpSLlD`
+   - Value: (from Stripe Dashboard → Webhooks → Signing secret)
    - **Action needed:** Add to Vercel environment variables
    - **Without this, webhooks won't work and payments won't update database**
 

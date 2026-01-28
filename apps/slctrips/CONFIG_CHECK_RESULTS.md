@@ -38,7 +38,7 @@ SENDGRID_API_KEY=SG.cDE9XtBDTiCL8mN257qLnQ... (Configured)
 ```
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_live_51RXrCfLRKGH1pF11... (Configured)
 STRIPE_SECRET_KEY=sk_live_51RXrCfLRKGH1pF11... (Configured)
-STRIPE_WEBHOOK_SECRET=whsec_KQmt4gaRh4eLSMUKBObjejj6iWSx6I0v
+STRIPE_WEBHOOK_SECRET=(set in Vercel — get from Stripe Dashboard)
 ```
 - **Mode:** LIVE (production payments)
 - **Webhook:** Configured with signing secret
@@ -118,7 +118,7 @@ Verify webhook endpoint is configured in Stripe dashboard:
 - `payment_intent.succeeded`
 - `payment_intent.payment_failed`
 
-**Verify signing secret** matches: `whsec_KQmt4gaRh4eLSMUKBObjejj6iWSx6I0v`
+**Verify signing secret** matches the value in Vercel (Stripe Dashboard → Webhooks)
 
 **Check at:** https://dashboard.stripe.com/webhooks
 

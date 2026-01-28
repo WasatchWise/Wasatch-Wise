@@ -60,7 +60,7 @@ AND table_name IN (
 **Required in Vercel:**
 - ✅ `STRIPE_SECRET_KEY` - Set
 - ✅ `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` - Set
-- ⚠️ `STRIPE_WEBHOOK_SECRET` - **VERIFY IT'S SET** (`whsec_gUYrSnSBiCcqpDR1Q5CxoPpvYtxpSLlD`)
+- ⚠️ `STRIPE_WEBHOOK_SECRET` - **VERIFY IT'S SET** (get from Stripe Dashboard → Webhooks → Signing secret)
 - ✅ `X_API_Key` - AzuraCast API key
 - ✅ `NEXT_PUBLIC_SUPABASE_URL` - Verify it's set
 - ✅ `NEXT_PUBLIC_SUPABASE_ANON_KEY` - Set

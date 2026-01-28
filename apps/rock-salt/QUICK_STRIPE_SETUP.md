@@ -32,7 +32,7 @@
    - ✅ `customer.subscription.updated`
    - ✅ `customer.subscription.deleted`
 6. Click "Add endpoint"
-7. Verify the signing secret matches: `whsec_gUYrSnSBiCcqpDR1Q5CxoPpvYtxpSLlD`
+7. Verify the signing secret matches the value in Vercel (get from Stripe Dashboard → Webhooks → Signing secret)
 
 ## ✅ Verification Checklist
 
