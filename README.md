@@ -14,6 +14,13 @@ AI-powered sales machine for B2B education consulting, built with Next.js 15, Su
 - **Email**: Resend + React Email
 - **Hosting**: Vercel
 
+## Monorepo (Turborepo + npm workspaces)
+
+- **Workspaces:** `apps/*` — each app has its own `package.json`.
+- **From root:** `npm run dev` runs dev in all apps; `npm run build` / `npm run lint` same.
+- **Single app:** `npm run dev:abya`, `npm run dev:dashboard`, `npm run dev:slctrips`, or `turbo run dev --filter=<package-name>`.
+- **From app dir:** `cd apps/ask-before-you-app && npm run dev` works as before.
+
 ## Getting Started
 
 ### 1. Install Dependencies

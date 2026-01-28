@@ -3,11 +3,15 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
+  "packageManager": "pnpm@10.28.2",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "start": "turbo run start",
+    "lint": "turbo run lint",
+    "dev:abya": "turbo run dev --filter=ask-before-you-app",
+    "dev:dashboard": "turbo run dev --filter=dashboard",
+    "dev:slctrips": "turbo run dev --filter=slctrips-v2",
     "test:hci": "npx playwright test --config=tests/hci/playwright.config.ts",
     "test:hci:ui": "npx playwright test --config=tests/hci/playwright.config.ts --ui",
     "test:hci:report": "npx playwright show-report tests/hci/hci-report",
@@ -63,6 +67,7 @@
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.13",
     "tsx": "^4.21.0",
+    "turbo": "^2.8.0",
     "typescript": "^5.7.2"
   }
 }
