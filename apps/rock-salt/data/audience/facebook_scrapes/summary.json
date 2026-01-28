@@ -1,0 +1,121 @@
+{
+  "total_entities": 5070,
+  "group_counts": [
+    [
+      "734642463335208",
+      1640
+    ],
+    [
+      "1449894341999363",
+      1571
+    ],
+    [
+      "1704209863498222",
+      683
+    ],
+    [
+      "therocksalt",
+      660
+    ],
+    [
+      "utahmusiciansnetwork",
+      91
+    ],
+    [
+      "UtahBands",
+      11
+    ],
+    [
+      "968783403765805",
+      3
+    ],
+    [
+      "52793434301",
+      3
+    ],
+    [
+      "735225615666900",
+      2
+    ],
+    [
+      "143397965694292",
+      2
+    ],
+    [
+      "piperdown",
+      2
+    ],
+    [
+      "1486813598654287",
+      1
+    ],
+    [
+      "1476405607120911",
+      1
+    ],
+    [
+      "779601745455369",
+      1
+    ],
+    [
+      "6131904358",
+      1
+    ]
+  ],
+  "topic_counts": [
+    [
+      "events_calendar",
+      270
+    ],
+    [
+      "band_member_search",
+      114
+    ],
+    [
+      "booking_show_requests",
+      111
+    ],
+    [
+      "community_help",
+      64
+    ],
+    [
+      "studio_services",
+      46
+    ],
+    [
+      "promotion_marketing",
+      38
+    ],
+    [
+      "gear_marketplace",
+      13
+    ],
+    [
+      "lessons_teaching",
+      11
+    ]
+  ],
+  "file_counts": [
+    [
+      "facebook (10).csv",
+      266
+    ],
+    [
+      "facebook (9).csv",
+      226
+    ],
+    [
+      "facebook (6).csv",
+      153
+    ],
+    [
+      "facebook (8).csv",
+      20
+    ],
+    [
+      "facebook (7).csv",
+      4
+    ]
+  ]
+}

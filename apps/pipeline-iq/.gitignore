@@ -1,0 +1,150 @@
+# =====================================
+# GROOVELEADS PRO - GITIGNORE
+# =====================================
+
+# =====================================
+# SENSITIVE FILES - NEVER COMMIT THESE
+# =====================================
+# Environment variables with secrets
+.env
+.env*.local
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env.backup
+
+# Supabase local config (if using local dev)
+supabase/.env
+supabase/.branches
+
+# API keys and secrets
+secrets/
+*.key
+*.pem
+*.p12
+*.pfx
+
+# =====================================
+# DEPENDENCIES
+# =====================================
+/node_modules
+/.pnp
+.pnp.js
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# =====================================
+# BUILD & PRODUCTION
+# =====================================
+# Next.js
+/.next/
+/out/
+/build
+.next
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+*.tsbuildinfo.json
+
+# =====================================
+# TESTING
+# =====================================
+/coverage
+.nyc_output
+*.lcov
+
+# =====================================
+# DEPLOYMENT
+# =====================================
+# Vercel
+.vercel
+.vercel.json
+
+# =====================================
+# SCRAPER & DATA
+# =====================================
+# Screenshots from scraper
+screenshots/
+scraper-data/
+*.csv
+*.xlsx
+
+# Temporary scraper files
+tmp/
+temp/
+.cache/
+
+# =====================================
+# OS FILES
+# =====================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# =====================================
+# IDE & EDITOR FILES
+# =====================================
+# VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Cursor
+.cursor/
+
+# JetBrains
+.idea/
+*.iml
+*.iws
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+
+# =====================================
+# LOGS
+# =====================================
+logs/
+*.log
+log/
+
+# =====================================
+# MISC
+# =====================================
+# Backup files
+*.bak
+*.backup
+*_backup
+
+# Local test files
+test-*.ts
+test-*.js
+!test-scoring-execution.ts
+debug-*.js
+debug-*.ts
+.bulk-scrape-progress.json
+
+# Local files to exclude
+3265834.jpg
+3265834.pdf
+supergroove.json
+project_prints/
+!app/api/activity/log/route.ts

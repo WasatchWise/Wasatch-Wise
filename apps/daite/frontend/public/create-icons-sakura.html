@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DAiTE Icon Generator - Sakura Theme</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, 'Hiragino Sans', sans-serif;
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid rgba(236, 72, 153, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            background: linear-gradient(135deg, #fce7f3, #fbcfe8, #f9a8d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-align: center;
+            font-weight: 700;
+        }
+        .subtitle {
+            color: #e9d5ff;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 1.2em;
+        }
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        .icon-preview {
+            text-align: center;
+            background: rgba(15, 23, 42, 0.6);
+            padding: 25px;
+            border-radius: 20px;
+            border: 2px solid rgba(236, 72, 153, 0.2);
+            transition: all 0.3s;
+        }
+        .icon-preview:hover {
+            border-color: rgba(236, 72, 153, 0.5);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(236, 72, 153, 0.3);
+        }
+        canvas {
+            border: 4px solid rgba(251, 207, 232, 0.5);
+            border-radius: 24px;
+            background: linear-gradient(135deg, #fef3f2, #fce7f3);
+            box-shadow: 0 12px 40px rgba(236, 72, 153, 0.4), inset 0 0 20px rgba(251, 207, 232, 0.3);
+            margin: 15px 0;
+        }
+        button {
+            background: linear-gradient(135deg, #f472b6, #ec4899, #db2777);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            margin: 10px 5px;
+            transition: all 0.3s;
+            box-shadow: 0 6px 20px rgba(236, 72, 153, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(236, 72, 153, 0.6);
+        }
+        button:active {
+            transform: translateY(-1px);
+        }
+        .instructions {
+            background: linear-gradient(135deg, rgba(251, 207, 232, 0.2), rgba(244, 114, 182, 0.2));
+            padding: 25px;
+            border-radius: 16px;
+            margin: 30px 0;
+            border: 2px solid rgba(236, 72, 153, 0.3);
+        }
+        .instructions h3 {
+            color: #fce7f3;
+            margin-top: 0;
+        }
+        .info {
+            color: #e9d5ff;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        .sakura-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(236, 72, 153, 0.1);
+            border-radius: 12px;
+            border-left: 4px solid #ec4899;
+        }
+        .center-buttons {
+            text-align: center;
+            margin-top: 40px;
+        }
+        .center-buttons button {
+            font-size: 18px;
+            padding: 18px 36px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌸 DAiTE Sakura Icons</h1>
+        <p class="subtitle">Japanese cherry blossom aesthetic with embrace theme</p>
+        
+        <div class="instructions">
+            <div class="sakura-info">
+                <div style="font-size: 3em;">🌸</div>
+                <div>
+                    <h3 style="margin: 0 0 10px 0; color: #fce7f3;">Sakura (Cherry Blossom) Design</h3>
+                    <p class="info" style="margin: 0;">
+                        Icons feature delicate cherry blossom petals, soft pink gradients, and the embrace theme. 
+                        Sakura represents beauty, renewal, and the fleeting nature of meaningful connections.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="icon-grid">
+            <div class="icon-preview">
+                <h3 style="color: #fce7f3;">192×192</h3>
+                <canvas id="icon192" width="192" height="192"></canvas>
+                <br>
+                <button onclick="downloadIcon('icon192', 'icon-192.png')">Download icon-192.png</button>
+            </div>
+
+            <div class="icon-preview">
+                <h3 style="color: #fce7f3;">512×512</h3>
+                <canvas id="icon512" width="512" height="512"></canvas>
+                <br>
+                <button onclick="downloadIcon('icon512', 'icon-512.png')">Download icon-512.png</button>
+            </div>
+
+            <div class="icon-preview">
+                <h3 style="color: #fce7f3;">32×32 (Favicon)</h3>
+                <canvas id="favicon" width="32" height="32"></canvas>
+                <br>
+                <button onclick="downloadIcon('favicon', 'favicon.ico')">Download favicon.ico</button>
+            </div>
+        </div>
+
+        <div class="center-buttons">
+            <button onclick="downloadAll()">🌸 Download All Sakura Icons</button>
+            <button onclick="regenerate()">🔄 Regenerate</button>
+        </div>
+    </div>
+
+    <script>
+        function drawSakuraIcon(canvasId, size) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, size, size);
+            
+            // Create soft sakura pink gradient background
+            const gradient = ctx.createRadialGradient(size/2, size/2, 0, size/2, size/2, size/2);
+            gradient.addColorStop(0, '#fce7f3'); // Light pink center
+            gradient.addColorStop(0.5, '#fbcfe8'); // Medium pink
+            gradient.addColorStop(1, '#f9a8d4'); // Deeper pink edges
+            
+            // Fill background
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, size, size);
+            
+            const centerX = size / 2;
+            const centerY = size / 2;
+            
+            // Draw multiple cherry blossom petals floating
+            const petalCount = size >= 128 ? 5 : 3;
+            const mainPetalSize = size * 0.15;
+            const centerRadius = size * 0.3;
+            
+            // Main blossom cluster in center (embrace theme)
+            for (let i = 0; i < petalCount; i++) {
+                const angle = (Math.PI * 2 * i) / petalCount - Math.PI / 2;
+                const x = centerX + Math.cos(angle) * centerRadius;
+                const y = centerY + Math.sin(angle) * centerRadius;
+                
+                drawCherryBlossomPetal(ctx, x, y, mainPetalSize, angle + Math.PI / 2, '#ffffff', 0.9);
+            }
+            
+            // Smaller floating petals around
+            if (size >= 128) {
+                const floatingPetals = size >= 256 ? 8 : 5;
+                for (let i = 0; i < floatingPetals; i++) {
+                    const angle = (Math.PI * 2 * i) / floatingPetals;
+                    const distance = size * 0.35;
+                    const x = centerX + Math.cos(angle) * distance;
+                    const y = centerY + Math.sin(angle) * distance;
+                    const petalSize = size * 0.08;
+                    const rotation = angle + Math.PI / 4;
+                    
+                    drawCherryBlossomPetal(ctx, x, y, petalSize, rotation, 'rgba(255, 255, 255, 0.7)', 0.6);
+                }
+            }
+            
+            // Center circle with embrace symbol
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, size * 0.12, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Two interlocking elements (embrace)
+            if (size >= 64) {
+                ctx.strokeStyle = 'rgba(251, 207, 232, 0.9)';
+                ctx.lineWidth = Math.max(2, size * 0.015);
+                
+                // Left arc
+                ctx.beginPath();
+                ctx.arc(centerX - size * 0.08, centerY, size * 0.1, Math.PI * 0.3, Math.PI * 1.7);
+                ctx.stroke();
+                
+                // Right arc
+                ctx.beginPath();
+                ctx.arc(centerX + size * 0.08, centerY, size * 0.1, Math.PI * 1.3, Math.PI * 0.7, true);
+                ctx.stroke();
+            }
+            
+            // Add subtle sakura pink tint overlay
+            ctx.fillStyle = 'rgba(251, 207, 232, 0.1)';
+            ctx.fillRect(0, 0, size, size);
+        }
+        
+        function drawCherryBlossomPetal(ctx, x, y, size, rotation, color, opacity) {
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.rotate(rotation);
+            
+            ctx.fillStyle = color.replace('rgb', 'rgba').replace(')', `, ${opacity})`);
+            ctx.beginPath();
+            
+            // Draw cherry blossom petal shape (5-lobed)
+            const lobes = 5;
+            for (let i = 0; i < lobes; i++) {
+                const angle = (Math.PI * 2 * i) / lobes;
+                const radius = size * (0.6 + 0.4 * Math.cos(angle * 2.5));
+                const px = Math.cos(angle) * radius;
+                const py = Math.sin(angle) * radius;
+                
+                if (i === 0) {
+                    ctx.moveTo(px, py);
+                } else {
+                    ctx.lineTo(px, py);
+                }
+            }
+            
+            ctx.closePath();
+            ctx.fill();
+            
+            // Add subtle highlight
+            ctx.fillStyle = `rgba(255, 255, 255, ${opacity * 0.3})`;
+            ctx.beginPath();
+            ctx.arc(0, -size * 0.3, size * 0.2, 0, Math.PI * 2);
+            ctx.fill();
+            
+            ctx.restore();
+        }
+
+        function downloadIcon(canvasId, filename) {
+            const canvas = document.getElementById(canvasId);
+            canvas.toBlob((blob) => {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }, 'image/png');
+        }
+
+        function downloadAll() {
+            downloadIcon('icon192', 'icon-192.png');
+            setTimeout(() => downloadIcon('icon512', 'icon-512.png'), 300);
+            setTimeout(() => downloadIcon('favicon', 'favicon.ico'), 600);
+        }
+
+        function regenerate() {
+            drawSakuraIcon('icon192', 192);
+            drawSakuraIcon('icon512', 512);
+            drawSakuraIcon('favicon', 32);
+        }
+
+        // Generate icons on load
+        window.onload = () => {
+            regenerate();
+        };
+    </script>
+</body>
+</html>
+

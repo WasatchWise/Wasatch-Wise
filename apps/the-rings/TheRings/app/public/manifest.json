@@ -1,0 +1,58 @@
+{
+  "name": "The Rings at Fullmer Legacy Center",
+  "short_name": "The Rings",
+  "description": "Youth development platform - Tap In, Drop Loot, Build Your Cyclone",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a14",
+  "theme_color": "#0a0a14",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon.webp",
+      "sizes": "512x512",
+      "type": "image/webp",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-icon.webp",
+      "sizes": "180x180",
+      "type": "image/webp",
+      "purpose": "any"
+    },
+    {
+      "src": "/cyclone.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable",
+      "density": 2.0
+    }
+  ],
+  "categories": ["education", "lifestyle"],
+  "shortcuts": [
+    {
+      "name": "Tap In",
+      "url": "/tap-in",
+      "description": "Check in to your current zone",
+      "icons": [{ "src": "/icon.webp", "sizes": "96x96" }]
+    },
+    {
+      "name": "Drop Loot",
+      "url": "/loot-drop",
+      "description": "Capture and upload an artifact",
+      "icons": [{ "src": "/icon.webp", "sizes": "96x96" }]
+    },
+    {
+      "name": "Dashboard",
+      "url": "/dashboard",
+      "description": "View your progress and rings",
+      "icons": [{ "src": "/icon.webp", "sizes": "96x96" }]
+    },
+    {
+      "name": "Quests",
+      "url": "/quests",
+      "description": "Browse available quests",
+      "icons": [{ "src": "/icon.webp", "sizes": "96x96" }]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+[
+  {
+    "id": "7ed4ef38-a10d-44cc-bafe-4fecaf52110d",
+    "name": "Ted Bundy Snowmass Victim Site",
+    "category": "3h"
+  },
+  {
+    "id": "ee5e9da2-8b0f-4123-8450-773a7a69ef08",
+    "name": "Winter Quarters State Park",
+    "category": "5h"
+  },
+  {
+    "id": "e45658c6-9941-4ac0-84bb-fc7e8f05d95a",
+    "name": "Grafton Ghost Town",
+    "category": "30min"
+  },
+  {
+    "id": "dfe970e3-a167-498d-9adf-f60774a08adc",
+    "name": "Grand Junction",
+    "category": "5h"
+  },
+  {
+    "id": "bc39bfeb-bf27-4798-aaec-d15b701e6bfa",
+    "name": "Corvallis",
+    "category": "12h"
+  }
+]

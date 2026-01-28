@@ -1,0 +1,8 @@
+{
+  "name": "Neuro-Industrial Strategy Hub",
+  "description": "An interactive platform exploring the neurobiological foundations of industrial influence and the strategic case for North American magnesium sovereignty.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}

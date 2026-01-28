@@ -1,0 +1,4399 @@
+{
+  "timestamp": "2025-11-04T02:03:22.810Z",
+  "summary": {
+    "total": 500,
+    "successful": 337,
+    "errors": 163,
+    "apiCalls": 50,
+    "estimatedCost": "0.25"
+  },
+  "results": [
+    {
+      "id": "e72fcc90-8011-4850-9771-83cfec382663",
+      "name": "Coral Pink Sand Dunes State Park",
+      "slug": "coral-pink-sand-dunes-film",
+      "state": "UT",
+      "distance_miles": 316.1,
+      "drive_minutes": 290,
+      "success": true
+    },
+    {
+      "id": "77704d10-8213-41df-845a-d41d1a49f583",
+      "name": "Craters of the Moon",
+      "slug": "craters-of-the-moon",
+      "state": "ID",
+      "distance_miles": 264.3,
+      "drive_minutes": 236,
+      "success": true
+    },
+    {
+      "id": "5e957723-134d-4038-a34f-b2cf5c5ba6a7",
+      "name": "Craters of the Moon National Monument",
+      "slug": "craters-of-the-moon-film",
+      "state": "ID",
+      "distance_miles": 268.4,
+      "drive_minutes": 250,
+      "success": true
+    },
+    {
+      "id": "0433fa63-8a37-45ed-b55f-a640e93e69fc",
+      "name": "Cripple Creek Shootouts",
+      "slug": "cripple-creek-shootouts",
+      "state": "CO",
+      "distance_miles": 558.8,
+      "drive_minutes": 539,
+      "success": true
+    },
+    {
+      "id": "5de35bf8-ed72-4970-9e85-58b78f9fb053",
+      "name": "Crux Fermentation Project",
+      "slug": "crux-fermentation-project",
+      "state": "OR",
+      "distance_miles": 654.8,
+      "drive_minutes": 593,
+      "success": true
+    },
+    {
+      "id": "0bf24e4a-eb03-4ae1-b091-9b558b206f69",
+      "name": "Darrien Hunt Shooting",
+      "slug": "darrien-hunt-shooting-saratoga",
+      "state": "UT",
+      "distance_miles": 36.8,
+      "drive_minutes": 46,
+      "success": true
+    },
+    {
+      "id": "519d6ac2-deb1-4faa-a406-3a594f833413",
+      "name": "David Parker Ray Toy Box",
+      "slug": "david-parker-ray-toy-box",
+      "state": "NM",
+      "distance_miles": 752.7,
+      "drive_minutes": 705,
+      "success": true
+    },
+    {
+      "id": "aacaf1bb-bbde-42b1-88f0-7855282fa397",
+      "name": "Dead Horse Point State Park",
+      "slug": "dead-horse-point-film-location",
+      "state": "UT",
+      "distance_miles": 249.7,
+      "drive_minutes": 245,
+      "success": true
+    },
+    {
+      "id": "dfb91276-b74d-4fd7-9d9a-3d432ab001c0",
+      "name": "Dixie Red Hills Golf Course",
+      "slug": "dixie-red-hills-golf-course",
+      "state": "UT",
+      "distance_miles": 308.5,
+      "drive_minutes": 258,
+      "success": true
+    },
+    {
+      "id": "e492f4bf-4b49-4c41-8dff-c220e604bae4",
+      "name": "Doc Holliday Grave",
+      "slug": "doc-holliday-grave-glenwood",
+      "state": "CO",
+      "distance_miles": 373.9,
+      "drive_minutes": 337,
+      "success": true
+    },
+    {
+      "id": "4fee03b0-4db8-4498-850d-876756fdfee9",
+      "name": "Donner Party Nevada Route",
+      "slug": "donner-party-nevada",
+      "state": "NV",
+      "distance_miles": 200.1,
+      "drive_minutes": 192,
+      "success": true
+    },
+    {
+      "id": "250ebde2-2a05-466d-8885-d206c30cf1e1",
+      "name": "Donner Party Sierra Segment",
+      "slug": "donner-party-sierra-ca",
+      "state": "CA",
+      "distance_miles": 556.1,
+      "drive_minutes": 482,
+      "success": true
+    },
+    {
+      "id": "02998526-e5fa-4465-950a-2307e7b12bd8",
+      "name": "Dream Mine (Relief Mine)",
+      "slug": "dream-mine-relief-mine",
+      "state": "UT",
+      "distance_miles": 66.6,
+      "drive_minutes": 68,
+      "success": true
+    },
+    {
+      "id": "f37ce6d7-4330-460b-919e-c680b9495d98",
+      "name": "Dry Creek Canyon Campsite",
+      "slug": "dry-creek-canyon-campsite",
+      "state": "UT",
+      "distance_miles": 16.3,
+      "drive_minutes": 43,
+      "success": true
+    },
+    {
+      "id": "c99a20e9-8fc3-4e4c-8089-95ea87e3c890",
+      "name": "Dugway Proving Ground",
+      "slug": "dugway-proving-ground",
+      "state": "UT",
+      "distance_miles": 81.6,
+      "drive_minutes": 86,
+      "success": true
+    },
+    {
+      "id": "303f4904-f934-4266-a9c4-297c9aa9a391",
+      "name": "Dulce Base",
+      "slug": "dulce-underground-base",
+      "state": "NM",
+      "distance_miles": 504.1,
+      "drive_minutes": 511,
+      "success": true
+    },
+    {
+      "id": "03fbeecb-4825-4428-bab1-ce1464107146",
+      "name": "Durango & Silverton Narrow Gauge Railroad",
+      "slug": "durango-silverton-railroad-film",
+      "state": "CO",
+      "distance_miles": 397.2,
+      "drive_minutes": 394,
+      "success": true
+    },
+    {
+      "id": "90c83b71-2b34-477b-8f21-fe261398fc55",
+      "name": "East High School - High School Musical",
+      "slug": "east-high-school-musical",
+      "state": "UT",
+      "distance_miles": 10.1,
+      "drive_minutes": 20,
+      "success": true
+    },
+    {
+      "id": "72e40575-3b6d-4d53-a53b-3464f422a826",
+      "name": "Edge of the Cedars State Park Museum",
+      "slug": "edge-of-cedars",
+      "state": "UT",
+      "distance_miles": 315,
+      "drive_minutes": 322,
+      "success": true
+    },
+    {
+      "id": "aa10627e-db90-43af-af27-d26694801cd2",
+      "name": "Edgewood Tahoe Golf Course",
+      "slug": "edgewood-tahoe-golf-course",
+      "state": "NV",
+      "distance_miles": 571.1,
+      "drive_minutes": 494,
+      "success": true
+    },
+    {
+      "id": "c9c965e0-44c2-44f3-85ac-13a4e4110b8a",
+      "name": "Elizabeth Smart Kidnapping Site",
+      "slug": "elizabeth-smart-kidnapping",
+      "state": "UT",
+      "distance_miles": 12.8,
+      "drive_minutes": 30,
+      "success": true
+    },
+    {
+      "id": "27c6e908-8853-4f6b-916b-c36059343ea0",
+      "name": "Elizabeth Smart Rescue Site",
+      "slug": "elizabeth-smart-rescue-sandy",
+      "state": "UT",
+      "distance_miles": 22,
+      "drive_minutes": 27,
+      "success": true
+    },
+    {
+      "id": "eb321470-1f58-41fd-8380-d86b3e1f4347",
+      "name": "Entrada at Snow Canyon Country Club",
+      "slug": "entrada-at-snow-canyon",
+      "state": "UT",
+      "distance_miles": 315.5,
+      "drive_minutes": 268,
+      "success": true
+    },
+    {
+      "id": "90990ac3-6255-4d8c-9bb9-e8c54adf8259",
+      "name": "Epic Brewing Company",
+      "slug": "epic-brewing-company",
+      "state": "UT",
+      "distance_miles": 7.9,
+      "drive_minutes": 13,
+      "success": true
+    },
+    {
+      "id": "4af0388b-d051-41ec-a1cd-cfb181bd7bdb",
+      "name": "Etta Place Cider",
+      "slug": "etta-place-cider",
+      "state": "UT",
+      "distance_miles": 229.2,
+      "drive_minutes": 217,
+      "success": true
+    },
+    {
+      "id": "f9e03ab0-a15a-4666-88d6-ad48d99b0dda",
+      "name": "Eureka Mining Disasters",
+      "slug": "eureka-mining-disasters",
+      "state": "UT",
+      "distance_miles": 90.1,
+      "drive_minutes": 90,
+      "success": true
+    },
+    {
+      "id": "dc1013dc-ae50-490a-94a7-ad1b22d81f6e",
+      "name": "Fashion Place Mall - Bundy Abduction Attempt",
+      "slug": "fashion-place-mall-bundy",
+      "state": "UT",
+      "distance_miles": 16.7,
+      "drive_minutes": 21,
+      "success": true
+    },
+    {
+      "id": "fed80c53-3e39-4cef-b968-3a5406794e88",
+      "name": "Father Day Bank Fire",
+      "slug": "fathers-day-bank-fire-id",
+      "state": "ID",
+      "distance_miles": 339.8,
+      "drive_minutes": 294,
+      "success": true
+    },
+    {
+      "id": "ab168779-9750-4e06-8fe6-4e0bfe0fca32",
+      "name": "Fetterman Massacre",
+      "slug": "fetterman-massacre-wy",
+      "state": "WY",
+      "distance_miles": 559.7,
+      "drive_minutes": 503,
+      "success": true
+    },
+    {
+      "id": "e622dc1c-9790-4a81-b485-c44899017913",
+      "name": "Fetterman Massacre Site",
+      "slug": "fetterman-massacre-co",
+      "state": "WY",
+      "distance_miles": 559.7,
+      "drive_minutes": 503,
+      "success": true
+    },
+    {
+      "id": "9f1f8a01-69f2-4e35-9dce-c1f2781879a8",
+      "name": "Fielding Garr Ranch",
+      "slug": "fielding-garr-ranch",
+      "state": "UT",
+      "distance_miles": 55.2,
+      "drive_minutes": 86,
+      "success": true
+    },
+    {
+      "id": "7e3f6a94-facd-44a5-8219-92b0bd6b0571",
+      "name": "FiftyFifty Brewing",
+      "slug": "fiftyfifty-brewing",
+      "state": "CA",
+      "distance_miles": 546.3,
+      "drive_minutes": 466,
+      "success": true
+    },
+    {
+      "id": "9cc189a7-43d8-4925-ac9d-d2a1b9ea5fcf",
+      "name": "Fisher Brewing",
+      "slug": "fisher-brewing",
+      "state": "UT",
+      "distance_miles": 7.9,
+      "drive_minutes": 13,
+      "success": true
+    },
+    {
+      "id": "a4c53b39-a8fe-4cb4-aeea-e70f93fe123d",
+      "name": "Flaming Gorge National Recreation Area",
+      "slug": "flaming-gorge",
+      "state": "UT",
+      "distance_miles": 211,
+      "drive_minutes": 217,
+      "success": true
+    },
+    {
+      "id": "1d6f8614-bde9-42d2-a1d3-040b4ebdb220",
+      "name": "Fly Geyser",
+      "slug": "fly-geyser-nevada",
+      "state": "NV",
+      "distance_miles": 580.1,
+      "drive_minutes": 511,
+      "success": true
+    },
+    {
+      "id": "18d3fd3c-c989-4f7f-a1fe-eb270d1f9df9",
+      "name": "Forest Dale Golf Course",
+      "slug": "forest-dale-golf-course",
+      "state": "UT",
+      "distance_miles": 11.7,
+      "drive_minutes": 17,
+      "success": true
+    },
+    {
+      "id": "27956744-7645-4164-b803-f3d74d8366fc",
+      "name": "Forest Dale Golf Course - Salt Lake City",
+      "slug": "forest-dale-golf-course-slc",
+      "state": "UT",
+      "distance_miles": 12.2,
+      "drive_minutes": 18,
+      "success": true
+    },
+    {
+      "id": "c70a1d53-4af3-42df-ae4f-abb20fae80e7",
+      "name": "Forrest Gump Point",
+      "slug": "forrest-gump-point-monument-valley",
+      "state": "UT",
+      "distance_miles": 372.3,
+      "drive_minutes": 368,
+      "success": true
+    },
+    {
+      "id": "973c0fe7-4d60-4dd2-8da8-e478a53e347d",
+      "name": "Four Corners Monument",
+      "slug": "four-corners-monument-film",
+      "state": "NM",
+      "distance_miles": 392.3,
+      "drive_minutes": 386,
+      "success": true
+    },
+    {
+      "id": "72012916-1cdb-474d-b8cd-18325cefe975",
+      "name": "Four Corners Vortex",
+      "slug": "four-corners-vortex",
+      "state": "UT",
+      "distance_miles": 392.3,
+      "drive_minutes": 386,
+      "success": true
+    },
+    {
+      "id": "c83a5479-23bd-4ab8-b24a-901fd6b6250f",
+      "name": "Frisco Ghost Town",
+      "slug": "frisco-ghost-town-ut",
+      "state": "UT",
+      "distance_miles": 229.8,
+      "drive_minutes": 227,
+      "success": true
+    },
+    {
+      "id": "aa67eb36-d2ce-4074-b3d9-8b83e89e8c19",
+      "name": "Frisco Ghost Town",
+      "slug": "frisco-ghost-town",
+      "state": "UT",
+      "distance_miles": 228.1,
+      "drive_minutes": 224,
+      "success": true
+    },
+    {
+      "id": "7462230e-6679-41d0-9b9d-46e3fe2c20b2",
+      "name": "Frontier Justice Sites Wyoming",
+      "slug": "frontier-justice-wyoming",
+      "state": "WY",
+      "distance_miles": 397.6,
+      "drive_minutes": 354,
+      "success": true
+    },
+    {
+      "id": "7995e371-ffdc-43cc-ba0a-f152a0e4d27b",
+      "name": "Garnet Ghost Town",
+      "slug": "garnet-ghost-town",
+      "state": "MT",
+      "distance_miles": 543.6,
+      "drive_minutes": 475,
+      "success": true
+    },
+    {
+      "id": "7481b87c-b2c7-4d55-acd5-83016f8cb47d",
+      "name": "Gary Gilmore Execution Site",
+      "slug": "gary-gilmore-execution-draper",
+      "state": "UT",
+      "distance_miles": 26.8,
+      "drive_minutes": 29,
+      "success": true
+    },
+    {
+      "id": "97efde94-ce89-418b-8019-e6b04af4465f",
+      "name": "Gary Gilmore Murder Sites",
+      "slug": "gary-gilmore-murder-sites",
+      "state": "UT",
+      "distance_miles": 45.4,
+      "drive_minutes": 47,
+      "success": true
+    },
+    {
+      "id": "91544257-6358-4daa-8061-1aa007c7e599",
+      "name": "Glendale Golf Course",
+      "slug": "glendale-golf-course",
+      "state": "UT",
+      "distance_miles": 6.4,
+      "drive_minutes": 12,
+      "success": true
+    },
+    {
+      "id": "4d88617c-68ab-4fe4-ba8b-91ecefdbae3d",
+      "name": "Glendale Golf Course - Salt Lake City",
+      "slug": "glendale-golf-course-slc",
+      "state": "UT",
+      "distance_miles": 8.8,
+      "drive_minutes": 14,
+      "success": true
+    },
+    {
+      "id": "18f89c95-c02b-4d72-9827-d9a04b6185b8",
+      "name": "Glenwild Golf Club & Spa",
+      "slug": "glenwild-golf-club-spa",
+      "state": "UT",
+      "distance_miles": 29.7,
+      "drive_minutes": 33,
+      "success": true
+    },
+    {
+      "id": "3eca4e7b-1a2d-478b-8eca-b27eccf393ba",
+      "name": "Goblin Valley State Park",
+      "slug": "goblin-valley-galaxy-quest",
+      "state": "UT",
+      "distance_miles": 228.7,
+      "drive_minutes": 224,
+      "success": true
+    },
+    {
+      "id": "558ffdbb-bd54-4ae2-b332-272a069e6fa0",
+      "name": "Golden Spike National Historical Park",
+      "slug": "golden-spike",
+      "state": "UT",
+      "distance_miles": 87.8,
+      "drive_minutes": 87,
+      "success": true
+    },
+    {
+      "id": "65755b6a-2389-4eab-89ed-f928fdaad650",
+      "name": "Goldfield Ghost Town",
+      "slug": "goldfield-ghost-town",
+      "state": "AZ",
+      "distance_miles": 704.7,
+      "drive_minutes": 650,
+      "success": true
+    },
+    {
+      "id": "0237105c-cf5d-4855-b488-ce37441849fa",
+      "name": "Goldfield Ghost Town Murders",
+      "slug": "goldfield-murders-nv",
+      "state": "NV",
+      "distance_miles": 432.5,
+      "drive_minutes": 384,
+      "success": true
+    },
+    {
+      "id": "d50f1934-dd6d-403f-b655-10d7868feeb6",
+      "name": "Golf the Round",
+      "slug": "golf-the-round",
+      "state": "UT",
+      "distance_miles": 9.8,
+      "drive_minutes": 19,
+      "success": true
+    },
+    {
+      "id": "8c305f38-1be3-46e6-8834-c1e309742cc0",
+      "name": "Goodsprings Ghost Town",
+      "slug": "goodsprings-ghost-town",
+      "state": "NV",
+      "distance_miles": 462.1,
+      "drive_minutes": 392,
+      "success": true
+    },
+    {
+      "id": "04d0a701-d862-4a60-a7b3-c8187d08444e",
+      "name": "Goulding's Lodge & Film Museum",
+      "slug": "gouldings-lodge-monument-valley",
+      "state": "UT",
+      "distance_miles": 387.7,
+      "drive_minutes": 389,
+      "success": true
+    },
+    {
+      "id": "e45658c6-9941-4ac0-84bb-fc7e8f05d95a",
+      "name": "Grafton Ghost Town",
+      "slug": "grafton-ghost-town-zion",
+      "state": "UT",
+      "distance_miles": 309,
+      "drive_minutes": 264,
+      "success": true
+    },
+    {
+      "id": "10580e5d-de0a-47bf-b487-e70d55358e1e",
+      "name": "Grafton Ghost Town",
+      "slug": "grafton-ghost-town-film",
+      "state": "UT",
+      "distance_miles": 309,
+      "drive_minutes": 264,
+      "success": true
+    },
+    {
+      "id": "f9a821af-aaae-4430-924a-7ac5b5d0617f",
+      "name": "Granite Ghost Town",
+      "slug": "granite-ghost-town",
+      "state": "MT",
+      "distance_miles": 464.7,
+      "drive_minutes": 417,
+      "success": true
+    },
+    {
+      "id": "135b374e-e7c2-4b1b-8a3d-22d62e7c696f",
+      "name": "Granite Mountain Mine",
+      "slug": "granite-mountain-mine-butte",
+      "state": "MT",
+      "distance_miles": 416.8,
+      "drive_minutes": 350,
+      "success": true
+    },
+    {
+      "id": "912d616e-68a1-4dfc-934d-98c11558f032",
+      "name": "Great Basin Brewing",
+      "slug": "great-basin-brewing",
+      "state": "NV",
+      "distance_miles": 515.2,
+      "drive_minutes": 436,
+      "success": true
+    },
+    {
+      "id": "3cc66419-3922-4800-8d1f-b00fd4ea76f4",
+      "name": "Great Basin Museum",
+      "slug": "great-basin-museum",
+      "state": "UT",
+      "distance_miles": 139.1,
+      "drive_minutes": 133,
+      "success": true
+    },
+    {
+      "id": "9d8f7d84-05de-46e1-95ea-81392d805802",
+      "name": "Great Divide Brewing",
+      "slug": "great-divide-brewing",
+      "state": "CO",
+      "distance_miles": 524,
+      "drive_minutes": 470,
+      "success": true
+    },
+    {
+      "id": "1e9a366a-7403-4756-bd94-7a1c2512ee2d",
+      "name": "Great Salt Lake State Park",
+      "slug": "great-salt-lake-state-park-film",
+      "state": "UT",
+      "distance_miles": 14.5,
+      "drive_minutes": 18,
+      "success": true
+    },
+    {
+      "id": "fc3bfd53-5c12-4366-bb49-c021f8cb9127",
+      "name": "Green River Launch Complex",
+      "slug": "green-river-launch-complex",
+      "state": "UT",
+      "distance_miles": 215.7,
+      "drive_minutes": 242,
+      "success": true
+    },
+    {
+      "id": "c0315d68-919d-4fc6-9690-9fc173edcb1f",
+      "name": "Green Spring Golf Course",
+      "slug": "green-spring-golf-course",
+      "state": "UT",
+      "distance_miles": 302.9,
+      "drive_minutes": 250,
+      "success": true
+    },
+    {
+      "id": "957bbb2a-70f4-4082-adc4-4d1698e3cee5",
+      "name": "Grid City Beer Works",
+      "slug": "grid-city-beer-works",
+      "state": "UT",
+      "distance_miles": 7.8,
+      "drive_minutes": 13,
+      "success": true
+    },
+    {
+      "id": "b0a0bb31-0526-42d3-b8e1-d17d31f2382c",
+      "name": "Groene Family Murders",
+      "slug": "groene-family-murders-coeur-dalene",
+      "state": "ID",
+      "distance_miles": 689.3,
+      "drive_minutes": 588,
+      "success": true
+    },
+    {
+      "id": "f0284b42-ca92-47df-b91c-a6fbb9a4d815",
+      "name": "Hanford Site",
+      "slug": "hanford-site",
+      "state": "WA",
+      "distance_miles": 661.5,
+      "drive_minutes": 579,
+      "success": true
+    },
+    {
+      "id": "05e3c4a7-8905-4485-8119-ae2e09740c0c",
+      "name": "Harvey Casino Bombing",
+      "slug": "harvey-casino-bombing",
+      "state": "NV",
+      "distance_miles": 570.9,
+      "drive_minutes": 494,
+      "success": true
+    },
+    {
+      "id": "0e088bca-ff4e-4c9e-801f-a26c0f94df8f",
+      "name": "Heart Mountain Relocation Center",
+      "slug": "heart-mountain-relocation",
+      "state": "WY",
+      "distance_miles": 459.2,
+      "drive_minutes": 431,
+      "success": true
+    },
+    {
+      "id": "e305be16-eff5-492f-a190-c8f5af5f32ef",
+      "name": "Heather Dawn Church Case Sites",
+      "slug": "heather-dawn-church-colorado",
+      "state": "CO",
+      "distance_miles": 592.3,
+      "drive_minutes": 537,
+      "success": true
+    },
+    {
+      "id": "115b24c9-6db5-4fc7-a2d4-76dbe21f7691",
+      "name": "Heber Inn",
+      "slug": "heber-inn-dumb-dumber",
+      "state": "UT",
+      "distance_miles": 50.8,
+      "drive_minutes": 54,
+      "success": true
+    },
+    {
+      "id": "ef8c3edb-a7a9-49a4-9383-d0b8a4535445",
+      "name": "Heber Valley Brewing",
+      "slug": "heber-valley-brewing",
+      "state": "UT",
+      "distance_miles": 50.7,
+      "drive_minutes": 54,
+      "success": true
+    },
+    {
+      "id": "c0a791ee-613a-4863-a465-b92138c606f1",
+      "name": "Heber Valley Railroad",
+      "slug": "heber-valley-railroad-film",
+      "state": "UT",
+      "distance_miles": 50.8,
+      "drive_minutes": 54,
+      "success": true
+    },
+    {
+      "id": "3d3f4a54-989b-4db4-a205-b23e76a6753e",
+      "name": "Helena Vigilante Trails",
+      "slug": "helena-vigilante-trails",
+      "state": "MT",
+      "distance_miles": 484.1,
+      "drive_minutes": 410,
+      "success": true
+    },
+    {
+      "id": "a15e3839-ca0e-4a64-bb13-8c11a4ea6c0e",
+      "name": "Hell's Half Acre",
+      "slug": "hells-half-acre",
+      "state": "WY",
+      "distance_miles": 383.3,
+      "drive_minutes": 376,
+      "success": true
+    },
+    {
+      "id": "9f299a1a-91a5-4c66-8590-9aba47a96c7c",
+      "name": "Helper Brewing",
+      "slug": "helper-brewing",
+      "state": "UT",
+      "distance_miles": 116.8,
+      "drive_minutes": 117,
+      "success": true
+    },
+    {
+      "id": "41999da9-dbd7-4512-a0e2-da57ecaa1679",
+      "name": "Helper Main Street",
+      "slug": "helper-main-street-film",
+      "state": "UT",
+      "distance_miles": 116.7,
+      "drive_minutes": 119,
+      "success": true
+    },
+    {
+      "id": "e54a4006-088a-49cc-ab45-fbea67ea2b35",
+      "name": "Hi-Fi Murders Site",
+      "slug": "hi-fi-murders-site",
+      "state": "UT",
+      "distance_miles": 40,
+      "drive_minutes": 43,
+      "success": true
+    },
+    {
+      "id": "1cc6f587-b41a-4eee-bb7d-87df3c0ebc3b",
+      "name": "Hi-Fi Murders Site",
+      "slug": "hi-fi-murders-ogden",
+      "state": "UT",
+      "distance_miles": 38.9,
+      "drive_minutes": 42,
+      "success": true
+    },
+    {
+      "id": "75c3daa4-a0fd-4fbf-a1f7-8268ec798f39",
+      "name": "High West Distillery",
+      "slug": "high-west-distillery",
+      "state": "UT",
+      "distance_miles": 38.1,
+      "drive_minutes": 47,
+      "success": true
+    },
+    {
+      "id": "1128ad4a-20b9-43fb-9911-0fc6a5e7c43a",
+      "name": "Highway 111 - Nebraska Scene",
+      "slug": "highway-111-nebraska-scene",
+      "state": "UT",
+      "distance_miles": 27.7,
+      "drive_minutes": 43,
+      "success": true
+    },
+    {
+      "id": "c73da399-744c-4233-a5ad-7331402e7480",
+      "name": "Hill Air Force Base",
+      "slug": "hill-air-force-base",
+      "state": "UT",
+      "distance_miles": 31,
+      "drive_minutes": 39,
+      "success": true
+    },
+    {
+      "id": "04c9e62c-1f8e-42b1-ad80-735d47a2c1eb",
+      "name": "Hill Air Force Base UFO History",
+      "slug": "hill-air-force-base-ufo",
+      "state": "UT",
+      "distance_miles": 78.2,
+      "drive_minutes": 80,
+      "success": true
+    },
+    {
+      "id": "ee40d582-d6ec-479c-9978-1f03334260a6",
+      "name": "Historic 25th Street - Ogden",
+      "slug": "historic-25th-ogden-yellowstone",
+      "state": "UT",
+      "distance_miles": 38.9,
+      "drive_minutes": 42,
+      "success": true
+    },
+    {
+      "id": "505fbdbd-6b52-4d6b-8cae-9f6ca5754209",
+      "name": "Historic Brewing",
+      "slug": "historic-brewing",
+      "state": "AZ",
+      "distance_miles": 524.4,
+      "drive_minutes": 493,
+      "success": true
+    },
+    {
+      "id": "420ed63e-40b5-463a-bf88-2221e3c2b77e",
+      "name": "Hive Winery",
+      "slug": "hive-winery",
+      "state": "UT",
+      "distance_miles": 24.9,
+      "drive_minutes": 29,
+      "success": true
+    },
+    {
+      "id": "61e95fcb-f4ba-42b2-8664-e75be2fd8a0b",
+      "name": "Hobble Creek Golf Course",
+      "slug": "hobble-creek-golf-course",
+      "state": "UT",
+      "distance_miles": 58.2,
+      "drive_minutes": 63,
+      "success": true
+    },
+    {
+      "id": "023be11f-95a3-4703-ac6f-275260cd55ec",
+      "name": "Hoover Dam",
+      "slug": "hoover-dam-westworld",
+      "state": "NV",
+      "distance_miles": 463.4,
+      "drive_minutes": 396,
+      "success": true
+    },
+    {
+      "id": "3da2b463-eb23-496f-9ebd-327aab16e9b6",
+      "name": "Hoover Dam Worker Deaths",
+      "slug": "hoover-dam-worker-deaths",
+      "state": "NV",
+      "distance_miles": 463.4,
+      "drive_minutes": 396,
+      "success": true
+    },
+    {
+      "id": "ae76a58c-ccae-4a9e-af37-c7de5334fa6f",
+      "name": "Idaho Mining Ghost Towns",
+      "slug": "idaho-mining-ghost-towns",
+      "state": "ID",
+      "distance_miles": 344,
+      "drive_minutes": 322,
+      "success": true
+    },
+    {
+      "id": "d5588435-bd2a-4694-9296-d51d797b0695",
+      "name": "Idaho Unsolved Disappearances",
+      "slug": "idaho-unsolved-cases",
+      "state": "ID",
+      "distance_miles": 214.4,
+      "drive_minutes": 186,
+      "success": true
+    },
+    {
+      "id": "c61fde21-4b5f-452c-832c-b25b1e7c914e",
+      "name": "Iron Goat Brewing",
+      "slug": "iron-goat-brewing",
+      "state": "WA",
+      "distance_miles": 721.9,
+      "drive_minutes": 616,
+      "success": true
+    },
+    {
+      "id": "5dc96be7-2ff0-46a0-a3c2-1d673a4a8043",
+      "name": "Jackson Hole",
+      "slug": "jackson-hole-film-location",
+      "state": "WY",
+      "distance_miles": 278,
+      "drive_minutes": 276,
+      "success": true
+    },
+    {
+      "id": "0b061509-bf26-4772-805b-e695182c55a1",
+      "name": "Jacob Hamblin Home",
+      "slug": "jacob-hamblin-home",
+      "state": "UT",
+      "distance_miles": 304.8,
+      "drive_minutes": 254,
+      "success": true
+    },
+    {
+      "id": "832e0d1a-c838-422d-ac9b-643b4051856b",
+      "name": "Jeremy Ranch Golf & Country Club",
+      "slug": "jeremy-ranch-golf-country-club",
+      "state": "UT",
+      "distance_miles": 33.2,
+      "drive_minutes": 48,
+      "success": true
+    },
+    {
+      "id": "5f2fe573-dcaa-43ae-8dfa-3e8e773e713c",
+      "name": "Jerome, Arizona",
+      "slug": "jerome-arizona",
+      "state": "AZ",
+      "distance_miles": 595.2,
+      "drive_minutes": 565,
+      "success": true
+    },
+    {
+      "id": "16610c0f-6b79-439d-90d8-92d788e68561",
+      "name": "Jodi Arias Murder Scene",
+      "slug": "jodi-arias-murder-mesa",
+      "state": "AZ",
+      "distance_miles": 684.6,
+      "drive_minutes": 630,
+      "success": true
+    },
+    {
+      "id": "3c12b1b4-1fb1-43ad-9e8b-76289539374e",
+      "name": "Johnson County War Sites",
+      "slug": "johnson-county-war-ta-ranch",
+      "state": "WY",
+      "distance_miles": 515.1,
+      "drive_minutes": 484,
+      "success": true
+    },
+    {
+      "id": "05487c59-3e2d-4266-8b27-e50db0684ed6",
+      "name": "JonBenét Ramsey House",
+      "slug": "jonbenet-ramsey-house-boulder",
+      "state": "CO",
+      "distance_miles": 526.1,
+      "drive_minutes": 472,
+      "success": true
+    },
+    {
+      "id": "d4d00e4d-d151-424b-ac00-71837adf3a99",
+      "name": "KettleHouse Brewing",
+      "slug": "kettlehouse-brewing",
+      "state": "MT",
+      "distance_miles": 525,
+      "drive_minutes": 438,
+      "success": true
+    },
+    {
+      "id": "0c1c6dd1-ef47-4a5b-b908-5a191717e857",
+      "name": "Kiitos Brewing",
+      "slug": "kiitos-brewing",
+      "state": "UT",
+      "distance_miles": 7.9,
+      "drive_minutes": 13,
+      "success": true
+    },
+    {
+      "id": "e5d35abe-aa7d-46c3-86e3-d77ff6abef81",
+      "name": "Las Vegas Strip Mob Hits",
+      "slug": "vegas-strip-mob-hits",
+      "state": "NV",
+      "distance_miles": 430,
+      "drive_minutes": 363,
+      "success": true
+    },
+    {
+      "id": "1f087445-ee4b-4730-9a9a-31ca8a74505d",
+      "name": "Leadville Mining Deaths",
+      "slug": "leadville-mining-deaths",
+      "state": "CO",
+      "distance_miles": 461.3,
+      "drive_minutes": 430,
+      "success": true
+    },
+    {
+      "id": "1c49fed4-06ee-4732-94f1-a919ef07451c",
+      "name": "Lehi Roller Mills - Footloose",
+      "slug": "lehi-roller-mills-footloose",
+      "state": "UT",
+      "distance_miles": 34.2,
+      "drive_minutes": 37,
+      "success": true
+    },
+    {
+      "id": "98165ecc-0f79-444b-8f2c-04bbff5292a4",
+      "name": "Level Crossing Brewing",
+      "slug": "level-crossing-brewing",
+      "state": "UT",
+      "distance_miles": 12.7,
+      "drive_minutes": 20,
+      "success": true
+    },
+    {
+      "id": "73a2324f-81da-453d-a3d5-a20f72060b0a",
+      "name": "Lilly Gray's Grave",
+      "slug": "lilly-grays-grave",
+      "state": "UT",
+      "distance_miles": 10.9,
+      "drive_minutes": 23,
+      "success": true
+    },
+    {
+      "id": "b9cb9840-8987-4328-993d-d5fd333d8df0",
+      "name": "Little Hollywood Museum",
+      "slug": "little-hollywood-museum-kanab",
+      "state": "UT",
+      "distance_miles": 317.8,
+      "drive_minutes": 288,
+      "success": true
+    },
+    {
+      "id": "0b80b0a6-7162-47e3-9bd5-0b2f0eff1522",
+      "name": "Logan Country Club",
+      "slug": "logan-country-club",
+      "state": "UT",
+      "distance_miles": 85.1,
+      "drive_minutes": 92,
+      "success": true
+    },
+    {
+      "id": "c8453a0d-9fc8-450d-be31-949fb28c85a7",
+      "name": "Lori Hacking Murder Site",
+      "slug": "lori-hacking-murder-apartment",
+      "state": "UT",
+      "distance_miles": 13.9,
+      "drive_minutes": 21,
+      "success": true
+    },
+    {
+      "id": "15cbf9af-1e12-4381-8d76-f8c002853d7a",
+      "name": "Lori Hacking Recovery Site",
+      "slug": "lori-hacking-recovery-landfill",
+      "state": "UT",
+      "distance_miles": 10.2,
+      "drive_minutes": 29,
+      "success": true
+    },
+    {
+      "id": "5f4fccf9-a8b9-4691-9ab9-1eedea2f91d6",
+      "name": "Lorin Farr Pool - Ogden",
+      "slug": "lorin-farr-pool-sandlot",
+      "state": "UT",
+      "distance_miles": 38.9,
+      "drive_minutes": 42,
+      "success": true
+    },
+    {
+      "id": "86741a4b-cb0d-46ef-a479-398e1e3efdbc",
+      "name": "Los Alamos",
+      "slug": "los-alamos",
+      "state": "NM",
+      "distance_miles": 603.5,
+      "drive_minutes": 616,
+      "success": true
+    },
+    {
+      "id": "b0883c71-c043-466b-a515-c0917b0afd91",
+      "name": "Los Pollos Hermanos - Twisters",
+      "slug": "los-pollos-hermanos-albuquerque",
+      "state": "NM",
+      "distance_miles": 612.5,
+      "drive_minutes": 611,
+      "success": true
+    },
+    {
+      "id": "dc914783-1fa0-45e2-8574-29c1f6d21c00",
+      "name": "Lost Grove Brewing",
+      "slug": "lost-grove-brewing",
+      "state": "ID",
+      "distance_miles": 345.7,
+      "drive_minutes": 298,
+      "success": true
+    },
+    {
+      "id": "1b76d8e2-5dec-4429-b792-73749840e687",
+      "name": "Ludlow Massacre Monument",
+      "slug": "ludlow-massacre-monument",
+      "state": "CO",
+      "distance_miles": 613,
+      "drive_minutes": 623,
+      "success": true
+    },
+    {
+      "id": "063ee320-b447-465c-bbc4-6ab840c8094a",
+      "name": "Mad Swede Brewing",
+      "slug": "mad-swede-brewing",
+      "state": "ID",
+      "distance_miles": 339.8,
+      "drive_minutes": 294,
+      "success": true
+    },
+    {
+      "id": "6fe4a6f8-9127-401a-9996-a1ebfcde99b1",
+      "name": "Manitou Springs",
+      "slug": "manitou-springs",
+      "state": "CO",
+      "distance_miles": 599.6,
+      "drive_minutes": 540,
+      "success": true
+    },
+    {
+      "id": "e8c423e0-11a7-4f3c-af6b-049be1960533",
+      "name": "Manson Family Barker Ranch",
+      "slug": "manson-barker-ranch-death-valley",
+      "state": "CA",
+      "distance_miles": 577.5,
+      "drive_minutes": 536,
+      "success": true
+    },
+    {
+      "id": "cab67672-5d65-4c34-baab-353da05025af",
+      "name": "MAP Brewing",
+      "slug": "map-brewing",
+      "state": "MT",
+      "distance_miles": 409.7,
+      "drive_minutes": 385,
+      "success": true
+    },
+    {
+      "id": "42f1a1b1-96ac-47ab-ac4a-9b54603da87c",
+      "name": "Marble Brewery",
+      "slug": "marble-brewery",
+      "state": "NM",
+      "distance_miles": 603.8,
+      "drive_minutes": 589,
+      "success": true
+    },
+    {
+      "id": "0f1ba0e1-1835-4e1d-b57c-d1455d19acdb",
+      "name": "Mark Hofmann Bombing Site - Holladay",
+      "slug": "mark-hofmann-bombing-holladay",
+      "state": "UT",
+      "distance_miles": 20.2,
+      "drive_minutes": 25,
+      "success": true
+    },
+    {
+      "id": "aa8e92f5-61a3-4dab-8635-a1244469f919",
+      "name": "Mark Hofmann Bombing Site - Judge Building",
+      "slug": "mark-hofmann-bombing-judge",
+      "state": "UT",
+      "distance_miles": 9.1,
+      "drive_minutes": 19,
+      "success": true
+    },
+    {
+      "id": "d925c055-f070-4d1b-a755-a19e3726e88f",
+      "name": "Matthew Shepard Murder Site",
+      "slug": "matthew-shepard-murder-laramie",
+      "state": "WY",
+      "distance_miles": 397.6,
+      "drive_minutes": 354,
+      "success": true
+    },
+    {
+      "id": "98ff93b2-b4ed-4b95-963d-0198748f062e",
+      "name": "Medicine Wheel National Historic Landmark",
+      "slug": "medicine-wheel-wyoming",
+      "state": "WY",
+      "distance_miles": 570.3,
+      "drive_minutes": 648,
+      "success": true
+    },
+    {
+      "id": "64cb7bc5-5115-4c53-adb5-25760e8e5861",
+      "name": "Meeker Massacre",
+      "slug": "meeker-massacre-co",
+      "state": "CO",
+      "distance_miles": 285.6,
+      "drive_minutes": 296,
+      "success": true
+    },
+    {
+      "id": "aa0f2946-646c-4489-b7ea-c37c674d964d",
+      "name": "Melvin Brewing",
+      "slug": "melvin-brewing",
+      "state": "WY",
+      "distance_miles": 241.5,
+      "drive_minutes": 232,
+      "success": true
+    },
+    {
+      "id": "c5af93e2-978a-4fd8-95f4-0f02c74bde86",
+      "name": "Memory Grove - Lori Hacking Search",
+      "slug": "memory-grove-hacking-search",
+      "state": "UT",
+      "distance_miles": 9.5,
+      "drive_minutes": 18,
+      "success": true
+    },
+    {
+      "id": "161d0e10-eeb7-4080-afd5-65b24ffb7b73",
+      "name": "Mesa Verde National Park",
+      "slug": "mesa-verde-film-location",
+      "state": "CO",
+      "distance_miles": 383.7,
+      "drive_minutes": 396,
+      "success": true
+    },
+    {
+      "id": "2bfa1802-3bd1-4df4-ab1e-5683668d0e78",
+      "name": "Minnetonka Cave",
+      "slug": "minnetonka-cave",
+      "state": "UT",
+      "distance_miles": 130.5,
+      "drive_minutes": 155,
+      "success": true
+    },
+    {
+      "id": "e849c59e-423d-45f6-b626-27971aa42332",
+      "name": "Minnetonka Cave Mystery",
+      "slug": "minnetonka-cave-mystery",
+      "state": "ID",
+      "distance_miles": 146.2,
+      "drive_minutes": 173,
+      "success": true
+    },
+    {
+      "id": "29ccd79b-2561-40d7-bae2-0c49eebc9dcd",
+      "name": "Missouri River Breaks",
+      "slug": "missouri-river-breaks-film",
+      "state": "MT",
+      "distance_miles": 652.8,
+      "drive_minutes": 615,
+      "success": true
+    },
+    {
+      "id": "89bcd9a3-c9cb-4331-9655-94bd2cb436e2",
+      "name": "Moab Brewery",
+      "slug": "moab-brewery",
+      "state": "UT",
+      "distance_miles": 239.3,
+      "drive_minutes": 230,
+      "success": true
+    },
+    {
+      "id": "d9a17cb6-7ffc-430a-a336-e08d147bb802",
+      "name": "Modena Ghost Town",
+      "slug": "modena-ghost-town",
+      "state": "UT",
+      "distance_miles": 309.6,
+      "drive_minutes": 270,
+      "success": true
+    },
+    {
+      "id": "9ec031fc-fc8e-4160-9ebb-a0201e5af487",
+      "name": "Modoc War Lava Beds",
+      "slug": "modoc-war-lava-beds",
+      "state": "CA",
+      "distance_miles": 675.7,
+      "drive_minutes": 619,
+      "success": true
+    },
+    {
+      "id": "fd5f3971-6657-4a43-a590-ea8aa9f6ff32",
+      "name": "Montana Film Office - Yellowstone Relocation Story",
+      "slug": "montana-film-office-yellowstone-relocation",
+      "state": "MT",
+      "distance_miles": 484.3,
+      "drive_minutes": 411,
+      "success": true
+    },
+    {
+      "id": "39776d22-45bc-4691-9f57-5097e4ce0925",
+      "name": "Monticello City Hall",
+      "slug": "monticello-city-hall",
+      "state": "UT",
+      "distance_miles": 293.3,
+      "drive_minutes": 287,
+      "success": true
+    },
+    {
+      "id": "af64dd2c-825d-46d7-96d1-82048b730aa6",
+      "name": "Monument Valley Navajo Tribal Park",
+      "slug": "monument-valley-tribal-park",
+      "state": "UT",
+      "distance_miles": 386,
+      "drive_minutes": 387,
+      "success": true
+    },
+    {
+      "id": "bf6eb2d6-0101-4fb7-b763-aa6e6dd8d35b",
+      "name": "Moon Craters (Expansion)",
+      "slug": "moon-craters-expansion",
+      "state": "ID",
+      "distance_miles": 289.7,
+      "drive_minutes": 309,
+      "success": true
+    },
+    {
+      "id": "2d72c954-a577-40c6-a5db-8da6bc99cfd3",
+      "name": "Morgan County Courthouse",
+      "slug": "morgan-county-courthouse",
+      "state": "UT",
+      "distance_miles": 45.1,
+      "drive_minutes": 48,
+      "success": true
+    },
+    {
+      "id": "17ef6f81-0af4-48b6-a515-904c2865ff7c",
+      "name": "Moscow Murders",
+      "slug": "moscow-murders-u-idaho",
+      "state": "ID",
+      "distance_miles": 660.2,
+      "drive_minutes": 613,
+      "success": true
+    },
+    {
+      "id": "ed69ac61-e7fd-46e2-80f5-a0ffd02fb419",
+      "name": "Mother Road Brewing",
+      "slug": "mother-road-brewing",
+      "state": "AZ",
+      "distance_miles": 524.4,
+      "drive_minutes": 493,
+      "success": true
+    },
+    {
+      "id": "339e9e0c-334b-4d25-94a9-845e6e4773d0",
+      "name": "Mountain Dell Golf Course",
+      "slug": "mountain-dell-golf-course",
+      "state": "UT",
+      "distance_miles": 17.9,
+      "drive_minutes": 22,
+      "success": true
+    },
+    {
+      "id": "607ab4a6-fb1c-426b-8cad-a3963ad7f745",
+      "name": "Mountain Dell Golf Course - Canyon",
+      "slug": "mountain-dell-golf-canyon-course",
+      "state": "UT",
+      "distance_miles": 26.2,
+      "drive_minutes": 44,
+      "success": true
+    },
+    {
+      "id": "7978a826-5954-4391-8711-0ad1de196f95",
+      "name": "Mountain Dell Golf Course - Lake",
+      "slug": "mountain-dell-golf-lake-course",
+      "state": "UT",
+      "distance_miles": 26.2,
+      "drive_minutes": 44,
+      "success": true
+    },
+    {
+      "id": "bcfab36a-65ed-47c9-b233-a72775064159",
+      "name": "Mountain Meadows Massacre Site",
+      "slug": "mountain-meadows-massacre-site",
+      "state": "UT",
+      "distance_miles": 305.9,
+      "drive_minutes": 268,
+      "success": true
+    },
+    {
+      "id": "0b9e3a11-9d19-4c0a-bb0d-51a4861a6e12",
+      "name": "Mountain Meadows Massacre Site",
+      "slug": "mountain-meadows-massacre",
+      "state": "UT",
+      "distance_miles": 312.9,
+      "drive_minutes": 284,
+      "success": true
+    },
+    {
+      "id": "275a0471-2fd9-4eb4-aec4-0ebb22d4d19d",
+      "name": "Mountain West Hard Cider",
+      "slug": "mountain-west-hard-cider",
+      "state": "UT",
+      "distance_miles": 7.9,
+      "drive_minutes": 13,
+      "success": true
+    },
+    {
+      "id": "c3d0c8c9-2a54-4fc8-bd7a-74c6dfd76b10",
+      "name": "Museum of Moab",
+      "slug": "museum-of-moab",
+      "state": "UT",
+      "distance_miles": 239.3,
+      "drive_minutes": 230,
+      "success": true
+    },
+    {
+      "id": "c2096d35-2e57-4dca-9bdb-f17b5f558f47",
+      "name": "Mustang Ranch Murders",
+      "slug": "mustang-ranch-murders",
+      "state": "NV",
+      "distance_miles": 507.9,
+      "drive_minutes": 433,
+      "success": true
+    },
+    {
+      "id": "7e36d706-abf0-43aa-b95f-0aaff70fba79",
+      "name": "Natural History Museum of Utah",
+      "slug": "natural-history-museum-utah",
+      "state": "UT",
+      "distance_miles": 12.3,
+      "drive_minutes": 26,
+      "success": true
+    },
+    {
+      "id": "8964e3f3-0937-4f76-bc0d-8cf639226dbb",
+      "name": "Nelson Ghost Town",
+      "slug": "nelson-ghost-town-nv",
+      "state": "NV",
+      "distance_miles": 469.8,
+      "drive_minutes": 398,
+      "success": true
+    },
+    {
+      "id": "2da03114-b877-49d5-b1ed-1bae88a53c44",
+      "name": "Nephi Territorial Statehouse",
+      "slug": "nephi-statehouse",
+      "state": "UT",
+      "distance_miles": 90.2,
+      "drive_minutes": 82,
+      "success": true
+    },
+    {
+      "id": "c156fed2-bd0a-4eba-bba9-12d54a0b1da4",
+      "name": "Nevada State Prison",
+      "slug": "nevada-state-prison-carson",
+      "state": "NV",
+      "distance_miles": 532.7,
+      "drive_minutes": 463,
+      "success": true
+    },
+    {
+      "id": "a907b204-857b-4f23-a95f-eda2b1e0ee06",
+      "name": "New Belgium Brewing",
+      "slug": "new-belgium-brewing",
+      "state": "CO",
+      "distance_miles": 459.9,
+      "drive_minutes": 412,
+      "success": true
+    },
+    {
+      "id": "c1e2247b-6ef6-471a-8319-98c8dc44ff70",
+      "name": "New Mexico Pueblo Conflicts",
+      "slug": "nm-pueblo-conflicts",
+      "state": "NM",
+      "distance_miles": 591.7,
+      "drive_minutes": 598,
+      "success": true
+    },
+    {
+      "id": "b75fa6aa-7003-4b62-a0e1-af1b6b122cdc",
+      "name": "Newspaper Rock State Historic Monument",
+      "slug": "newspaper-rock",
+      "state": "UT",
+      "distance_miles": 300.9,
+      "drive_minutes": 327,
+      "success": true
+    },
+    {
+      "id": "df62d4ca-ed30-4165-be63-43d0628dd537",
+      "name": "Nez Perce War Sites",
+      "slug": "nez-perce-war-idaho",
+      "state": "ID",
+      "distance_miles": 562.2,
+      "drive_minutes": 563,
+      "success": true
+    },
+    {
+      "id": "71a8d2df-c591-453b-9ead-a44da2bd91bf",
+      "name": "Nibley Park Golf Course",
+      "slug": "nibley-park-golf-course",
+      "state": "UT",
+      "distance_miles": 11.8,
+      "drive_minutes": 17,
+      "success": true
+    },
+    {
+      "id": "2af3f3b4-0463-49a5-bad9-26234aa129b1",
+      "name": "Old Utah State Prison",
+      "slug": "old-utah-state-prison-draper",
+      "state": "UT",
+      "distance_miles": 26.8,
+      "drive_minutes": 29,
+      "success": true
+    },
+    {
+      "id": "eb9fb26b-98d4-4cb6-a7d8-9786db7c881c",
+      "name": "Ophir Ghost Town",
+      "slug": "ophir-ghost-town",
+      "state": "UT",
+      "distance_miles": 51.2,
+      "drive_minutes": 65,
+      "success": true
+    },
+    {
+      "id": "dce7a0dc-85cd-4c2e-9615-9d37902d264f",
+      "name": "Otter Creek Reservoir",
+      "slug": "otter-creek-reservoir",
+      "state": "UT",
+      "distance_miles": 208.2,
+      "drive_minutes": 196,
+      "success": true
+    },
+    {
+      "id": "a94b761e-1610-45f2-bd80-3ef0137400e1",
+      "name": "Paa-Ko Ridge Golf Club",
+      "slug": "paa-ko-ridge-golf-club",
+      "state": "NM",
+      "distance_miles": 624.6,
+      "drive_minutes": 609,
+      "success": true
+    },
+    {
+      "id": "0bf7da13-fb04-4c95-baef-4fb114246f1a",
+      "name": "Panguitch City Office",
+      "slug": "panguitch-city-office",
+      "state": "UT",
+      "distance_miles": 250.6,
+      "drive_minutes": 217,
+      "success": true
+    },
+    {
+      "id": "571fec6e-c4e3-4225-92ff-ee38c16b3b37",
+      "name": "Park City Brewing",
+      "slug": "park-city-brewing",
+      "state": "UT",
+      "distance_miles": 38.1,
+      "drive_minutes": 47,
+      "success": true
+    },
+    {
+      "id": "a5de4509-053b-43de-922d-918ed974b9d7",
+      "name": "Park City Golf Club",
+      "slug": "park-city-golf-club",
+      "state": "UT",
+      "distance_miles": 37.6,
+      "drive_minutes": 47,
+      "success": true
+    },
+    {
+      "id": "6d29a76a-6bca-421c-a931-8664a1cf25e2",
+      "name": "Park City Main Street",
+      "slug": "park-city-main-street-film",
+      "state": "UT",
+      "distance_miles": 38.1,
+      "drive_minutes": 47,
+      "success": true
+    },
+    {
+      "id": "de56d151-f129-4e0d-bed0-8da69bedf1ea",
+      "name": "Park City Museum",
+      "slug": "park-city-museum",
+      "state": "UT",
+      "distance_miles": 38.1,
+      "drive_minutes": 47,
+      "success": true
+    },
+    {
+      "id": "57653140-c4fc-4373-aac0-3f0432dbf62a",
+      "name": "Park Meadows Country Club",
+      "slug": "park-meadows-country-club",
+      "state": "UT",
+      "distance_miles": 36.8,
+      "drive_minutes": 45,
+      "success": true
+    },
+    {
+      "id": "677259ac-5f56-477d-bc4a-2131ff4aad40",
+      "name": "Parry Lodge - Kanab",
+      "slug": "parry-lodge-kanab",
+      "state": "UT",
+      "distance_miles": 317.8,
+      "drive_minutes": 288,
+      "success": true
+    },
+    {
+      "id": "f00b796a-2dc6-41ca-9b1d-7cb714ce4f98",
+      "name": "Payette Brewing",
+      "slug": "payette-brewing",
+      "state": "ID",
+      "distance_miles": 339.8,
+      "drive_minutes": 294,
+      "success": true
+    },
+    {
+      "id": "d8ffdb7a-d9d9-4371-bad3-e509e31a952e",
+      "name": "Payson High School - Footloose",
+      "slug": "payson-high-school-footloose",
+      "state": "UT",
+      "distance_miles": 64.2,
+      "drive_minutes": 62,
+      "success": true
+    },
+    {
+      "id": "19defcd8-b804-4c35-b66f-57016cc7f99b",
+      "name": "Pioche Cemetery",
+      "slug": "pioche-cemetery-nv",
+      "state": "NV",
+      "distance_miles": 348.1,
+      "drive_minutes": 304,
+      "success": true
+    },
+    {
+      "id": "8e83e553-8f19-4222-a22a-96ab64e0071d",
+      "name": "Preston, Idaho - Napoleon Dynamite",
+      "slug": "preston-napoleon-dynamite",
+      "state": "ID",
+      "distance_miles": 110.4,
+      "drive_minutes": 119,
+      "success": true
+    },
+    {
+      "id": "c99630b7-d114-4cc1-90da-fc063b83b647",
+      "name": "Price City Hall",
+      "slug": "price-city-hall",
+      "state": "UT",
+      "distance_miles": 124.4,
+      "drive_minutes": 125,
+      "success": true
+    },
+    {
+      "id": "9d6d5472-cda0-4c96-98f9-b0ce03cce7ea",
+      "name": "Prodigy Brewing Company",
+      "slug": "prodigy-brewing-company",
+      "state": "UT",
+      "distance_miles": 82.9,
+      "drive_minutes": 87,
+      "success": true
+    },
+    {
+      "id": "b1ab87d7-c51b-400d-a3eb-0b3dece917be",
+      "name": "Promontory Club - Painted Valley",
+      "slug": "promontory-club-painted-valley",
+      "state": "UT",
+      "distance_miles": 53.8,
+      "drive_minutes": 61,
+      "success": true
+    },
+    {
+      "id": "102653f1-0516-4f98-a562-30f5cb3ba881",
+      "name": "Promontory Club - Pete Dye Canyon",
+      "slug": "promontory-club-pete-dye-canyon",
+      "state": "UT",
+      "distance_miles": 53.8,
+      "drive_minutes": 61,
+      "success": true
+    },
+    {
+      "id": "6b5667cd-c060-4c38-a1aa-273f0229d6a6",
+      "name": "Pronghorn Resort - Nicklaus Course",
+      "slug": "pronghorn-nicklaus-course",
+      "state": "OR",
+      "distance_miles": 655.6,
+      "drive_minutes": 593,
+      "success": true
+    },
+    {
+      "id": "7ecfeece-e8af-4aa4-97d3-96f2f28a3937",
+      "name": "Proper Brewing Company",
+      "slug": "proper-brewing-company",
+      "state": "UT",
+      "distance_miles": 8.1,
+      "drive_minutes": 14,
+      "success": true
+    },
+    {
+      "id": "30113a8f-879c-45a3-9881-a212b0bfbaac",
+      "name": "Proper Brewing Moab",
+      "slug": "proper-brewing-moab",
+      "state": "UT",
+      "distance_miles": 239.3,
+      "drive_minutes": 230,
+      "success": true
+    },
+    {
+      "id": "38d371c0-2453-4573-b0eb-f8b6a00e27bf",
+      "name": "Rachel, Nevada",
+      "slug": "rachel-nevada",
+      "state": "NV",
+      "distance_miles": 415.8,
+      "drive_minutes": 366,
+      "success": true
+    },
+    {
+      "id": "7dcff60a-b639-4f5d-bd95-d8f51d8d4442",
+      "name": "Ratio Beerworks",
+      "slug": "ratio-beerworks",
+      "state": "CO",
+      "distance_miles": 524,
+      "drive_minutes": 470,
+      "success": true
+    },
+    {
+      "id": "cc35a7f7-8cea-4e58-9952-04cb06271f4d",
+      "name": "Red Ledges Golf Club",
+      "slug": "red-ledges-golf-club",
+      "state": "UT",
+      "distance_miles": 53.2,
+      "drive_minutes": 60,
+      "success": true
+    },
+    {
+      "id": "8db99f45-c402-4722-b888-7948cc6ab42c",
+      "name": "Red Rock Brewing Company",
+      "slug": "red-rock-brewing-company",
+      "state": "UT",
+      "distance_miles": 8.6,
+      "drive_minutes": 17,
+      "success": true
+    },
+    {
+      "id": "c733b501-889d-4773-afc9-a260f8e46f6f",
+      "name": "Red Rock Canyon National Conservation Area",
+      "slug": "red-rock-canyon-film-nv",
+      "state": "NV",
+      "distance_miles": 446.7,
+      "drive_minutes": 379,
+      "success": true
+    },
+    {
+      "id": "9d9d97fd-a7e2-4615-bde3-ecb74187d29b",
+      "name": "Red Rocks Amphitheatre",
+      "slug": "red-rocks-amphitheatre-film",
+      "state": "CO",
+      "distance_miles": 519.9,
+      "drive_minutes": 477,
+      "success": true
+    },
+    {
+      "id": "0fdd9973-dd63-4fec-8a22-13156ac95738",
+      "name": "Red Rocks Amphitheatre",
+      "slug": "red-rocks-amphitheatre-co",
+      "state": "CO",
+      "distance_miles": 519.9,
+      "drive_minutes": 477,
+      "success": true
+    },
+    {
+      "id": "a9b89c52-838f-4847-9f57-3b9d775ee201",
+      "name": "Red Rocks Amphitheatre Mysteries",
+      "slug": "red-rocks-ufo-acoustic",
+      "state": "CO",
+      "distance_miles": 520,
+      "drive_minutes": 473,
+      "success": true
+    },
+    {
+      "id": "d2ac41a0-65bd-4eb9-8a54-0d4c425bd6fa",
+      "name": "Reed Smoot Home Murder",
+      "slug": "reed-smoot-home-murder",
+      "state": "UT",
+      "distance_miles": 50.5,
+      "drive_minutes": 53,
+      "success": true
+    },
+    {
+      "id": "e109b6f9-26f2-48e4-8ee6-105b49ad99c6",
+      "name": "Reno Casino Murders",
+      "slug": "reno-casino-murders",
+      "state": "NV",
+      "distance_miles": 515.2,
+      "drive_minutes": 436,
+      "success": true
+    },
+    {
+      "id": "7dbd9ba4-e463-4345-87d0-064d0ef24584",
+      "name": "Revision Brewing",
+      "slug": "revision-brewing",
+      "state": "NV",
+      "distance_miles": 511.4,
+      "drive_minutes": 432,
+      "success": true
+    },
+    {
+      "id": "e9b5ffce-69f5-4c57-be4b-9f981920ce43",
+      "name": "Rhyolite Ghost Town",
+      "slug": "rhyolite-ghost-town",
+      "state": "NV",
+      "distance_miles": 504.9,
+      "drive_minutes": 452,
+      "success": true
+    },
+    {
+      "id": "1dccf008-0348-4142-9b4e-c636eb608422",
+      "name": "Richfield Civic Center",
+      "slug": "richfield-civic-center",
+      "state": "UT",
+      "distance_miles": 167.6,
+      "drive_minutes": 152,
+      "success": true
+    },
+    {
+      "id": "ebb68d9a-830d-46e6-9099-1b7f348ce982",
+      "name": "Rio Grande Depot",
+      "slug": "rio-grande-depot-film",
+      "state": "UT",
+      "distance_miles": 8.2,
+      "drive_minutes": 16,
+      "success": true
+    },
+    {
+      "id": "6365ceb6-1ba2-4246-a4ec-fbc3dd8b6877",
+      "name": "River Oaks Golf Course",
+      "slug": "river-oaks-golf-course",
+      "state": "UT",
+      "distance_miles": 20,
+      "drive_minutes": 25,
+      "success": true
+    },
+    {
+      "id": "f44f575d-497c-4086-8ab3-6a55bc608e56",
+      "name": "Roadhouse Brewing Co",
+      "slug": "roadhouse-brewing-co",
+      "state": "WY",
+      "distance_miles": 278,
+      "drive_minutes": 276,
+      "success": true
+    },
+    {
+      "id": "d496b6a6-585b-4498-974f-18c8eba4f0cd",
+      "name": "Rock Springs Chinese Massacre",
+      "slug": "rock-springs-massacre",
+      "state": "WY",
+      "distance_miles": 192.3,
+      "drive_minutes": 177,
+      "success": true
+    },
+    {
+      "id": "6490bf22-e91d-4d75-98c2-c49b37dc5c3b",
+      "name": "Rocky Flats",
+      "slug": "rocky-flats-film",
+      "state": "CO",
+      "distance_miles": 520.8,
+      "drive_minutes": 468,
+      "success": true
+    },
+    {
+      "id": "bc9acadd-c58d-4a52-99dd-b294632a6de0",
+      "name": "Rocky Flats",
+      "slug": "rocky-flats-nuclear",
+      "state": "CO",
+      "distance_miles": 520.9,
+      "drive_minutes": 469,
+      "success": true
+    },
+    {
+      "id": "09f30a0b-1990-43c9-b2cf-c11d9e8dd68d",
+      "name": "RoHa Brewing Project",
+      "slug": "roha-brewing-project",
+      "state": "UT",
+      "distance_miles": 7.9,
+      "drive_minutes": 13,
+      "success": true
+    },
+    {
+      "id": "4c5dc0e5-ecd0-4947-b0f0-38437f66fa90",
+      "name": "Roosevelt City Hall",
+      "slug": "roosevelt-city-hall",
+      "state": "UT",
+      "distance_miles": 148.3,
+      "drive_minutes": 150,
+      "success": true
+    },
+    {
+      "id": "8b65899e-f3ed-4117-9529-570206bbab4a",
+      "name": "Roosters Brewing - 25th Street",
+      "slug": "roosters-brewing-25th-street",
+      "state": "UT",
+      "distance_miles": 38.9,
+      "drive_minutes": 42,
+      "success": true
+    },
+    {
+      "id": "932668fe-e01c-42c3-9fe0-47f37d53ec58",
+      "name": "Roosters Brewing Layton",
+      "slug": "roosters-brewing-layton",
+      "state": "UT",
+      "distance_miles": 24.9,
+      "drive_minutes": 29,
+      "success": true
+    },
+    {
+      "id": "e7888698-2b05-4b49-8cda-c99595da3c4f",
+      "name": "Rose Park Golf Course",
+      "slug": "rose-park-golf-course",
+      "state": "UT",
+      "distance_miles": 6.6,
+      "drive_minutes": 12,
+      "success": true
+    },
+    {
+      "id": "72abcf41-9d57-40c5-b31a-856cecc12abf",
+      "name": "Rose Park Golf Course - Salt Lake City",
+      "slug": "rose-park-golf-course-slc",
+      "state": "UT",
+      "distance_miles": 6.3,
+      "drive_minutes": 11,
+      "success": true
+    },
+    {
+      "id": "b9944bc7-4b70-45f5-81e3-b83cbf259f6a",
+      "name": "Roswell Incident Sites",
+      "slug": "roswell-incident-nm",
+      "state": "NM",
+      "distance_miles": 800,
+      "drive_minutes": 759,
+      "success": true
+    },
+    {
+      "id": "4d0304ca-39a6-4d4f-8af3-f2c2a16f81db",
+      "name": "Roswell UFO Crash Site",
+      "slug": "roswell-ufo-crash",
+      "state": "NM",
+      "distance_miles": 800.9,
+      "drive_minutes": 762,
+      "success": true
+    },
+    {
+      "id": "e77744a6-0daf-46b5-9f65-fccc10cb6283",
+      "name": "Roswell UFO Museum",
+      "slug": "roswell-ufo-museum-film",
+      "state": "NM",
+      "distance_miles": 800,
+      "drive_minutes": 759,
+      "success": true
+    },
+    {
+      "id": "52d8625b-3eb3-4aff-87e1-6f4cd8c4df93",
+      "name": "Route 66 Murder Sites Arizona",
+      "slug": "route-66-murders-az",
+      "state": "AZ",
+      "distance_miles": 524.4,
+      "drive_minutes": 493,
+      "success": true
+    },
+    {
+      "id": "c4e90fb5-d64a-4e25-8d1a-e9f3bf88e345",
+      "name": "Route 91 Harvest Festival Site",
+      "slug": "route-91-harvest-shooting",
+      "state": "NV",
+      "distance_miles": 431.5,
+      "drive_minutes": 363,
+      "success": true
+    },
+    {
+      "id": "50f4ecff-6e73-496f-a63b-2203d5bf3b6e",
+      "name": "Ruby Ridge Siege Site",
+      "slug": "ruby-ridge-siege-naples",
+      "state": "ID",
+      "distance_miles": 748.7,
+      "drive_minutes": 684,
+      "success": true
+    },
+    {
+      "id": "4d7d1af1-ade0-4691-822f-2a9bde46145a",
+      "name": "Ruby Ridge Siege Site",
+      "slug": "ruby-ridge-siege-site",
+      "state": "ID",
+      "distance_miles": 733.9,
+      "drive_minutes": 669,
+      "success": true
+    },
+    {
+      "id": "5f1acbde-fb83-4f60-8f87-e980760b9c8d",
+      "name": "Salt Flats Brewing",
+      "slug": "salt-flats-brewing",
+      "state": "UT",
+      "distance_miles": 7.9,
+      "drive_minutes": 13,
+      "success": true
+    },
+    {
+      "id": "6b6daf0b-b9b8-434c-8106-c17886f971b1",
+      "name": "Salt Lake City International Airport - Terminal 1",
+      "slug": "slc-airport-dumb-dumber",
+      "state": "UT",
+      "distance_miles": 0,
+      "drive_minutes": 0,
+      "success": true
+    },
+    {
+      "id": "55d7270b-3b8b-45c3-a893-c5dd66192e84",
+      "name": "Saltair Resort Ruins",
+      "slug": "saltair-resort-ruins",
+      "state": "UT",
+      "distance_miles": 13.8,
+      "drive_minutes": 18,
+      "success": true
+    },
+    {
+      "id": "dbbbbc7f-b61b-4c55-9cd6-786171c9aaf0",
+      "name": "San Luis Valley",
+      "slug": "san-luis-valley",
+      "state": "CO",
+      "distance_miles": 516.8,
+      "drive_minutes": 513,
+      "success": true
+    },
+    {
+      "id": "aeccc06e-0260-4386-b6fc-9c047277f181",
+      "name": "San Rafael Swell",
+      "slug": "san-rafael-swell",
+      "state": "UT",
+      "distance_miles": 178.5,
+      "drive_minutes": 213,
+      "success": true
+    },
+    {
+      "id": "fb499340-cf11-49e3-89c5-b584f97fcfeb",
+      "name": "Sand Creek Massacre Site",
+      "slug": "sand-creek-massacre-co",
+      "state": "CO",
+      "distance_miles": 697.6,
+      "drive_minutes": 636,
+      "success": true
+    },
+    {
+      "id": "d345559e-785d-4f78-96a1-44a043780df3",
+      "name": "Sand Hollow Resort Championship Course",
+      "slug": "sand-hollow-resort-championship-course",
+      "state": "UT",
+      "distance_miles": 308,
+      "drive_minutes": 262,
+      "success": true
+    },
+    {
+      "id": "91621970-4b40-47fa-8ced-af1a803adf14",
+      "name": "Sand Hollow Resort Links Course",
+      "slug": "sand-hollow-resort-links-course",
+      "state": "UT",
+      "distance_miles": 308,
+      "drive_minutes": 262,
+      "success": true
+    },
+    {
+      "id": "8b12b2b7-10a8-465d-a0cb-78a52e20c904",
+      "name": "Santa Fe Brewing",
+      "slug": "santa-fe-brewing",
+      "state": "NM",
+      "distance_miles": 631.1,
+      "drive_minutes": 614,
+      "success": true
+    },
+    {
+      "id": "84f73e90-6033-437d-863a-15ed0d35198e",
+      "name": "Santa Fe Prison Historic",
+      "slug": "santa-fe-prison-historic",
+      "state": "NM",
+      "distance_miles": 631.1,
+      "drive_minutes": 614,
+      "success": true
+    },
+    {
+      "id": "394701d5-32a5-4a64-a3c3-9272969af86c",
+      "name": "Scofield Mine Disaster",
+      "slug": "scofield-mine-disaster",
+      "state": "UT",
+      "distance_miles": 117.4,
+      "drive_minutes": 125,
+      "success": true
+    },
+    {
+      "id": "e5670f6b-df6c-49b9-8c05-f278136a172d",
+      "name": "Sedona Golf Resort",
+      "slug": "sedona-golf-resort",
+      "state": "AZ",
+      "distance_miles": 555.4,
+      "drive_minutes": 535,
+      "success": true
+    },
+    {
+      "id": "6672396d-a85a-4912-a5fe-0a78daef2080",
+      "name": "Sedona Red Rocks",
+      "slug": "sedona-red-rocks-film",
+      "state": "AZ",
+      "distance_miles": 553.1,
+      "drive_minutes": 529,
+      "success": true
+    },
+    {
+      "id": "27a1d50a-1392-44e6-afbf-5b9954a00d73",
+      "name": "Seven Canyons Golf Club",
+      "slug": "seven-canyons-golf-club",
+      "state": "AZ",
+      "distance_miles": 555,
+      "drive_minutes": 534,
+      "success": true
+    },
+    {
+      "id": "93c213e6-3eda-47bb-b4fa-3c62c893d5ad",
+      "name": "Sheridan, Wyoming",
+      "slug": "sheridan-wyoming-film",
+      "state": "WY",
+      "distance_miles": 560.1,
+      "drive_minutes": 496,
+      "success": true
+    },
+    {
+      "id": "b5738040-a38b-44db-a3ea-34cd22d01742",
+      "name": "Sidney Teen Murders",
+      "slug": "sidney-teen-murders-mt",
+      "state": "MT",
+      "distance_miles": 819.3,
+      "drive_minutes": 735,
+      "success": true
+    },
+    {
+      "id": "4a76975a-193a-46e8-9bd2-7ac538954b9b",
+      "name": "Silver City Ghost Town",
+      "slug": "silver-city-ghost-town",
+      "state": "ID",
+      "distance_miles": 366.4,
+      "drive_minutes": 365,
+      "success": true
+    },
+    {
+      "id": "0dfead11-5e2c-4048-b532-a3c4342c3229",
+      "name": "Silver King Coalition Mines",
+      "slug": "silver-king-coalition-mines",
+      "state": "UT",
+      "distance_miles": 38.1,
+      "drive_minutes": 47,
+      "success": true
+    },
+    {
+      "id": "10c897ba-6b1a-4b0d-acfb-e2698bb4e2e5",
+      "name": "Silver Reef Brewing",
+      "slug": "silver-reef-brewing",
+      "state": "UT",
+      "distance_miles": 307.5,
+      "drive_minutes": 257,
+      "success": true
+    },
+    {
+      "id": "2d54cbd8-0c06-4bb5-b24f-7216fb076744",
+      "name": "Singer-Swapp Standoff Site",
+      "slug": "singer-swapp-standoff-marion",
+      "state": "UT",
+      "distance_miles": 29.6,
+      "drive_minutes": 46,
+      "success": true
+    },
+    {
+      "id": "0a7ca3fb-b487-4697-8b76-c62897d4fa64",
+      "name": "Six Sailor Cider",
+      "slug": "six-sailor-cider",
+      "state": "UT",
+      "distance_miles": 7.9,
+      "drive_minutes": 13,
+      "success": true
+    },
+    {
+      "id": "193c0f29-7b0f-43c8-a339-2a0007feec50",
+      "name": "Skinwalker Ranch",
+      "slug": "skinwalker-ranch",
+      "state": "UT",
+      "distance_miles": 159.5,
+      "drive_minutes": 166,
+      "success": true
+    },
+    {
+      "id": "8ebfe389-863d-4c72-9460-efee60bc873b",
+      "name": "Sky Mountain Golf Course",
+      "slug": "sky-mountain-golf-course",
+      "state": "UT",
+      "distance_miles": 300,
+      "drive_minutes": 258,
+      "success": true
+    },
+    {
+      "id": "cfcb31df-9d10-47a2-be09-73604c7a997c",
+      "name": "Slate Canyon Brewing",
+      "slug": "slate-canyon-brewing",
+      "state": "UT",
+      "distance_miles": 50.5,
+      "drive_minutes": 53,
+      "success": true
+    },
+    {
+      "id": "e14d546a-637c-465b-9ae1-1496565c2575",
+      "name": "Smith Apartments - Dumb and Dumber",
+      "slug": "smith-apartments-dumb-dumber",
+      "state": "UT",
+      "distance_miles": 9.4,
+      "drive_minutes": 19,
+      "success": true
+    },
+    {
+      "id": "6b23fd5b-4249-40c0-a3d1-4b6bd0ee0148",
+      "name": "Snake River Brewing",
+      "slug": "snake-river-brewing",
+      "state": "WY",
+      "distance_miles": 278,
+      "drive_minutes": 276,
+      "success": true
+    },
+    {
+      "id": "7dd19c9e-3ec1-4c66-ae37-b13b617e590a",
+      "name": "Snake River Sporting Club",
+      "slug": "snake-river-sporting-club",
+      "state": "WY",
+      "distance_miles": 282.8,
+      "drive_minutes": 283,
+      "success": true
+    },
+    {
+      "id": "6eccec94-eecd-4625-90cb-ca067776bb23",
+      "name": "Snow Canyon State Park",
+      "slug": "snow-canyon-film-location",
+      "state": "UT",
+      "distance_miles": 314.1,
+      "drive_minutes": 265,
+      "success": true
+    },
+    {
+      "id": "775fe2b4-2c71-4096-ac6b-340bdb12c7ed",
+      "name": "Sockeye Brewing",
+      "slug": "sockeye-brewing",
+      "state": "ID",
+      "distance_miles": 339.8,
+      "drive_minutes": 294,
+      "success": true
+    },
+    {
+      "id": "fafdf218-13e1-4963-a552-59ebc523b1e6",
+      "name": "Soldier Hollow Golf Course",
+      "slug": "soldier-hollow-golf-course",
+      "state": "UT",
+      "distance_miles": 50.9,
+      "drive_minutes": 55,
+      "success": true
+    },
+    {
+      "id": "1d988405-22dd-49a5-9f82-24b5045497ec",
+      "name": "Soldier Hollow Golf Course - Gold",
+      "slug": "soldier-hollow-golf-gold-course",
+      "state": "UT",
+      "distance_miles": 54.1,
+      "drive_minutes": 61,
+      "success": true
+    },
+    {
+      "id": "0bda590d-539d-4ecc-b19b-901c715b13d5",
+      "name": "Soldier Hollow Golf Course - Silver",
+      "slug": "soldier-hollow-golf-silver-course",
+      "state": "UT",
+      "distance_miles": 54.1,
+      "drive_minutes": 61,
+      "success": true
+    },
+    {
+      "id": "18da7da0-d27e-4361-93b4-30da0e483793",
+      "name": "South Mountain Golf Course",
+      "slug": "south-mountain-golf-course",
+      "state": "UT",
+      "distance_miles": 25.4,
+      "drive_minutes": 32,
+      "success": true
+    },
+    {
+      "id": "8e9166df-6e45-4769-92bd-0964a2285e63",
+      "name": "Spahn Ranch Site",
+      "slug": "spahn-ranch-chatsworth",
+      "state": "CA",
+      "distance_miles": 718.2,
+      "drive_minutes": 622,
+      "success": true
+    },
+    {
+      "id": "2e819394-9f85-4154-9c63-8e75462857cc",
+      "name": "Spanish Valley Water Conservation",
+      "slug": "spanish-valley-water",
+      "state": "UT",
+      "distance_miles": 243.5,
+      "drive_minutes": 237,
+      "success": true
+    },
+    {
+      "id": "cb1430e3-5b09-4c97-8edc-1928c9f0022c",
+      "name": "Speculator Mine Fire",
+      "slug": "speculator-mine-fire-butte",
+      "state": "MT",
+      "distance_miles": 416.8,
+      "drive_minutes": 350,
+      "success": true
+    },
+    {
+      "id": "ffc5740b-5c1d-4330-ba04-f170c440f361",
+      "name": "Square State Brewing",
+      "slug": "square-state-brewing",
+      "state": "WY",
+      "distance_miles": 192.3,
+      "drive_minutes": 177,
+      "success": true
+    },
+    {
+      "id": "5646d304-2b9f-4790-9fff-84048b87f70e",
+      "name": "Squatters Pub Brewery",
+      "slug": "squatters-pub-brewery",
+      "state": "UT",
+      "distance_miles": 8.6,
+      "drive_minutes": 17,
+      "success": true
+    },
+    {
+      "id": "74c68cae-d082-4f63-ae0f-ac609e4a3518",
+      "name": "St. Elmo Ghost Town",
+      "slug": "st-elmo-ghost-town",
+      "state": "CO",
+      "distance_miles": 514.5,
+      "drive_minutes": 503,
+      "success": true
+    },
+    {
+      "id": "2a1b442a-2bf5-4731-958e-d26fbcdd764c",
+      "name": "St. George Dinosaur Discovery Site",
+      "slug": "st-george-dinosaur-site",
+      "state": "UT",
+      "distance_miles": 307.3,
+      "drive_minutes": 258,
+      "success": true
+    },
+    {
+      "id": "50b65256-f265-452e-b3c4-7e27d6d5182a",
+      "name": "Stanley Hotel",
+      "slug": "stanley-hotel-estes-park",
+      "state": "CO",
+      "distance_miles": 498.7,
+      "drive_minutes": 470,
+      "success": true
+    },
+    {
+      "id": "b35e6174-fc99-4763-95d4-d926dbe831c3",
+      "name": "Starvation State Park",
+      "slug": "starvation-state-park",
+      "state": "UT",
+      "distance_miles": 142.1,
+      "drive_minutes": 144,
+      "success": true
+    },
+    {
+      "id": "b233a3af-0333-42b3-a1b5-4a68130ed66c",
+      "name": "State Route 128 - Colorado River Scenic Byway",
+      "slug": "sr-128-film-corridor",
+      "state": "UT",
+      "distance_miles": 247.2,
+      "drive_minutes": 253,
+      "success": true
+    },
+    {
+      "id": "8dc0a779-8b45-4238-b019-40a0d48c9468",
+      "name": "StillWest Brewery",
+      "slug": "stillwest-brewery",
+      "state": "WY",
+      "distance_miles": 278,
+      "drive_minutes": 276,
+      "success": true
+    },
+    {
+      "id": "0fe77cca-9eee-40ce-b3ff-87d093dd9146",
+      "name": "Stonebridge Golf Club",
+      "slug": "stonebridge-golf-club",
+      "state": "UT",
+      "distance_miles": 17,
+      "drive_minutes": 32,
+      "success": true
+    },
+    {
+      "id": "1b99153e-ba18-4ab2-9ccb-72bdd02e2749",
+      "name": "Strap Tank Brewing - Lehi",
+      "slug": "strap-tank-brewing-lehi",
+      "state": "UT",
+      "distance_miles": 34.2,
+      "drive_minutes": 38,
+      "success": true
+    },
+    {
+      "id": "460a79a7-fa95-4ce2-830e-0b7dd7040764",
+      "name": "Strap Tank Brewing - Springville",
+      "slug": "strap-tank-brewing-springville",
+      "state": "UT",
+      "distance_miles": 56.1,
+      "drive_minutes": 58,
+      "success": true
+    },
+    {
+      "id": "499e5e8f-8681-4fdb-9dc2-47016865fb8c",
+      "name": "Sun Valley/Ketchum - Bus Stop",
+      "slug": "sun-valley-bus-stop",
+      "state": "ID",
+      "distance_miles": 294.7,
+      "drive_minutes": 280,
+      "success": true
+    },
+    {
+      "id": "9dacf915-6966-419d-b75c-75dbff2627d4",
+      "name": "Sunbrook Golf Club",
+      "slug": "sunbrook-golf-club",
+      "state": "UT",
+      "distance_miles": 311.1,
+      "drive_minutes": 260,
+      "success": true
+    },
+    {
+      "id": "0f40b77e-eb42-42be-9f8d-67441ea1bd01",
+      "name": "Sundance Mountain Resort",
+      "slug": "sundance-film-location",
+      "state": "UT",
+      "distance_miles": 56.2,
+      "drive_minutes": 64,
+      "success": true
+    },
+    {
+      "id": "7f47a300-e6b9-4106-ae07-6eb94ebccc66",
+      "name": "SunRiver Golf Course",
+      "slug": "sunriver-golf-course-st-george",
+      "state": "UT",
+      "distance_miles": 313.6,
+      "drive_minutes": 264,
+      "success": true
+    },
+    {
+      "id": "7ddbf14a-51d3-4568-8389-1613606dd2a9",
+      "name": "Sunriver Resort - Crosswater Course",
+      "slug": "sunriver-crosswater-course",
+      "state": "OR",
+      "distance_miles": 667.1,
+      "drive_minutes": 605,
+      "success": true
+    },
+    {
+      "id": "d56c0398-2d2d-41c5-b458-ed98708aa54d",
+      "name": "Sunshine Mine Disaster",
+      "slug": "sunshine-mine-disaster-id",
+      "state": "ID",
+      "distance_miles": 659.8,
+      "drive_minutes": 574,
+      "success": true
+    },
+    {
+      "id": "10d542eb-3633-44ba-aa36-b63a52c1fbe6",
+      "name": "Superstition Mountains",
+      "slug": "superstition-mountains-film",
+      "state": "AZ",
+      "distance_miles": 726.6,
+      "drive_minutes": 699,
+      "success": true
+    },
+    {
+      "id": "0b6e9184-b926-4f45-a992-a59700c8916d",
+      "name": "Superstition Mountains",
+      "slug": "superstition-mountains",
+      "state": "AZ",
+      "distance_miles": 706,
+      "drive_minutes": 654,
+      "success": true
+    },
+    {
+      "id": "82de0ec8-7f81-4a0b-8064-68ab25d820ca",
+      "name": "Susan Powell Disappearance Site",
+      "slug": "susan-powell-disappearance",
+      "state": "UT",
+      "distance_miles": 10.4,
+      "drive_minutes": 18,
+      "success": true
+    },
+    {
+      "id": "fc130153-e0e3-417d-8bad-e6e7c293feaf",
+      "name": "Talisman Brewing Company",
+      "slug": "talisman-brewing-company",
+      "state": "UT",
+      "distance_miles": 38.9,
+      "drive_minutes": 42,
+      "success": true
+    },
+    {
+      "id": "15e43659-3d8b-42c1-8838-d747544324ae",
+      "name": "Ted Binion Murder House",
+      "slug": "ted-binion-murder-house",
+      "state": "NV",
+      "distance_miles": 429.3,
+      "drive_minutes": 361,
+      "success": true
+    },
+    {
+      "id": "18bf2ea4-b144-4e94-ae25-76e915e0841f",
+      "name": "Ted Bundy Arrest Site",
+      "slug": "ted-bundy-arrest-site",
+      "state": "UT",
+      "distance_miles": 6.3,
+      "drive_minutes": 12,
+      "success": true
+    },
+    {
+      "id": "d8b14e74-08fe-4ad9-ba68-7cb6a7a9b7dc",
+      "name": "Ted Bundy Aspen Area Sites",
+      "slug": "bundy-aspen-sites",
+      "state": "CO",
+      "distance_miles": 414.9,
+      "drive_minutes": 390,
+      "success": true
+    },
+    {
+      "id": "05ab001b-09af-4b9c-a332-666132fd78ee",
+      "name": "Ted Bundy Colorado Victims Sites",
+      "slug": "bundy-colorado-victims",
+      "state": "CO",
+      "distance_miles": 465.5,
+      "drive_minutes": 426,
+      "success": true
+    },
+    {
+      "id": "d942fe3e-b9af-4811-bb97-8aa45c6301d1",
+      "name": "Ted Bundy Execution Site",
+      "slug": "ted-bundy-execution-site",
+      "state": "FL",
+      "distance_miles": 2200.5,
+      "drive_minutes": 1938,
+      "success": true
+    },
+    {
+      "id": "af9faf01-0344-4c76-9ee1-9b6ec68c76a5",
+      "name": "Ted Bundy Garfield County Jail Escape",
+      "slug": "bundy-garfield-jail-escape",
+      "state": "CO",
+      "distance_miles": 373.9,
+      "drive_minutes": 337,
+      "success": true
+    },
+    {
+      "id": "7ed4ef38-a10d-44cc-bafe-4fecaf52110d",
+      "name": "Ted Bundy Snowmass Victim Site",
+      "slug": "bundy-snowmass-victim",
+      "state": "CO",
+      "distance_miles": 413.7,
+      "drive_minutes": 387,
+      "success": true
+    },
+    {
+      "id": "448fe959-0865-480f-acfe-1d6a9d8372e1",
+      "name": "Ted Bundy Utah Residence",
+      "slug": "ted-bundy-residence-slc",
+      "state": "UT",
+      "distance_miles": 10.7,
+      "drive_minutes": 22,
+      "success": true
+    },
+    {
+      "id": "b14fe780-e443-4ebe-b1cb-d23bb6023792",
+      "name": "Ted Bundy Vail Victim Site",
+      "slug": "bundy-vail-victim",
+      "state": "CO",
+      "distance_miles": 434.3,
+      "drive_minutes": 392,
+      "success": true
+    },
+    {
+      "id": "6aff43d5-892c-49ca-9da8-433d7f03f94c",
+      "name": "Temple Square Underground Tunnels",
+      "slug": "temple-square-tunnels",
+      "state": "UT",
+      "distance_miles": 9.5,
+      "drive_minutes": 17,
+      "success": true
+    },
+    {
+      "id": "8ff2c28f-a535-45c6-a017-7f3ce6a7fd2a",
+      "name": "Ten Sleep Brewing",
+      "slug": "ten-sleep-brewing",
+      "state": "WY",
+      "distance_miles": 422.3,
+      "drive_minutes": 401,
+      "success": true
+    },
+    {
+      "id": "af234761-e0d8-48ec-9716-170e11c03147",
+      "name": "Tetherow Golf Club",
+      "slug": "tetherow-golf-club",
+      "state": "OR",
+      "distance_miles": 659.4,
+      "drive_minutes": 604,
+      "success": true
+    },
+    {
+      "id": "e6f4be89-50e5-4b97-8fa5-bac8b968b9f4",
+      "name": "Thanksgiving Point Golf Club",
+      "slug": "thanksgiving-point-golf-club",
+      "state": "UT",
+      "distance_miles": 31.4,
+      "drive_minutes": 34,
+      "success": true
+    },
+    {
+      "id": "bed0e6b0-7f3e-4fbc-9c37-b434c6289b12",
+      "name": "The Berkeley Pit",
+      "slug": "berkeley-pit",
+      "state": "MT",
+      "distance_miles": 419.1,
+      "drive_minutes": 355,
+      "success": true
+    },
+    {
+      "id": "4dd29855-d3ce-4e41-9567-05d4d03e7b69",
+      "name": "The Coeur d'Alene Resort Golf Course",
+      "slug": "coeur-d-alene-resort-golf",
+      "state": "ID",
+      "distance_miles": 689.1,
+      "drive_minutes": 588,
+      "success": true
+    },
+    {
+      "id": "3d96ed77-cd6b-4de4-8144-abb12d7234a3",
+      "name": "The Continental Divide Portals",
+      "slug": "the-continental-divide-portals",
+      "state": "UT",
+      "distance_miles": 432.7,
+      "drive_minutes": 468,
+      "success": true
+    },
+    {
+      "id": "03ad3f32-3409-4511-bf70-29f03de6659f",
+      "name": "The Country Club - Salt Lake City",
+      "slug": "the-country-club-slc",
+      "state": "UT",
+      "distance_miles": 9.9,
+      "drive_minutes": 19,
+      "success": true
+    },
+    {
+      "id": "5cdf53f5-82b4-43c4-b7ae-7af855f10eba",
+      "name": "The Ledges of St. George",
+      "slug": "the-ledges-st-george",
+      "state": "UT",
+      "distance_miles": 309.5,
+      "drive_minutes": 258,
+      "success": true
+    },
+    {
+      "id": "b50eb684-4f72-4f98-b825-a22f9f3f54a8",
+      "name": "The Ridge Golf Club",
+      "slug": "the-ridge-golf-club",
+      "state": "UT",
+      "distance_miles": 11.5,
+      "drive_minutes": 20,
+      "success": true
+    },
+    {
+      "id": "3c17787d-fe5c-4d91-91ba-2a400390b55a",
+      "name": "Thieves Guild Cidery",
+      "slug": "thieves-guild-cidery",
+      "state": "UT",
+      "distance_miles": 7.8,
+      "drive_minutes": 13,
+      "success": true
+    },
+    {
+      "id": "5fec08a6-df67-4819-bf4d-be13534b0f9a",
+      "name": "This Is The Place Heritage Park",
+      "slug": "this-is-the-place",
+      "state": "UT",
+      "distance_miles": 12.6,
+      "drive_minutes": 28,
+      "success": true
+    },
+    {
+      "id": "4f08a7c9-0ed9-4efc-a7eb-718a0b838ab9",
+      "name": "Three Nephites Highway Encounters",
+      "slug": "three-nephites-sightings",
+      "state": "UT",
+      "distance_miles": 57.8,
+      "drive_minutes": 58,
+      "success": true
+    },
+    {
+      "id": "a4876169-de78-4c83-b018-589efebda0ca",
+      "name": "Thunderbird Encounters - Southern Utah",
+      "slug": "thunderbird-encounters-southern-utah",
+      "state": "UT",
+      "distance_miles": 228,
+      "drive_minutes": 227,
+      "success": true
+    },
+    {
+      "id": "ef223a66-4233-40d1-b074-a06936766a94",
+      "name": "Timpanogos Cave Mystery",
+      "slug": "timpanogos-cave-mystery",
+      "state": "UT",
+      "distance_miles": 37.2,
+      "drive_minutes": 52,
+      "success": true
+    },
+    {
+      "id": "433e8f64-8b2e-45a3-b1b9-08f90af4cb3d",
+      "name": "Timpanogos Cave National Monument",
+      "slug": "timpanogos-cave",
+      "state": "UT",
+      "distance_miles": 40.2,
+      "drive_minutes": 47,
+      "success": true
+    },
+    {
+      "id": "8bb825b4-98ea-4e18-aab2-b340c3bca161",
+      "name": "Tom Horn Execution Site",
+      "slug": "tom-horn-execution-cheyenne",
+      "state": "WY",
+      "distance_miles": 445.8,
+      "drive_minutes": 396,
+      "success": true
+    },
+    {
+      "id": "bf1a6a67-16be-433b-a0f5-6c86b1a942ce",
+      "name": "Tombstone, Arizona",
+      "slug": "tombstone",
+      "state": "AZ",
+      "distance_miles": 851.1,
+      "drive_minutes": 775,
+      "success": true
+    },
+    {
+      "id": "7ebd5bef-36c7-49ed-8b90-d7a5f4e59c0e",
+      "name": "Tonopah Mines",
+      "slug": "tonopah-mines-nv",
+      "state": "NV",
+      "distance_miles": 406.4,
+      "drive_minutes": 360,
+      "success": true
+    },
+    {
+      "id": "a9625f91-d21f-4498-a8dd-9d727303df0b",
+      "name": "Tony Spilotro Crime Sites",
+      "slug": "tony-spilotro-vegas",
+      "state": "NV",
+      "distance_miles": 426.7,
+      "drive_minutes": 359,
+      "success": true
+    },
+    {
+      "id": "d1b4985b-eb43-4ceb-837d-f0753b875ece",
+      "name": "Tooele Army Depot",
+      "slug": "tooele-army-depot",
+      "state": "UT",
+      "distance_miles": 35.2,
+      "drive_minutes": 43,
+      "success": true
+    },
+    {
+      "id": "1d1bb9ce-9e1e-4331-bd3a-a6e5272f3cec",
+      "name": "Topaz Internment Camp",
+      "slug": "topaz-internment-camp",
+      "state": "UT",
+      "distance_miles": 150.8,
+      "drive_minutes": 148,
+      "success": true
+    },
+    {
+      "id": "e346ee37-76c7-4f03-b937-35cd27361bc4",
+      "name": "Topaz Museum",
+      "slug": "topaz-museum-delta",
+      "state": "UT",
+      "distance_miles": 138.9,
+      "drive_minutes": 132,
+      "success": true
+    },
+    {
+      "id": "dd4b4028-8bc5-43b7-9355-dd24149d3d16",
+      "name": "Topgolf Salt Lake City",
+      "slug": "topgolf-salt-lake-city",
+      "state": "UT",
+      "distance_miles": 6.4,
+      "drive_minutes": 12,
+      "success": true
+    },
+    {
+      "id": "b0e9e2df-e20d-433d-ab73-64908570a125",
+      "name": "TPC Scottsdale - Stadium Course",
+      "slug": "tpc-scottsdale-stadium-course",
+      "state": "AZ",
+      "distance_miles": 665.7,
+      "drive_minutes": 611,
+      "success": true
+    },
+    {
+      "id": "a3d5e882-899f-45b3-ae3b-0441ffa6b752",
+      "name": "Trinity Site",
+      "slug": "trinity-site-atomic",
+      "state": "NM",
+      "distance_miles": 724.3,
+      "drive_minutes": 690,
+      "success": true
+    },
+    {
+      "id": "053243c9-0267-4e12-9ad0-319b0e2bf7aa",
+      "name": "Trolley Square Shooting Site",
+      "slug": "trolley-square-shooting",
+      "state": "UT",
+      "distance_miles": 8.6,
+      "drive_minutes": 15,
+      "success": true
+    },
+    {
+      "id": "2e04f985-6804-4f10-9131-8833fa6578f1",
+      "name": "Trona Pinnacles",
+      "slug": "trona-pinnacles-film",
+      "state": "CA",
+      "distance_miles": 619,
+      "drive_minutes": 587,
+      "success": true
+    },
+    {
+      "id": "61812b68-31a9-4e0a-ba20-0d82781b6439",
+      "name": "Troon North Golf Club - Monument",
+      "slug": "troon-north-monument-course",
+      "state": "AZ",
+      "distance_miles": 664.1,
+      "drive_minutes": 625,
+      "success": true
+    },
+    {
+      "id": "1ba14f52-64e9-4aa4-a156-dcb5cbafdd2d",
+      "name": "Victory Ranch Golf Club",
+      "slug": "victory-ranch-golf-club",
+      "state": "UT",
+      "distance_miles": 70.5,
+      "drive_minutes": 102,
+      "success": true
+    },
+    {
+      "id": "e3e85710-45a7-4d74-b284-37ae06bb567e",
+      "name": "Viewmont High School - Debra Kent Abduction",
+      "slug": "viewmont-high-bundy",
+      "state": "UT",
+      "distance_miles": 18.9,
+      "drive_minutes": 26,
+      "success": true
+    },
+    {
+      "id": "72ccb32d-ac81-4274-8f55-390102bd1613",
+      "name": "Virginia City Montana Vigilantes",
+      "slug": "virginia-city-mt-vigilantes",
+      "state": "MT",
+      "distance_miles": 379.4,
+      "drive_minutes": 340,
+      "success": true
+    },
+    {
+      "id": "b0d0c58e-e661-45a5-8fa8-9520d939cc11",
+      "name": "Virginia City Vigilante Sites",
+      "slug": "virginia-city-vigilantes",
+      "state": "NV",
+      "distance_miles": 523.5,
+      "drive_minutes": 456,
+      "success": true
+    },
+    {
+      "id": "74063ecf-07d1-425b-be1e-93c263f8df65",
+      "name": "Vulture Mine",
+      "slug": "vulture-mine",
+      "state": "AZ",
+      "distance_miles": 674.1,
+      "drive_minutes": 588,
+      "success": true
+    },
+    {
+      "id": "c695e1d4-0ca6-4fa5-8630-21823a1ca91f",
+      "name": "Wallace - Dante's Peak",
+      "slug": "wallace-dantes-peak",
+      "state": "ID",
+      "distance_miles": 641.6,
+      "drive_minutes": 542,
+      "success": true
+    },
+    {
+      "id": "be5c8edb-b0f6-4616-aa38-a0a7d7d8ecea",
+      "name": "Wasatch Brew Pub",
+      "slug": "wasatch-brew-pub",
+      "state": "UT",
+      "distance_miles": 12.7,
+      "drive_minutes": 20,
+      "success": true
+    },
+    {
+      "id": "7e7595b7-0e8e-453d-9c72-2030faed4fa4",
+      "name": "Wasatch Brew Pub Park City",
+      "slug": "wasatch-brew-pub-park-city",
+      "state": "UT",
+      "distance_miles": 38.1,
+      "drive_minutes": 47,
+      "success": true
+    },
+    {
+      "id": "66dd7bfa-4b1f-4274-8e47-ccf80bda013e",
+      "name": "Wasatch Mountain Golf Course - Lake",
+      "slug": "wasatch-mountain-golf-lake-course",
+      "state": "UT",
+      "distance_miles": 51.4,
+      "drive_minutes": 56,
+      "success": true
+    },
+    {
+      "id": "15f1890d-f66a-4f76-854b-a9f2b91e346b",
+      "name": "Wasatch Mountain Golf Course - Mountain",
+      "slug": "wasatch-mountain-golf-mountain-course",
+      "state": "UT",
+      "distance_miles": 51.4,
+      "drive_minutes": 56,
+      "success": true
+    },
+    {
+      "id": "89bfe021-b5da-4460-9924-1f82fca38e97",
+      "name": "Wasatch Mountain State Park Golf Course",
+      "slug": "wasatch-mountain-state-park-golf-course",
+      "state": "UT",
+      "distance_miles": 50.9,
+      "drive_minutes": 55,
+      "success": true
+    },
+    {
+      "id": "110d5d7d-9f77-4565-8571-19185b8a2513",
+      "name": "Wasatch Wildman",
+      "slug": "wasatch-wildman",
+      "state": "UT",
+      "distance_miles": 51.6,
+      "drive_minutes": 56,
+      "success": true
+    },
+    {
+      "id": "23122d19-a512-49a7-b9fb-018e933def02",
+      "name": "Washington County Water Conservancy District",
+      "slug": "washington-county-water",
+      "state": "UT",
+      "distance_miles": 310.1,
+      "drive_minutes": 259,
+      "success": true
+    },
+    {
+      "id": "b111aae6-3a74-4f82-89b2-a5203e1fcdd0",
+      "name": "Wayne Nance Crime Scenes",
+      "slug": "wayne-nance-missoula-mauler",
+      "state": "MT",
+      "distance_miles": 525,
+      "drive_minutes": 438,
+      "success": true
+    },
+    {
+      "id": "75c5b7d9-a652-4977-a068-3fa08792d21f",
+      "name": "We-Ko-Pa Golf Club - Cholla",
+      "slug": "we-ko-pa-cholla-course",
+      "state": "AZ",
+      "distance_miles": 684.8,
+      "drive_minutes": 636,
+      "success": true
+    },
+    {
+      "id": "66162be3-e30e-4d1a-aa4d-e528f1dd7929",
+      "name": "WeldWerks Brewing",
+      "slug": "weldwerks-brewing",
+      "state": "CO",
+      "distance_miles": 495.5,
+      "drive_minutes": 450,
+      "success": true
+    },
+    {
+      "id": "5e7cff89-d9ea-40fe-9149-bcd1b683f59f",
+      "name": "Wendover Airfield",
+      "slug": "wendover-airfield-con-air",
+      "state": "UT",
+      "distance_miles": 119.6,
+      "drive_minutes": 107,
+      "success": true
+    },
+    {
+      "id": "ef21f7d4-2b5e-4371-9436-3fdc998a217b",
+      "name": "Wendover Bombing Range",
+      "slug": "wendover-bombing-range",
+      "state": "UT",
+      "distance_miles": 138.9,
+      "drive_minutes": 117,
+      "success": true
+    },
+    {
+      "id": "db67d256-21c7-47b9-8931-d6ca4548165d",
+      "name": "West Mesa Bone Collector",
+      "slug": "west-mesa-bone-collector-abq",
+      "state": "NM",
+      "distance_miles": 620.8,
+      "drive_minutes": 593,
+      "success": true
+    },
+    {
+      "id": "d7f03e43-485f-4ff1-9695-f06674c67398",
+      "name": "Wyoming Indian Wars Battlefields",
+      "slug": "wyoming-indian-wars",
+      "state": "WY",
+      "distance_miles": 484.2,
+      "drive_minutes": 469,
+      "success": true
+    },
+    {
+      "id": "eddad249-6224-4d53-964a-1e1001320c45",
+      "name": "Wyoming Mining Disasters",
+      "slug": "wyoming-mining-disasters",
+      "state": "WY",
+      "distance_miles": 192.3,
+      "drive_minutes": 177,
+      "success": true
+    },
+    {
+      "id": "866ec2c1-a64b-4b3f-b03a-61b0130640e5",
+      "name": "Yellowstone Zone of Death",
+      "slug": "yellowstone-zone-of-death",
+      "state": "ID",
+      "distance_miles": 313.5,
+      "drive_minutes": 297,
+      "success": true
+    },
+    {
+      "id": "d25bb9f2-4cea-4135-ac8c-9179e6fd522b",
+      "name": "Yuma Territorial Prison",
+      "slug": "yuma-territorial-prison",
+      "state": "AZ",
+      "distance_miles": 719.2,
+      "drive_minutes": 640,
+      "success": true
+    },
+    {
+      "id": "fb251a74-00bb-4e9f-b99e-64720a934998",
+      "name": "Zion Brewery Springdale",
+      "slug": "zion-brewery-springdale",
+      "state": "UT",
+      "distance_miles": 312.6,
+      "drive_minutes": 269,
+      "success": true
+    },
+    {
+      "id": "72329f0c-3ac0-4d58-8034-92d2b8a506d2",
+      "name": "Zion Brewery Station II",
+      "slug": "zion-brewery-station-ii",
+      "state": "UT",
+      "distance_miles": 307.5,
+      "drive_minutes": 257,
+      "success": true
+    },
+    {
+      "id": "6300af3f-e01b-45f6-b1f8-cbfeb4d1292e",
+      "name": "Zion Canyon Village",
+      "slug": "zion-canyon-village-film",
+      "state": "UT",
+      "distance_miles": 312.5,
+      "drive_minutes": 269,
+      "success": true
+    },
+    {
+      "id": "d707967a-c834-4012-98a5-c3fec658d78e",
+      "name": "Zion National Park Visitor Center",
+      "slug": "zion-visitor-center",
+      "state": "UT",
+      "distance_miles": 313.5,
+      "drive_minutes": 273,
+      "success": true
+    },
+    {
+      "id": "218d09e2-d8b6-445a-80a4-c7b8beb8bdf8",
+      "name": "Zólupez Beer Company",
+      "slug": "zolupez-beer-company",
+      "state": "UT",
+      "distance_miles": 38.9,
+      "drive_minutes": 42,
+      "success": true
+    }
+  ],
+  "errors": [
+    {
+      "id": "6208f462-0818-459e-9a21-5385f6aa4088",
+      "name": "10 Barrel Brewing",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "8cb2b10f-8acf-4481-9b30-8f31ae34790c",
+      "name": "Acoma Massacre",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "08a9f615-8d6f-417a-be54-ea1c058cc9e4",
+      "name": "Alabama Hills",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "b6055f1e-bcdf-4450-946b-8ad7a77f3cfa",
+      "name": "Alferd Packer Massacre Sites",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "6b52a06f-f5a9-48db-a3cb-8e986ceba5c7",
+      "name": "American Legion Post No. 9 - Ogden",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "36fa5f4d-8696-433f-810a-f02421d66d88",
+      "name": "Amy Wroe Bechtel Disappearance",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "08026a15-c301-4414-bedd-95e90121db57",
+      "name": "Anasazi State Park Museum",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "9de9a04a-bc1d-4a3e-9d42-d42988058325",
+      "name": "Animas Forks",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "6fc44caa-a2dc-4d89-affd-eafc47945894",
+      "name": "Antelope Canyon",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "a645b7a5-e661-4d88-ab63-5429461b3b51",
+      "name": "Antelope Island State Park",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "85ce994b-aa31-406f-9e19-3623306e5032",
+      "name": "Apache Death Cave",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "a384d96f-2da9-44b8-9ff4-26da011fb59b",
+      "name": "Arches National Park - Courthouse Towers",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "3220f958-14a9-433c-acd0-c264985323ad",
+      "name": "Arches National Park - Double Arch",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "ab5e000c-0bea-4c77-8fa7-6e3070afd664",
+      "name": "Arches National Park Visitor Center",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "7c92ef5e-39d0-4377-ae3c-b9f76a4d8640",
+      "name": "Area 51 Adjacent Mysteries",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "6434f7eb-7a87-437d-97d3-d9d9b7f88722",
+      "name": "Area 51 Perimeter",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "5abf708f-8690-438f-bddc-28e8a24bea69",
+      "name": "Arizona Abandoned Hospitals",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "627c5be9-bf47-4aa1-8f0a-48c8a785b755",
+      "name": "Arizona Native Conflict Sites",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "909c85d3-0a58-4798-a356-60606d2e076b",
+      "name": "Arizona Wilderness Brewing",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "cc25c312-2645-4417-a1e9-9e03cbd40293",
+      "name": "Aryan Nations Compound",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "90c19c4c-391f-4728-96bd-54b08dc42253",
+      "name": "Aurora Theater Shooting",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "9638f2a7-05e9-4ba1-9d8d-4f1388a73c73",
+      "name": "Avery Brewing",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "9cd859d7-d9e4-46ce-8ceb-2fed2f0174a9",
+      "name": "Bannack State Park",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "4223ace9-40c0-44c5-bb1f-e3e546499be2",
+      "name": "Barbarian Brewing",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "1026ab8c-517c-43b2-8e95-1b7c35c48f32",
+      "name": "Baseline Killer Crime Corridor",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "8bfbb45c-a2fe-4bfd-8296-bb8d24fd8eb6",
+      "name": "Bear River Massacre Site",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "7254d433-a3c0-46b4-ba44-558cb1863945",
+      "name": "Bear River Migratory Bird Refuge",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "114deddc-271b-490e-9972-655784bdc6bc",
+      "name": "Bellagio Fountains - Ocean's Eleven",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "04a052da-c922-4523-89cb-8000304c715b",
+      "name": "Best Friends Animal Sanctuary",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "c5c67c81-b475-484e-b862-5ca853be6ac6",
+      "name": "Bewilder Brewing Company",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "1f541c73-bed2-47b3-bc2f-3d88af39c7bc",
+      "name": "Big Sky Brewing",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "d1d1e513-35e1-40b4-8830-c4c4a2416a9d",
+      "name": "Billy the Kid Courthouse Escape",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "71772503-e972-4667-8ad4-695c421ed1f9",
+      "name": "Bishop Castle",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "df05068a-fd90-4485-82a0-c5f442f22c6a",
+      "name": "Bitter Creek Brewing",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "0866e8ef-843f-4614-adf0-0635a2fe5a79",
+      "name": "Black Book Barred Hotels",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "7e279d32-01c9-4a74-9b5d-8884123316de",
+      "name": "Black Canyon of the Gunnison",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "c3d9240a-4ab1-4042-85c1-471d373f5d82",
+      "name": "Black Dahlia Connection Denver",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "9abc45a4-1d8d-4340-afc7-72ffd7be5cd9",
+      "name": "Black Desert Resort Golf Course",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "05415924-d6c3-472d-abb2-e06f267a2e55",
+      "name": "Black Project Spontaneous & Wild Ales",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "a0aec197-ac73-40be-a26f-b0782b5f2f2b",
+      "name": "Blind Frog Ranch",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "457a549d-bb39-4fe6-aecd-e085d433b422",
+      "name": "Blue John Canyon",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "d05aa436-7c00-4b57-805e-ba0d1873da55",
+      "name": "Bodie Ghost Town",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "f3b93fc9-03b5-49e6-8711-54d4d3404b02",
+      "name": "Bodie Ghost Town",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "dcb4aaf5-478b-4dcf-9d97-6be4ce7d78f0",
+      "name": "Bohemian Brewery",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "2162c833-4cd8-4667-9c21-f930abf4f2e5",
+      "name": "Boise Brewing",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "bfe9d791-9cec-4d45-a8ba-08350d812493",
+      "name": "Boise/Meridian - Bronco Billy",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "86c7d4f3-0390-48ad-a439-ad09b12e139d",
+      "name": "Boneyard Beer",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "94a5068e-bf9b-4dc5-8b8c-c7c5e1d94ab7",
+      "name": "Bonneville Brewery",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "51b1e615-248d-4606-b426-f8a8c7aae7ee",
+      "name": "Bonneville Golf Course",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "065883de-2824-4dad-9561-a8556f564685",
+      "name": "Bonneville Golf Course - Salt Lake City",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "7b2444ba-7360-4756-a175-0e5a86b0f1a0",
+      "name": "Bonneville Salt Flats",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "1bda8c7f-dc88-4b0c-896c-847a3f614708",
+      "name": "Bonneville Seabase",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "765cb979-87a5-4cd1-843e-d125acb9f569",
+      "name": "Box Elder County Courthouse",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "ef371712-94b7-416f-b3c0-7a46adc74f2a",
+      "name": "Bozeman Brewing Company",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "00bee179-f6aa-407c-9182-a2d9d1e38531",
+      "name": "Breaking Bad RV Location - To'hajiilee",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "47c9f248-7028-4061-acb3-c9b62cdf9ec4",
+      "name": "Bryce Canyon National Park",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "9bb9e6fd-0d81-49ac-a61f-13c5fa6dc17a",
+      "name": "Bryce Canyon Visitor Center",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "d74d4c8a-305a-4a10-89b6-dd0f391354a7",
+      "name": "Bugsy Siegel Las Vegas Sites",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "44907885-3895-4e92-bc21-f24b37354e91",
+      "name": "Butte Mining Disasters",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "7cfba5d4-4054-4bea-b547-170934d5927b",
+      "name": "California Gold Rush Violence",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "92fc2e6a-39cd-4ae7-b618-6225223e51db",
+      "name": "Cannibal Plateau",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "02f66993-f334-4bb0-8c0e-287a7f8e41fa",
+      "name": "Canyon de Chelly National Monument",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "631d6751-dc3c-4257-9a73-5cb419409bb4",
+      "name": "Capitol Reef National Park Visitor Center",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "3b221231-d79e-46d9-b985-2204f0540e55",
+      "name": "Carlsbad Caverns Underground",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "6a55f693-d23f-4b19-9856-42d12ca4c2a3",
+      "name": "Castle Gate Mine Disaster",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "c4e05393-9802-40e7-ac45-85db4b27a751",
+      "name": "Castle Pines Golf Club",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "802d6a8a-567e-4dde-bfba-5ba45831026b",
+      "name": "Castle Valley - Westworld Location",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "1d0a3c27-f7bb-459a-998e-908dd53f4c0a",
+      "name": "Cattle Kate Lynching",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "8aa5630e-b451-4e68-beb7-e3cc2f86ac98",
+      "name": "Chaco Canyon",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "0eaa3a95-faba-42c5-a14c-52617d328a8b",
+      "name": "Chad Daybell Lori Vallow Murder Site",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "d6b82bba-b6f8-4d71-a590-9d93cf1c121b",
+      "name": "Chappel Brewing",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "4bf830a1-f3b2-4041-ae40-8463a32e23ef",
+      "name": "Charlie Kirk Assassination Site (UVU)",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "11c56196-399f-4250-b183-f183bafb7cac",
+      "name": "Cheesman Park",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "c0fb5ef0-82b2-420d-9eee-9e0f98bb010e",
+      "name": "Cheesman Park - Denver",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "df1960a6-5d1f-41ed-9ba0-1f98083eb1cf",
+      "name": "Cheesman Park Denver",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "52c37f19-5aa7-41fa-8c68-042e8501fe43",
+      "name": "Cheyenne Frontier Days Deaths",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "9df0be31-111f-41d7-a784-2bdea7cc78b1",
+      "name": "Cheyenne Mountain - NORAD",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "f3c4dd91-e095-4c67-a6d4-e6d555f3833a",
+      "name": "Chief Joseph Ranch - Yellowstone Dutton Ranch",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "08025d25-60b3-40a4-a009-352ef61134e0",
+      "name": "Chinese Massacre Cove",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "946fc3f2-7f82-43a6-bff7-68bded78b0e1",
+      "name": "Chloride Ghost Town",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "6eff3466-f62a-44b7-9c12-a44511bb5828",
+      "name": "Cisco Ghost Town",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "a807a71e-2cb9-49b4-8486-bb5f94273720",
+      "name": "City of Rocks National Reserve",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "3c5c4a05-7e4b-4891-9158-d598a130b538",
+      "name": "Cleveland-Lloyd Dinosaur Quarry",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "4c80e2ab-af2e-4f95-91ce-849770d9d451",
+      "name": "Colorado Penitentiary Riot Sites",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "4d88125e-907b-4e76-b0de-56de89fda2f1",
+      "name": "Colorado Territorial Prison Museum",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "ba7b07ad-c0a0-4896-8b75-cc8329e1d507",
+      "name": "Columbine High School",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "68bdb22d-78f4-4161-be77-c421409a3e7f",
+      "name": "Compass Rose Lodge",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "b27d6cb9-e39e-436d-a166-51052a80875b",
+      "name": "Conestoga Golf Club",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "bcb0ccab-2222-415d-9fd9-0dffb4d48752",
+      "name": "Copper Rock Golf Course",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "a0a9ba20-4a82-45da-9f99-1a71bf64549c",
+      "name": "Coral Canyon Golf Course",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "7d8b55f5-d9d8-4f4e-9bb1-0d215ddeb8e7",
+      "name": "Death Valley National Park",
+      "error": "ZERO_RESULTS"
+    },
+    {
+      "id": "cb72febe-5edc-4937-88b1-42d0bbbabf36",
+      "name": "Death Valley's Moving Rocks",
+      "error": "ZERO_RESULTS"
+    },
+    {
+      "id": "85c53126-3328-4ec4-9a85-6bead060c0fc",
+      "name": "Deer Valley High Mountain Home",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "259681c4-fd0f-4bb7-929b-936441dd853d",
+      "name": "Denver International Airport",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "3b76ab1e-b109-4dac-a457-7c54053ec761",
+      "name": "Deschutes Brewery",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "e24429bd-4a55-47fa-bc64-28b080efca6e",
+      "name": "Deseret Peak",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "c67b7b55-10f8-43a3-89c8-70261e217eff",
+      "name": "Desert Edge Brewery",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "920af5e3-0a68-4e23-9a12-214c8730cbea",
+      "name": "Desert Sirens - Great Basin",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "33125424-f4c3-4451-b3ba-d6a41f065c12",
+      "name": "Devereaux Mansion",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "5a5e35bd-3b8a-4a7e-bb2c-9b00bfdea983",
+      "name": "Devil's Gate",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "2e18ecab-781d-4a99-ad48-ae55b9003092",
+      "name": "Devils Tower Climbing Deaths",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "1185dbfe-abe1-4574-9e8d-da081a111ae8",
+      "name": "Devils Tower National Monument",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "50819478-7c7f-48b9-9b4d-53fcec46f3fa",
+      "name": "Glacier National Park",
+      "error": "ZERO_RESULTS"
+    },
+    {
+      "id": "04038a66-d62d-4c8f-999d-402eefc0be18",
+      "name": "Glacier Park Murders",
+      "error": "ZERO_RESULTS"
+    },
+    {
+      "id": "1cc2dd11-a018-472d-83d9-c9ded48385aa",
+      "name": "Grand Teton National Park - Film Location",
+      "error": "ZERO_RESULTS"
+    },
+    {
+      "id": "83288326-5541-4fd7-826d-11d955ccbea8",
+      "name": "Grand Teton Underground",
+      "error": "ZERO_RESULTS"
+    },
+    {
+      "id": "3eb77f03-748b-4ecb-8223-9ed8e3c270ed",
+      "name": "Great Sand Dunes",
+      "error": "ZERO_RESULTS"
+    },
+    {
+      "id": "fad303c9-1961-4587-bc8e-000011a89579",
+      "name": "Kingston Clan Compounds",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "5c335fc0-0ae8-44dd-b71e-ed32e4faf3d8",
+      "name": "Kiplyn Davis Disappearance",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "04591ad2-6cbb-4089-a101-eb2d7adb231f",
+      "name": "La Caille Restaurant - Sandy",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "e4b3eba4-0a51-4e80-96ae-ed68c1f3499a",
+      "name": "La Cumbre Brewing",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "172b9a52-029b-4caa-9954-4de72aa4a6c0",
+      "name": "La Sal Junction",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "79768723-779c-4bf0-b2c9-0095409df489",
+      "name": "Lafferty Murders Site",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "56f929b8-3d1c-4b07-95fe-3e0a6d2b1544",
+      "name": "Lafferty Murders Site",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "efc807ba-2a21-4f86-834f-f06585e67a6c",
+      "name": "Lahontan Golf Club",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "37101ec7-cc0f-41dd-8053-357618f20518",
+      "name": "Lake Powell / Glen Canyon",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "4c0f27fc-2aab-46a8-80b6-d2ba76556ad3",
+      "name": "Las Vegas Mob Museum",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "1e33a062-39f9-48d8-89cc-e2803da6b0a7",
+      "name": "Lost Dutchman's Mine",
+      "error": "ZERO_RESULTS"
+    },
+    {
+      "id": "23b5554b-db8f-493c-8b00-16c23e9dd5fe",
+      "name": "Mount Shasta",
+      "error": "ZERO_RESULTS"
+    },
+    {
+      "id": "7caaa466-fc4a-4592-b1d0-4cadfa446d97",
+      "name": "Nevada Test Site",
+      "error": "ZERO_RESULTS"
+    },
+    {
+      "id": "ce68afd4-78a8-4121-9255-fa44ff83163f",
+      "name": "No-Li Brewhouse",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "546c1f1b-b375-4f9b-bfac-d9220bdf38be",
+      "name": "NORAD Cheyenne Mountain",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "91fa3507-30e5-4fb5-a13c-99aeccb6ed6d",
+      "name": "Nutty Putty Cave",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "df3c594c-3e45-4cc2-a41d-b6b73c51b337",
+      "name": "Oatman Ghost Town",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "5d7a0274-5318-4ac8-acac-b2019c1aee6d",
+      "name": "Odell Brewing",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "edf22ccf-5327-4993-a101-927603c9cab7",
+      "name": "Offset Bier",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "a6dc74bf-4122-4fb2-b038-1f7049ec8d34",
+      "name": "Ogden's Own Distillery",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "8f4c780b-890e-4fb6-8522-b731dce1130c",
+      "name": "Old Idaho Penitentiary",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "67d433da-b018-4a1b-ba04-aef816717330",
+      "name": "Old Montana Prison",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "913eac26-85d0-46a9-8ca1-c4ba29c173eb",
+      "name": "Old New Mexico Penitentiary Riot",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "d9a55459-1af6-403e-913d-e2f4ac01d701",
+      "name": "Tonopah Test Range",
+      "error": "ZERO_RESULTS"
+    },
+    {
+      "id": "7dd3281f-1184-4789-aefd-54f830899d95",
+      "name": "Tucson Giffords Shooting",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "38b94591-abde-4a4e-b964-968eea426e91",
+      "name": "Tupac Shakur Shooting Site",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "c28b7f86-99d8-4a46-a62b-f55ef4826392",
+      "name": "Twin Warriors Golf Club",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "1d589c2e-55ec-46ab-9b56-2a6c704f5de0",
+      "name": "Uinta Basin Water Education Center",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "4a82cc44-7bf8-45dc-98da-d557972702ea",
+      "name": "Uinta Brewing Company",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "a04559d3-d4ba-41ea-8658-214fb3d7a979",
+      "name": "Uintah Basin - Skinwalker Ranch",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "26aaaffb-6aae-4194-b340-ca2805efdb03",
+      "name": "Unabomber Cabin Site",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "d3cae23e-faf8-4250-bbac-8b55690b2622",
+      "name": "University of Idaho Murders Site",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "360a6b39-c16c-43c2-aaed-e202a41e7356",
+      "name": "Utah Lake Water Babies",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "765f5660-c715-4598-941f-6925f5927b2a",
+      "name": "Utah State Capitol",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "2e067993-9fd5-4f46-8970-3613c73bc79c",
+      "name": "Utah State Correctional Facility",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "b84549fe-5d59-4fcf-9caa-cd802895616a",
+      "name": "Utah State Hospital",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "5bb50fc6-028e-4fc4-834a-6dfab505b3a7",
+      "name": "UTOG Brewing Company",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "91419744-480c-4451-82e9-957b1f89cdeb",
+      "name": "Valley of Fire",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "b86b717f-9971-470c-8c9a-08504d2299fa",
+      "name": "Valley of Fire State Park",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "48be39b6-8be4-49f8-aedf-2145105efd9f",
+      "name": "Valley View Golf Course",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "491213c2-37e6-43bc-8fc3-aa6e71f3faf5",
+      "name": "Vasquez Rocks Natural Area",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "b60505ac-0e46-4c30-99e6-7354124a8a36",
+      "name": "Vedauwoo",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "42469705-03d1-46f8-af1e-8b4276e33b44",
+      "name": "Vernal Brewing Company",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "61a89165-fdc8-46c2-b097-5a9f409129c6",
+      "name": "Very Large Array Radio Telescope",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "2709befe-7d09-4fd8-af9a-4334fc192b33",
+      "name": "Wendigo Sightings - Northern Utah",
+      "error": "ZERO_RESULTS"
+    },
+    {
+      "id": "d4b14074-57d5-483c-9921-f3311a32df3e",
+      "name": "Western Collective",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "da91fa4d-b875-4c02-bfb9-8561cdcd3a79",
+      "name": "White Sands Missile Range",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "3bfa8f28-d404-4d83-b7b7-5db966d2d8ab",
+      "name": "White Sands National Park",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "1e52856b-6957-4806-b9af-c801433cf5ab",
+      "name": "Widtsoe Ghost Town",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "61067739-3b23-4b86-8ab0-f42dd6868608",
+      "name": "Wind River Brewing",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "5dc68f50-6d5d-4e7a-a994-d4d37f076e15",
+      "name": "Winter Quarters Mine Disaster",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "b9d8a5b6-4727-4738-9ca5-b4e2442f94a9",
+      "name": "Wolf Creek Golf Club",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "7289bfc9-3400-4782-b676-b4a4eb550a69",
+      "name": "Wren House Brewing",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "ce0bed3b-3124-4635-97ab-61af07b4dfaa",
+      "name": "Wynkoop Brewing Company",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "b1d4f3d3-0545-4a4b-95ef-172dbf2b4c2f",
+      "name": "Wyoming Frontier Prison",
+      "error": "This API key is not authorized to use this service or API."
+    },
+    {
+      "id": "e2292b75-b54c-42e2-b0da-a5975590ac70",
+      "name": "Yucca Mountain",
+      "error": "ZERO_RESULTS"
+    }
+  ],
+  "skipped": [
+    {
+      "id": "640477e9-ebb1-4acc-bad5-9bdbcee91ea9",
+      "name": "13 Gates of Terror",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "a6d98bac-70d3-4eb3-9f57-788e7c0b167c",
+      "name": "13th Floor Denver",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "950283cb-3882-4052-8c93-a26cb23340da",
+      "name": "13th Floor Phoenix",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "c195aa3b-0fce-468e-8537-fe1010d4d10e",
+      "name": "13th Gate",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "4fbec068-0eda-4684-995f-42ed6d2d6223",
+      "name": "31 Freak Street",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "c1fe2bfa-8304-408f-b2fe-2779703a4036",
+      "name": "Asylum 49",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "97351618-9308-450a-92a9-d04651b3e2ec",
+      "name": "Bayville Scream Park",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "471c1b87-92c9-4c81-868f-8105029e5eab",
+      "name": "Bennett Curse",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "ae4c1e86-52ac-4f4b-bf6f-e0f18ebd3fd8",
+      "name": "Big Cottonwood Canyon",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "5fae0d0f-c674-4280-a396-d87e0fdecad9",
+      "name": "Blackout",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "005a35da-7e1a-4223-99b6-55c3e5571596",
+      "name": "Brighton Lakes Trail",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "4f1d06e8-183a-4282-a705-003d63a8b863",
+      "name": "Calico Ghost Town",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "775ad9bb-3785-4678-bfd9-32bafb3f2ace",
+      "name": "Casey Moore Oyster House",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "a49745be-fab2-4650-b55f-b0c3d1dba2cf",
+      "name": "Castle of Chaos",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "72333b3f-3895-42aa-a4ca-b643ee6982b4",
+      "name": "Cincinnati Fear Fest",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "07da997c-fe75-438c-bf12-e31586c7189c",
+      "name": "Creepyworld Haunted Screampark",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "5af52bb6-a3c8-418c-ac42-835217631448",
+      "name": "Cutting Edge Haunted House",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "4ebebe41-e7ca-464c-bccf-1e0b8f7cc998",
+      "name": "Dark Corner Haunted House",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "f4c97888-a4d9-4d14-a01a-440c999f78a9",
+      "name": "David Wolpert House",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "021c1f89-dede-4dd9-bb29-67c9903e7e56",
+      "name": "Desert of Screams",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "68c36d60-61a0-431b-ad9c-c87726c5ccda",
+      "name": "Dinosaur National Monument",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "e9428901-cdbd-40c4-91da-a27e5ab8c2ba",
+      "name": "Donner Memorial State Park",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "01380128-9c53-43cf-ba03-2a9de9c13e7c",
+      "name": "Dr Slaughter House of Terror",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "301addaa-ec93-4835-9fb7-3b0982548300",
+      "name": "Draper Haunted Trail",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "f80f0cd8-9cc7-4859-ae9f-c422720ac204",
+      "name": "Eastern State Penitentiary",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "8160e1b6-3eb7-49ab-8aa9-4425349c9616",
+      "name": "Erebus Haunted Attraction",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "7fcb0771-5425-4d77-8a93-f240a6d456ee",
+      "name": "Escape the Madhouse",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "c490284a-0df1-4b5b-bf4b-3cd233bd3c11",
+      "name": "Factory Of Terror",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "5878c007-ef6e-4698-aeaf-381fcf940310",
+      "name": "Fear Factory SLC",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "14860777-2c6f-404d-b534-f759f3040162",
+      "name": "Fear Farm",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "dc04af11-fdf0-4de7-9d85-004a3d081139",
+      "name": "Fear Overload Scream Park",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "2dfb7018-0b9e-48bb-95c2-946974e0b861",
+      "name": "Folklore Haunted House",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "f20b8008-284b-4c71-9608-7de254dd314d",
+      "name": "Freakling Bros Horror Shows",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "ee748b52-9459-4b44-857f-eb581a4266d6",
+      "name": "George S. Eccles Dinosaur Park",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "3c47c51c-e964-437f-990c-9ad6c639afd4",
+      "name": "Georgetown Morgue",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "76f593e5-1e35-4cb4-9911-f1b67e978457",
+      "name": "Halloween House Reno",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "fe4b1684-c313-4ec3-a42d-56f60d4a8f74",
+      "name": "Haunted Field of Screams",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "5b349d66-391c-4180-bcb9-4ba64b0852e3",
+      "name": "Haunted Forest",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "e2215f20-2976-47b3-beec-9bb7d47469d5",
+      "name": "Haunted Hollow",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "70ef9c91-0ce9-4c7d-9acd-68a2698f6b4b",
+      "name": "Haunted Mansions of Albion",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "bd6d6485-0aba-4e76-b12d-9dc88be7a68c",
+      "name": "Haunted Overload",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "dd43243f-beec-4b97-994f-6e6e7f5313b7",
+      "name": "Haunted Scarecrow American Horror Theater",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "cbfbd4b2-c920-4e2c-a6f9-d0d2c1a6533a",
+      "name": "Haunted Web",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "9f349acb-ea06-4e38-b938-f0d18642aa8f",
+      "name": "Headless Horseman Hayrides",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "a44f9133-e438-4d62-b5bc-f98e6ebf4b89",
+      "name": "HellScream",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "702572d2-9f5a-4564-9c06-3f01b8c83294",
+      "name": "HellsGate Haunted House",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "078def0f-b9c3-4f84-9f1f-f6bcd8af44ea",
+      "name": "Hill Aerospace Museum",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "cdd907a0-61fc-4368-a463-284cfa1eec63",
+      "name": "Hogle Zoo",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "5014d555-4bc5-4a56-be4d-794d3387d992",
+      "name": "Holy Ghost Campground",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "97b80f48-21ae-4266-aaf8-b8b40e770f0c",
+      "name": "Hotel Monte Vista",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "b62ebf97-8e49-493b-89b4-649fb20b1a34",
+      "name": "Hour of Darkness Haunted Trail",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "617a4077-2b15-4508-9d4b-402dd866146a",
+      "name": "Hush Haunted Attractions",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "b5614340-c318-456d-b4ca-45be5f3175d0",
+      "name": "Idaho Haunted Swamp",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "79fffce2-3180-44c2-a0af-06fbf4dc4a4b",
+      "name": "Knights of Pythias Building",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "33d92612-043c-4c56-9331-70145e1b345b",
+      "name": "KnigtOfGore UNCAGED",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "dc8498d0-5385-4ae1-b2a4-57c32cc69791",
+      "name": "La Fonda",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "1e89ee24-e3db-49c9-b29f-374408ac1159",
+      "name": "Lagoon Frightmares",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "2f886a9a-7b69-4d93-a101-a7e93bda17f5",
+      "name": "Lake Blanche Trail",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "e7e17506-440c-4629-acf9-ce67caad69c9",
+      "name": "Lemp Haunted House",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "b612739f-b4ee-4ce5-824d-8bfbdd67ca45",
+      "name": "McCall Haunted Farm",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "3a6d58d1-53fd-48e2-90e4-6290ee0322e1",
+      "name": "McKamey Manor",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "7adcdad9-049a-43fa-a7e9-66593046e187",
+      "name": "Mill of Madness",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "c939159e-4918-4890-a56e-56a1becb6f74",
+      "name": "Moundsville Penitentiary",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "9e66ee26-6f60-4872-8563-84d8c3d150c1",
+      "name": "Mrs. Cavanaugh's Chocolate Factory",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "f7d13068-f31d-4b5e-a907-8ddde0e708c4",
+      "name": "Night Stalker Haunted Trail",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "76fdb709-f726-4135-95a3-3d335bb842c9",
+      "name": "Nightfall at Old Tucson",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "eb746686-d23b-4923-9e29-bd4187c66bb5",
+      "name": "Nightmare on 13th",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "bf71b41f-4380-4c5c-9196-4cc6edcbf517",
+      "name": "Nightmare on 17th Street",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "b25693ee-1d79-4a62-adb0-79620ecc42a2",
+      "name": "NM Slaughter House",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "64f58d1a-3242-4e5f-be19-0ef979d7b8f0",
+      "name": "Ogden Historic 25th Street",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "c7b06c55-1f48-415f-a662-5a93c701894e",
+      "name": "Park City Alpine Slide",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "b15c9f9f-2cd0-48b3-b4ff-a366b632d4b9",
+      "name": "Pittock Mansion",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "3bcf5ccf-05a7-4c1e-9266-46863eabef3f",
+      "name": "Purgatory Haunted House",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "0a327c1c-05cc-4111-bee6-545a8be5fe24",
+      "name": "Queen Mary",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "fc2aacbe-4121-4a52-8381-226f7d787eba",
+      "name": "Red Butte Garden",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "5660e536-c9a3-40a0-9d77-f1e3960390cc",
+      "name": "Red Cliffs National Conservation Area",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "2bdaeba0-f83e-40d0-b414-5fe542fb2702",
+      "name": "Red Flashlight Haunted House",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "0bf47456-c90b-4e4b-939c-42eac0ead396",
+      "name": "Red Reef Trail",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "14f598db-cdd5-4f7c-b15b-0e7f9339b818",
+      "name": "Requiem Haunted House",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "f71c73df-02b2-459b-8836-e9397233881a",
+      "name": "Rocky Point Haunted House",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "3d0b5e4d-29d4-4b6d-ab1d-1c40fca1128b",
+      "name": "Sacramento Scream Park",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "1dfec48e-9038-4cc7-9763-7da89385e02d",
+      "name": "Saints John Ghost Town",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "da0f1878-4f3e-4709-9550-c53f0b8556fe",
+      "name": "Sanctum of Horror",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "dd129dba-29f9-4add-95cf-6478987002de",
+      "name": "Scream Acres",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "2f62b341-59b6-439d-920f-5e3a0aae319a",
+      "name": "Spookywoods Haunted Attraction",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "63972c43-926e-44c9-831e-3c08eab58d6a",
+      "name": "Strangling Brothers Haunted Circus",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "903f4203-fd5a-421d-9d0d-749fb53961c9",
+      "name": "Strater Hotel",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "b6ee9ec0-c748-401a-8f58-d4f6b96b245f",
+      "name": "Temple Square",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "102c2ed0-d0f0-4d90-a0e4-17d9eacc2fc6",
+      "name": "Terlingua Ghost Town",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "a6bb2d49-95d1-4c68-9764-1407d4b08701",
+      "name": "Terror in the Corn",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "023a8b4d-6629-4cdd-b625-f099c88fb13a",
+      "name": "Terror in the Corn AZ",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "519437b8-ea37-40aa-a041-3056eb64f2c8",
+      "name": "The Dark Side of The Abbey",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "c807dec6-9b8a-4bc9-9af0-1c82866c0c11",
+      "name": "The Darkness",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "bd944055-2650-455d-90bd-2a8f1afa5cb3",
+      "name": "The Dent Schoolhouse",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "ceb37e55-6984-431b-8b42-aa4ccc55721a",
+      "name": "The Frightmare Compound",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "f045c8fd-e995-4f70-becd-65a317a5de86",
+      "name": "The Haunted World",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "28e7477a-4c84-4e43-9afa-d1b48a354dca",
+      "name": "Thirteenth Hour",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "0ea7cd98-c400-43e9-bd37-0e907990f937",
+      "name": "Tom Devlin Monster Museum",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "1a20e163-ad24-4755-959e-ad69229b9985",
+      "name": "Tracy Aviary & Botanical Gardens",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "87fc78a7-24e8-4f74-939d-531a74713d7e",
+      "name": "Universal Horror Unleashed",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "5332bc36-afec-4fa0-b60f-a393b2ae0e2b",
+      "name": "Utah Olympic Park",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "2cbeea8a-8610-4d15-9631-18dcd2b9ccf6",
+      "name": "Verdun Manor",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "43e4fc5c-7b6c-4925-858f-d18c4f7e1fd1",
+      "name": "Villisca Ax Murder House",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "371906a3-78c5-4829-9b1d-57a0a25ae1be",
+      "name": "Waverly Hills Sanatorium",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "549ec95f-fd3f-4bac-abf9-0f7aef55303f",
+      "name": "Whaley House",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "f031b350-e8d5-42aa-ae25-c984b97183ef",
+      "name": "Wheeler Historic Farm",
+      "reason": "Missing coordinates"
+    },
+    {
+      "id": "308ad81a-920a-49cc-b477-dfb5e1ae7a77",
+      "name": "Winchester Mystery House",
+      "reason": "Missing coordinates"
+    }
+  ]
+}

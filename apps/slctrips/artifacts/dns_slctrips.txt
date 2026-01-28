@@ -1,0 +1,13 @@
+Server:		192.168.0.1
+Address:	192.168.0.1#53
+
+Non-authoritative answer:
+www.slctrips.com	canonical name = dae8d44e6274f6d4.vercel-dns-016.com.
+Name:	dae8d44e6274f6d4.vercel-dns-016.com
+Address: 216.150.16.193
+Name:	dae8d44e6274f6d4.vercel-dns-016.com
+Address: 216.150.1.193
+
+dae8d44e6274f6d4.vercel-dns-016.com.
+216.150.1.1
+216.150.16.1

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DAiTE Icon Generator - Japanese Design</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(to bottom right, #0f172a, #1e1b4b);
+            color: white;
+        }
+        .container {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid rgba(124, 58, 237, 0.3);
+        }
+        h1 {
+            background: linear-gradient(to right, #a855f7, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #cbd5e1;
+            margin-bottom: 30px;
+        }
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        .icon-preview {
+            text-align: center;
+            background: rgba(15, 23, 42, 0.6);
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px solid rgba(124, 58, 237, 0.2);
+        }
+        canvas {
+            border: 3px solid #7c3aed;
+            border-radius: 16px;
+            background: white;
+            box-shadow: 0 8px 32px rgba(124, 58, 237, 0.3);
+            margin: 10px 0;
+        }
+        button {
+            background: linear-gradient(to right, #7c3aed, #ec4899);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            margin: 10px 5px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4);
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.6);
+        }
+        button:active {
+            transform: translateY(0);
+        }
+        .instructions {
+            background: rgba(124, 58, 237, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #7c3aed;
+        }
+        .info {
+            color: #94a3b8;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>DAiTE Icon Generator</h1>
+        <p class="subtitle">Japanese-inspired PWA icons with embrace theme</p>
+        
+        <div class="instructions">
+            <strong>🎨 Design Elements:</strong>
+            <ul>
+                <li>Japanese-inspired circular motif (ensō-like or sakura)</li>
+                <li>Purple-to-pink gradient background</li>
+                <li>Embrace/human connection symbolism</li>
+                <li>Clean, minimalist aesthetic</li>
+            </ul>
+            <p class="info">Click "Download" buttons to save icons. Place them in <code>frontend/public/</code> directory.</p>
+        </div>
+
+        <div class="icon-grid">
+            <div class="icon-preview">
+                <h3>192×192</h3>
+                <canvas id="icon192" width="192" height="192"></canvas>
+                <br>
+                <button onclick="downloadIcon('icon192', 'icon-192.png')">Download icon-192.png</button>
+            </div>
+
+            <div class="icon-preview">
+                <h3>512×512</h3>
+                <canvas id="icon512" width="512" height="512"></canvas>
+                <br>
+                <button onclick="downloadIcon('icon512', 'icon-512.png')">Download icon-512.png</button>
+            </div>
+
+            <div class="icon-preview">
+                <h3>32×32 (Favicon)</h3>
+                <canvas id="favicon" width="32" height="32"></canvas>
+                <br>
+                <button onclick="downloadIcon('favicon', 'favicon.ico')">Download favicon.ico</button>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <button onclick="downloadAll()" style="padding: 15px 30px; font-size: 18px;">Download All Icons</button>
+        </div>
+    </div>
+
+    <script>
+        function drawJapaneseEmbraceIcon(canvasId, size) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, size, size);
+            
+            // Create gradient background
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#7c3aed'); // Purple
+            gradient.addColorStop(1, '#ec4899'); // Pink
+            
+            // Draw background circle (ensō-inspired)
+            const centerX = size / 2;
+            const centerY = size / 2;
+            const radius = size * 0.42;
+            
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Draw white circle outline (Japanese aesthetic)
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+            ctx.lineWidth = size * 0.02;
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius - size * 0.03, 0, Math.PI * 2);
+            ctx.stroke();
+            
+            // Draw embrace/human connection symbol
+            // Two interlocking circles or hearts representing connection
+            const symbolSize = size * 0.25;
+            const offset = symbolSize * 0.3;
+            
+            ctx.fillStyle = 'white';
+            ctx.strokeStyle = 'white';
+            ctx.lineWidth = size * 0.015;
+            
+            // Left circle (person 1)
+            ctx.beginPath();
+            ctx.arc(centerX - offset, centerY, symbolSize * 0.4, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Right circle (person 2)
+            ctx.beginPath();
+            ctx.arc(centerX + offset, centerY, symbolSize * 0.4, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Connection line between them (embrace)
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, offset * 1.2, Math.PI * 0.7, Math.PI * 1.3);
+            ctx.lineWidth = size * 0.02;
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
+            ctx.stroke();
+            
+            // Add Japanese character or kanji-inspired element
+            // Drawing "人" (hito - person/people) in stylized form
+            const kanjiSize = size * 0.15;
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+            ctx.font = `bold ${kanjiSize}px 'Hiragino Sans', 'Yu Gothic', sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            
+            // Simplified "人" or "愛" (ai - love) character
+            if (size >= 64) {
+                // For larger sizes, draw a simplified character
+                ctx.save();
+                ctx.translate(centerX, centerY + size * 0.25);
+                ctx.scale(kanjiSize / 100, kanjiSize / 100);
+                
+                // Draw simplified "人" (person) or embrace symbol
+                ctx.beginPath();
+                // Left stroke
+                ctx.moveTo(-20, -30);
+                ctx.lineTo(-15, 30);
+                // Right stroke
+                ctx.moveTo(20, -30);
+                ctx.lineTo(15, 30);
+                // Connecting top stroke (embrace)
+                ctx.moveTo(-20, -30);
+                ctx.quadraticCurveTo(0, -35, 20, -30);
+                ctx.lineWidth = 8;
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.9)';
+                ctx.stroke();
+                
+                ctx.restore();
+            }
+            
+            // Add sakura (cherry blossom) petals around the edges for Japanese aesthetic
+            if (size >= 128) {
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+                const petals = 5;
+                for (let i = 0; i < petals; i++) {
+                    const angle = (Math.PI * 2 * i) / petals;
+                    const petalX = centerX + Math.cos(angle) * (radius * 0.7);
+                    const petalY = centerY + Math.sin(angle) * (radius * 0.7);
+                    const petalSize = size * 0.04;
+                    
+                    ctx.beginPath();
+                    ctx.arc(petalX, petalY, petalSize, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+        }
+
+        function downloadIcon(canvasId, filename) {
+            const canvas = document.getElementById(canvasId);
+            canvas.toBlob((blob) => {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }, 'image/png');
+        }
+
+        function downloadAll() {
+            downloadIcon('icon192', 'icon-192.png');
+            setTimeout(() => downloadIcon('icon512', 'icon-512.png'), 300);
+            setTimeout(() => downloadIcon('favicon', 'favicon.ico'), 600);
+        }
+
+        // Generate icons on load
+        window.onload = () => {
+            drawJapaneseEmbraceIcon('icon192', 192);
+            drawJapaneseEmbraceIcon('icon512', 512);
+            drawJapaneseEmbraceIcon('favicon', 32);
+        };
+    </script>
+</body>
+</html>
+

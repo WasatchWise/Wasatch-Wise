@@ -1,0 +1,56 @@
+name: Scheduled Scraper (The Hunter)
+
+on:
+    schedule:
+        # Run daily at 6:00 AM UTC (1:00 AM EST)
+        - cron: "0 6 * * *"
+    workflow_dispatch:
+        inputs:
+            max_projects:
+                description: "Number of projects to scrape"
+                required: true
+                default: "50"
+            start_page:
+                description: "Page number to start from"
+                required: true
+                default: "1"
+
+jobs:
+    scrape-data:
+        runs-on: ubuntu-latest
+        timeout-minutes: 60 # Cap at 1 hour to prevent runaway costs
+
+        steps:
+            - uses: actions/checkout@v3
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: "18"
+
+            - name: Install Dependencies
+              run: npm install
+
+            - name: Install Puppeteer Browsers
+              run: npx puppeteer browsers install chrome
+
+            - name: Run Scraper (The Hunter)
+              env:
+                  # Supabase
+                  NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+                  SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+                  ORGANIZATION_ID: ${{ secrets.ORGANIZATION_ID }}
+                  # Construction Wire
+                  CONSTRUCTION_WIRE_USERNAME: ${{ secrets.CONSTRUCTION_WIRE_USERNAME }}
+                  CONSTRUCTION_WIRE_PASSWORD: ${{ secrets.CONSTRUCTION_WIRE_PASSWORD }}
+                  # OpenAI (for classification if needed)
+                  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+
+              run: |
+                  echo "🚀 Launching Scraper..."
+                  # Use input if manually triggered, otherwise default to 50
+                  MAX=${{ github.event.inputs.max_projects || '50' }}
+                  START=${{ github.event.inputs.start_page || '1' }}
+
+                  # Run the enhanced scraper in headless mode with details
+                  npx tsx scripts/scrape-construction-wire-enhanced.ts --headless --details --max=$MAX --start-page=$START

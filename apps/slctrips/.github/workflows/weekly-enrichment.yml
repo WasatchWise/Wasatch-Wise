@@ -1,0 +1,52 @@
+name: Weekly Data Enrichment
+
+on:
+  # Run every Sunday at 9am UTC (2am MST)
+  schedule:
+    - cron: '0 9 * * 0'
+
+  # Allow manual trigger
+  workflow_dispatch:
+    inputs:
+      batch_size:
+        description: 'Number of destinations to enrich'
+        required: false
+        default: '100'
+
+jobs:
+  enrich-destinations:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: slctrips-v2/package-lock.json
+
+      - name: Install dependencies
+        working-directory: ./slctrips-v2
+        run: npm ci
+
+      - name: Run Yelp+Google enrichment with AI
+        working-directory: ./slctrips-v2
+        env:
+          GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          YELP_API_KEY: ${{ secrets.YELP_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_DANIEL_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_DANIEL_SERVICE_KEY }}
+        run: |
+          BATCH_SIZE=${{ github.event.inputs.batch_size || '100' }}
+          node ../scripts/enrich-with-yelp.js $BATCH_SIZE
+
+      - name: Create summary
+        run: |
+          echo "✅ Weekly enrichment completed!" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Batch size: ${{ github.event.inputs.batch_size || '100' }}" >> $GITHUB_STEP_SUMMARY
+          echo "Date: $(date)" >> $GITHUB_STEP_SUMMARY

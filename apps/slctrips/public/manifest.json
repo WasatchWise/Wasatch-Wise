@@ -1,0 +1,47 @@
+{
+  "name": "SLCTrips - From Salt Lake, to Everywhere",
+  "short_name": "SLCTrips",
+  "description": "Discover amazing destinations from Salt Lake City International Airport. 1 Airport, 1000+ Destinations.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#111827",
+  "theme_color": "#FBBF24",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon.png",
+      "sizes": "1080x1080",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["travel", "lifestyle"],
+  "shortcuts": [
+    {
+      "name": "Browse Destinations",
+      "short_name": "Destinations",
+      "description": "Explore all available destinations",
+      "url": "/destinations",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Best Of",
+      "short_name": "Best Of",
+      "description": "See our top recommendations",
+      "url": "/best-of",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

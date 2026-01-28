@@ -1,0 +1,14 @@
+# SLCTrips Infrastructure Audit Command Log
+Started: Tue Oct 28 21:17:55 MDT 2025
+Working directory: /Users/johnlyman/Desktop/slctrips-v2
+cmd: curl -sI 
+cmd: curl -sL  (homepage)
+cmd: uptime checks
+cmd: curl -sI https://www.slctrips.com
+cmd: curl -sL https://www.slctrips.com (homepage)
+cmd: uptime checks
+cmd: npx lighthouse (desktop)
+cmd: npx lighthouse (mobile)
+cmd: git inventory
+cmd: git secret scan
+cmd: Supabase schema inspection

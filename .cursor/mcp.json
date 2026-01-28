@@ -1,0 +1,151 @@
+{
+  "mcpServers": {
+    "memory": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ],
+      "description": "Persistent memory for context across sessions"
+    },
+    "supabase": {
+      "url": "https://mcp.supabase.com/mcp?project_ref=hwxpcekddtfubmnkwutl",
+      "description": "Supabase hosted MCP - Dashboard project (hwxpcekddtfubmnkwutl)"
+    },
+    "stripe": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-openapi",
+        "--spec",
+        "https://raw.githubusercontent.com/stripe/openapi/master/openapi/spec3.json"
+      ],
+      "env": {
+        "STRIPE_API_KEY": "${STRIPE_API_KEY}"
+      },
+      "description": "Payment processing - Ask Before You App, SLC Trips, Rock Salt"
+    },
+    "vercel": {
+      "url": "https://mcp.vercel.com",
+      "description": "Vercel hosted MCP - deployment management for all apps"
+    },
+    "cloudflare": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-openapi",
+        "--spec",
+        "https://api.cloudflare.com/client/v4/openapi.yaml"
+      ],
+      "env": {
+        "CLOUDFLARE_API_TOKEN": "${CLOUDFLARE_API_TOKEN}"
+      },
+      "description": "DNS and CDN management"
+    },
+    "github": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-e",
+        "GITHUB_PERSONAL_ACCESS_TOKEN",
+        "-e",
+        "GITHUB_TOOLSETS=context,repos,issues,pull_requests,actions,users",
+        "ghcr.io/github/github-mcp-server"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
+      },
+      "description": "GitHub official MCP - repos, issues, PRs, Actions (github/github-mcp-server)"
+    },
+    "slack": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-slack"
+      ],
+      "env": {
+        "SLACK_BOT_TOKEN": "${SLACK_BOT_TOKEN}",
+        "SLACK_TEAM_ID": "${SLACK_TEAM_ID}"
+      },
+      "description": "Team communication and notifications"
+    },
+    "notion": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-notion"
+      ],
+      "env": {
+        "NOTION_API_KEY": "${NOTION_API_KEY}"
+      },
+      "description": "Documentation and knowledge base"
+    },
+    "sentry": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-openapi",
+        "--spec",
+        "https://sentry.io/api/openapi.json"
+      ],
+      "env": {
+        "SENTRY_AUTH_TOKEN": "${SENTRY_AUTH_TOKEN}"
+      },
+      "description": "Error monitoring across all apps"
+    },
+    "elevenlabs": {
+      "command": "uvx",
+      "args": ["elevenlabs-mcp"],
+      "env": {
+        "ELEVENLABS_API_KEY": "${ELEVENLABS_API_KEY}"
+      },
+      "description": "Official ElevenLabs MCP - TTS, voice clone, transcription (elevenlabs/elevenlabs-mcp)"
+    },
+    "heygen": {
+      "command": "uvx",
+      "args": ["heygen-mcp"],
+      "env": {
+        "HEYGEN_API_KEY": "${HEYGEN_API_KEY}"
+      },
+      "description": "HeyGen MCP - AI video/avatar generation"
+    },
+    "google-maps": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-google-maps"
+      ],
+      "env": {
+        "GOOGLE_MAPS_API_KEY": "${GOOGLE_PLACES_API_KEY}"
+      },
+      "description": "Location services for SLC Trips, ABYA school lookups"
+    },
+    "fetch": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-fetch"
+      ],
+      "description": "Web content fetching for research and scraping"
+    },
+    "puppeteer": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-puppeteer"
+      ],
+      "description": "Browser automation for testing and screenshots"
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/Users/johnlyman/Desktop/wasatchwise"
+      ],
+      "description": "Safe file access within monorepo"
+    }
+  }
+}

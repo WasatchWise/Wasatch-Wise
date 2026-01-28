@@ -1,0 +1,32 @@
+name: Scheduled Outreach (The Dispatcher)
+
+on:
+  schedule:
+    # "Pipeline IQ" Mode: Run hourly
+    # Dispatcher script handles "Golden Window" checks internally
+    - cron: "0 * * * *"
+  workflow_dispatch: # Allow manual trigger for testing
+
+jobs:
+  dispatch-emails:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Dispatcher (Throttled Drip Feed)
+        env:
+          # Supabase
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          # SendGrid
+          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+        run: npx tsx scripts/dispatch-emails.ts

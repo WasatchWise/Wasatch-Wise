@@ -1,0 +1,26 @@
+node_modules
+.next
+.turbo
+.DS_Store
+.env*
+.mcp.json
+.claude/
+
+.vercel
+.env.mcp
+mcp.json
+
+# Test artifacts
+test-results/
+playwright-report/
+*.log
+
+# Duplicate files (numbered copies)
+*" 2."*
+*" 3."*
+*.backup
+
+# Build artifacts
+build-output.log
+node_modules*/
+scripts/debug-agent/audit-report-*.json

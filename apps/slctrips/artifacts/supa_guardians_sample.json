@@ -1,0 +1,27 @@
+[
+  {
+    "id": "d6666462-bcf7-41e9-9d4e-f8a76b98eb62",
+    "county": "Beaver",
+    "codename": "Quincy"
+  },
+  {
+    "id": "018f7c40-9b08-4792-a6cb-1f48b3bcb680",
+    "county": "Box Elder",
+    "codename": "Cass"
+  },
+  {
+    "id": "3fa35331-ee02-4ab5-9341-37f3dd1d1f1d",
+    "county": "Cache",
+    "codename": "Elsa"
+  },
+  {
+    "id": "846900a9-418e-4840-95bf-88728b8b84af",
+    "county": "Carbon",
+    "codename": "Bruno"
+  },
+  {
+    "id": "b863f34e-b14d-4a14-a21d-549482b9c440",
+    "county": "Daggett",
+    "codename": "Ira"
+  }
+]

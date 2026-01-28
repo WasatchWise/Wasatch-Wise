@@ -1,0 +1,28 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://slctrips.com/sitemap.xml
+
+# Disallow admin/account pages
+Disallow: /account
+Disallow: /api/
+Disallow: /checkout/
+Disallow: /admin
+Disallow: /_next/
+Disallow: /auth/
+
+# Allow public destinations and tripkits
+Allow: /destinations/
+Allow: /tripkits/
+Allow: /guardians/
+Allow: /welcome-wagon/
+Allow: /best-of/
+Allow: /about
+Allow: /faq
+Allow: /educators
+Allow: /partners
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1

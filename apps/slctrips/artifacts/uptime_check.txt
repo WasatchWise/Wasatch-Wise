@@ -1,0 +1,10 @@
+ 200
+/tripkits 200
+/destinations 200
+/staykit 404
+/about 404
+ 200
+/tripkits 200
+/destinations 200
+/staykit 404
+/about 404

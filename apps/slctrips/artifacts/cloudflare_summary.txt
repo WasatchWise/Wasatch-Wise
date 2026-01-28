@@ -1,0 +1,5 @@
+Cloudflare Summary:
+- Status: NOT IN USE
+- DNS: Points directly to Vercel (dae8d44e6274f6d4.vercel-dns-016.com)
+- Server: Vercel (no Cloudflare proxy detected)
+- Implications: No WAF, no Cloudflare cache layer

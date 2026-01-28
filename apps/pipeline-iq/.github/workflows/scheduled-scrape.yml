@@ -1,0 +1,93 @@
+name: Scheduled Construction Wire Scrape
+
+on:
+  # Run daily at 6 AM UTC (midnight MST)
+  schedule:
+    - cron: '0 6 * * *'
+  # Allow manual trigger
+  workflow_dispatch:
+    inputs:
+      vertical:
+        description: 'Which vertical to scrape (all runs 4 independent jobs)'
+        required: false
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - hotel
+          - multifamily
+          - senior_living
+          - student_housing
+      max_projects:
+        description: 'Maximum projects to scrape'
+        required: false
+        default: '100'
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        vertical: ${{ fromJson(github.event_name == 'workflow_dispatch' && github.event.inputs.vertical != 'all' && format('["{0}"]', github.event.inputs.vertical) || '["hotel","multifamily","senior_living","student_housing"]') }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Puppeteer dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libnss3 \
+            libatk1.0-0 \
+            libatk-bridge2.0-0 \
+            libcups2 \
+            libdrm2 \
+            libxkbcommon0 \
+            libxcomposite1 \
+            libxdamage1 \
+            libxfixes3 \
+            libxrandr2 \
+            libgbm1 \
+            libasound2t64
+
+      - name: Create screenshots directory
+        run: mkdir -p screenshots || true
+
+      - name: Run Construction Wire Scraper (${{ matrix.vertical }})
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          ORGANIZATION_ID: ${{ secrets.ORGANIZATION_ID }}
+          CONSTRUCTION_WIRE_USERNAME: ${{ secrets.CONSTRUCTION_WIRE_USERNAME }}
+          CONSTRUCTION_WIRE_PASSWORD: ${{ secrets.CONSTRUCTION_WIRE_PASSWORD }}
+        run: |
+          MAX_PROJECTS="${{ github.event.inputs.max_projects || '100' }}"
+          echo "Scraping vertical='${{ matrix.vertical }}' up to $MAX_PROJECTS projects..."
+          npx tsx scripts/scrape-construction-wire-enhanced.ts --headless --details --vertical=${{ matrix.vertical }} --max=$MAX_PROJECTS
+
+      - name: Upload screenshots on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: scraper-screenshots-${{ matrix.vertical }}
+          path: screenshots/
+          retention-days: 7
+          if-no-files-found: ignore
+
+      - name: Report results
+        if: always()
+        run: |
+          echo "Scraping job (vertical='${{ matrix.vertical }}') completed at $(date)"
+          echo "Check Supabase dashboard for new projects"

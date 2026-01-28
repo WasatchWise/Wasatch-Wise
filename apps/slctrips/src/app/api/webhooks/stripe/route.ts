@@ -1,0 +1,590 @@
+import { NextRequest, NextResponse } from 'next/server';
+import Stripe from 'stripe';
+import { STRIPE_CONFIG } from '@/lib/stripe-config';
+import { supabaseServer as supabase } from '@/lib/supabaseServer';
+import sgMail from '@sendgrid/mail';
+import { logger } from '@/lib/logger';
+
+// Initialize SendGrid
+if (process.env.SENDGRID_API_KEY) {
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+}
+
+const stripe = STRIPE_CONFIG.secretKey
+  ? new Stripe(STRIPE_CONFIG.secretKey, {
+    apiVersion: STRIPE_CONFIG.apiVersion,
+  })
+  : null;
+
+/**
+ * Stripe Webhook Handler
+ *
+ * Handles payment confirmation and updates database
+ * IMPORTANT: This endpoint must be configured in Stripe Dashboard
+ */
+export async function POST(request: NextRequest) {
+  // #region agent log (debug-session)
+  fetch('http://127.0.0.1:7243/ingest/9934ba6e-ffcf-48d8-922e-9c87005464bd',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'pre-fix',hypothesisId:'H2',location:'src/app/api/webhooks/stripe/route.ts:POST:entry',message:'Stripe webhook POST entry',data:{stripeConfigured:!!stripe,webhookSecretConfigured:!!STRIPE_CONFIG.webhookSecret,hasSignature:!!request.headers.get('stripe-signature')},timestamp:Date.now()})}).catch(()=>{});
+  // #endregion
+  // Check if Stripe is configured
+  if (!stripe) {
+    console.error('Stripe is not configured');
+    return NextResponse.json(
+      { error: 'Stripe is not configured' },
+      { status: 503 }
+    );
+  }
+
+  // Check if webhook secret is configured
+  if (!STRIPE_CONFIG.webhookSecret) {
+    console.error('STRIPE_WEBHOOK_SECRET is not set');
+    return NextResponse.json(
+      { error: 'Webhook secret not configured' },
+      { status: 503 }
+    );
+  }
+
+  const body = await request.text();
+  const signature = request.headers.get('stripe-signature');
+
+  if (!signature) {
+    console.error('Missing stripe-signature header');
+    return NextResponse.json(
+      { error: 'Missing signature' },
+      { status: 400 }
+    );
+  }
+
+  let event: Stripe.Event;
+
+  try {
+    // Verify webhook signature
+    event = stripe.webhooks.constructEvent(
+      body,
+      signature,
+      STRIPE_CONFIG.webhookSecret
+    );
+    // #region agent log (debug-session)
+    fetch('http://127.0.0.1:7243/ingest/9934ba6e-ffcf-48d8-922e-9c87005464bd',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'pre-fix',hypothesisId:'H2',location:'src/app/api/webhooks/stripe/route.ts:POST:verified',message:'Stripe webhook signature verified',data:{eventType:event?.type,bodyLength:body?.length||0},timestamp:Date.now()})}).catch(()=>{});
+    // #endregion
+  } catch (err: unknown) {
+    const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+    console.error('Webhook signature verification failed:', errorMessage);
+    return NextResponse.json(
+      { error: `Webhook Error: ${errorMessage}` },
+      { status: 400 }
+    );
+  }
+
+  // Handle the event
+  try {
+    switch (event.type) {
+      case 'checkout.session.completed':
+        await handleCheckoutCompleted(event.data.object as Stripe.Checkout.Session);
+        break;
+
+      case 'payment_intent.succeeded':
+        await handlePaymentSucceeded(event.data.object as Stripe.PaymentIntent);
+        break;
+
+      case 'payment_intent.payment_failed':
+        await handlePaymentFailed(event.data.object as Stripe.PaymentIntent);
+        break;
+
+      default:
+        logger.info('Unhandled Stripe event type', { type: event.type });
+    }
+
+    return NextResponse.json({ received: true });
+  } catch (error: unknown) {
+    console.error('Webhook handler error:', error);
+    return NextResponse.json(
+      { error: 'Webhook handler failed' },
+      { status: 500 }
+    );
+  }
+}
+
+/**
+ * Helper function to get user_id from email
+ */
+async function getUserIdFromEmail(email: string): Promise<string | null> {
+  try {
+    // Look up user in profiles table
+    // Note: profiles should have FK to auth.users, so if id exists here it's valid
+    const { data, error } = await supabase
+      .from('profiles')
+      .select('id')
+      .eq('email', email)
+      .single();
+
+    if (error || !data?.id) {
+      logger.info('No user found for email', { email });
+      return null;
+    }
+
+    return data.id as string;
+  } catch (error) {
+    console.error('Error looking up user by email:', error);
+    return null;
+  }
+}
+
+/**
+ * Handle successful checkout session
+ */
+async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
+  logger.info('Processing checkout session', { sessionId: session.id });
+
+  const metadata = session.metadata;
+  const customerEmail = session.customer_details?.email;
+  const amountPaid = session.amount_total ? session.amount_total / 100 : 0;
+  // #region agent log (debug-session)
+  fetch('http://127.0.0.1:7243/ingest/9934ba6e-ffcf-48d8-922e-9c87005464bd',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'pre-fix',hypothesisId:'H3',location:'src/app/api/webhooks/stripe/route.ts:handleCheckoutCompleted:context',message:'Checkout completed context',data:{sessionIdPrefix:(session.id||'').slice(0,8),hasMetadata:!!metadata,metadataKeys:metadata?Object.keys(metadata).slice(0,20):[],hasCustomerEmail:!!customerEmail,amountPaid,hasUserIdMeta:!!metadata?.user_id,hasTripkitIdMeta:!!metadata?.tripkit_id,productType:metadata?.product_type||null},timestamp:Date.now()})}).catch(()=>{});
+  // #endregion
+
+  // Check if this is a Welcome Wagon purchase
+  if (metadata?.product_type === 'welcome-wagon') {
+    await handleWelcomeWagonPurchase(session, customerEmail, amountPaid);
+    return;
+  }
+
+  // Otherwise, handle as TripKit purchase
+  if (!metadata || !metadata.tripkit_id) {
+    console.error('Missing tripkit_id in session metadata');
+    return;
+  }
+
+  const tripkitId = metadata.tripkit_id;
+  const isFounderPrice = metadata.is_founder_price === 'true';
+
+  try {
+    // Fetch current TripKit data
+    const { data: currentTripkit, error: fetchError } = await supabase
+      .from('tripkits')
+      .select('download_count, founder_sold')
+      .eq('id', tripkitId)
+      .single();
+
+    if (fetchError) {
+      console.error('Failed to fetch TripKit:', fetchError);
+    } else if (currentTripkit) {
+      // Update TripKit analytics with incremented values
+      const updates: any = {
+        download_count: currentTripkit.download_count + 1,
+      };
+
+      if (isFounderPrice) {
+        updates.founder_sold = currentTripkit.founder_sold + 1;
+      }
+
+      const { error: updateError } = await supabase
+        .from('tripkits')
+        .update(updates)
+        .eq('id', tripkitId);
+
+      if (updateError) {
+        console.error('Failed to update TripKit stats:', updateError);
+      }
+    }
+
+    // Extract attribution data from metadata
+    const attribution = {
+      utm_source: metadata.utm_source || null,
+      utm_medium: metadata.utm_medium || null,
+      utm_campaign: metadata.utm_campaign || null,
+      referrer: metadata.referrer || null,
+      landing_page: metadata.landing_page || null,
+    };
+
+    // Record the purchase in the database
+    // Note: purchases table uses user_id, not customer_email
+    // Resolve user_id early so we can use it for the purchase record
+    let userId: string | null | undefined = metadata.user_id;
+    if (!userId && customerEmail) {
+      userId = await getUserIdFromEmail(customerEmail);
+    }
+
+    let purchaseRecord: { id: string } | null = null;
+    let purchaseError: Error | null = null;
+
+    // Only insert into purchases if we have a user_id (table requires it)
+    if (userId) {
+      const result = await supabase
+        .from('purchases')
+        .insert({
+          tripkit_id: tripkitId,
+          user_id: userId,
+          amount_paid: amountPaid,
+          stripe_checkout_session_id: session.id,
+          stripe_payment_intent_id: session.payment_intent as string,
+          status: 'completed',
+          purchased_at: new Date().toISOString(),
+          // Attribution tracking
+          utm_source: attribution.utm_source,
+          utm_medium: attribution.utm_medium,
+          utm_campaign: attribution.utm_campaign,
+          referrer: attribution.referrer,
+          landing_page: attribution.landing_page,
+          // Store extra data in metadata
+          metadata: {
+            customer_email: customerEmail,
+            is_founder_price: isFounderPrice,
+          },
+        })
+        .select()
+        .single();
+
+      purchaseRecord = result.data;
+      purchaseError = result.error as Error | null;
+    } else {
+      logger.info('Skipping purchases table insert - no user_id available', { email: customerEmail });
+    }
+
+    if (purchaseError) {
+      console.error('Failed to record purchase:', purchaseError);
+      // Continue even if purchase recording fails - payment went through
+      // #region agent log (debug-session)
+      fetch('http://127.0.0.1:7243/ingest/9934ba6e-ffcf-48d8-922e-9c87005464bd',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'pre-fix',hypothesisId:'H1',location:'src/app/api/webhooks/stripe/route.ts:handleCheckoutCompleted:purchases_insert_error',message:'Purchase insert failed (possible RLS/anon client)',data:{sessionIdPrefix:(session.id||'').slice(0,8),errorCode:(purchaseError as any)?.code||null,errorMessage:(purchaseError as any)?.message||String(purchaseError)},timestamp:Date.now()})}).catch(()=>{});
+      // #endregion
+    } else if (purchaseRecord) {
+      logger.info('Purchase recorded successfully', { purchaseId: purchaseRecord.id });
+      // #region agent log (debug-session)
+      fetch('http://127.0.0.1:7243/ingest/9934ba6e-ffcf-48d8-922e-9c87005464bd',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'pre-fix',hypothesisId:'H1',location:'src/app/api/webhooks/stripe/route.ts:handleCheckoutCompleted:purchases_insert_ok',message:'Purchase insert succeeded',data:{sessionIdPrefix:(session.id||'').slice(0,8),hasPurchaseId:!!purchaseRecord?.id},timestamp:Date.now()})}).catch(()=>{});
+      // #endregion
+    }
+
+    // Generate unique access code for this purchase
+    let accessCode = '';
+    if (customerEmail) {
+      const { data: generatedCode, error: generateError } = await supabase
+        .rpc('generate_tripkit_access_code');
+
+      if (generateError || !generatedCode) {
+        console.error('Failed to generate access code:', generateError);
+        // Fallback: generate locally
+        accessCode = `TK-${Math.random().toString(36).substring(2, 6).toUpperCase()}-${Math.random().toString(36).substring(2, 6).toUpperCase()}`;
+      } else {
+        accessCode = generatedCode;
+      }
+
+      // Store access code in database
+      const { error: accessCodeError } = await supabase
+        .from('tripkit_access_codes')
+        .insert({
+          access_code: accessCode,
+          tripkit_id: tripkitId,
+          customer_email: customerEmail,
+          customer_name: session.customer_details?.name || null,
+          purchase_id: purchaseRecord?.id,
+          stripe_session_id: session.id,
+          stripe_payment_intent: session.payment_intent as string,
+          amount_paid: amountPaid,
+          generated_by: 'stripe-webhook',
+          is_active: true,
+          // Attribution tracking
+          utm_source: attribution.utm_source,
+          utm_medium: attribution.utm_medium,
+          utm_campaign: attribution.utm_campaign,
+          referrer: attribution.referrer,
+          landing_page: attribution.landing_page,
+        })
+        .select()
+        .single();
+
+      if (accessCodeError) {
+        console.error('Failed to store access code:', accessCodeError);
+        // #region agent log (debug-session)
+        fetch('http://127.0.0.1:7243/ingest/9934ba6e-ffcf-48d8-922e-9c87005464bd',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'pre-fix',hypothesisId:'H1',location:'src/app/api/webhooks/stripe/route.ts:handleCheckoutCompleted:access_code_insert_error',message:'tripkit_access_codes insert failed (possible RLS/anon client)',data:{sessionIdPrefix:(session.id||'').slice(0,8),errorCode:(accessCodeError as any)?.code||null,errorMessage:(accessCodeError as any)?.message||String(accessCodeError)},timestamp:Date.now()})}).catch(()=>{});
+        // #endregion
+      } else {
+        logger.info('Access code generated', { accessCode });
+        // #region agent log (debug-session)
+        fetch('http://127.0.0.1:7243/ingest/9934ba6e-ffcf-48d8-922e-9c87005464bd',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'pre-fix',hypothesisId:'H1',location:'src/app/api/webhooks/stripe/route.ts:handleCheckoutCompleted:access_code_insert_ok',message:'tripkit_access_codes insert succeeded',data:{sessionIdPrefix:(session.id||'').slice(0,8),accessCodePrefix:(accessCode||'').slice(0,6)},timestamp:Date.now()})}).catch(()=>{});
+        // #endregion
+      }
+
+      // Grant access in customer_product_access table
+      // userId was already resolved earlier in the function
+      if (userId) {
+        const { error: accessRecordError } = await supabase
+          .from('customer_product_access')
+          .insert({
+            user_id: userId,
+            product_id: tripkitId,
+            product_type: 'tripkit',
+            access_type: 'purchased',
+            stripe_session_id: session.id,
+            stripe_payment_intent_id: session.payment_intent as string,
+            amount_paid: Math.round(amountPaid * 100), // Convert to cents
+            access_granted_at: new Date().toISOString(),
+          });
+
+        if (accessRecordError) {
+          console.error('Failed to create customer_product_access record:', accessRecordError);
+          // #region agent log (debug-session)
+          fetch('http://127.0.0.1:7243/ingest/9934ba6e-ffcf-48d8-922e-9c87005464bd',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'pre-fix',hypothesisId:'H4',location:'src/app/api/webhooks/stripe/route.ts:handleCheckoutCompleted:cpa_insert_error',message:'customer_product_access insert failed (RLS/schema/unique)',data:{sessionIdPrefix:(session.id||'').slice(0,8),tripkitIdPrefix:(tripkitId||'').slice(0,8),errorCode:(accessRecordError as any)?.code||null,errorMessage:(accessRecordError as any)?.message||String(accessRecordError)},timestamp:Date.now()})}).catch(()=>{});
+          // #endregion
+        } else {
+          logger.info('Customer access granted', { userId, tripkitId });
+          // #region agent log (debug-session)
+          fetch('http://127.0.0.1:7243/ingest/9934ba6e-ffcf-48d8-922e-9c87005464bd',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'pre-fix',hypothesisId:'H4',location:'src/app/api/webhooks/stripe/route.ts:handleCheckoutCompleted:cpa_insert_ok',message:'customer_product_access insert succeeded',data:{sessionIdPrefix:(session.id||'').slice(0,8),tripkitIdPrefix:(tripkitId||'').slice(0,8)},timestamp:Date.now()})}).catch(()=>{});
+          // #endregion
+        }
+      } else {
+        logger.warn('Could not grant access - user not found', { email: customerEmail, metadataUserId: metadata.user_id });
+        // #region agent log (debug-session)
+        fetch('http://127.0.0.1:7243/ingest/9934ba6e-ffcf-48d8-922e-9c87005464bd',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'pre-fix',hypothesisId:'H3',location:'src/app/api/webhooks/stripe/route.ts:handleCheckoutCompleted:no_user_to_grant',message:'No userId resolved for entitlement grant',data:{sessionIdPrefix:(session.id||'').slice(0,8),metadataHadUserId:!!metadata?.user_id,hasCustomerEmail:!!customerEmail},timestamp:Date.now()})}).catch(()=>{});
+        // #endregion
+      }
+    }
+
+    // Send confirmation email to customer with access code
+    const accessUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/tk/${accessCode}`;
+
+    if (customerEmail && process.env.SENDGRID_API_KEY) {
+      try {
+        const emailHtml = `
+          <div style="max-width: 600px; margin: 0 auto; font-family: Arial, sans-serif;">
+            <h1 style="color: #1e40af; margin-bottom: 20px;">🎉 Thanks for your purchase!</h1>
+            
+            <p style="font-size: 16px; line-height: 1.6; color: #374151;">
+              Your payment has been processed successfully. You now have access to:
+            </p>
+            
+            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; padding: 30px; margin: 30px 0; text-align: center;">
+              <h2 style="color: white; margin: 0; font-size: 24px;">${metadata.tripkit_name}</h2>
+              <p style="color: #e5e7eb; margin: 10px 0 0 0;">Paid: $${amountPaid.toFixed(2)}</p>
+            </div>
+            
+            <div style="text-align: center; margin: 30px 0;">
+              <a href="${accessUrl}" 
+                 style="background: #2563eb; color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block; font-size: 18px;">
+                🚀 Access Your TripKit
+              </a>
+            </div>
+            
+            <div style="border-top: 1px solid #e5e7eb; padding-top: 20px; margin-top: 30px;">
+              <p style="color: #6b7280; font-size: 14px;">
+                <strong>📌 Save Your Access Code:</strong><br/>
+                <code style="background: #f3f4f6; padding: 8px 12px; border-radius: 4px; font-family: monospace; display: inline-block; margin-top: 8px;">${accessCode}</code>
+              </p>
+            </div>
+            
+            <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #e5e7eb; text-align: center;">
+              <p style="color: #9ca3af; font-size: 12px; margin: 5px 0;">
+                SLCTrips • From Salt Lake, to Everywhere<br/>
+                <a href="mailto:Dan@slctrips.com" style="color: #6b7280;">Dan@slctrips.com</a>
+              </p>
+            </div>
+          </div>
+        `;
+
+        await sgMail.send({
+          to: customerEmail,
+          from: 'SLCTrips <dan@slctrips.com>',
+          subject: `🎉 Your ${metadata.tripkit_name} is ready!`,
+          html: emailHtml,
+        });
+
+        logger.info('Purchase confirmation email sent', { email: customerEmail });
+      } catch (error) {
+        console.error('❌ Error sending purchase confirmation email:', error);
+      }
+    } else {
+      logger.info('Email pending - confirmation needed', {
+        email: customerEmail,
+        tripkit_code: metadata.tripkit_code,
+        tripkit_name: metadata.tripkit_name,
+        amount_paid: amountPaid,
+        access_code: accessCode,
+      });
+    }
+
+    // Add to email marketing list if they opted in
+    if (metadata.email_opt_in === 'true' && customerEmail) {
+      const { error: emailError } = await supabase
+        .from('email_captures')
+        .insert({
+          email: customerEmail,
+          source: 'tripkit-purchase',
+          visitor_type: 'customer',
+          preferences: ['tripkits'],
+          created_at: new Date().toISOString(),
+        });
+
+      if (emailError) {
+        console.warn('Could not add to email list:', emailError);
+      }
+    }
+
+  } catch (error) {
+    console.error('Error processing checkout completion:', error);
+    throw error;
+  }
+}
+
+/**
+ * Handle Welcome Wagon purchase
+ */
+async function handleWelcomeWagonPurchase(
+  session: Stripe.Checkout.Session,
+  customerEmail: string | null | undefined,
+  amountPaid: number
+) {
+  logger.info('Processing Welcome Wagon purchase', { sessionId: session.id });
+
+  const metadata = session.metadata;
+
+  try {
+    // Extract attribution data from metadata
+    const attribution = {
+      utm_source: metadata?.utm_source || null,
+      utm_medium: metadata?.utm_medium || null,
+      utm_campaign: metadata?.utm_campaign || null,
+      referrer: metadata?.referrer || null,
+      landing_page: metadata?.landing_page || null,
+    };
+
+    // Note: The 'purchases' table is TripKit-specific (requires tripkit_id).
+    // For Welcome Wagon, we only use customer_product_access for entitlements.
+    // Log the purchase for analytics but don't insert into purchases table.
+    logger.info('Welcome Wagon purchase completed', {
+      sessionId: session.id,
+      amount: amountPaid,
+      email: customerEmail,
+    });
+
+    // Grant access to Welcome Wagon content
+    if (customerEmail) {
+      const userId = await getUserIdFromEmail(customerEmail);
+      if (userId) {
+        const { error: accessError } = await supabase
+          .from('customer_product_access')
+          .insert({
+            user_id: userId,
+            product_type: 'welcome-wagon',
+            product_id: metadata?.product_id || 'welcome-wagon-90-day',
+            access_type: 'purchased',
+            stripe_session_id: session.id,
+            stripe_payment_intent_id: session.payment_intent as string,
+            amount_paid: Math.round(amountPaid * 100), // Convert to cents
+            access_granted_at: new Date().toISOString(),
+          })
+          .select();
+
+        if (accessError) {
+          console.warn('Could not grant Welcome Wagon access:', accessError);
+        } else {
+          logger.info('Welcome Wagon access granted', { userId });
+        }
+      } else {
+        logger.warn('Could not grant Welcome Wagon access - user not found for email', { email: customerEmail });
+      }
+    }
+
+    // Send confirmation email to customer
+    if (customerEmail && process.env.SENDGRID_API_KEY) {
+      try {
+        const productName = metadata?.product_name || 'Welcome Wagon 90-Day Guide';
+        const emailHtml = `
+          <div style="max-width: 600px; margin: 0 auto; font-family: Arial, sans-serif;">
+            <h1 style="color: #1e40af; margin-bottom: 20px;">🎉 Welcome to Utah!</h1>
+            
+            <p style="font-size: 16px; line-height: 1.6; color: #374151;">
+              Your relocation guide is ready! Your ${productName} has been purchased.
+            </p>
+            
+            <div style="background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%); border-radius: 12px; padding: 30px; margin: 30px 0; text-align: center;">
+              <h2 style="color: white; margin: 0; font-size: 24px;">${productName}</h2>
+              <p style="color: #fee2e2; margin: 10px 0 0 0;">Paid: $${amountPaid.toFixed(2)}</p>
+            </div>
+            
+            <div style="text-align: center; margin: 30px 0;">
+              <a href="${process.env.NEXT_PUBLIC_SITE_URL || 'https://slctrips.com'}/welcome-wagon/access" 
+                 style="background: #f59e0b; color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block; font-size: 18px;">
+                🚀 Access Your Guide
+              </a>
+            </div>
+            
+            <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #e5e7eb; text-align: center;">
+              <p style="color: #9ca3af; font-size: 12px; margin: 5px 0;">
+                SLCTrips • From Salt Lake, to Everywhere<br/>
+                <a href="mailto:Dan@slctrips.com" style="color: #6b7280;">Dan@slctrips.com</a>
+              </p>
+            </div>
+          </div>
+        `;
+
+        await sgMail.send({
+          to: customerEmail,
+          from: 'SLCTrips <dan@slctrips.com>',
+          subject: `🎉 Your ${productName} is ready!`,
+          html: emailHtml,
+        });
+
+        logger.info('Welcome Wagon confirmation email sent', { email: customerEmail });
+      } catch (error) {
+        console.error('❌ Error sending Welcome Wagon confirmation email:', error);
+      }
+    } else {
+      logger.info('Email pending - Welcome Wagon confirmation needed', {
+        email: customerEmail,
+        product_name: metadata?.product_name || 'Welcome Wagon 90-Day Guide',
+        amount_paid: amountPaid,
+      });
+    }
+
+    // Add to email marketing list for Welcome Wagon updates
+    if (customerEmail) {
+      const { error: emailError } = await supabase
+        .from('email_captures')
+        .insert({
+          email: customerEmail,
+          source: 'welcome-wagon-purchase',
+          visitor_type: 'relocating',
+          preferences: ['staykit', 'tripkits'],
+          created_at: new Date().toISOString(),
+        });
+
+      if (emailError) {
+        console.warn('Could not add to email list:', emailError);
+      }
+    }
+  } catch (error) {
+    console.error('Error processing Welcome Wagon purchase:', error);
+    throw error;
+  }
+}
+
+/**
+ * Handle successful payment
+ */
+async function handlePaymentSucceeded(paymentIntent: Stripe.PaymentIntent) {
+  logger.info('Payment succeeded', { paymentIntentId: paymentIntent.id });
+  // Additional payment success logic if needed
+}
+
+/**
+ * Handle failed payment
+ */
+async function handlePaymentFailed(paymentIntent: Stripe.PaymentIntent) {
+  console.error('Payment failed:', paymentIntent.id);
+
+  const metadata = paymentIntent.metadata;
+  const customerEmail = metadata?.customer_email;
+
+  // Log the failed payment for analytics
+  // Note: purchases table schema doesn't support failure tracking (no failure_reason column)
+  // Just log to console/monitoring instead
+  logger.warn('Payment failed', {
+    paymentIntentId: paymentIntent.id,
+    tripkitId: metadata?.tripkit_id,
+    email: customerEmail,
+    amount: paymentIntent.amount / 100,
+    error: paymentIntent.last_payment_error?.message || 'Unknown error',
+  });
+
+  // TODO: Send payment failure notification email when SendGrid is configured
+  logger.info('Email pending - payment failure notification needed', { email: customerEmail });
+}

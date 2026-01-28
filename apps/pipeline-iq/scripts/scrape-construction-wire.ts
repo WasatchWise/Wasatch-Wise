@@ -1,0 +1,737 @@
+#!/usr/bin/env tsx
+
+/**
+ * Construction Wire Real Browser Scraper
+ *
+ * This script uses Puppeteer to:
+ * 1. Open a real Chrome browser
+ * 2. Log into Construction Wire with your credentials
+ * 3. Scrape actual construction project data
+ * 4. Save directly to Supabase database
+ *
+ * Usage:
+ *   npm run scrape              # Shows browser (you can watch)
+ *   npm run scrape:headless     # Hidden browser (faster)
+ */
+
+import { config } from 'dotenv'
+import puppeteer, { Browser, Page } from 'puppeteer'
+import { createClient } from '@supabase/supabase-js'
+import { calculateGrooveScore } from '../lib/utils/scoring'
+
+// Load environment variables from .env.local
+config({ path: '.env.local' })
+
+console.log('📋 Construction Wire Scraper Starting...')
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!
+)
+
+const ORGANIZATION_ID = process.env.ORGANIZATION_ID!
+const CW_USERNAME = process.env.CONSTRUCTION_WIRE_USERNAME!
+const CW_PASSWORD = process.env.CONSTRUCTION_WIRE_PASSWORD!
+
+// Check if running in headless mode
+const HEADLESS = process.argv.includes('--headless')
+
+interface ScrapedProject {
+  cw_project_id: string
+  project_name: string
+  project_type: string[]
+  project_stage: string
+  project_value: number
+  city: string
+  state: string
+  address?: string
+  units_count?: number
+  project_size_sqft?: number
+  estimated_start_date?: string
+  estimated_completion_date?: string
+  bid_date?: string
+  raw_data: any
+  contacts?: Array<{
+    first_name: string
+    last_name: string
+    email?: string
+    title?: string
+    phone?: string
+  }>
+}
+
+class ConstructionWireScraper {
+  private browser: Browser | null = null
+  private page: Page | null = null
+  private projectsScraped = 0
+  private projectsSaved = 0
+  private errors = 0
+
+  async init() {
+    console.log('🚀 Starting Construction Wire Scraper...')
+    console.log(`Mode: ${HEADLESS ? 'Headless' : 'Visible Browser'}`)
+    console.log('')
+
+    console.log('🔧 Launching Puppeteer browser...')
+    try {
+      this.browser = await puppeteer.launch({
+        headless: HEADLESS,
+        defaultViewport: { width: 1920, height: 1080 },
+        args: [
+          '--no-sandbox',
+          '--disable-setuid-sandbox',
+          '--disable-dev-shm-usage',
+        ],
+        timeout: 30000, // 30 second timeout
+      })
+      console.log('✅ Browser process started')
+
+      console.log('🔧 Creating new page...')
+      this.page = await this.browser.newPage()
+      console.log('✅ New page created')
+
+      // Set user agent to avoid bot detection
+      console.log('🔧 Setting user agent...')
+      await this.page.setUserAgent(
+        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+      )
+
+      console.log('✅ Browser launched successfully')
+    } catch (error: any) {
+      console.error('❌ Failed to launch browser:', error.message)
+      throw error
+    }
+  }
+
+  async login() {
+    if (!this.page) throw new Error('Browser not initialized')
+
+    console.log('🔐 Logging into Construction Wire...')
+    console.log(`   Username: ${CW_USERNAME}`)
+
+    try {
+      // Go to Construction Wire
+      await this.page.goto('https://www.constructionwire.com', {
+        waitUntil: 'networkidle2',
+        timeout: 30000,
+      })
+
+      await this.wait(2000)
+
+      // Look for login button/link
+      const loginSelectors = [
+        'a[href*="login"]',
+        'a[href*="signin"]',
+        'button:has-text("Login")',
+        'button:has-text("Sign In")',
+        '.login',
+        '#login',
+      ]
+
+      let loginClicked = false
+      for (const selector of loginSelectors) {
+        try {
+          await this.page.waitForSelector(selector, { timeout: 2000 })
+          await this.page.click(selector)
+          loginClicked = true
+          console.log(`   Clicked login button: ${selector}`)
+          break
+        } catch (e) {
+          // Try next selector
+        }
+      }
+
+      if (!loginClicked) {
+        console.log('   ⚠️  Could not find login button, may already be on login page')
+      }
+
+      await this.wait(2000)
+
+      // Enter credentials
+      // Try common input selectors
+      const usernameSelectors = [
+        'input[name="username"]',
+        'input[name="email"]',
+        'input[type="email"]',
+        'input[id*="username"]',
+        'input[id*="email"]',
+        'input[placeholder*="email" i]',
+        'input[placeholder*="username" i]',
+      ]
+
+      let usernameEntered = false
+      for (const selector of usernameSelectors) {
+        try {
+          await this.page.type(selector, CW_USERNAME, { delay: 100 })
+          usernameEntered = true
+          console.log(`   ✅ Entered username`)
+          break
+        } catch (e) {
+          // Try next selector
+        }
+      }
+
+      if (!usernameEntered) {
+        throw new Error('Could not find username input field')
+      }
+
+      const passwordSelectors = [
+        'input[name="password"]',
+        'input[type="password"]',
+        'input[id*="password"]',
+      ]
+
+      let passwordEntered = false
+      for (const selector of passwordSelectors) {
+        try {
+          await this.page.type(selector, CW_PASSWORD, { delay: 100 })
+          passwordEntered = true
+          console.log(`   ✅ Entered password`)
+          break
+        } catch (e) {
+          // Try next selector
+        }
+      }
+
+      if (!passwordEntered) {
+        throw new Error('Could not find password input field')
+      }
+
+      // Click submit
+      const submitSelectors = [
+        'button[type="submit"]',
+        'input[type="submit"]',
+        'button:has-text("Login")',
+        'button:has-text("Sign In")',
+        'button:has-text("Submit")',
+      ]
+
+      let submitClicked = false
+      for (const selector of submitSelectors) {
+        try {
+          await this.page.click(selector)
+          submitClicked = true
+          console.log(`   ✅ Clicked submit button`)
+          break
+        } catch (e) {
+          // Try next selector
+        }
+      }
+
+      if (!submitClicked) {
+        // Try pressing Enter as fallback
+        await this.page.keyboard.press('Enter')
+        console.log(`   ✅ Pressed Enter to submit`)
+      }
+
+      // Wait for navigation after login (or timeout if no navigation)
+      try {
+        await this.page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 5000 })
+      } catch (e) {
+        // Navigation might not happen, that's okay
+        console.log('   ℹ️  No navigation after login (might already be logged in)')
+      }
+
+      // Check if we're logged in by looking for email in page
+      const loggedIn = await this.page.evaluate(() => {
+        return document.body.textContent?.includes('msartain@getgrooven.com') || false
+      })
+
+      if (!loggedIn) {
+        throw new Error('Login verification failed - email not found on page')
+      }
+
+      console.log('✅ Logged in successfully!')
+      await this.wait(2000)
+
+    } catch (error: any) {
+      console.error('❌ Login failed:', error.message)
+      await this.screenshot('login-error')
+      throw error
+    }
+  }
+
+  async navigateToProjects() {
+    if (!this.page) throw new Error('Browser not initialized')
+
+    console.log('🔍 Navigating to project search...')
+
+    try {
+      // Look for "Projects" or "Search" links
+      const projectsSelectors = [
+        'a[href*="projects"]',
+        'a[href*="search"]',
+        'a:has-text("Projects")',
+        'a:has-text("Search")',
+        'a:has-text("Browse")',
+      ]
+
+      for (const selector of projectsSelectors) {
+        try {
+          await this.page.waitForSelector(selector, { timeout: 2000 })
+          await this.page.click(selector)
+          console.log(`   Clicked: ${selector}`)
+          await this.page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 10000 })
+          break
+        } catch (e) {
+          // Try next selector
+        }
+      }
+
+      await this.wait(2000)
+      console.log('✅ On search page')
+
+      // Try clicking "Recent Plans/Specs" tab at the top
+      console.log('🔍 Clicking Recent Plans/Specs tab...')
+
+      try {
+        // Use evaluate to click by text content
+        const clicked = await this.page.evaluate(() => {
+          const links = Array.from(document.querySelectorAll('a'))
+          const recentPlansLink = links.find(a => a.textContent?.includes('Recent Plans/Specs'))
+          if (recentPlansLink) {
+            (recentPlansLink as HTMLElement).click()
+            return true
+          }
+          return false
+        })
+
+        if (clicked) {
+          console.log('   ✅ Clicked Recent Plans/Specs tab')
+          await this.wait(4000) // Wait for page to load
+        } else {
+          console.log('   ⚠️  Recent Plans/Specs not found, trying Search Projects button...')
+
+          // Try clicking the red Search Projects button
+          const searchClicked = await this.page.evaluate(() => {
+            const buttons = Array.from(document.querySelectorAll('button, input[type="submit"], input[type="button"]'))
+            const searchButton = buttons.find(b =>
+              b.textContent?.includes('Search Projects') ||
+              (b as HTMLInputElement).value?.includes('Search Projects')
+            )
+            if (searchButton) {
+              (searchButton as HTMLElement).click()
+              return true
+            }
+            return false
+          })
+
+          if (searchClicked) {
+            console.log('   ✅ Clicked Search Projects button')
+            await this.wait(4000)
+          } else {
+            console.log('   ⚠️  Could not find search button')
+          }
+        }
+      } catch (e: any) {
+        console.error('   ❌ Error clicking buttons:', e.message)
+      }
+
+      console.log('✅ Ready to scrape')
+
+    } catch (error: any) {
+      console.error('❌ Navigation failed:', error.message)
+      await this.screenshot('navigation-error')
+      throw error
+    }
+  }
+
+  async scrapeProjects(maxProjects = 100) {
+    if (!this.page) throw new Error('Browser not initialized')
+
+    console.log(`📊 Starting to scrape projects (max: ${maxProjects})...`)
+    console.log('')
+
+    const projects: ScrapedProject[] = []
+
+    try {
+      // Wait for the table to be present and stable
+      console.log('⏳ Waiting for project table to load...')
+
+      try {
+        // Wait for table to appear
+        await this.page.waitForSelector('table tbody tr', { timeout: 10000 })
+        console.log('   ✅ Table found')
+
+        // Wait for any animations/AJAX to complete
+        await this.wait(2000)
+        console.log('   ✅ Content stabilized')
+
+        // Wait for network to be idle (no more requests)
+        await this.page.waitForNetworkIdle({ timeout: 5000 }).catch(() => {
+          console.log('   ⚠️  Network still active, but continuing anyway')
+        })
+      } catch (error: any) {
+        console.error('❌ Table not found:', error.message)
+        await this.screenshot('no-table-found')
+        return []
+      }
+
+      // Get all project rows
+      const projectElements = await this.page.$$('table tbody tr')
+
+      if (projectElements.length > 0) {
+        console.log(`   ✅ Found ${projectElements.length} project rows in table`)
+      }
+
+      if (projectElements.length === 0) {
+        console.log('⚠️  Could not find any project rows')
+        console.log('   Taking screenshot for manual inspection...')
+        await this.screenshot('projects-page')
+        return []
+      }
+
+      // First, examine the table headers to understand structure
+      console.log('')
+      console.log('🔍 Examining table structure...')
+
+      try {
+        const tableHeaders = await this.page.evaluate(() => {
+          const headers = Array.from(document.querySelectorAll('table thead th'))
+          return headers.map(function(h) {
+            return h.textContent ? h.textContent.trim() : ''
+          })
+        })
+        console.log(`   Table headers: ${tableHeaders.join(' | ')}`)
+      } catch (error: any) {
+        console.log('   ⚠️  Could not read table headers:', error.message)
+      }
+      console.log('')
+
+      // Skip first row (it's the legend: "O - Owner, D - Developer")
+      // Limit to maxProjects + 1 to account for skipping the legend row
+      const elementsToProcess = projectElements.slice(1, maxProjects + 1)
+
+      console.log(`📋 Processing ${elementsToProcess.length} projects (skipped legend row)...`)
+      console.log('')
+
+      for (let i = 0; i < elementsToProcess.length; i++) {
+        const element = elementsToProcess[i]
+
+        try {
+          // Check if element is still attached to DOM
+          const isAttached = await element.evaluate((el) => el.isConnected).catch(() => false)
+          if (!isAttached) {
+            console.log(`   ⏭️  Skipping detached row ${i + 1}`)
+            continue
+          }
+
+          // Extract ALL cell data to understand structure
+          const cellData = await this.page.evaluate((row) => {
+            const cells = Array.from(row.querySelectorAll('td'))
+            const allCells = []
+
+            for (let j = 0; j < cells.length; j++) {
+              const cell = cells[j]
+              const text = cell.textContent ? cell.textContent.trim() : ''
+              allCells.push({
+                index: j,
+                text: text,
+                hasLink: cell.querySelector('a') !== null,
+                linkText: cell.querySelector('a')?.textContent?.trim() || ''
+              })
+            }
+
+            return {
+              cellCount: cells.length,
+              cells: allCells
+            }
+          }, element)
+
+          // Log all cells for first 3 projects to understand structure
+          if (i < 3) {
+            console.log(`\n   📋 ALL CELLS for row ${i + 1}:`)
+            const cells = cellData.cells
+            for (let j = 0; j < cells.length; j++) {
+              const cell = cells[j]
+              if (cell.text.length > 0) {
+                const preview = cell.text.length > 80 ? cell.text.substring(0, 80) + '...' : cell.text
+                const linkInfo = cell.hasLink ? ` 🔗 LINK: "${cell.linkText}"` : ''
+                console.log(`      Cell[${j}]: ${preview}${linkInfo}`)
+              }
+            }
+          }
+
+          // Skip legend rows (contain "O - Owner" text)
+          const rowText = cellData.cells.map(function(c) { return c.text }).join(' ')
+          if (rowText.includes('O - Owner') || rowText.includes('D - Developer')) {
+            console.log(`   ⏭️  Skipping legend row ${i + 1}`)
+            continue
+          }
+
+          // Find project name - look for cell with a link
+          let projectName = 'Unnamed Project'
+          let projectLocation = ''
+          let projectValue = ''
+          let projectStage = ''
+          let projectType = ''
+
+          for (let j = 0; j < cellData.cells.length; j++) {
+            const cell = cellData.cells[j]
+            if (cell.hasLink && cell.linkText.length > 5) {
+              projectName = cell.linkText
+              break
+            }
+          }
+
+          // Try to extract location (look for city, state pattern)
+          for (let j = 0; j < cellData.cells.length; j++) {
+            const text = cellData.cells[j].text
+            if (text.match(/[A-Z]{2}\s+\d{5}/) || text.match(/,\s*[A-Z]{2}/)) {
+              projectLocation = text
+              break
+            }
+          }
+
+          // Extract stage
+          for (let j = 0; j < cellData.cells.length; j++) {
+            const text = cellData.cells[j].text
+            if (text.match(/renovation|new construction|planning|construction|bidding/i) && text.length < 50) {
+              projectStage = text
+              break
+            }
+          }
+
+          const projectData = {
+            name: projectName,
+            location: projectLocation,
+            value: projectValue,
+            stage: projectStage,
+            type: projectType,
+            cellCount: cellData.cellCount
+          }
+
+          // Log raw data for debugging (first 3 projects only)
+          if (i < 3) {
+            console.log(`\n   📋 Raw data for project ${i + 1}:`)
+            console.log(`      Cells: ${projectData.cellCount}`)
+            console.log(`      Name: ${projectData.name}`)
+            console.log(`      Location: ${projectData.location}`)
+            console.log(`      Value: ${projectData.value}`)
+            console.log(`      Stage: ${projectData.stage}`)
+            console.log(`      Type: ${projectData.type}`)
+          }
+
+          // Parse and normalize the data
+          const project = this.parseProjectData(projectData, i)
+
+          if (project) {
+            projects.push(project)
+            this.projectsScraped++
+
+            console.log(`   ✅ [${i + 1}/${elementsToProcess.length}] ${project.project_name}`)
+            console.log(`      Value: $${project.project_value.toLocaleString()}`)
+            console.log(`      Location: ${project.city}, ${project.state}`)
+          }
+
+        } catch (error: any) {
+          console.error(`   ❌ Error scraping project ${i + 1}:`, error.message)
+          this.errors++
+        }
+
+        // Small delay between projects to avoid rate limiting
+        await this.wait(500)
+      }
+
+      console.log('')
+      console.log(`✅ Scraped ${projects.length} projects`)
+
+      return projects
+
+    } catch (error: any) {
+      console.error('❌ Scraping failed:', error.message)
+      await this.screenshot('scraping-error')
+      throw error
+    }
+  }
+
+  parseProjectData(raw: any, index: number): ScrapedProject | null {
+    try {
+      // Generate unique ID
+      const cwProjectId = raw.id || `CW-${Date.now()}-${index}`
+
+      // Parse location
+      const locationParts = raw.location?.split(',') || []
+      const city = locationParts[0]?.trim() || 'Unknown'
+      const state = locationParts[1]?.trim() || locationParts[locationParts.length - 1]?.trim() || 'Unknown'
+
+      // Parse value (remove $ and commas)
+      const valueStr = raw.value?.replace(/[$,]/g, '') || '0'
+      const value = parseInt(valueStr) || 0
+
+      // Parse type
+      const typeStr = raw.type?.toLowerCase() || 'commercial'
+      const types = typeStr.split(/[,\/]/).map((t: string) => t.trim())
+
+      return {
+        cw_project_id: cwProjectId,
+        project_name: raw.name || 'Unnamed Project',
+        project_type: types,
+        project_stage: raw.stage?.toLowerCase() || 'planning',
+        project_value: value,
+        city,
+        state,
+        address: raw.location,
+        raw_data: raw,
+      }
+    } catch (error) {
+      console.error('Error parsing project data:', error)
+      return null
+    }
+  }
+
+  async saveToDatabase(projects: ScrapedProject[]) {
+    console.log('')
+    console.log(`💾 Saving ${projects.length} projects to Supabase...`)
+
+    for (const project of projects) {
+      try {
+        // Calculate Groove score
+        const grooveScore = calculateGrooveScore(project as any)
+        const totalScore = grooveScore + 100 // Add engagement and timing scores
+
+        // Check if project already exists
+        const { data: existing } = await supabase
+          .from('high_priority_projects')
+          .select('id')
+          .eq('cw_project_id', project.cw_project_id)
+          .single()
+
+        if (existing) {
+          // Update existing
+          const { error } = await supabase
+            .from('high_priority_projects')
+            .update({
+              ...project,
+              organization_id: ORGANIZATION_ID,
+              groove_fit_score: grooveScore,
+              engagement_score: 75,
+              timing_score: 80,
+              total_score: totalScore,
+              priority_level: grooveScore >= 80 ? 'hot' : grooveScore >= 60 ? 'warm' : 'cold',
+              data_source: 'construction_wire_scraper',
+              scraped_at: new Date().toISOString(),
+              updated_at: new Date().toISOString(),
+            })
+            .eq('id', existing.id)
+
+          if (error) throw error
+          console.log(`   🔄 Updated: ${project.project_name}`)
+        } else {
+          // Insert new
+          const { error } = await supabase
+            .from('high_priority_projects')
+            .insert({
+              ...project,
+              organization_id: ORGANIZATION_ID,
+              groove_fit_score: grooveScore,
+              engagement_score: 75,
+              timing_score: 80,
+              total_score: totalScore,
+              priority_level: grooveScore >= 80 ? 'hot' : grooveScore >= 60 ? 'warm' : 'cold',
+              outreach_status: 'new',
+              data_source: 'construction_wire_scraper',
+              scraped_at: new Date().toISOString(),
+            })
+
+          if (error) throw error
+          this.projectsSaved++
+          console.log(`   ✅ Saved: ${project.project_name} (Score: ${grooveScore})`)
+        }
+
+        // Save contacts if any
+        if (project.contacts && project.contacts.length > 0) {
+          // Save contacts (implementation depends on your needs)
+        }
+
+      } catch (error: any) {
+        console.error(`   ❌ Error saving ${project.project_name}:`, error.message)
+        this.errors++
+      }
+    }
+
+    console.log('')
+    console.log('✅ Database save complete')
+  }
+
+  async screenshot(name: string) {
+    if (!this.page) return
+
+    const path = `screenshots/${name}-${Date.now()}.png`
+    await this.page.screenshot({ path, fullPage: true })
+    console.log(`   📸 Screenshot saved: ${path}`)
+  }
+
+  wait(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms))
+  }
+
+  async close() {
+    if (this.browser) {
+      await this.browser.close()
+      console.log('✅ Browser closed')
+    }
+  }
+
+  printSummary() {
+    console.log('')
+    console.log('=' .repeat(60))
+    console.log('📊 SCRAPING SUMMARY')
+    console.log('=' .repeat(60))
+    console.log(`Projects Scraped: ${this.projectsScraped}`)
+    console.log(`Projects Saved:   ${this.projectsSaved}`)
+    console.log(`Errors:           ${this.errors}`)
+    console.log('=' .repeat(60))
+    console.log('')
+  }
+}
+
+async function main() {
+  console.log('📋 Construction Wire Scraper Starting...')
+  console.log(`   Environment check:`)
+  console.log(`   - SUPABASE_URL: ${process.env.NEXT_PUBLIC_SUPABASE_URL ? '✅' : '❌'}`)
+  console.log(`   - CW_USERNAME: ${process.env.CONSTRUCTION_WIRE_USERNAME ? '✅' : '❌'}`)
+  console.log(`   - CW_PASSWORD: ${process.env.CONSTRUCTION_WIRE_PASSWORD ? '✅' : '❌'}`)
+  console.log('')
+
+  const scraper = new ConstructionWireScraper()
+
+  try {
+    // Initialize browser
+    await scraper.init()
+
+    // Login to Construction Wire
+    await scraper.login()
+
+    // Navigate to projects section
+    await scraper.navigateToProjects()
+
+    // Scrape projects
+    const projects = await scraper.scrapeProjects(100)
+
+    // Save to database
+    if (projects.length > 0) {
+      await scraper.saveToDatabase(projects)
+    }
+
+    // Print summary
+    scraper.printSummary()
+
+    console.log('🎉 Scraping complete!')
+    console.log('View your projects at: http://localhost:3000/projects')
+    console.log('')
+
+  } catch (error: any) {
+    console.error('')
+    console.error('💥 SCRAPING FAILED')
+    console.error('Error:', error.message)
+    console.error('')
+    console.error('Check screenshots/ folder for debugging')
+    process.exit(1)
+  } finally {
+    await scraper.close()
+  }
+}
+
+// Run the scraper
+main().catch(console.error)

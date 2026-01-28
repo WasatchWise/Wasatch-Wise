@@ -1,0 +1,11 @@
+# Instructions: Create .env.local file in this directory with the content below
+
+CRITICAL CORRECTIONS NEEDED:
+1. Your Supabase URL should be: https://bniflfvokbwctpgtvpal.supabase.co
+   (NOT the dashboard URL you provided)
+
+2. Variable names must match exactly what the code expects:
+   - NEXT_PUBLIC_SUPABASE_URL (you had NEXT_SUPABASE_URL)
+   - NEXT_PUBLIC_SUPABASE_ANON_KEY (you had NEXT_SUPABASE_PUBLIC_ANON)
+
+Create .env.local file with this content:

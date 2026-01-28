@@ -1,17 +1,42 @@
-# dependencies
-/node_modules
-/.pnp
+# dependencies (recursive for monorepo)
+node_modules
+.pnp
 .pnp.js
 
 # testing
-/coverage
+coverage
 
-# next.js
-/.next/
-/out/
+# next.js (recursive for monorepo)
+.next
+out
 
 # production
-/build
+build
+
+# turbo cache
+.turbo
+
+# large / personal folders (do not commit)
+/Archive/
+/Media/
+/Documents/
+/WolfTok/
+
+# npm cache (should never be committed)
+.npm-cache/
+
+# large app-specific directories
+apps/gmc-mag/GMC/
+apps/gmc-mag/GMC*/
+
+# large reference files
+*.pdf
+*.zip
+*.tar.gz
+*.mp4
+
+# large image directories (use CDN instead)
+**/images/**/Guardians*
 
 # misc
 .DS_Store
@@ -25,6 +50,7 @@ yarn-error.log*
 # local env files
 .env*.local
 .env
+.env.mcp
 
 # vercel
 .vercel
@@ -33,4 +59,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# test results
 test-results

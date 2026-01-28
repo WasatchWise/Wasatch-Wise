@@ -1,0 +1,1 @@
+VERCEL_TOKEN not set - skipping Vercel inspection

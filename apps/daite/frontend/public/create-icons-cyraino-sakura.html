@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAiTE Icon Generator - CYRAiNO with Sakura</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+            color: #e0e0e0;
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: #fce7f3;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #c4b5fd;
+            margin-bottom: 30px;
+        }
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        .icon-preview {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            border: 2px solid rgba(236, 72, 153, 0.3);
+        }
+        .icon-preview h3 {
+            color: #fce7f3;
+            margin-bottom: 15px;
+        }
+        canvas {
+            border: 2px solid rgba(236, 72, 153, 0.5);
+            border-radius: 20%;
+            margin: 10px auto;
+            display: block;
+            background: white;
+        }
+        button {
+            background: linear-gradient(135deg, #ec4899 0%, #a855f7 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            margin: 5px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.4);
+        }
+        .download-all {
+            display: block;
+            margin: 30px auto;
+            padding: 15px 40px;
+            font-size: 16px;
+        }
+        .info {
+            background: rgba(236, 72, 153, 0.1);
+            border-left: 4px solid #ec4899;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            color: #fce7f3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌸 DAiTE CYRAiNO Sakura Icons</h1>
+        <p class="subtitle">Your CYRAiNO character with Japanese cherry blossom aesthetic</p>
+        
+        <div class="info">
+            <strong>🌸 Design Features:</strong>
+            <ul style="text-align: left; margin: 10px 0;">
+                <li>CYRAiNO character logo centered</li>
+                <li>Soft sakura pink gradient background</li>
+                <li>Delicate cherry blossom petals floating</li>
+                <li>"Helping humans embrace" aesthetic</li>
+            </ul>
+        </div>
+
+        <div class="icon-grid">
+            <div class="icon-preview">
+                <h3>192×192</h3>
+                <canvas id="icon192" width="192" height="192"></canvas>
+                <button onclick="downloadIcon('icon192', 'icon-192.png')">Download icon-192.png</button>
+            </div>
+            <div class="icon-preview">
+                <h3>512×512</h3>
+                <canvas id="icon512" width="512" height="512"></canvas>
+                <button onclick="downloadIcon('icon512', 'icon-512.png')">Download icon-512.png</button>
+            </div>
+            <div class="icon-preview">
+                <h3>32×32 (Favicon)</h3>
+                <canvas id="favicon" width="32" height="32"></canvas>
+                <button onclick="downloadIcon('favicon', 'favicon.ico')">Download favicon.ico</button>
+            </div>
+        </div>
+
+        <button class="download-all" onclick="downloadAll()">🌸 Download All Sakura Icons</button>
+    </div>
+
+    <script>
+        let cyrainoImage = null;
+
+        // Load CYRAiNO logo
+        function loadLogo() {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                img.crossOrigin = 'anonymous';
+                img.onload = () => {
+                    cyrainoImage = img;
+                    resolve(img);
+                };
+                img.onerror = () => {
+                    console.warn('Could not load cyraino.png, using fallback design');
+                    cyrainoImage = null;
+                    resolve(null);
+                };
+                img.src = '/cyraino.png';
+            });
+        }
+
+        function drawSakuraIcon(canvasId, size) {
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, size, size);
+
+            // Sakura pink gradient background
+            const gradient = ctx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
+            gradient.addColorStop(0, '#fbcfe8'); // Light pink center
+            gradient.addColorStop(0.5, '#f472b6'); // Medium pink
+            gradient.addColorStop(1, '#db2777'); // Deeper pink edge
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, size, size);
+
+            // Draw cherry blossom petals (subtle, behind logo)
+            const petalColor = 'rgba(255, 255, 255, 0.15)';
+            const numPetals = size > 100 ? 8 : 4;
+            const petalSize = size * 0.08;
+            const centerRadius = size * 0.35;
+
+            for (let i = 0; i < numPetals; i++) {
+                const angle = (i * (Math.PI * 2)) / numPetals + (Math.PI / numPetals);
+                const x = size / 2 + centerRadius * Math.cos(angle);
+                const y = size / 2 + centerRadius * Math.sin(angle);
+
+                ctx.save();
+                ctx.translate(x, y);
+                ctx.rotate(angle);
+                ctx.fillStyle = petalColor;
+                ctx.beginPath();
+                ctx.ellipse(0, 0, petalSize * 1.5, petalSize, 0, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+
+            // Draw CYRAiNO logo if loaded
+            if (cyrainoImage) {
+                const logoSize = size * 0.7; // Logo takes 70% of icon
+                const logoX = (size - logoSize) / 2;
+                const logoY = (size - logoSize) / 2;
+
+                // Create circular mask for logo
+                ctx.save();
+                ctx.beginPath();
+                ctx.arc(size / 2, size / 2, logoSize / 2, 0, Math.PI * 2);
+                ctx.clip();
+
+                // Draw logo with slight shadow
+                ctx.shadowColor = 'rgba(0, 0, 0, 0.2)';
+                ctx.shadowBlur = size * 0.05;
+                ctx.shadowOffsetX = 0;
+                ctx.shadowOffsetY = size * 0.02;
+                ctx.drawImage(cyrainoImage, logoX, logoY, logoSize, logoSize);
+                ctx.restore();
+            } else {
+                // Fallback: Draw simplified "D" or embrace symbol
+                ctx.save();
+                ctx.translate(size / 2, size / 2);
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.9)';
+                ctx.lineWidth = size * 0.06;
+                ctx.lineCap = 'round';
+                
+                // Embrace symbol (interlocking arcs)
+                ctx.beginPath();
+                ctx.arc(-size * 0.15, 0, size * 0.2, Math.PI * 0.7, Math.PI * 1.3);
+                ctx.stroke();
+                
+                ctx.beginPath();
+                ctx.arc(size * 0.15, 0, size * 0.2, Math.PI * -0.3, Math.PI * 0.3);
+                ctx.stroke();
+                ctx.restore();
+            }
+
+            // Add subtle glow highlight
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+            ctx.beginPath();
+            ctx.arc(size / 2, size / 2, size * 0.15, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        function downloadIcon(canvasId, filename) {
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) return;
+            
+            canvas.toBlob((blob) => {
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.download = filename;
+                link.href = url;
+                link.click();
+                URL.revokeObjectURL(url);
+            }, 'image/png');
+        }
+
+        function downloadAll() {
+            downloadIcon('icon192', 'icon-192.png');
+            setTimeout(() => downloadIcon('icon512', 'icon-512.png'), 300);
+            setTimeout(() => downloadIcon('favicon', 'favicon.ico'), 600);
+        }
+
+        // Initialize
+        window.addEventListener('load', async () => {
+            await loadLogo();
+            drawSakuraIcon('icon192', 192);
+            drawSakuraIcon('icon512', 512);
+            drawSakuraIcon('favicon', 32);
+        });
+    </script>
+</body>
+</html>
+

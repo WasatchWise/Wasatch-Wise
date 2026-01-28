@@ -1,0 +1,2679 @@
+{
+  "summary": {
+    "totalDuplicateNames": 24,
+    "criticalConflations": 1,
+    "highRiskConflations": 22,
+    "mediumRiskConflations": 0,
+    "totalIssuesFound": 27
+  },
+  "criticalConflations": [
+    {
+      "name": "bishop castle",
+      "recordCount": 3,
+      "destinations": [
+        {
+          "id": "da87df65-bb74-4e98-8510-9670c638072c",
+          "county": "Custer",
+          "category": "8h",
+          "subcategory": "Film Locations",
+          "coordinates": [
+            38.0333,
+            -105.2667
+          ],
+          "place_id": "ChIJ0-RJ1s6iE4cRExnfu52nyrQ"
+        },
+        {
+          "id": "71772503-e972-4667-8ad4-695c421ed1f9",
+          "county": "Pueblo",
+          "category": "8h",
+          "subcategory": "Historical Sites",
+          "coordinates": [
+            37.9811,
+            -105.2489
+          ],
+          "place_id": "ChIJ0-RJ1s6iE4cRExnfu52nyrQ"
+        },
+        {
+          "id": "e5dfa00d-56bd-4288-ba42-83ecb8f20b26",
+          "county": null,
+          "category": "3h",
+          "subcategory": "Natural Wonder",
+          "coordinates": [
+            39.6669,
+            -105.594
+          ],
+          "place_id": "ChIJ0-RJ1s6iE4cRExnfu52nyrQ"
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"Custer\" vs \"Pueblo\"",
+          "entities": [
+            {
+              "id": "da87df65-bb74-4e98-8510-9670c638072c",
+              "county": "Custer",
+              "coords": [
+                38.0333,
+                -105.2667
+              ]
+            },
+            {
+              "id": "71772503-e972-4667-8ad4-695c421ed1f9",
+              "county": "Pueblo",
+              "coords": [
+                37.9811,
+                -105.2489
+              ]
+            }
+          ]
+        },
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"Custer\" vs \"null\"",
+          "entities": [
+            {
+              "id": "da87df65-bb74-4e98-8510-9670c638072c",
+              "county": "Custer",
+              "coords": [
+                38.0333,
+                -105.2667
+              ]
+            },
+            {
+              "id": "e5dfa00d-56bd-4288-ba42-83ecb8f20b26",
+              "county": null,
+              "coords": [
+                39.6669,
+                -105.594
+              ]
+            }
+          ]
+        },
+        {
+          "type": "COORDINATE_DISTANCE",
+          "severity": "CRITICAL",
+          "message": "Locations are 183.8km apart - likely different entities",
+          "distance": 183845.56557387323,
+          "entities": [
+            {
+              "id": "da87df65-bb74-4e98-8510-9670c638072c",
+              "location": "38.0333, -105.2667"
+            },
+            {
+              "id": "e5dfa00d-56bd-4288-ba42-83ecb8f20b26",
+              "location": "39.6669, -105.594"
+            }
+          ]
+        },
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"Pueblo\" vs \"null\"",
+          "entities": [
+            {
+              "id": "71772503-e972-4667-8ad4-695c421ed1f9",
+              "county": "Pueblo",
+              "coords": [
+                37.9811,
+                -105.2489
+              ]
+            },
+            {
+              "id": "e5dfa00d-56bd-4288-ba42-83ecb8f20b26",
+              "county": null,
+              "coords": [
+                39.6669,
+                -105.594
+              ]
+            }
+          ]
+        },
+        {
+          "type": "COORDINATE_DISTANCE",
+          "severity": "CRITICAL",
+          "message": "Locations are 189.8km apart - likely different entities",
+          "distance": 189820.8892964809,
+          "entities": [
+            {
+              "id": "71772503-e972-4667-8ad4-695c421ed1f9",
+              "location": "37.9811, -105.2489"
+            },
+            {
+              "id": "e5dfa00d-56bd-4288-ba42-83ecb8f20b26",
+              "location": "39.6669, -105.594"
+            }
+          ]
+        }
+      ],
+      "severity": 3
+    }
+  ],
+  "highRiskConflations": [
+    {
+      "name": "antelope canyon",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "a9f66e39-21a4-4639-8e02-45c04c6494bf",
+          "county": "Coconino County",
+          "category": "8h",
+          "subcategory": "Hiking",
+          "coordinates": [
+            36.8619,
+            -111.3743
+          ],
+          "place_id": "ChIJDzCEm_QRNIcRzfsozz2UP10"
+        },
+        {
+          "id": "6fc44caa-a2dc-4d89-affd-eafc47945894",
+          "county": "Coconino",
+          "category": "8h",
+          "subcategory": "Film Locations",
+          "coordinates": [
+            36.8619,
+            -111.3743
+          ],
+          "place_id": "ChIJCw6gm_QRNIcRm6dqrQgWNpg"
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"Coconino County\" vs \"Coconino\"",
+          "entities": [
+            {
+              "id": "a9f66e39-21a4-4639-8e02-45c04c6494bf",
+              "county": "Coconino County",
+              "coords": [
+                36.8619,
+                -111.3743
+              ]
+            },
+            {
+              "id": "6fc44caa-a2dc-4d89-affd-eafc47945894",
+              "county": "Coconino",
+              "coords": [
+                36.8619,
+                -111.3743
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "bodie ghost town",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "f3b93fc9-03b5-49e6-8711-54d4d3404b02",
+          "county": "Mono",
+          "category": "12h",
+          "subcategory": "Historical Sites",
+          "coordinates": [
+            38.2125,
+            -119.0075
+          ],
+          "place_id": "ChIJO0yjGCfKl4AR21EXPYR1Bpg"
+        },
+        {
+          "id": "d05aa436-7c00-4b57-805e-ba0d1873da55",
+          "county": null,
+          "category": "3h",
+          "subcategory": "high",
+          "coordinates": [
+            38.2124,
+            -119.0126
+          ],
+          "place_id": null
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"Mono\" vs \"null\"",
+          "entities": [
+            {
+              "id": "f3b93fc9-03b5-49e6-8711-54d4d3404b02",
+              "county": "Mono",
+              "coords": [
+                38.2125,
+                -119.0075
+              ]
+            },
+            {
+              "id": "d05aa436-7c00-4b57-805e-ba0d1873da55",
+              "county": null,
+              "coords": [
+                38.2124,
+                -119.0126
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "bonneville salt flats",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "7b2444ba-7360-4756-a175-0e5a86b0f1a0",
+          "county": "Tooele",
+          "category": "5h",
+          "subcategory": "Film Locations",
+          "coordinates": [
+            40.75,
+            -113.8667
+          ],
+          "place_id": "ChIJvRLRfMQ5rIARek9UCQ-TdkA"
+        },
+        {
+          "id": "c4379aa0-f903-44ac-9a25-f0e68c5d2258",
+          "county": "Tooele County",
+          "category": "3h",
+          "subcategory": "General",
+          "coordinates": [
+            40.7787454,
+            -113.8352043
+          ],
+          "place_id": "ATKogpeAIG1bR0B66nB4jVxGOE505AhNDTqGperLGfMDzkAnetkFpbTHzdCiVye635ILQENrY45PcIsyCP_GUUNXRkXYcdDkc1DY_lOg8SWroCwlZC-iNVgrxSbTtLcbTrhvZcIQCztUJc1H3dj4v5pSR1SHxNVsHcmaH7X6t176_mHdeXOGOKy0Lu2-0Q9Vxqw6noWVL20Q8Lwgh3h7Im72tq8qbT2m51wLB8A2qTz0Nua2zMcuhsprI-h8bSgBoa3nEwcrBiADHUNR_bAlAEWAt7jSbfhNYFMo_PSTeXxXYV5pGS_U39r8Lorr0oJ9YXJ7UyYk-mvr1vNFR4iBU2dGT6K3SEiI7S1MVzi_7uWs-jVuOePiFMwMN55CAwW4mvVH29za1Z1_y-BObW83ALoDbX2DEG99pKIiOuKWR4BH4cmT0GJrzzNOfBuXy38osOwoEDrs2YO8HZSO5CUeBmu3tw7RFl-cLQQUun1aYPv2lROWAqSM6-zik7tABA_kkB99NXDAGwpqiip7XgmZ_uR5ITsw-A7y8DR6jzI3pGbSs6o6EjuRNrnfn3nkptxFPB2mks2qmh6h"
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"Tooele\" vs \"Tooele County\"",
+          "entities": [
+            {
+              "id": "7b2444ba-7360-4756-a175-0e5a86b0f1a0",
+              "county": "Tooele",
+              "coords": [
+                40.75,
+                -113.8667
+              ]
+            },
+            {
+              "id": "c4379aa0-f903-44ac-9a25-f0e68c5d2258",
+              "county": "Tooele County",
+              "coords": [
+                40.7787454,
+                -113.8352043
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "city of rocks national reserve",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "a807a71e-2cb9-49b4-8486-bb5f94273720",
+          "county": "Cassia",
+          "category": "8h",
+          "subcategory": "Film Locations",
+          "coordinates": [
+            42.0667,
+            -113.7167
+          ],
+          "place_id": null
+        },
+        {
+          "id": "be947228-508e-4ea1-9ec0-4a3c5117e4be",
+          "county": "Cassia County",
+          "category": "3h",
+          "subcategory": "General",
+          "coordinates": [
+            42.0669,
+            -113.7028
+          ],
+          "place_id": "ATKogpckoVqsYQpITPKutWknxRyeLcTY5OZNgxWvIcczGXeMqAHkG46O4kuPbM2GeHKQ7T3v_wRwC6uQFkQtx0ry7oi17I_QQQqd2BvNOBMt8G1ELmsir50LNvw4o5ExK24T5zwhAWvidcYGCHDpFwOpYgpdfKSLA1oqjVxlcuNyHenMK16ptynZFIF_AzqyYSkEoZsiODAGKffwVmMmj7duOYYX66R9YJDT3KtA4L7qBI5aBBidvo-uWFlf9AL7TP0V0-HLBJeIzQVwAYv9rr53qPNHGB3VDYUmd43tg2nI6nPm01VG-QQ3H9bBV5h5yHiZbqN3XDxEr-M4WrOqYUprcDrydiYQk9a9Kxs_43jXUPVkLLeXwFmTAl6yuUWDLBAsfhVkknrdwbX8inVNQH9R0ApyYAy8C3_-z8ufxin3EPoPYJjasTcTrGVQkMG4h5PJPOlQTFAwfDEo6FubHvwb324ymn0oGbRe_sZP47Z1l6aHWZ1T2_a9Cz2ZYSmJKkTRweJ7pWVuH2YHUZJ08453yib4t5tDw3sXZSVjy1lIQlOdmJAlQRVFzk1PD4smc5bh91ZSAl1t"
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"Cassia\" vs \"Cassia County\"",
+          "entities": [
+            {
+              "id": "a807a71e-2cb9-49b4-8486-bb5f94273720",
+              "county": "Cassia",
+              "coords": [
+                42.0667,
+                -113.7167
+              ]
+            },
+            {
+              "id": "be947228-508e-4ea1-9ec0-4a3c5117e4be",
+              "county": "Cassia County",
+              "coords": [
+                42.0669,
+                -113.7028
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "cleveland-lloyd dinosaur quarry",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "3c5c4a05-7e4b-4891-9158-d598a130b538",
+          "county": null,
+          "category": "3h",
+          "subcategory": "Natural Wonder",
+          "coordinates": [
+            39.3233,
+            -110.6886
+          ],
+          "place_id": "ChIJT0aA8N01SYcR6LvCjveQxCI"
+        },
+        {
+          "id": "0ba2c281-eaf8-421b-833e-d3010b24eac7",
+          "county": "Emery County",
+          "category": "3h",
+          "subcategory": "General",
+          "coordinates": [
+            39.3225691,
+            -110.6878431
+          ],
+          "place_id": "ATKogpe1vaN_JW4LfzG6tIjSq-qJzZAhx6Y-3rnO58yHIf0FlrifgU6H-pB6W2QnAa5x5QQdvdFDdpTVH3lvIEF4bxwH_qDwbM741rPH6CAqYLcos7OaA-dGqnCwshfaclWjAK1J0EVRh1WJby7YFdfNwW30Gpq5lgqVwf_2gUCqNPejWtsV34ev2UAzH-ullc9rBdGPF8tYe4PRmXQOgh-IfgGJytyL9j4B1IxJ-IdSUgknu-Dgocewrc36jwZIrRX7OWdnJQAIedqcww-AQP845QQkn8XiT2CGwgaUvpkQ2BTEcI-tXqykDntX2_rGdrWR-pDYhLqk9epmOEMI6ZXQ5U2yW-rvzrdblFWyR70ky_WzikgDL16L4xCbUj_21DuONw0iIW2vKkVObmRpGaPAAUuwb_Ito1FG7QmTR6bYnK2dtaRuRzkVhm35eVBOxlN-QhSuo0C1ETWNZxLAWeRR0l2oIej7YYLXvbAOltp9d6JU6xz1ewCzFPafK6QEwAzH9Piny5gEqOy47o6tttxd9FNQ1a8CXrnyVjbNBLy2tNVlgtNv_T2r9Uhep5HSWRRPaDXeAs2_Bmc97Q"
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"null\" vs \"Emery County\"",
+          "entities": [
+            {
+              "id": "3c5c4a05-7e4b-4891-9158-d598a130b538",
+              "county": null,
+              "coords": [
+                39.3233,
+                -110.6886
+              ]
+            },
+            {
+              "id": "0ba2c281-eaf8-421b-833e-d3010b24eac7",
+              "county": "Emery County",
+              "coords": [
+                39.3225691,
+                -110.6878431
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "coral pink sand dunes state park",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "e72fcc90-8011-4850-9771-83cfec382663",
+          "county": "Kane",
+          "category": "8h",
+          "subcategory": "Film Locations",
+          "coordinates": [
+            37.0347,
+            -112.7267
+          ],
+          "place_id": "ChIJVTGil4cpy4ARM9DFIqCJLWg"
+        },
+        {
+          "id": "24533dd9-db5f-4a7b-bf1c-984a6a772370",
+          "county": "Kane County",
+          "category": "5h",
+          "subcategory": "State Park",
+          "coordinates": [
+            37.0577,
+            -112.7641
+          ],
+          "place_id": "ATKogpfS3sFkKH11KZ7vjlygpHC9m7vUmUruFbZtFvhycNlcj57iLsIHvw9jJ2FwwwOpbx_diYOc9neB6pVC2YjRaqLfOi-bNxdBbI7Zvanf7Lj0y0k0YN6KED7FhUlvHfs-2QD5OlepN9UBBPZxqYE97oEWuVg0yYGbYFtVA5V0B0ytxeXCtyKMTO4Ij98Ah2nhgzYbxXXvhRyxQyKGgyvTPGaCvcPvRlnYJWhTHFPxVAh7Qcw9agIEKX5gWyp-E7z1YSknQi6gEijdCHEYe6FVWfX0UEG16t7AjZWFW7CUKM3wzYxOaadHLeNiIAy5lXf0QcJ0qSev0Xs7R3dIsVY83sMXz7ii4pEgUv5t3aApG3B1IeVwpX-V5CxA0R3t_7eY_62BXv_b0kbTZJRkzWP6-ZqNvh8KKcXWW6YD_B5DKRrIxHbKfaLR7b6LS2DiZgK0ocT6CwQAwhnJg7vW9-b9mqIs1QdHlRWdAGnn0msn1Lcz6oFCtrAgCTOCvQ7z_FjcK4vvNkXAN_C4eqzPRAH3b7RigdxkhmiynZ3_zmon0lyitJLvkZdRUY8NHkCffM5NgSLpyPI_"
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"Kane\" vs \"Kane County\"",
+          "entities": [
+            {
+              "id": "e72fcc90-8011-4850-9771-83cfec382663",
+              "county": "Kane",
+              "coords": [
+                37.0347,
+                -112.7267
+              ]
+            },
+            {
+              "id": "24533dd9-db5f-4a7b-bf1c-984a6a772370",
+              "county": "Kane County",
+              "coords": [
+                37.0577,
+                -112.7641
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "craters of the moon national monument",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "5e957723-134d-4038-a34f-b2cf5c5ba6a7",
+          "county": "Butte",
+          "category": "8h",
+          "subcategory": "Film Locations",
+          "coordinates": [
+            43.4165,
+            -113.5166
+          ],
+          "place_id": null
+        },
+        {
+          "id": "5c84fb35-2f99-4e41-ae3b-ffe053216722",
+          "county": "Butte County",
+          "category": "5h",
+          "subcategory": "Historical Sites",
+          "coordinates": [
+            43.4619,
+            -113.5161
+          ],
+          "place_id": "ATKogpfLLFdwicWYCFqF8lQl9HSjI8D3sS38R-bro3TQPzvNr34tjV25rm6ZgQRpQbSXTmihowWU3pGqhjrKNmSrnBas0cI2c0H19S7uhfD3AC48im_AaPGwf6H4hm10Omqxp2zGFM7wLOGclgj7Z3crwt97oqUHMfCvX-C_P56BpfcFXam5t9UXOYH7Fh2YhWEI06riwJvROMzAFaZOLNREGdidpwUA_Q4RXPgRr_S7FK_cp7ta_e_UL16HDTVOQqfZjx8cSsmj4OevmmNFT3JFRI8zUhBZYwEpnT8NPP8XXqVP1347RHYFMJsjaUvKQOAZkDZNF_V5fF8aiMyz4tw4xckkpoa3lsNs9c1giGaxP59Sxlbt6WNnkU5LtQUrz9pUR_awflBuZ4Q-Pv9gsJCJylKogq7yt937RRx-ZkzUijQOVqxijfFUHZYLsdGV_-sCGaFCX_DfhffWt-HRVqf52SrC-lpFiACTqLLilgQL84HXN-kEL7YP9REHKrIcRGKmLyK7jhXe2594BwJT-TIxGaDaaaOsiVH8oUqF3hjjacV1Bi7Kkn0u1-sbEsJH--cA9mKcTilt"
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"Butte\" vs \"Butte County\"",
+          "entities": [
+            {
+              "id": "5e957723-134d-4038-a34f-b2cf5c5ba6a7",
+              "county": "Butte",
+              "coords": [
+                43.4165,
+                -113.5166
+              ]
+            },
+            {
+              "id": "5c84fb35-2f99-4e41-ae3b-ffe053216722",
+              "county": "Butte County",
+              "coords": [
+                43.4619,
+                -113.5161
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "death valley national park",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "81379533-1e4f-4bb1-b05a-b46ad859aa0f",
+          "county": "Inyo County",
+          "category": "8h",
+          "subcategory": "National Park",
+          "coordinates": [
+            36.2424,
+            -116.8169
+          ],
+          "place_id": "ChIJR4qudndLx4ARVLDye3zwycw"
+        },
+        {
+          "id": "7d8b55f5-d9d8-4f4e-9bb1-0d215ddeb8e7",
+          "county": "Inyo",
+          "category": "12h",
+          "subcategory": "Film Locations",
+          "coordinates": [
+            36.5054,
+            -117.0794
+          ],
+          "place_id": "ChIJR4qudndLx4ARVLDye3zwycw"
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"Inyo County\" vs \"Inyo\"",
+          "entities": [
+            {
+              "id": "81379533-1e4f-4bb1-b05a-b46ad859aa0f",
+              "county": "Inyo County",
+              "coords": [
+                36.2424,
+                -116.8169
+              ]
+            },
+            {
+              "id": "7d8b55f5-d9d8-4f4e-9bb1-0d215ddeb8e7",
+              "county": "Inyo",
+              "coords": [
+                36.5054,
+                -117.0794
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "devils tower national monument",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "1185dbfe-abe1-4574-9e8d-da081a111ae8",
+          "county": "Crook",
+          "category": "90min",
+          "subcategory": "Film Locations",
+          "coordinates": [
+            44.5902,
+            -104.7153
+          ],
+          "place_id": "ChIJOT5U8z8GM1MResed1BOdJKk"
+        },
+        {
+          "id": "7b3cf701-6b7b-4140-9d1b-55cd5cf3aeec",
+          "county": "Crook County",
+          "category": "8h",
+          "subcategory": "Historical Sites",
+          "coordinates": [
+            44.5902,
+            -104.715
+          ],
+          "place_id": "ATKogpeqsBAPPP0nOsYXXK3PzLjlCpjcGsfSGemhX23nqQwBKd5BsD-SuQL6hnvjCtjVmYYSBn7URE8tO87EJUlAqHans0D-lL_OSY-gV40hP5Kc3sUlbwcL1eNpOG1tDiZ5f-3bJd43oLFuicMx6mRs4umfPtGaB3tGQbtf2aWqnsUtLkKYG08J6bPD6ao_A3CaMOLPEQ0NPT2FJsZCrxFlDKJYzJQL6rXW2jVmHxc3-qE_LtTzFKC2gddzkkOSstr7MGhmhFCNYYuHFv4PRB4Niu5RI6JT2MHX44MQVy2m3FtIO3HTDiV2M2MqC5mcO0P9GRpGqIiG2Ft1UDe0djLRIkI9TT-PD-wP2m7xgHapqE8ODIKrX6qgVI4kPCJOTdL8Ik4EY433X9GsYnr1ojekFR3SFXM_3g_gmOR_4h9ck1RsUz7ua4i5iqJ1WbRIgTexlL59SMo0P3Z1wZj1fUQF22doK-CLOFIxTGQ3GF6yke4EqlC045AYheXJw7NBjTp-u6PbRWZB4waIqI8RHP8Wex52XvF3I37NBAh5UxXPUGnprmrIHOf1EohXv8wE5Byg-kw3MRRc"
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"Crook\" vs \"Crook County\"",
+          "entities": [
+            {
+              "id": "1185dbfe-abe1-4574-9e8d-da081a111ae8",
+              "county": "Crook",
+              "coords": [
+                44.5902,
+                -104.7153
+              ]
+            },
+            {
+              "id": "7b3cf701-6b7b-4140-9d1b-55cd5cf3aeec",
+              "county": "Crook County",
+              "coords": [
+                44.5902,
+                -104.715
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "dinosaur national monument",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "68c36d60-61a0-431b-ad9c-c87726c5ccda",
+          "county": null,
+          "category": "3h",
+          "subcategory": "Educational",
+          "coordinates": [
+            null,
+            null
+          ],
+          "place_id": "ChIJK24Qz-kCRYcRPf3mCvjLJlE"
+        },
+        {
+          "id": "4b229ea6-5434-44d2-96fe-1a1a9776e250",
+          "county": "Moffat County",
+          "category": "3h",
+          "subcategory": "Historical Sites",
+          "coordinates": [
+            40.485,
+            -108.9942
+          ],
+          "place_id": "ATKogpfPH2SgOpsAQH7o97EPnkDs___O1aYQSJ1z1oa5cId08kCnwnMLhYjtyM4Q9WjlGUFuA4IAT58F8SeNaZi9Bp0p1zchvs3cbrTKQ2FEoRqVmevveshbEYWx_GrH4nd3fxp3Z1bCuebyrXFjzkNhv1qkrw7FFdI_t1ilLNEw6c0VPi6FHTJpndj1IdkHkJiS8IEcx1E9uVpKnUhsBn5qObRPzhBLdWKROfDR7daiyRLlH_7o8DAosmRPwn9K7-eVF_fPDy7enzN8wULfU1Sicpcqhi_BlaFQUP-dO1aQ1UF8osGODUhUX55itfQ2DfsbEKebjzmDcPFCnifFDY9tNNYqMhhD0L1r-UzgIY4_m3Tx7X3IxkEXOj9czd9Rf29FfVlvIJ_Bf9qw-XLc9hU6lKUU8pXHaXKXIGuoXpOKc1ve372P66tYU_01GIc4Xen7ihfvPON4EPp0wPXey0q1S7GNmqN7DXWSjN3POk2RTvIx8TBo4hE7fblsJCfSC6RIzcG3eDr06u4PYFmBfMle7vN9KPKVL_0bYu9PtsVAu2XqD5uW_nuMTCPz4bF47FBuseQPsA"
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"null\" vs \"Moffat County\"",
+          "entities": [
+            {
+              "id": "68c36d60-61a0-431b-ad9c-c87726c5ccda",
+              "county": null,
+              "coords": [
+                null,
+                null
+              ]
+            },
+            {
+              "id": "4b229ea6-5434-44d2-96fe-1a1a9776e250",
+              "county": "Moffat County",
+              "coords": [
+                40.485,
+                -108.9942
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "flaming gorge national recreation area",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "a4c53b39-a8fe-4cb4-aeea-e70f93fe123d",
+          "county": null,
+          "category": "3h",
+          "subcategory": "Natural Wonder",
+          "coordinates": [
+            40.92,
+            -109.42
+          ],
+          "place_id": "ChIJod1YDyqgWocRS86BiPpFk2Y"
+        },
+        {
+          "id": "447f60bb-33de-4e89-a7c3-40785624027c",
+          "county": "Daggett County",
+          "category": "3h",
+          "subcategory": "Recreation",
+          "coordinates": [
+            40.9178,
+            -109.4203
+          ],
+          "place_id": "ATKogpedSh6CRNerG7JoRDEFeMjJWfGiHtGondSwxOLu89DV9vKoJDNgTfemvyz3iZ4fZFGMdIb7BDbZipNwTeo5UNwfCV1tvDYJlglBfcA9Ljeznb10frm-OsvlCZpq9xOWVwj5eMtMbzx-uiJw9WzqJvm3k_rKOhNdvFmJ01WehmYR9rzD3JgP1v_1u625j_atIGIyYXKRHa1mXmoAUft4Ya4SRtjh0hxrGp3pWvPuz9hqAG83K4gQ-hdWz8q88My8rHr_hD-KZ8pxdVXtfAX57le7LcrvuW8EhUE3QDXdu-CUwoaSu2INk512tzmqGCF6tgfzjMNKtizt5Fl40bPgrrSNbNFAQwG5GnrQarIXVw8eGMN7tyWUG7V5jU0zihsN6EUglDfZFnk9tKoC8jX108tvn6ZP7PZV9WCjCIi5Ys0m9SYKV3osKCy3OXdL0lHXGk933PtMBj2a-sTOH9ttIZ6kGlOrXX_SJe3YZ0Xy0uDAgtG62ffdCPTXhbGDgCUdtxr-RTAm22CxSiemcyzA6oZEqlkMIj9MHzORc78q6fwk9HnYBcsLXUhH54hf01HqL-6Iid0S12l3TQ"
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"null\" vs \"Daggett County\"",
+          "entities": [
+            {
+              "id": "a4c53b39-a8fe-4cb4-aeea-e70f93fe123d",
+              "county": null,
+              "coords": [
+                40.92,
+                -109.42
+              ]
+            },
+            {
+              "id": "447f60bb-33de-4e89-a7c3-40785624027c",
+              "county": "Daggett County",
+              "coords": [
+                40.9178,
+                -109.4203
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "four corners monument",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "973c0fe7-4d60-4dd2-8da8-e478a53e347d",
+          "county": "San Juan",
+          "category": "8h",
+          "subcategory": "Film Locations",
+          "coordinates": [
+            36.9989,
+            -109.0452
+          ],
+          "place_id": "ChIJzQrHydIlOocROplme9JblMk"
+        },
+        {
+          "id": "82d03f11-e289-4fb6-aada-6963069f29de",
+          "county": "Montezuma County",
+          "category": "8h",
+          "subcategory": "Historical Sites",
+          "coordinates": [
+            36.999,
+            -109.0452
+          ],
+          "place_id": "ATKogpf_5qRilFsZDgffjUbb8ANAbbvhuf6f9oFHmIoqvfxh9Jfr0uKmdyNTLPc1IQ8uHut16TbRrEchUVJ7n6z42KgFGr_0bt79tNxZh_Jr4xm0RD3Pgsw85hTiuz7YqUFgybwNjK5WcCIWjkoypVpOQKi8CaYEjcNcb_ErGOtv-q9JDHU4Hl_-8IGOtkxpo8nmL-rCoHyEh1IWUz4Cj2VrhfV_WsLoz-duiod0y_73rxHNVUHBBhiNjguK9lnbq8BGz6ZCSZEt1V_mrls3ZCL0bP92EmyOwgM1uUkVR-czIchwAvr5evmOze6-jFnGKHpUbVxfJsG07pbO_XCGnwbxLZzslxV9reJH3sMu6p8DCtbdDKioAvOWWVGSVC9pDPPodjqyBevCECQGs_Fv20T-mz5Fu_jKp8HIbt-VksqYUNUVoCOsxRaBiTJgqdBHqfvpIz8xiMHcOK1uEosrusn2ua_N9qVrIziL6n-Sl-Xp78u-6RHuFWWsmfNBaVqOhXKSoWSe40ITx4eVckrs7psbrbXbAYy02MvZec1GvMn3pGsJ7JZMNu2Hd_fiG7IUF0F2RNQVDw"
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"San Juan\" vs \"Montezuma County\"",
+          "entities": [
+            {
+              "id": "973c0fe7-4d60-4dd2-8da8-e478a53e347d",
+              "county": "San Juan",
+              "coords": [
+                36.9989,
+                -109.0452
+              ]
+            },
+            {
+              "id": "82d03f11-e289-4fb6-aada-6963069f29de",
+              "county": "Montezuma County",
+              "coords": [
+                36.999,
+                -109.0452
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "frisco ghost town",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "c83a5479-23bd-4ab8-b24a-901fd6b6250f",
+          "county": "Beaver",
+          "category": "30min",
+          "subcategory": "Historical Sites",
+          "coordinates": [
+            38.5239,
+            -113.2486
+          ],
+          "place_id": null
+        },
+        {
+          "id": "aa67eb36-d2ce-4074-b3d9-8b83e89e8c19",
+          "county": null,
+          "category": "3h",
+          "subcategory": "Ghost Town",
+          "coordinates": [
+            38.4792,
+            -113.2458
+          ],
+          "place_id": "ChIJactwxx7xtIARe1RSfpso-F8"
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"Beaver\" vs \"null\"",
+          "entities": [
+            {
+              "id": "c83a5479-23bd-4ab8-b24a-901fd6b6250f",
+              "county": "Beaver",
+              "coords": [
+                38.5239,
+                -113.2486
+              ]
+            },
+            {
+              "id": "aa67eb36-d2ce-4074-b3d9-8b83e89e8c19",
+              "county": null,
+              "coords": [
+                38.4792,
+                -113.2458
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "glacier national park",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "50819478-7c7f-48b9-9b4d-53fcec46f3fa",
+          "county": "Flathead",
+          "category": "90min",
+          "subcategory": "Film Locations",
+          "coordinates": [
+            48.7596,
+            -113.787
+          ],
+          "place_id": "ChIJVVVVVRWQaFMR7F3FFSK8Fq8"
+        },
+        {
+          "id": "2f9c73f3-cd71-4005-89b8-32556cec000d",
+          "county": "Flathead County",
+          "category": "12h",
+          "subcategory": "National Park",
+          "coordinates": [
+            48.7596,
+            -113.787
+          ],
+          "place_id": "ATKogpdhMNRLZ7H4qHUvQnDloXRuvoOhmFNGmFEFP5Zm4gdiAq7pafhNmhG165K2XeMIX3TfmMFnie93Ac9dfhgwtJnaaQHmj8lco7yHvMNYFkShAglBBSN7k90WEB_wTBk_BnU9O9FfT_bu4NghzsizUoCAZbuax3IEQ95RsBuLA2fvjtSxKMgd5tcEsSM-kWyST0AcgHqIEM8J7XwXkt8V_RxJGE8faXVQL7yIIDyDWXsZk47JZ_tXDo12J2VMPc6JJH0L8Sk9m6coig5zUAM9tT26sG6BOb-lRVT0AYjdCBV2WzK5SpWbV3eIWYgjLYcO00LUzRyaoHFzfPVQqUeZhyq84t68I3VUNkKdpqEtN3Bh_wGdjuifW6ERYoKzoIFoU9RruB8H0hYTv0kWoxL15KvdBIkpwy9lKf_-G5FrUK5LG6cdBvxB9_smqWvoafw31SPOIZaepNYJ-Ai50tHEGL6Jy3LNb25FDlQskTBuo9Q0nqu7PJh2Nu-1LEP7MDHJ-4NjJ_b9Tse-5V0SMs3tyRiCKcUl0mm6UHEEF3xtRUH-Y4Mn8Bk8BjWa4WzG9TyzqzZ-JlCxBYta4w"
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"Flathead\" vs \"Flathead County\"",
+          "entities": [
+            {
+              "id": "50819478-7c7f-48b9-9b4d-53fcec46f3fa",
+              "county": "Flathead",
+              "coords": [
+                48.7596,
+                -113.787
+              ]
+            },
+            {
+              "id": "2f9c73f3-cd71-4005-89b8-32556cec000d",
+              "county": "Flathead County",
+              "coords": [
+                48.7596,
+                -113.787
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "goblin valley state park",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "3eca4e7b-1a2d-478b-8eca-b27eccf393ba",
+          "county": "Emery",
+          "category": "8h",
+          "subcategory": "Film Locations",
+          "coordinates": [
+            38.5667,
+            -110.7069
+          ],
+          "place_id": null
+        },
+        {
+          "id": "f9299b7c-7569-4f8b-81d6-4b81b0c0c71f",
+          "county": "Emery County",
+          "category": "5h",
+          "subcategory": "State Park",
+          "coordinates": [
+            38.5745,
+            -110.7042
+          ],
+          "place_id": "ChIJaSHejn29SYcR-YzTt_DNlTg"
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"Emery\" vs \"Emery County\"",
+          "entities": [
+            {
+              "id": "3eca4e7b-1a2d-478b-8eca-b27eccf393ba",
+              "county": "Emery",
+              "coords": [
+                38.5667,
+                -110.7069
+              ]
+            },
+            {
+              "id": "f9299b7c-7569-4f8b-81d6-4b81b0c0c71f",
+              "county": "Emery County",
+              "coords": [
+                38.5745,
+                -110.7042
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "heber valley railroad",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "c0a791ee-613a-4863-a465-b92138c606f1",
+          "county": "Wasatch",
+          "category": "3h",
+          "subcategory": "Film Locations",
+          "coordinates": [
+            40.5069,
+            -111.413
+          ],
+          "place_id": null
+        },
+        {
+          "id": "7cb3b6b6-bea0-49ec-8b3c-1ba80aabca60",
+          "county": "Wasatch County",
+          "category": "90min",
+          "subcategory": "General",
+          "coordinates": [
+            40.5103,
+            -111.4154
+          ],
+          "place_id": "ATKogpfS9i4H1296LhcdJIabx4irQ3EU6Wd_1wr4DkcokxTdQ-e-MFIRXstTd1RPMymKl9Kz6M6ZkhLTOltJ-29SwbM8QGW41kwptKfoKemKfPIoVMzC6n-zzrzk4lyr_9aZXbGgdKosbp65mNRcCavd42be5et0Rk_GeVwJKuuSj5hi-QsM0ezvdZPCrF6EWJg3hibsq-R_ESL3RrtzQek5EW69AIGunVPFk32QY7gcXeQLCOPYtgjoyilB71GJKus-MYYXWaZxk4Byy_vtsAo1pIY0jvJFDC8oSjZb8N74NbLcE4XT2rzZyynaY-49fAfasv59ulDLwS5KJrhE-4uTeZNewwY7VGV7ZUH6P-jozwT64xURPGp06hZT4lB1oDq-agKCM__FlsJvj0Rp9DA-eUQyltvNc2YO-LWfWXrZrvf2h3BveW0hs44d1EJe0WJEHeHfEbv0XcNljbSdx8mfoHvqP9rVo5cDlOs3lgmu01R2tg3TiVbKdKKRnrVVFsgO1RB86ZU7JMtZXiAXimYzGdcY2922jHoFHI45MRFGX-frhZCzaugjv1ytfsRlxiJh5X2qEozhlTnsfQ"
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"Wasatch\" vs \"Wasatch County\"",
+          "entities": [
+            {
+              "id": "c0a791ee-613a-4863-a465-b92138c606f1",
+              "county": "Wasatch",
+              "coords": [
+                40.5069,
+                -111.413
+              ]
+            },
+            {
+              "id": "7cb3b6b6-bea0-49ec-8b3c-1ba80aabca60",
+              "county": "Wasatch County",
+              "coords": [
+                40.5103,
+                -111.4154
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "helper main street",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "41999da9-dbd7-4512-a0e2-da57ecaa1679",
+          "county": "Carbon",
+          "category": "5h",
+          "subcategory": "Film Locations",
+          "coordinates": [
+            39.6841,
+            -110.8593
+          ],
+          "place_id": "ChIJJXkosCqWTocRQIRjIlM3j08"
+        },
+        {
+          "id": "91831333-ebf9-4cd7-84f7-526994ce7049",
+          "county": "Carbon County",
+          "category": "3h",
+          "subcategory": "General",
+          "coordinates": [
+            39.6875,
+            -111.1154
+          ],
+          "place_id": "ATKogpfgrXUE2ZMirU_1M3NPpIta3prVxyOYGMjNZhanvKxInX7YmcwIi50o9ejIQ6rdNP4mpyaVN8mIOGYRG8THp_o9FtOIXUm-tMuYrTNDsZyAD0ULBGZkNBeqsSqrQm1ZnE1IrsDO3Ppv4RKz_RBGD8rrVRqM2XIjiEnVWv_tEf2icGwKOzfPOy6SpCG8QybZ_LzggtWE3jzGbPqVyjHfAnbGq_6zNuQO_PwLhGiCfWS8wtMoFHsdkKjEAltPooTF00nM7Z6ghZUC3U_nY44nxQ9TLfV1KWEEZCHnrSD6qoP8x9LMd86cFJeGA1lJthuEIpUIW26hiVkzXPTG3RZmEYf5mdUDC1dtVbWlCkZE-2HVGNhcDn1JguMOtOCLFIc6slqrz0RroCNl3hzaayh9mPt1_4jzcM9fd68eyVF6JnBAOdb8lVWAFH73_Ao_hYO7Cc25iDLXUARVMQz5IAlgTPRTOpVzJAQgBcTV064nMi6J6fhxWDr3aLEy3sI35bRCq-Tvv8J8lstDh5oIlSyZ8Wq8a73O-pChDsbM8xTaZYJnr717m7fvD3gTa3SI_CeaG5iKOCVUrdLbEA"
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"Carbon\" vs \"Carbon County\"",
+          "entities": [
+            {
+              "id": "41999da9-dbd7-4512-a0e2-da57ecaa1679",
+              "county": "Carbon",
+              "coords": [
+                39.6841,
+                -110.8593
+              ]
+            },
+            {
+              "id": "91831333-ebf9-4cd7-84f7-526994ce7049",
+              "county": "Carbon County",
+              "coords": [
+                39.6875,
+                -111.1154
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "hi-fi murders site",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "1cc6f587-b41a-4eee-bb7d-87df3c0ebc3b",
+          "county": "Weber",
+          "category": "3h",
+          "subcategory": "Historical Sites",
+          "coordinates": [
+            41.223,
+            -111.9738
+          ],
+          "place_id": "ChIJFxWpBWAFU4cRN7l7ohuG90Y"
+        },
+        {
+          "id": "e54a4006-088a-49cc-ab45-fbea67ea2b35",
+          "county": null,
+          "category": "5h",
+          "subcategory": "True Crime Site",
+          "coordinates": [
+            41.228743,
+            -111.973584
+          ],
+          "place_id": "ChIJFxWpBWAFU4cRN7l7ohuG90Y"
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"Weber\" vs \"null\"",
+          "entities": [
+            {
+              "id": "1cc6f587-b41a-4eee-bb7d-87df3c0ebc3b",
+              "county": "Weber",
+              "coords": [
+                41.223,
+                -111.9738
+              ]
+            },
+            {
+              "id": "e54a4006-088a-49cc-ab45-fbea67ea2b35",
+              "county": null,
+              "coords": [
+                41.228743,
+                -111.973584
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "hoover dam",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "023be11f-95a3-4703-ac6f-275260cd55ec",
+          "county": "Clark",
+          "category": "8h",
+          "subcategory": "Film Locations",
+          "coordinates": [
+            36.0161,
+            -114.7378
+          ],
+          "place_id": "ChIJ116XnhUtyYARXlXcA7DU2ac"
+        },
+        {
+          "id": "fc15e01d-a281-4c1b-af10-6bc5ab839346",
+          "county": "Clark County",
+          "category": "8h",
+          "subcategory": "General",
+          "coordinates": [
+            36.0162,
+            -114.7375
+          ],
+          "place_id": "ATKogpf39LMJNRWdvJRXrRLhG5IkZfdPL0MpylHQlyBIZEPXqeP1FpNj1z0DBWcYXLxf29JFiMm3kwHjT_LXQ37QlooO2KG5TJE89l71yLf9_8yQugZRRUXcajE6DvXIr4sI-h84ujUwmq3kqP7LSCEPDbnDvwognwSeUsI4GPcxtKgqHiu-n2BU7lg_3ulS0w5oyaOfn-us3eXBkVKgAR7QqnRaa0qntqTNxDyRLveje2q85ObFt-w8eit7QNdPh5qj9fPxAlTUAAjbSi00KKAlvsc6LfENeZkdIbNwen3ltIv2y3Vs4klpdUaHsxOSTeooYJrvyy6v61US7gWnsS5c1GBFy2wSwVf_UMkIQ2a6wCSr2NJv6Ncd6LkOuv2ZBf9QajoaNvsxxMDmCucIGla_XOXaZesFGfpieDRuqmVf9JmLPXitc6izrIWE2qgMEBukct9kSMKSL6DhPdh6Fhpsi9YP_1I0fmPNY3oXHzaVmRSReP2J8u0f7kvGSoXeWTi9dxto6JQSaD9_KfN38kl9RGIxIgZM3bEPn2emxtzTzxULyREzSVrxfq-Qa_NcCkGB2v_tNYvqxp1CiA"
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"Clark\" vs \"Clark County\"",
+          "entities": [
+            {
+              "id": "023be11f-95a3-4703-ac6f-275260cd55ec",
+              "county": "Clark",
+              "coords": [
+                36.0161,
+                -114.7378
+              ]
+            },
+            {
+              "id": "fc15e01d-a281-4c1b-af10-6bc5ab839346",
+              "county": "Clark County",
+              "coords": [
+                36.0162,
+                -114.7375
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "lafferty murders site",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "56f929b8-3d1c-4b07-95fe-3e0a6d2b1544",
+          "county": "Utah",
+          "category": "30min",
+          "subcategory": "Historical Sites",
+          "coordinates": [
+            40.377,
+            -111.7966
+          ],
+          "place_id": null
+        },
+        {
+          "id": "79768723-779c-4bf0-b2c9-0095409df489",
+          "county": null,
+          "category": "3h",
+          "subcategory": "General",
+          "coordinates": [
+            40.366389,
+            -111.783889
+          ],
+          "place_id": null
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"Utah\" vs \"null\"",
+          "entities": [
+            {
+              "id": "56f929b8-3d1c-4b07-95fe-3e0a6d2b1544",
+              "county": "Utah",
+              "coords": [
+                40.377,
+                -111.7966
+              ]
+            },
+            {
+              "id": "79768723-779c-4bf0-b2c9-0095409df489",
+              "county": null,
+              "coords": [
+                40.366389,
+                -111.783889
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "mesa verde national park",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "161d0e10-eeb7-4080-afd5-65b24ffb7b73",
+          "county": "Montezuma",
+          "category": "8h",
+          "subcategory": "Film Locations",
+          "coordinates": [
+            37.1853,
+            -108.49
+          ],
+          "place_id": null
+        },
+        {
+          "id": "9a74497f-7403-44e3-93ca-4e465d1e2680",
+          "county": "Montezuma County",
+          "category": "8h",
+          "subcategory": "National Park",
+          "coordinates": [
+            37.1853,
+            -108.4618
+          ],
+          "place_id": "ATKogpfUMUmA9Dyp1-wF21_67R8ahRcCS_4YCmyFEPFvsZf4TdfCYFXWnAXm-vAfGbov8S3qCSalBXjjlMmdjdnq0GOgobzikr80BG0qrq5TdLZDJrQvuM0dxO5PTfRoLGI0Y_fA0tJLuErOBsn0LLgCplsVLdePGBQh9kqag_BFWBBXP8jlm70jZHlLjqwQiMqdzppPGgouaNL7Fu-3j8sjFmPsfB2sQVduUl9_B662e30V120v6Dozm_UUCvuDDC8xvaOrucWiRU-M7yC34D09T94sERG0t9gR8f58ELCz0_YuT8cAHvtwrcXnBrljrUKVIUzl_4BlhrYLEUJtDUmU7e-_pYx4iMKM7gj3YGboycRlYuD71ZkEbtWI9XQXbtgZHVbjiyQ-xBev4QyWApKM9epkwZBIyX-wRk-U68L0b27tiDUahjfwWA8nfxzq1h9r56SY-cWmVCNJxMzNIgyUTY5daRXYHY5nAvYZXfLOJiL9W5oDWiY2KJriD7XESZ7xrCrN63efpP42D_2Won0I_ycdxVIgeh0LJwpS07-Eiryw-Ux8S3u9FJP4W-u6aum6Jfobo_Y6"
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"Montezuma\" vs \"Montezuma County\"",
+          "entities": [
+            {
+              "id": "161d0e10-eeb7-4080-afd5-65b24ffb7b73",
+              "county": "Montezuma",
+              "coords": [
+                37.1853,
+                -108.49
+              ]
+            },
+            {
+              "id": "9a74497f-7403-44e3-93ca-4e465d1e2680",
+              "county": "Montezuma County",
+              "coords": [
+                37.1853,
+                -108.4618
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "mountain meadows massacre site",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "bcfab36a-65ed-47c9-b233-a72775064159",
+          "county": null,
+          "category": "5h",
+          "subcategory": "True Crime Site",
+          "coordinates": [
+            37.481234,
+            -113.651234
+          ],
+          "place_id": "ChIJaTglTIt3yoARXeGpPPWYq10"
+        },
+        {
+          "id": "0b9e3a11-9d19-4c0a-bb0d-51a4861a6e12",
+          "county": "Washington",
+          "category": "8h",
+          "subcategory": "Historical Sites",
+          "coordinates": [
+            37.4294,
+            -113.6872
+          ],
+          "place_id": null
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"null\" vs \"Washington\"",
+          "entities": [
+            {
+              "id": "bcfab36a-65ed-47c9-b233-a72775064159",
+              "county": null,
+              "coords": [
+                37.481234,
+                -113.651234
+              ]
+            },
+            {
+              "id": "0b9e3a11-9d19-4c0a-bb0d-51a4861a6e12",
+              "county": "Washington",
+              "coords": [
+                37.4294,
+                -113.6872
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    }
+  ],
+  "mediumRiskConflations": [],
+  "allFindings": [
+    {
+      "name": "antelope canyon",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "a9f66e39-21a4-4639-8e02-45c04c6494bf",
+          "county": "Coconino County",
+          "category": "8h",
+          "subcategory": "Hiking",
+          "coordinates": [
+            36.8619,
+            -111.3743
+          ],
+          "place_id": "ChIJDzCEm_QRNIcRzfsozz2UP10"
+        },
+        {
+          "id": "6fc44caa-a2dc-4d89-affd-eafc47945894",
+          "county": "Coconino",
+          "category": "8h",
+          "subcategory": "Film Locations",
+          "coordinates": [
+            36.8619,
+            -111.3743
+          ],
+          "place_id": "ChIJCw6gm_QRNIcRm6dqrQgWNpg"
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"Coconino County\" vs \"Coconino\"",
+          "entities": [
+            {
+              "id": "a9f66e39-21a4-4639-8e02-45c04c6494bf",
+              "county": "Coconino County",
+              "coords": [
+                36.8619,
+                -111.3743
+              ]
+            },
+            {
+              "id": "6fc44caa-a2dc-4d89-affd-eafc47945894",
+              "county": "Coconino",
+              "coords": [
+                36.8619,
+                -111.3743
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "bishop castle",
+      "recordCount": 3,
+      "destinations": [
+        {
+          "id": "da87df65-bb74-4e98-8510-9670c638072c",
+          "county": "Custer",
+          "category": "8h",
+          "subcategory": "Film Locations",
+          "coordinates": [
+            38.0333,
+            -105.2667
+          ],
+          "place_id": "ChIJ0-RJ1s6iE4cRExnfu52nyrQ"
+        },
+        {
+          "id": "71772503-e972-4667-8ad4-695c421ed1f9",
+          "county": "Pueblo",
+          "category": "8h",
+          "subcategory": "Historical Sites",
+          "coordinates": [
+            37.9811,
+            -105.2489
+          ],
+          "place_id": "ChIJ0-RJ1s6iE4cRExnfu52nyrQ"
+        },
+        {
+          "id": "e5dfa00d-56bd-4288-ba42-83ecb8f20b26",
+          "county": null,
+          "category": "3h",
+          "subcategory": "Natural Wonder",
+          "coordinates": [
+            39.6669,
+            -105.594
+          ],
+          "place_id": "ChIJ0-RJ1s6iE4cRExnfu52nyrQ"
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"Custer\" vs \"Pueblo\"",
+          "entities": [
+            {
+              "id": "da87df65-bb74-4e98-8510-9670c638072c",
+              "county": "Custer",
+              "coords": [
+                38.0333,
+                -105.2667
+              ]
+            },
+            {
+              "id": "71772503-e972-4667-8ad4-695c421ed1f9",
+              "county": "Pueblo",
+              "coords": [
+                37.9811,
+                -105.2489
+              ]
+            }
+          ]
+        },
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"Custer\" vs \"null\"",
+          "entities": [
+            {
+              "id": "da87df65-bb74-4e98-8510-9670c638072c",
+              "county": "Custer",
+              "coords": [
+                38.0333,
+                -105.2667
+              ]
+            },
+            {
+              "id": "e5dfa00d-56bd-4288-ba42-83ecb8f20b26",
+              "county": null,
+              "coords": [
+                39.6669,
+                -105.594
+              ]
+            }
+          ]
+        },
+        {
+          "type": "COORDINATE_DISTANCE",
+          "severity": "CRITICAL",
+          "message": "Locations are 183.8km apart - likely different entities",
+          "distance": 183845.56557387323,
+          "entities": [
+            {
+              "id": "da87df65-bb74-4e98-8510-9670c638072c",
+              "location": "38.0333, -105.2667"
+            },
+            {
+              "id": "e5dfa00d-56bd-4288-ba42-83ecb8f20b26",
+              "location": "39.6669, -105.594"
+            }
+          ]
+        },
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"Pueblo\" vs \"null\"",
+          "entities": [
+            {
+              "id": "71772503-e972-4667-8ad4-695c421ed1f9",
+              "county": "Pueblo",
+              "coords": [
+                37.9811,
+                -105.2489
+              ]
+            },
+            {
+              "id": "e5dfa00d-56bd-4288-ba42-83ecb8f20b26",
+              "county": null,
+              "coords": [
+                39.6669,
+                -105.594
+              ]
+            }
+          ]
+        },
+        {
+          "type": "COORDINATE_DISTANCE",
+          "severity": "CRITICAL",
+          "message": "Locations are 189.8km apart - likely different entities",
+          "distance": 189820.8892964809,
+          "entities": [
+            {
+              "id": "71772503-e972-4667-8ad4-695c421ed1f9",
+              "location": "37.9811, -105.2489"
+            },
+            {
+              "id": "e5dfa00d-56bd-4288-ba42-83ecb8f20b26",
+              "location": "39.6669, -105.594"
+            }
+          ]
+        }
+      ],
+      "severity": 3
+    },
+    {
+      "name": "bodie ghost town",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "f3b93fc9-03b5-49e6-8711-54d4d3404b02",
+          "county": "Mono",
+          "category": "12h",
+          "subcategory": "Historical Sites",
+          "coordinates": [
+            38.2125,
+            -119.0075
+          ],
+          "place_id": "ChIJO0yjGCfKl4AR21EXPYR1Bpg"
+        },
+        {
+          "id": "d05aa436-7c00-4b57-805e-ba0d1873da55",
+          "county": null,
+          "category": "3h",
+          "subcategory": "high",
+          "coordinates": [
+            38.2124,
+            -119.0126
+          ],
+          "place_id": null
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"Mono\" vs \"null\"",
+          "entities": [
+            {
+              "id": "f3b93fc9-03b5-49e6-8711-54d4d3404b02",
+              "county": "Mono",
+              "coords": [
+                38.2125,
+                -119.0075
+              ]
+            },
+            {
+              "id": "d05aa436-7c00-4b57-805e-ba0d1873da55",
+              "county": null,
+              "coords": [
+                38.2124,
+                -119.0126
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "bonneville salt flats",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "7b2444ba-7360-4756-a175-0e5a86b0f1a0",
+          "county": "Tooele",
+          "category": "5h",
+          "subcategory": "Film Locations",
+          "coordinates": [
+            40.75,
+            -113.8667
+          ],
+          "place_id": "ChIJvRLRfMQ5rIARek9UCQ-TdkA"
+        },
+        {
+          "id": "c4379aa0-f903-44ac-9a25-f0e68c5d2258",
+          "county": "Tooele County",
+          "category": "3h",
+          "subcategory": "General",
+          "coordinates": [
+            40.7787454,
+            -113.8352043
+          ],
+          "place_id": "ATKogpeAIG1bR0B66nB4jVxGOE505AhNDTqGperLGfMDzkAnetkFpbTHzdCiVye635ILQENrY45PcIsyCP_GUUNXRkXYcdDkc1DY_lOg8SWroCwlZC-iNVgrxSbTtLcbTrhvZcIQCztUJc1H3dj4v5pSR1SHxNVsHcmaH7X6t176_mHdeXOGOKy0Lu2-0Q9Vxqw6noWVL20Q8Lwgh3h7Im72tq8qbT2m51wLB8A2qTz0Nua2zMcuhsprI-h8bSgBoa3nEwcrBiADHUNR_bAlAEWAt7jSbfhNYFMo_PSTeXxXYV5pGS_U39r8Lorr0oJ9YXJ7UyYk-mvr1vNFR4iBU2dGT6K3SEiI7S1MVzi_7uWs-jVuOePiFMwMN55CAwW4mvVH29za1Z1_y-BObW83ALoDbX2DEG99pKIiOuKWR4BH4cmT0GJrzzNOfBuXy38osOwoEDrs2YO8HZSO5CUeBmu3tw7RFl-cLQQUun1aYPv2lROWAqSM6-zik7tABA_kkB99NXDAGwpqiip7XgmZ_uR5ITsw-A7y8DR6jzI3pGbSs6o6EjuRNrnfn3nkptxFPB2mks2qmh6h"
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"Tooele\" vs \"Tooele County\"",
+          "entities": [
+            {
+              "id": "7b2444ba-7360-4756-a175-0e5a86b0f1a0",
+              "county": "Tooele",
+              "coords": [
+                40.75,
+                -113.8667
+              ]
+            },
+            {
+              "id": "c4379aa0-f903-44ac-9a25-f0e68c5d2258",
+              "county": "Tooele County",
+              "coords": [
+                40.7787454,
+                -113.8352043
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "city of rocks national reserve",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "a807a71e-2cb9-49b4-8486-bb5f94273720",
+          "county": "Cassia",
+          "category": "8h",
+          "subcategory": "Film Locations",
+          "coordinates": [
+            42.0667,
+            -113.7167
+          ],
+          "place_id": null
+        },
+        {
+          "id": "be947228-508e-4ea1-9ec0-4a3c5117e4be",
+          "county": "Cassia County",
+          "category": "3h",
+          "subcategory": "General",
+          "coordinates": [
+            42.0669,
+            -113.7028
+          ],
+          "place_id": "ATKogpckoVqsYQpITPKutWknxRyeLcTY5OZNgxWvIcczGXeMqAHkG46O4kuPbM2GeHKQ7T3v_wRwC6uQFkQtx0ry7oi17I_QQQqd2BvNOBMt8G1ELmsir50LNvw4o5ExK24T5zwhAWvidcYGCHDpFwOpYgpdfKSLA1oqjVxlcuNyHenMK16ptynZFIF_AzqyYSkEoZsiODAGKffwVmMmj7duOYYX66R9YJDT3KtA4L7qBI5aBBidvo-uWFlf9AL7TP0V0-HLBJeIzQVwAYv9rr53qPNHGB3VDYUmd43tg2nI6nPm01VG-QQ3H9bBV5h5yHiZbqN3XDxEr-M4WrOqYUprcDrydiYQk9a9Kxs_43jXUPVkLLeXwFmTAl6yuUWDLBAsfhVkknrdwbX8inVNQH9R0ApyYAy8C3_-z8ufxin3EPoPYJjasTcTrGVQkMG4h5PJPOlQTFAwfDEo6FubHvwb324ymn0oGbRe_sZP47Z1l6aHWZ1T2_a9Cz2ZYSmJKkTRweJ7pWVuH2YHUZJ08453yib4t5tDw3sXZSVjy1lIQlOdmJAlQRVFzk1PD4smc5bh91ZSAl1t"
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"Cassia\" vs \"Cassia County\"",
+          "entities": [
+            {
+              "id": "a807a71e-2cb9-49b4-8486-bb5f94273720",
+              "county": "Cassia",
+              "coords": [
+                42.0667,
+                -113.7167
+              ]
+            },
+            {
+              "id": "be947228-508e-4ea1-9ec0-4a3c5117e4be",
+              "county": "Cassia County",
+              "coords": [
+                42.0669,
+                -113.7028
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "cleveland-lloyd dinosaur quarry",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "3c5c4a05-7e4b-4891-9158-d598a130b538",
+          "county": null,
+          "category": "3h",
+          "subcategory": "Natural Wonder",
+          "coordinates": [
+            39.3233,
+            -110.6886
+          ],
+          "place_id": "ChIJT0aA8N01SYcR6LvCjveQxCI"
+        },
+        {
+          "id": "0ba2c281-eaf8-421b-833e-d3010b24eac7",
+          "county": "Emery County",
+          "category": "3h",
+          "subcategory": "General",
+          "coordinates": [
+            39.3225691,
+            -110.6878431
+          ],
+          "place_id": "ATKogpe1vaN_JW4LfzG6tIjSq-qJzZAhx6Y-3rnO58yHIf0FlrifgU6H-pB6W2QnAa5x5QQdvdFDdpTVH3lvIEF4bxwH_qDwbM741rPH6CAqYLcos7OaA-dGqnCwshfaclWjAK1J0EVRh1WJby7YFdfNwW30Gpq5lgqVwf_2gUCqNPejWtsV34ev2UAzH-ullc9rBdGPF8tYe4PRmXQOgh-IfgGJytyL9j4B1IxJ-IdSUgknu-Dgocewrc36jwZIrRX7OWdnJQAIedqcww-AQP845QQkn8XiT2CGwgaUvpkQ2BTEcI-tXqykDntX2_rGdrWR-pDYhLqk9epmOEMI6ZXQ5U2yW-rvzrdblFWyR70ky_WzikgDL16L4xCbUj_21DuONw0iIW2vKkVObmRpGaPAAUuwb_Ito1FG7QmTR6bYnK2dtaRuRzkVhm35eVBOxlN-QhSuo0C1ETWNZxLAWeRR0l2oIej7YYLXvbAOltp9d6JU6xz1ewCzFPafK6QEwAzH9Piny5gEqOy47o6tttxd9FNQ1a8CXrnyVjbNBLy2tNVlgtNv_T2r9Uhep5HSWRRPaDXeAs2_Bmc97Q"
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"null\" vs \"Emery County\"",
+          "entities": [
+            {
+              "id": "3c5c4a05-7e4b-4891-9158-d598a130b538",
+              "county": null,
+              "coords": [
+                39.3233,
+                -110.6886
+              ]
+            },
+            {
+              "id": "0ba2c281-eaf8-421b-833e-d3010b24eac7",
+              "county": "Emery County",
+              "coords": [
+                39.3225691,
+                -110.6878431
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "coral pink sand dunes state park",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "e72fcc90-8011-4850-9771-83cfec382663",
+          "county": "Kane",
+          "category": "8h",
+          "subcategory": "Film Locations",
+          "coordinates": [
+            37.0347,
+            -112.7267
+          ],
+          "place_id": "ChIJVTGil4cpy4ARM9DFIqCJLWg"
+        },
+        {
+          "id": "24533dd9-db5f-4a7b-bf1c-984a6a772370",
+          "county": "Kane County",
+          "category": "5h",
+          "subcategory": "State Park",
+          "coordinates": [
+            37.0577,
+            -112.7641
+          ],
+          "place_id": "ATKogpfS3sFkKH11KZ7vjlygpHC9m7vUmUruFbZtFvhycNlcj57iLsIHvw9jJ2FwwwOpbx_diYOc9neB6pVC2YjRaqLfOi-bNxdBbI7Zvanf7Lj0y0k0YN6KED7FhUlvHfs-2QD5OlepN9UBBPZxqYE97oEWuVg0yYGbYFtVA5V0B0ytxeXCtyKMTO4Ij98Ah2nhgzYbxXXvhRyxQyKGgyvTPGaCvcPvRlnYJWhTHFPxVAh7Qcw9agIEKX5gWyp-E7z1YSknQi6gEijdCHEYe6FVWfX0UEG16t7AjZWFW7CUKM3wzYxOaadHLeNiIAy5lXf0QcJ0qSev0Xs7R3dIsVY83sMXz7ii4pEgUv5t3aApG3B1IeVwpX-V5CxA0R3t_7eY_62BXv_b0kbTZJRkzWP6-ZqNvh8KKcXWW6YD_B5DKRrIxHbKfaLR7b6LS2DiZgK0ocT6CwQAwhnJg7vW9-b9mqIs1QdHlRWdAGnn0msn1Lcz6oFCtrAgCTOCvQ7z_FjcK4vvNkXAN_C4eqzPRAH3b7RigdxkhmiynZ3_zmon0lyitJLvkZdRUY8NHkCffM5NgSLpyPI_"
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"Kane\" vs \"Kane County\"",
+          "entities": [
+            {
+              "id": "e72fcc90-8011-4850-9771-83cfec382663",
+              "county": "Kane",
+              "coords": [
+                37.0347,
+                -112.7267
+              ]
+            },
+            {
+              "id": "24533dd9-db5f-4a7b-bf1c-984a6a772370",
+              "county": "Kane County",
+              "coords": [
+                37.0577,
+                -112.7641
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "craters of the moon national monument",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "5e957723-134d-4038-a34f-b2cf5c5ba6a7",
+          "county": "Butte",
+          "category": "8h",
+          "subcategory": "Film Locations",
+          "coordinates": [
+            43.4165,
+            -113.5166
+          ],
+          "place_id": null
+        },
+        {
+          "id": "5c84fb35-2f99-4e41-ae3b-ffe053216722",
+          "county": "Butte County",
+          "category": "5h",
+          "subcategory": "Historical Sites",
+          "coordinates": [
+            43.4619,
+            -113.5161
+          ],
+          "place_id": "ATKogpfLLFdwicWYCFqF8lQl9HSjI8D3sS38R-bro3TQPzvNr34tjV25rm6ZgQRpQbSXTmihowWU3pGqhjrKNmSrnBas0cI2c0H19S7uhfD3AC48im_AaPGwf6H4hm10Omqxp2zGFM7wLOGclgj7Z3crwt97oqUHMfCvX-C_P56BpfcFXam5t9UXOYH7Fh2YhWEI06riwJvROMzAFaZOLNREGdidpwUA_Q4RXPgRr_S7FK_cp7ta_e_UL16HDTVOQqfZjx8cSsmj4OevmmNFT3JFRI8zUhBZYwEpnT8NPP8XXqVP1347RHYFMJsjaUvKQOAZkDZNF_V5fF8aiMyz4tw4xckkpoa3lsNs9c1giGaxP59Sxlbt6WNnkU5LtQUrz9pUR_awflBuZ4Q-Pv9gsJCJylKogq7yt937RRx-ZkzUijQOVqxijfFUHZYLsdGV_-sCGaFCX_DfhffWt-HRVqf52SrC-lpFiACTqLLilgQL84HXN-kEL7YP9REHKrIcRGKmLyK7jhXe2594BwJT-TIxGaDaaaOsiVH8oUqF3hjjacV1Bi7Kkn0u1-sbEsJH--cA9mKcTilt"
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"Butte\" vs \"Butte County\"",
+          "entities": [
+            {
+              "id": "5e957723-134d-4038-a34f-b2cf5c5ba6a7",
+              "county": "Butte",
+              "coords": [
+                43.4165,
+                -113.5166
+              ]
+            },
+            {
+              "id": "5c84fb35-2f99-4e41-ae3b-ffe053216722",
+              "county": "Butte County",
+              "coords": [
+                43.4619,
+                -113.5161
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "death valley national park",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "81379533-1e4f-4bb1-b05a-b46ad859aa0f",
+          "county": "Inyo County",
+          "category": "8h",
+          "subcategory": "National Park",
+          "coordinates": [
+            36.2424,
+            -116.8169
+          ],
+          "place_id": "ChIJR4qudndLx4ARVLDye3zwycw"
+        },
+        {
+          "id": "7d8b55f5-d9d8-4f4e-9bb1-0d215ddeb8e7",
+          "county": "Inyo",
+          "category": "12h",
+          "subcategory": "Film Locations",
+          "coordinates": [
+            36.5054,
+            -117.0794
+          ],
+          "place_id": "ChIJR4qudndLx4ARVLDye3zwycw"
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"Inyo County\" vs \"Inyo\"",
+          "entities": [
+            {
+              "id": "81379533-1e4f-4bb1-b05a-b46ad859aa0f",
+              "county": "Inyo County",
+              "coords": [
+                36.2424,
+                -116.8169
+              ]
+            },
+            {
+              "id": "7d8b55f5-d9d8-4f4e-9bb1-0d215ddeb8e7",
+              "county": "Inyo",
+              "coords": [
+                36.5054,
+                -117.0794
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "devils tower national monument",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "1185dbfe-abe1-4574-9e8d-da081a111ae8",
+          "county": "Crook",
+          "category": "90min",
+          "subcategory": "Film Locations",
+          "coordinates": [
+            44.5902,
+            -104.7153
+          ],
+          "place_id": "ChIJOT5U8z8GM1MResed1BOdJKk"
+        },
+        {
+          "id": "7b3cf701-6b7b-4140-9d1b-55cd5cf3aeec",
+          "county": "Crook County",
+          "category": "8h",
+          "subcategory": "Historical Sites",
+          "coordinates": [
+            44.5902,
+            -104.715
+          ],
+          "place_id": "ATKogpeqsBAPPP0nOsYXXK3PzLjlCpjcGsfSGemhX23nqQwBKd5BsD-SuQL6hnvjCtjVmYYSBn7URE8tO87EJUlAqHans0D-lL_OSY-gV40hP5Kc3sUlbwcL1eNpOG1tDiZ5f-3bJd43oLFuicMx6mRs4umfPtGaB3tGQbtf2aWqnsUtLkKYG08J6bPD6ao_A3CaMOLPEQ0NPT2FJsZCrxFlDKJYzJQL6rXW2jVmHxc3-qE_LtTzFKC2gddzkkOSstr7MGhmhFCNYYuHFv4PRB4Niu5RI6JT2MHX44MQVy2m3FtIO3HTDiV2M2MqC5mcO0P9GRpGqIiG2Ft1UDe0djLRIkI9TT-PD-wP2m7xgHapqE8ODIKrX6qgVI4kPCJOTdL8Ik4EY433X9GsYnr1ojekFR3SFXM_3g_gmOR_4h9ck1RsUz7ua4i5iqJ1WbRIgTexlL59SMo0P3Z1wZj1fUQF22doK-CLOFIxTGQ3GF6yke4EqlC045AYheXJw7NBjTp-u6PbRWZB4waIqI8RHP8Wex52XvF3I37NBAh5UxXPUGnprmrIHOf1EohXv8wE5Byg-kw3MRRc"
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"Crook\" vs \"Crook County\"",
+          "entities": [
+            {
+              "id": "1185dbfe-abe1-4574-9e8d-da081a111ae8",
+              "county": "Crook",
+              "coords": [
+                44.5902,
+                -104.7153
+              ]
+            },
+            {
+              "id": "7b3cf701-6b7b-4140-9d1b-55cd5cf3aeec",
+              "county": "Crook County",
+              "coords": [
+                44.5902,
+                -104.715
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "dinosaur national monument",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "68c36d60-61a0-431b-ad9c-c87726c5ccda",
+          "county": null,
+          "category": "3h",
+          "subcategory": "Educational",
+          "coordinates": [
+            null,
+            null
+          ],
+          "place_id": "ChIJK24Qz-kCRYcRPf3mCvjLJlE"
+        },
+        {
+          "id": "4b229ea6-5434-44d2-96fe-1a1a9776e250",
+          "county": "Moffat County",
+          "category": "3h",
+          "subcategory": "Historical Sites",
+          "coordinates": [
+            40.485,
+            -108.9942
+          ],
+          "place_id": "ATKogpfPH2SgOpsAQH7o97EPnkDs___O1aYQSJ1z1oa5cId08kCnwnMLhYjtyM4Q9WjlGUFuA4IAT58F8SeNaZi9Bp0p1zchvs3cbrTKQ2FEoRqVmevveshbEYWx_GrH4nd3fxp3Z1bCuebyrXFjzkNhv1qkrw7FFdI_t1ilLNEw6c0VPi6FHTJpndj1IdkHkJiS8IEcx1E9uVpKnUhsBn5qObRPzhBLdWKROfDR7daiyRLlH_7o8DAosmRPwn9K7-eVF_fPDy7enzN8wULfU1Sicpcqhi_BlaFQUP-dO1aQ1UF8osGODUhUX55itfQ2DfsbEKebjzmDcPFCnifFDY9tNNYqMhhD0L1r-UzgIY4_m3Tx7X3IxkEXOj9czd9Rf29FfVlvIJ_Bf9qw-XLc9hU6lKUU8pXHaXKXIGuoXpOKc1ve372P66tYU_01GIc4Xen7ihfvPON4EPp0wPXey0q1S7GNmqN7DXWSjN3POk2RTvIx8TBo4hE7fblsJCfSC6RIzcG3eDr06u4PYFmBfMle7vN9KPKVL_0bYu9PtsVAu2XqD5uW_nuMTCPz4bF47FBuseQPsA"
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"null\" vs \"Moffat County\"",
+          "entities": [
+            {
+              "id": "68c36d60-61a0-431b-ad9c-c87726c5ccda",
+              "county": null,
+              "coords": [
+                null,
+                null
+              ]
+            },
+            {
+              "id": "4b229ea6-5434-44d2-96fe-1a1a9776e250",
+              "county": "Moffat County",
+              "coords": [
+                40.485,
+                -108.9942
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "flaming gorge national recreation area",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "a4c53b39-a8fe-4cb4-aeea-e70f93fe123d",
+          "county": null,
+          "category": "3h",
+          "subcategory": "Natural Wonder",
+          "coordinates": [
+            40.92,
+            -109.42
+          ],
+          "place_id": "ChIJod1YDyqgWocRS86BiPpFk2Y"
+        },
+        {
+          "id": "447f60bb-33de-4e89-a7c3-40785624027c",
+          "county": "Daggett County",
+          "category": "3h",
+          "subcategory": "Recreation",
+          "coordinates": [
+            40.9178,
+            -109.4203
+          ],
+          "place_id": "ATKogpedSh6CRNerG7JoRDEFeMjJWfGiHtGondSwxOLu89DV9vKoJDNgTfemvyz3iZ4fZFGMdIb7BDbZipNwTeo5UNwfCV1tvDYJlglBfcA9Ljeznb10frm-OsvlCZpq9xOWVwj5eMtMbzx-uiJw9WzqJvm3k_rKOhNdvFmJ01WehmYR9rzD3JgP1v_1u625j_atIGIyYXKRHa1mXmoAUft4Ya4SRtjh0hxrGp3pWvPuz9hqAG83K4gQ-hdWz8q88My8rHr_hD-KZ8pxdVXtfAX57le7LcrvuW8EhUE3QDXdu-CUwoaSu2INk512tzmqGCF6tgfzjMNKtizt5Fl40bPgrrSNbNFAQwG5GnrQarIXVw8eGMN7tyWUG7V5jU0zihsN6EUglDfZFnk9tKoC8jX108tvn6ZP7PZV9WCjCIi5Ys0m9SYKV3osKCy3OXdL0lHXGk933PtMBj2a-sTOH9ttIZ6kGlOrXX_SJe3YZ0Xy0uDAgtG62ffdCPTXhbGDgCUdtxr-RTAm22CxSiemcyzA6oZEqlkMIj9MHzORc78q6fwk9HnYBcsLXUhH54hf01HqL-6Iid0S12l3TQ"
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"null\" vs \"Daggett County\"",
+          "entities": [
+            {
+              "id": "a4c53b39-a8fe-4cb4-aeea-e70f93fe123d",
+              "county": null,
+              "coords": [
+                40.92,
+                -109.42
+              ]
+            },
+            {
+              "id": "447f60bb-33de-4e89-a7c3-40785624027c",
+              "county": "Daggett County",
+              "coords": [
+                40.9178,
+                -109.4203
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "four corners monument",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "973c0fe7-4d60-4dd2-8da8-e478a53e347d",
+          "county": "San Juan",
+          "category": "8h",
+          "subcategory": "Film Locations",
+          "coordinates": [
+            36.9989,
+            -109.0452
+          ],
+          "place_id": "ChIJzQrHydIlOocROplme9JblMk"
+        },
+        {
+          "id": "82d03f11-e289-4fb6-aada-6963069f29de",
+          "county": "Montezuma County",
+          "category": "8h",
+          "subcategory": "Historical Sites",
+          "coordinates": [
+            36.999,
+            -109.0452
+          ],
+          "place_id": "ATKogpf_5qRilFsZDgffjUbb8ANAbbvhuf6f9oFHmIoqvfxh9Jfr0uKmdyNTLPc1IQ8uHut16TbRrEchUVJ7n6z42KgFGr_0bt79tNxZh_Jr4xm0RD3Pgsw85hTiuz7YqUFgybwNjK5WcCIWjkoypVpOQKi8CaYEjcNcb_ErGOtv-q9JDHU4Hl_-8IGOtkxpo8nmL-rCoHyEh1IWUz4Cj2VrhfV_WsLoz-duiod0y_73rxHNVUHBBhiNjguK9lnbq8BGz6ZCSZEt1V_mrls3ZCL0bP92EmyOwgM1uUkVR-czIchwAvr5evmOze6-jFnGKHpUbVxfJsG07pbO_XCGnwbxLZzslxV9reJH3sMu6p8DCtbdDKioAvOWWVGSVC9pDPPodjqyBevCECQGs_Fv20T-mz5Fu_jKp8HIbt-VksqYUNUVoCOsxRaBiTJgqdBHqfvpIz8xiMHcOK1uEosrusn2ua_N9qVrIziL6n-Sl-Xp78u-6RHuFWWsmfNBaVqOhXKSoWSe40ITx4eVckrs7psbrbXbAYy02MvZec1GvMn3pGsJ7JZMNu2Hd_fiG7IUF0F2RNQVDw"
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"San Juan\" vs \"Montezuma County\"",
+          "entities": [
+            {
+              "id": "973c0fe7-4d60-4dd2-8da8-e478a53e347d",
+              "county": "San Juan",
+              "coords": [
+                36.9989,
+                -109.0452
+              ]
+            },
+            {
+              "id": "82d03f11-e289-4fb6-aada-6963069f29de",
+              "county": "Montezuma County",
+              "coords": [
+                36.999,
+                -109.0452
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "frisco ghost town",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "c83a5479-23bd-4ab8-b24a-901fd6b6250f",
+          "county": "Beaver",
+          "category": "30min",
+          "subcategory": "Historical Sites",
+          "coordinates": [
+            38.5239,
+            -113.2486
+          ],
+          "place_id": null
+        },
+        {
+          "id": "aa67eb36-d2ce-4074-b3d9-8b83e89e8c19",
+          "county": null,
+          "category": "3h",
+          "subcategory": "Ghost Town",
+          "coordinates": [
+            38.4792,
+            -113.2458
+          ],
+          "place_id": "ChIJactwxx7xtIARe1RSfpso-F8"
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"Beaver\" vs \"null\"",
+          "entities": [
+            {
+              "id": "c83a5479-23bd-4ab8-b24a-901fd6b6250f",
+              "county": "Beaver",
+              "coords": [
+                38.5239,
+                -113.2486
+              ]
+            },
+            {
+              "id": "aa67eb36-d2ce-4074-b3d9-8b83e89e8c19",
+              "county": null,
+              "coords": [
+                38.4792,
+                -113.2458
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "glacier national park",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "50819478-7c7f-48b9-9b4d-53fcec46f3fa",
+          "county": "Flathead",
+          "category": "90min",
+          "subcategory": "Film Locations",
+          "coordinates": [
+            48.7596,
+            -113.787
+          ],
+          "place_id": "ChIJVVVVVRWQaFMR7F3FFSK8Fq8"
+        },
+        {
+          "id": "2f9c73f3-cd71-4005-89b8-32556cec000d",
+          "county": "Flathead County",
+          "category": "12h",
+          "subcategory": "National Park",
+          "coordinates": [
+            48.7596,
+            -113.787
+          ],
+          "place_id": "ATKogpdhMNRLZ7H4qHUvQnDloXRuvoOhmFNGmFEFP5Zm4gdiAq7pafhNmhG165K2XeMIX3TfmMFnie93Ac9dfhgwtJnaaQHmj8lco7yHvMNYFkShAglBBSN7k90WEB_wTBk_BnU9O9FfT_bu4NghzsizUoCAZbuax3IEQ95RsBuLA2fvjtSxKMgd5tcEsSM-kWyST0AcgHqIEM8J7XwXkt8V_RxJGE8faXVQL7yIIDyDWXsZk47JZ_tXDo12J2VMPc6JJH0L8Sk9m6coig5zUAM9tT26sG6BOb-lRVT0AYjdCBV2WzK5SpWbV3eIWYgjLYcO00LUzRyaoHFzfPVQqUeZhyq84t68I3VUNkKdpqEtN3Bh_wGdjuifW6ERYoKzoIFoU9RruB8H0hYTv0kWoxL15KvdBIkpwy9lKf_-G5FrUK5LG6cdBvxB9_smqWvoafw31SPOIZaepNYJ-Ai50tHEGL6Jy3LNb25FDlQskTBuo9Q0nqu7PJh2Nu-1LEP7MDHJ-4NjJ_b9Tse-5V0SMs3tyRiCKcUl0mm6UHEEF3xtRUH-Y4Mn8Bk8BjWa4WzG9TyzqzZ-JlCxBYta4w"
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"Flathead\" vs \"Flathead County\"",
+          "entities": [
+            {
+              "id": "50819478-7c7f-48b9-9b4d-53fcec46f3fa",
+              "county": "Flathead",
+              "coords": [
+                48.7596,
+                -113.787
+              ]
+            },
+            {
+              "id": "2f9c73f3-cd71-4005-89b8-32556cec000d",
+              "county": "Flathead County",
+              "coords": [
+                48.7596,
+                -113.787
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "goblin valley state park",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "3eca4e7b-1a2d-478b-8eca-b27eccf393ba",
+          "county": "Emery",
+          "category": "8h",
+          "subcategory": "Film Locations",
+          "coordinates": [
+            38.5667,
+            -110.7069
+          ],
+          "place_id": null
+        },
+        {
+          "id": "f9299b7c-7569-4f8b-81d6-4b81b0c0c71f",
+          "county": "Emery County",
+          "category": "5h",
+          "subcategory": "State Park",
+          "coordinates": [
+            38.5745,
+            -110.7042
+          ],
+          "place_id": "ChIJaSHejn29SYcR-YzTt_DNlTg"
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"Emery\" vs \"Emery County\"",
+          "entities": [
+            {
+              "id": "3eca4e7b-1a2d-478b-8eca-b27eccf393ba",
+              "county": "Emery",
+              "coords": [
+                38.5667,
+                -110.7069
+              ]
+            },
+            {
+              "id": "f9299b7c-7569-4f8b-81d6-4b81b0c0c71f",
+              "county": "Emery County",
+              "coords": [
+                38.5745,
+                -110.7042
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "heber valley railroad",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "c0a791ee-613a-4863-a465-b92138c606f1",
+          "county": "Wasatch",
+          "category": "3h",
+          "subcategory": "Film Locations",
+          "coordinates": [
+            40.5069,
+            -111.413
+          ],
+          "place_id": null
+        },
+        {
+          "id": "7cb3b6b6-bea0-49ec-8b3c-1ba80aabca60",
+          "county": "Wasatch County",
+          "category": "90min",
+          "subcategory": "General",
+          "coordinates": [
+            40.5103,
+            -111.4154
+          ],
+          "place_id": "ATKogpfS9i4H1296LhcdJIabx4irQ3EU6Wd_1wr4DkcokxTdQ-e-MFIRXstTd1RPMymKl9Kz6M6ZkhLTOltJ-29SwbM8QGW41kwptKfoKemKfPIoVMzC6n-zzrzk4lyr_9aZXbGgdKosbp65mNRcCavd42be5et0Rk_GeVwJKuuSj5hi-QsM0ezvdZPCrF6EWJg3hibsq-R_ESL3RrtzQek5EW69AIGunVPFk32QY7gcXeQLCOPYtgjoyilB71GJKus-MYYXWaZxk4Byy_vtsAo1pIY0jvJFDC8oSjZb8N74NbLcE4XT2rzZyynaY-49fAfasv59ulDLwS5KJrhE-4uTeZNewwY7VGV7ZUH6P-jozwT64xURPGp06hZT4lB1oDq-agKCM__FlsJvj0Rp9DA-eUQyltvNc2YO-LWfWXrZrvf2h3BveW0hs44d1EJe0WJEHeHfEbv0XcNljbSdx8mfoHvqP9rVo5cDlOs3lgmu01R2tg3TiVbKdKKRnrVVFsgO1RB86ZU7JMtZXiAXimYzGdcY2922jHoFHI45MRFGX-frhZCzaugjv1ytfsRlxiJh5X2qEozhlTnsfQ"
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"Wasatch\" vs \"Wasatch County\"",
+          "entities": [
+            {
+              "id": "c0a791ee-613a-4863-a465-b92138c606f1",
+              "county": "Wasatch",
+              "coords": [
+                40.5069,
+                -111.413
+              ]
+            },
+            {
+              "id": "7cb3b6b6-bea0-49ec-8b3c-1ba80aabca60",
+              "county": "Wasatch County",
+              "coords": [
+                40.5103,
+                -111.4154
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "helper main street",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "41999da9-dbd7-4512-a0e2-da57ecaa1679",
+          "county": "Carbon",
+          "category": "5h",
+          "subcategory": "Film Locations",
+          "coordinates": [
+            39.6841,
+            -110.8593
+          ],
+          "place_id": "ChIJJXkosCqWTocRQIRjIlM3j08"
+        },
+        {
+          "id": "91831333-ebf9-4cd7-84f7-526994ce7049",
+          "county": "Carbon County",
+          "category": "3h",
+          "subcategory": "General",
+          "coordinates": [
+            39.6875,
+            -111.1154
+          ],
+          "place_id": "ATKogpfgrXUE2ZMirU_1M3NPpIta3prVxyOYGMjNZhanvKxInX7YmcwIi50o9ejIQ6rdNP4mpyaVN8mIOGYRG8THp_o9FtOIXUm-tMuYrTNDsZyAD0ULBGZkNBeqsSqrQm1ZnE1IrsDO3Ppv4RKz_RBGD8rrVRqM2XIjiEnVWv_tEf2icGwKOzfPOy6SpCG8QybZ_LzggtWE3jzGbPqVyjHfAnbGq_6zNuQO_PwLhGiCfWS8wtMoFHsdkKjEAltPooTF00nM7Z6ghZUC3U_nY44nxQ9TLfV1KWEEZCHnrSD6qoP8x9LMd86cFJeGA1lJthuEIpUIW26hiVkzXPTG3RZmEYf5mdUDC1dtVbWlCkZE-2HVGNhcDn1JguMOtOCLFIc6slqrz0RroCNl3hzaayh9mPt1_4jzcM9fd68eyVF6JnBAOdb8lVWAFH73_Ao_hYO7Cc25iDLXUARVMQz5IAlgTPRTOpVzJAQgBcTV064nMi6J6fhxWDr3aLEy3sI35bRCq-Tvv8J8lstDh5oIlSyZ8Wq8a73O-pChDsbM8xTaZYJnr717m7fvD3gTa3SI_CeaG5iKOCVUrdLbEA"
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"Carbon\" vs \"Carbon County\"",
+          "entities": [
+            {
+              "id": "41999da9-dbd7-4512-a0e2-da57ecaa1679",
+              "county": "Carbon",
+              "coords": [
+                39.6841,
+                -110.8593
+              ]
+            },
+            {
+              "id": "91831333-ebf9-4cd7-84f7-526994ce7049",
+              "county": "Carbon County",
+              "coords": [
+                39.6875,
+                -111.1154
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "hi-fi murders site",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "1cc6f587-b41a-4eee-bb7d-87df3c0ebc3b",
+          "county": "Weber",
+          "category": "3h",
+          "subcategory": "Historical Sites",
+          "coordinates": [
+            41.223,
+            -111.9738
+          ],
+          "place_id": "ChIJFxWpBWAFU4cRN7l7ohuG90Y"
+        },
+        {
+          "id": "e54a4006-088a-49cc-ab45-fbea67ea2b35",
+          "county": null,
+          "category": "5h",
+          "subcategory": "True Crime Site",
+          "coordinates": [
+            41.228743,
+            -111.973584
+          ],
+          "place_id": "ChIJFxWpBWAFU4cRN7l7ohuG90Y"
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"Weber\" vs \"null\"",
+          "entities": [
+            {
+              "id": "1cc6f587-b41a-4eee-bb7d-87df3c0ebc3b",
+              "county": "Weber",
+              "coords": [
+                41.223,
+                -111.9738
+              ]
+            },
+            {
+              "id": "e54a4006-088a-49cc-ab45-fbea67ea2b35",
+              "county": null,
+              "coords": [
+                41.228743,
+                -111.973584
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "hoover dam",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "023be11f-95a3-4703-ac6f-275260cd55ec",
+          "county": "Clark",
+          "category": "8h",
+          "subcategory": "Film Locations",
+          "coordinates": [
+            36.0161,
+            -114.7378
+          ],
+          "place_id": "ChIJ116XnhUtyYARXlXcA7DU2ac"
+        },
+        {
+          "id": "fc15e01d-a281-4c1b-af10-6bc5ab839346",
+          "county": "Clark County",
+          "category": "8h",
+          "subcategory": "General",
+          "coordinates": [
+            36.0162,
+            -114.7375
+          ],
+          "place_id": "ATKogpf39LMJNRWdvJRXrRLhG5IkZfdPL0MpylHQlyBIZEPXqeP1FpNj1z0DBWcYXLxf29JFiMm3kwHjT_LXQ37QlooO2KG5TJE89l71yLf9_8yQugZRRUXcajE6DvXIr4sI-h84ujUwmq3kqP7LSCEPDbnDvwognwSeUsI4GPcxtKgqHiu-n2BU7lg_3ulS0w5oyaOfn-us3eXBkVKgAR7QqnRaa0qntqTNxDyRLveje2q85ObFt-w8eit7QNdPh5qj9fPxAlTUAAjbSi00KKAlvsc6LfENeZkdIbNwen3ltIv2y3Vs4klpdUaHsxOSTeooYJrvyy6v61US7gWnsS5c1GBFy2wSwVf_UMkIQ2a6wCSr2NJv6Ncd6LkOuv2ZBf9QajoaNvsxxMDmCucIGla_XOXaZesFGfpieDRuqmVf9JmLPXitc6izrIWE2qgMEBukct9kSMKSL6DhPdh6Fhpsi9YP_1I0fmPNY3oXHzaVmRSReP2J8u0f7kvGSoXeWTi9dxto6JQSaD9_KfN38kl9RGIxIgZM3bEPn2emxtzTzxULyREzSVrxfq-Qa_NcCkGB2v_tNYvqxp1CiA"
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"Clark\" vs \"Clark County\"",
+          "entities": [
+            {
+              "id": "023be11f-95a3-4703-ac6f-275260cd55ec",
+              "county": "Clark",
+              "coords": [
+                36.0161,
+                -114.7378
+              ]
+            },
+            {
+              "id": "fc15e01d-a281-4c1b-af10-6bc5ab839346",
+              "county": "Clark County",
+              "coords": [
+                36.0162,
+                -114.7375
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "lafferty murders site",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "56f929b8-3d1c-4b07-95fe-3e0a6d2b1544",
+          "county": "Utah",
+          "category": "30min",
+          "subcategory": "Historical Sites",
+          "coordinates": [
+            40.377,
+            -111.7966
+          ],
+          "place_id": null
+        },
+        {
+          "id": "79768723-779c-4bf0-b2c9-0095409df489",
+          "county": null,
+          "category": "3h",
+          "subcategory": "General",
+          "coordinates": [
+            40.366389,
+            -111.783889
+          ],
+          "place_id": null
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"Utah\" vs \"null\"",
+          "entities": [
+            {
+              "id": "56f929b8-3d1c-4b07-95fe-3e0a6d2b1544",
+              "county": "Utah",
+              "coords": [
+                40.377,
+                -111.7966
+              ]
+            },
+            {
+              "id": "79768723-779c-4bf0-b2c9-0095409df489",
+              "county": null,
+              "coords": [
+                40.366389,
+                -111.783889
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "mesa verde national park",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "161d0e10-eeb7-4080-afd5-65b24ffb7b73",
+          "county": "Montezuma",
+          "category": "8h",
+          "subcategory": "Film Locations",
+          "coordinates": [
+            37.1853,
+            -108.49
+          ],
+          "place_id": null
+        },
+        {
+          "id": "9a74497f-7403-44e3-93ca-4e465d1e2680",
+          "county": "Montezuma County",
+          "category": "8h",
+          "subcategory": "National Park",
+          "coordinates": [
+            37.1853,
+            -108.4618
+          ],
+          "place_id": "ATKogpfUMUmA9Dyp1-wF21_67R8ahRcCS_4YCmyFEPFvsZf4TdfCYFXWnAXm-vAfGbov8S3qCSalBXjjlMmdjdnq0GOgobzikr80BG0qrq5TdLZDJrQvuM0dxO5PTfRoLGI0Y_fA0tJLuErOBsn0LLgCplsVLdePGBQh9kqag_BFWBBXP8jlm70jZHlLjqwQiMqdzppPGgouaNL7Fu-3j8sjFmPsfB2sQVduUl9_B662e30V120v6Dozm_UUCvuDDC8xvaOrucWiRU-M7yC34D09T94sERG0t9gR8f58ELCz0_YuT8cAHvtwrcXnBrljrUKVIUzl_4BlhrYLEUJtDUmU7e-_pYx4iMKM7gj3YGboycRlYuD71ZkEbtWI9XQXbtgZHVbjiyQ-xBev4QyWApKM9epkwZBIyX-wRk-U68L0b27tiDUahjfwWA8nfxzq1h9r56SY-cWmVCNJxMzNIgyUTY5daRXYHY5nAvYZXfLOJiL9W5oDWiY2KJriD7XESZ7xrCrN63efpP42D_2Won0I_ycdxVIgeh0LJwpS07-Eiryw-Ux8S3u9FJP4W-u6aum6Jfobo_Y6"
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"Montezuma\" vs \"Montezuma County\"",
+          "entities": [
+            {
+              "id": "161d0e10-eeb7-4080-afd5-65b24ffb7b73",
+              "county": "Montezuma",
+              "coords": [
+                37.1853,
+                -108.49
+              ]
+            },
+            {
+              "id": "9a74497f-7403-44e3-93ca-4e465d1e2680",
+              "county": "Montezuma County",
+              "coords": [
+                37.1853,
+                -108.4618
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    },
+    {
+      "name": "mountain meadows massacre site",
+      "recordCount": 2,
+      "destinations": [
+        {
+          "id": "bcfab36a-65ed-47c9-b233-a72775064159",
+          "county": null,
+          "category": "5h",
+          "subcategory": "True Crime Site",
+          "coordinates": [
+            37.481234,
+            -113.651234
+          ],
+          "place_id": "ChIJaTglTIt3yoARXeGpPPWYq10"
+        },
+        {
+          "id": "0b9e3a11-9d19-4c0a-bb0d-51a4861a6e12",
+          "county": "Washington",
+          "category": "8h",
+          "subcategory": "Historical Sites",
+          "coordinates": [
+            37.4294,
+            -113.6872
+          ],
+          "place_id": null
+        }
+      ],
+      "issues": [
+        {
+          "type": "LOCATION_MISMATCH",
+          "severity": "HIGH",
+          "message": "Different counties: \"null\" vs \"Washington\"",
+          "entities": [
+            {
+              "id": "bcfab36a-65ed-47c9-b233-a72775064159",
+              "county": null,
+              "coords": [
+                37.481234,
+                -113.651234
+              ]
+            },
+            {
+              "id": "0b9e3a11-9d19-4c0a-bb0d-51a4861a6e12",
+              "county": "Washington",
+              "coords": [
+                37.4294,
+                -113.6872
+              ]
+            }
+          ]
+        }
+      ],
+      "severity": 2
+    }
+  ],
+  "generatedAt": "2025-10-30T03:49:50.111Z"
+}

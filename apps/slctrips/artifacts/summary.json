@@ -1,0 +1,260 @@
+{
+  "audit_date": "2025-10-28",
+  "site": {
+    "url": "https://www.slctrips.com",
+    "lighthouse": {
+      "mobile_performance": 73,
+      "desktop_performance": 74,
+      "mobile_accessibility": 91,
+      "mobile_seo": 100,
+      "mobile_best_practices": 96,
+      "core_web_vitals": {
+        "lcp_ms": 14132.8,
+        "lcp_s": 14.13,
+        "tbt_ms": 3,
+        "cls": 0.0
+      }
+    },
+    "status_checks": [
+      {"path": "/", "status": 200},
+      {"path": "/tripkits", "status": 200},
+      {"path": "/destinations", "status": 200},
+      {"path": "/staykit", "status": 404},
+      {"path": "/about", "status": 404}
+    ],
+    "security_headers": {
+      "hsts": true,
+      "hsts_value": "max-age=63072000",
+      "csp": false,
+      "x_frame_options": false,
+      "x_content_type_options": false,
+      "referrer_policy": false
+    }
+  },
+  "git": {
+    "repository": "https://github.com/WasatchWise/slctrips-v2.git",
+    "default_branch": "main",
+    "recent_commits": [
+      "41dc3b2 Update guardian transparent images",
+      "bc71997 Save all pending changes before system restart",
+      "2af3828 Show guardian transparency and compress PNGs",
+      "a2f04bb Fix guardian image paths",
+      "0bb42d6 Restore real guardians"
+    ],
+    "branches": [
+      "main",
+      "claude/investigate-cursor-issue-011CUSej88ez8Cw9x9mGzzZt",
+      "remotes/origin/chore/work-order-alignments",
+      "remotes/origin/claude/nextjs-15-migration-011CURKmNyi6Uu5M6MsJdSGS",
+      "remotes/origin/codex/build-next.js-frontend-for-slctrips"
+    ],
+    "open_concerns": [
+      "14 untracked guardian image files in working directory",
+      "Broken git refs: 'main 2'",
+      "Database credentials exposed in tracked markdown files",
+      "API keys exposed in tracked files (Google Places, ElevenLabs, HeyGen)"
+    ],
+    "secret_hits_count": 50,
+    "secret_exposure": {
+      "database_password": "5w55dmaWp!CJGvn exposed in DEPLOYMENT_MISSION_BRIEF.md, VERCEL_ENV_VARS.md, .mcp.json",
+      "supabase_url": "mkepcjzqnbowrgbvjfem.supabase.co exposed in multiple docs",
+      "google_places_api_key": "AIzaSyBvOkBwGJgZhY8LE9bKVvT7lQHgW4Wjzm8 in VERCEL_ENV_VARS.md"
+    }
+  },
+  "vercel": {
+    "status": "Limited access - no API token",
+    "deployment_detected": true,
+    "cache_working": true,
+    "cache_status": "HIT",
+    "region": "sfo1",
+    "dns": "dae8d44e6274f6d4.vercel-dns-016.com",
+    "ip_addresses": ["216.150.16.193", "216.150.1.193"],
+    "env_vars_count": "unknown - no API access",
+    "notable_logs": []
+  },
+  "supabase": {
+    "project_id": "mkepcjzqnbowrgbvjfem",
+    "rest_api_accessible": true,
+    "database_connection": "FAILED - DNS resolution issue",
+    "database_hostname": "db.mkepcjzqnbowrgbvjfem.supabase.co",
+    "dns_issue": "nodename nor servname provided, or not known",
+    "tables_exposed": 338,
+    "key_tables": ["tripkits", "guardians", "destinations", "deep_dive_stories", "bundles", "categories"],
+    "sample_data_accessible": true,
+    "rls_verification": "Unable to verify - requires direct DB access",
+    "auth_config_present": "Unknown - no DB access"
+  },
+  "cloudflare": {
+    "status": "NOT IN USE",
+    "dns_through_cloudflare": false,
+    "proxy_enabled": false,
+    "waf_active": false,
+    "cache_hit_ratio_pct": 0,
+    "note": "Site served directly by Vercel, no Cloudflare layer detected"
+  },
+  "drive": {
+    "status": "Not audited - no credentials provided",
+    "folder_id": "",
+    "file_count": 0,
+    "stale_docs": []
+  },
+  "risks": [
+    {
+      "severity": "critical",
+      "item": "LCP 14.13 seconds on mobile",
+      "why_it_matters": "Core Web Vitals failure - target is <2.5s. This severely impacts SEO rankings and user experience. Google penalizes sites with poor CWV.",
+      "fix": "Optimize hero images, implement Next.js Image optimization, defer non-critical JS, implement resource hints",
+      "owner": "Frontend/DevOps",
+      "impact": 5,
+      "effort": 3,
+      "priority": 13
+    },
+    {
+      "severity": "critical",
+      "item": "Database credentials exposed in git-tracked files",
+      "why_it_matters": "Production database password and Supabase service role key committed to repository. Anyone with repo access has full database control.",
+      "fix": "1) Rotate all exposed credentials immediately 2) Remove sensitive data from git history 3) Add .env* to .gitignore 4) Use Vercel env vars only",
+      "owner": "Security/DevOps",
+      "impact": 5,
+      "effort": 2,
+      "priority": 14
+    },
+    {
+      "severity": "critical",
+      "item": "Supabase database hostname DNS failure",
+      "why_it_matters": "The DATABASE_URL hostname 'db.mkepcjzqnbowrgbvjfem.supabase.co' cannot be resolved. This breaks direct database connections and migrations.",
+      "fix": "Verify correct Supabase connection string format. Use connection pooler URL or check if hostname changed. Typically should use aws-0-us-west-1.pooler.supabase.com for pooled connections.",
+      "owner": "Database/DevOps",
+      "impact": 5,
+      "effort": 1,
+      "priority": 14
+    },
+    {
+      "severity": "high",
+      "item": "Missing critical security headers",
+      "why_it_matters": "No CSP, X-Frame-Options, X-Content-Type-Options, or Referrer-Policy. Site vulnerable to XSS, clickjacking, MIME-sniffing attacks.",
+      "fix": "Add security headers in next.config.js or Vercel configuration. Start with CSP report-only mode.",
+      "owner": "Security/Frontend",
+      "impact": 4,
+      "effort": 2,
+      "priority": 12
+    },
+    {
+      "severity": "high",
+      "item": "No Cloudflare WAF or DDoS protection",
+      "why_it_matters": "Site relies solely on Vercel infrastructure. No additional WAF, bot protection, or geographic filtering.",
+      "fix": "Evaluate adding Cloudflare as a proxy layer for enterprise-grade protection, or ensure Vercel Pro plan includes adequate protection.",
+      "owner": "Security/Infrastructure",
+      "impact": 3,
+      "effort": 3,
+      "priority": 9
+    },
+    {
+      "severity": "medium",
+      "item": "404 errors on /staykit and /about pages",
+      "why_it_matters": "Broken navigation links hurt user experience and SEO. Internal 404s signal incomplete site structure.",
+      "fix": "Either implement these pages or remove navigation links to them. Check for hardcoded routes in nav components.",
+      "owner": "Frontend",
+      "impact": 2,
+      "effort": 1,
+      "priority": 7
+    },
+    {
+      "severity": "medium",
+      "item": "RLS policies not verified",
+      "why_it_matters": "Without database access, cannot confirm Row Level Security is properly configured. Potential data exposure risk.",
+      "fix": "Resolve DB connection issue and audit all tables for proper RLS policies, especially user-facing tables.",
+      "owner": "Database/Security",
+      "impact": 4,
+      "effort": 2,
+      "priority": 12
+    },
+    {
+      "severity": "low",
+      "item": "Broken git references (main 2)",
+      "why_it_matters": "Repository has corrupted refs that cause warnings. May indicate incomplete git operations.",
+      "fix": "Run 'git fsck' and 'git gc --prune=now' to clean up broken refs.",
+      "owner": "DevOps",
+      "impact": 1,
+      "effort": 1,
+      "priority": 4
+    }
+  ],
+  "quick_wins_24h": [
+    {
+      "title": "Rotate exposed database credentials",
+      "impact": "Eliminate immediate security risk from exposed passwords",
+      "effort": "low",
+      "priority": 14,
+      "steps": [
+        "Go to Supabase dashboard → Settings → Database",
+        "Reset database password",
+        "Update Vercel environment variables with new password",
+        "Test application connectivity",
+        "Remove exposed credentials from git history or at minimum add warning in README"
+      ]
+    },
+    {
+      "title": "Fix database connection string",
+      "impact": "Enable direct database access for migrations and admin tasks",
+      "effort": "low",
+      "priority": 14,
+      "steps": [
+        "Get correct connection pooler URL from Supabase dashboard",
+        "Update DATABASE_URL in .env.local (DO NOT COMMIT)",
+        "Update DATABASE_URL in Vercel environment variables",
+        "Test connection with psql",
+        "Document correct format for team"
+      ]
+    },
+    {
+      "title": "Add security headers",
+      "impact": "Protect against common web vulnerabilities (XSS, clickjacking)",
+      "effort": "low",
+      "priority": 12,
+      "steps": [
+        "Add headers config to next.config.js",
+        "Include: Content-Security-Policy (report-only initially), X-Frame-Options: DENY, X-Content-Type-Options: nosniff, Referrer-Policy: strict-origin-when-cross-origin",
+        "Deploy to preview environment",
+        "Monitor CSP reports for violations",
+        "Adjust CSP and deploy to production"
+      ]
+    },
+    {
+      "title": "Optimize hero image for LCP",
+      "impact": "Dramatically improve Core Web Vitals and SEO ranking",
+      "effort": "medium",
+      "priority": 13,
+      "steps": [
+        "Identify hero image causing 14s LCP",
+        "Convert to optimized WebP/AVIF with Next.js Image",
+        "Add width/height attributes",
+        "Add priority prop to hero image",
+        "Consider lazy loading below-fold images",
+        "Test with Lighthouse - target <2.5s LCP"
+      ]
+    },
+    {
+      "title": "Fix or remove broken navigation links",
+      "impact": "Improve UX and eliminate 404 errors",
+      "effort": "low",
+      "priority": 7,
+      "steps": [
+        "Search codebase for /staykit and /about route references",
+        "Either create placeholder pages or remove nav links",
+        "Update any sitemap references",
+        "Deploy and verify all nav links work"
+      ]
+    }
+  ],
+  "credentials_checked": {
+    "VERCEL_TOKEN": false,
+    "SUPABASE_ACCESS_TOKEN": false,
+    "CLOUDFLARE_API_TOKEN": false,
+    "CLOUDFLARE_ACCOUNT_ID": false,
+    "CLOUDFLARE_ZONE_ID": false,
+    "GOOGLE_APPLICATION_CREDENTIALS": false,
+    "DATABASE_URL": true,
+    "note": "Limited audit due to missing API tokens. Many findings based on public data and code inspection."
+  }
+}

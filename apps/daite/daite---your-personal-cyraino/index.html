@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DAiTE - Your Personal CYRAiNO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: 'rgb(var(--color-primary) / <alpha-value>)',
+              secondary: 'rgb(var(--color-secondary) / <alpha-value>)',
+              accent: 'rgb(var(--color-accent) / <alpha-value>)',
+              neutral: 'rgb(var(--color-neutral) / <alpha-value>)',
+              'base-100': 'rgb(var(--color-base-100) / <alpha-value>)',
+              info: 'rgb(var(--color-info) / <alpha-value>)',
+              success: 'rgb(var(--color-success) / <alpha-value>)',
+              warning: 'rgb(var(--color-warning) / <alpha-value>)',
+              error: 'rgb(var(--color-error) / <alpha-value>)',
+            },
+            animation: {
+              'spin-slow': 'spin 3s linear infinite',
+            }
+          }
+        }
+      }
+    </script>
+    <style type="text/tailwindcss">
+      @layer base {
+        :root {
+          --color-primary: 59 130 246; /* blue-500 */
+          --color-secondary: 139 92 246; /* violet-500 */
+          --color-accent: 234 179 8; /* yellow-500 */
+          --color-neutral: 55 65 81; /* gray-600 */
+          --color-base-100: 249 250 251; /* gray-50 */
+          --color-info: 56 189 248; /* sky-400 */
+          --color-success: 34 197 94; /* green-500 */
+          --color-warning: 245 158 11; /* amber-500 */
+          --color-error: 239 68 68; /* red-500 */
+
+          --header-height-sm: 64px; /* Adjusted AppHeader height for sm screens */
+          --header-height-lg: 80px; /* Adjusted AppHeader height for lg screens */
+          --nav-height-sm: 60px; /* Approximate height of AppNavigation on small screens with potentially wrapped tabs */
+          --nav-height-lg: 50px; /* Approximate height of AppNavigation on larger screens (single row) */
+        }
+        body {
+          @apply bg-base-100 text-neutral font-sans;
+          padding-top: calc(var(--header-height-sm) + var(--nav-height-sm) + 1rem); /* Header + Nav + buffer */
+          padding-bottom: 4rem; /* approx footer height */
+        }
+        
+        @media (min-width: 640px) { /* sm breakpoint in Tailwind */
+          body {
+            padding-top: calc(var(--header-height-lg) + var(--nav-height-lg) + 1.5rem); /* Header + Nav + buffer */
+          }
+        }
+
+        header.sticky {
+          top: 0;
+          width: 100%; 
+        }
+        nav.sticky {
+          top: var(--header-height-sm); 
+          width: 100%; 
+        }
+        @media (min-width: 640px) { 
+           nav.sticky {
+             top: var(--header-height-lg); 
+           }
+        }
+      }
+       /* Custom scrollbar for chat and other scrollable areas */
+      @layer utilities {
+        .scrollbar-thin {
+          scrollbar-width: thin;
+          scrollbar-color: theme('colors.slate.600') theme('colors.slate.800');
+        }
+        .scrollbar-thin::-webkit-scrollbar {
+          width: 8px;
+          height: 8px;
+        }
+        .scrollbar-thin::-webkit-scrollbar-track {
+          background: theme('colors.slate.800');
+          border-radius: 10px;
+        }
+        .scrollbar-thin::-webkit-scrollbar-thumb {
+          background-color: theme('colors.slate.600');
+          border-radius: 10px;
+          border: 2px solid theme('colors.slate.800');
+        }
+        .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+          background-color: theme('colors.slate.500');
+        }
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.1.0/",
+    "react": "https://esm.sh/react@^19.1.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.0.0"
+  }
+}
+</script>
+</head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html><link rel="stylesheet" href="index.css">
+<script src="index.tsx" type="module"></script>

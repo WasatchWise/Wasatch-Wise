@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zion Slots: Dining Decider</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              display: ['Righteous', 'cursive'],
+              sans: ['Inter', 'sans-serif'],
+            },
+            colors: {
+              utah: {
+                red: '#BF3F3F',
+                orange: '#D97757',
+                sand: '#F2D1B3',
+                sky: '#4B9CD3',
+                dark: '#2C1A1D'
+              }
+            },
+            animation: {
+              'spin-slow': 'spin 3s linear infinite',
+              'bounce-short': 'bounce 0.5s infinite',
+              'blur-scroll': 'blurScroll 0.2s linear infinite',
+            },
+            keyframes: {
+              blurScroll: {
+                '0%': { transform: 'translateY(0)', filter: 'blur(2px)' },
+                '100%': { transform: 'translateY(-50%)', filter: 'blur(2px)' },
+              }
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+      /* Custom scrollbar for better aesthetics */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #2C1A1D; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #D97757; 
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #BF3F3F; 
+      }
+      .slot-gradient {
+        background: linear-gradient(180deg, #2C1A1D 0%, #5e3a3f 50%, #2C1A1D 100%);
+      }
+      .metallic-frame {
+        background: linear-gradient(135deg, #e2e2e2 0%, #9ca3af 50%, #e2e2e2 100%);
+        box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+      }
+    </style>
+</head>
+  <body class="bg-utah-dark text-white min-h-screen">
+    <div id="root"></div>
+    <!-- Vite entrypoint -->
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>

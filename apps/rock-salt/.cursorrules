@@ -1,0 +1,80 @@
+# Project: The Rock Salt
+# Role: Senior Infrastructure Engineer / Archivist
+# Context: Local Music Ecosystem & "Spider Network" Protocol
+
+## 1. CORE ETHOS (The Constitution)
+You are building **The Rock Salt**.
+- **Mission:** Document scenes, don't decorate them. We are a credibility layer, not a hype machine.
+- **Vibe:** "DIY, but not sloppy." Think: Dark room, clean signal path, warm tungsten light.
+- **Voice:** Confident, calm, direct. No "vibes," "content," "smash that like button," or marketing fluff.
+- **Goal:** Build the "Town Square" where Venues, Bands, and Fans meet for logistics and archiving.
+
+## 2. DESIGN SYSTEM (Visual Identity)
+**Aesthetic:**
+- **Backgrounds:** Heavy use of near-blacks (`#0a0a0a`, `#171717`). No pure white backgrounds.
+- **Accents:** Rust, Concrete Gray, Tungsten Amber.
+- **Typography:** Monospaced fonts for data/metadata (JetBrains Mono, Roboto Mono). Clean sans-serif for headers (Inter, Helvetica).
+- **UI Elements:**
+  - Borders: Thin, subtle borders (`border-zinc-800`).
+  - Shadows: Minimal or harsh (no soft, floaty SaaS shadows).
+  - Motion: Instant or very fast (75ms). No bouncy animations.
+
+**Do Not Use:**
+- Gradients that look like "Web3" or "Crypto".
+- Rounded buttons with large radii (use `rounded-sm` or `rounded-md`).
+- Emojis in UI text (use icons from Lucide/Heroicons instead).
+
+## 3. TECH STACK & SCHEMA
+**Frontend:** Next.js / React
+**Backend:** Supabase
+**Storage:** Supabase Storage (Buckets: `submissions`, `riders`, `archive`)
+**Audio Engine:** AzuraCast (via API)
+
+### Database Schema (The Spider Network)
+We are modeling a "Town Square". The core entities are:
+
+1.  **`profiles`**
+    - `id`: uuid (PK)
+    - `type`: enum ('band', 'venue', 'fan', 'engineer')
+    - `name`: text
+    - `slug`: text (unique)
+    - `meta`: jsonb (stores location, capacity for venues, genre for bands)
+    - `verified`: boolean (The "Rock Salt" stamp of approval)
+
+2.  **`spider_riders`** (The Protocol)
+    - `id`: uuid
+    - `band_id`: uuid (FK -> profiles)
+    - `stage_plot_url`: text
+    - `input_list`: jsonb
+    - `hospitality_notes`: text
+    - `last_updated`: timestamp
+
+3.  **`submissions`** (The Intake Pipe)
+    - `id`: uuid
+    - `user_id`: uuid (FK -> profiles)
+    - `audio_url`: text (WAV/FLAC only)
+    - `image_url`: text
+    - `lyrics`: text
+    - `status`: enum ('pending', 'approved', 'rejected', 'archived')
+    - `azuracast_id`: string (Linked file ID after processing)
+
+## 4. CODING RULES
+- **Simplicity:** Prefer native HTML elements over complex custom components where possible.
+- **Performance:** Images must be optimized. Audio players must not auto-play.
+- **Error Handling:** Fail gracefully. If a stream is down, show "Static", not a crash.
+- **Copy:** When writing placeholder text or UI labels, strictly adhere to the Style Guide.
+    - BAD: "Upload your awesome content!"
+    - GOOD: "Submit master file (.wav)."
+    - BAD: "Join the fam!"
+    - GOOD: "Connect to the network."
+
+## 5. SPECIFIC INSTRUCTIONS FOR AGENT
+- If asked to generate a "Landing Page," focus on **utility** (Search, Schedule, Stream) over **marketing** (Hero banners, Selling).
+- If asked to create a form, ensure it mimics a **technical specification sheet**, not a signup funnel.
+- When generating SQL, ensure RLS (Row Level Security) is strict. Only verified Venues can see full Spider Riders.
+Next Move
+Copy that block. Open Cursor. Paste it into the "Rules for AI" section in settings, or create the .cursorrules file in your project root.
+
+Once that is done, type this into the chat to test it: "Generate the Supabase SQL definition for the spider_riders table. Make sure it includes fields for a stage plot and input list."
+
+If it gives you a table that looks like a technical rider and not a social media profile, we are live.

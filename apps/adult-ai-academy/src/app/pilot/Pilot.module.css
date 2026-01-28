@@ -1,0 +1,166 @@
+.container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    color: #e0e0e0;
+    font-family: 'Inter', sans-serif;
+}
+
+.header {
+    margin-bottom: 3rem;
+    border-bottom: 1px solid #333;
+    padding-bottom: 1rem;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    margin: 0;
+    color: #fff;
+    font-weight: 700;
+}
+
+.header p {
+    color: #888;
+    margin: 0.5rem 0 0 0;
+}
+
+.batchGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 2rem;
+}
+
+.batchCard {
+    background: rgba(255, 255, 255, 0.05);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.batchCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.scoreBadge {
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.scoreHigh {
+    background: rgba(0, 255, 127, 0.1);
+    color: #00ff7f;
+    border: 1px solid rgba(0, 255, 127, 0.3);
+}
+
+.scoreMid {
+    background: rgba(255, 165, 0, 0.1);
+    color: #ffa500;
+    border: 1px solid rgba(255, 165, 0, 0.3);
+}
+
+.scoreLow {
+    background: rgba(255, 69, 0, 0.1);
+    color: #ff4500;
+    border: 1px solid rgba(255, 69, 0, 0.3);
+}
+
+.contentPreview {
+    margin-bottom: 1.5rem;
+}
+
+.contentPreview h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+    color: #fff;
+}
+
+.contentPreview p {
+    color: #aaa;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.blackboardList {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    font-size: 0.85rem;
+}
+
+.blackboardList h4 {
+    margin: 0 0 0.5rem 0;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.blackboardList ul {
+    margin: 0;
+    padding-left: 1.2rem;
+    color: #ccc;
+}
+
+.blackboardList li {
+    margin-bottom: 0.3rem;
+}
+
+.actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn {
+    flex: 1;
+    padding: 0.75rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    border: none;
+    text-align: center;
+}
+
+.btn:active {
+    opacity: 0.7;
+}
+
+.approveBtn {
+    background: #00ff7f;
+    color: #000;
+}
+
+.rejectBtn {
+    background: transparent;
+    border: 1px solid #ff4500;
+    color: #ff4500;
+}
+
+.batchId {
+    color: #666;
+    font-size: 0.8rem;
+}
+
+.emptyState {
+    text-align: center;
+    padding: 4rem;
+    color: #666;
+}

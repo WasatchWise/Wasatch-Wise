@@ -1,0 +1,10 @@
+=== Key Table Sample Queries ===
+
+Table: 
+{"message":"No API key found in request","hint":"No `apikey` request header or url param was found."}
+Table: 
+{"message":"No API key found in request","hint":"No `apikey` request header or url param was found."}
+Table: 
+{"message":"No API key found in request","hint":"No `apikey` request header or url param was found."}
+Table: 
+{"message":"No API key found in request","hint":"No `apikey` request header or url param was found."}

@@ -1,0 +1,63 @@
+name: Weekly Destination Discovery
+
+on:
+  # Run every Monday at 9am UTC (2am MST)
+  schedule:
+    - cron: '0 9 * * 1'
+
+  # Allow manual trigger
+  workflow_dispatch:
+
+jobs:
+  discover-destinations:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: slctrips-v2/package-lock.json
+
+      - name: Install dependencies
+        working-directory: ./slctrips-v2
+        run: npm ci
+
+      - name: Run discovery script
+        working-directory: ./slctrips-v2
+        env:
+          GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_DANIEL_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_DANIEL_SERVICE_KEY }}
+        run: node ../scripts/discover-destinations.js
+
+      - name: Check for new discoveries
+        id: check_discoveries
+        run: |
+          if [ -f "discovered-destinations.csv" ]; then
+            COUNT=$(wc -l < discovered-destinations.csv)
+            echo "count=$COUNT" >> $GITHUB_OUTPUT
+            echo "found=true" >> $GITHUB_OUTPUT
+          else
+            echo "found=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Upload discovery results
+        if: steps.check_discoveries.outputs.found == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: weekly-discoveries
+          path: |
+            discovered-destinations.csv
+            discovered-destinations-review.txt
+          retention-days: 90
+
+      - name: Send notification (optional)
+        if: steps.check_discoveries.outputs.found == 'true'
+        run: |
+          echo "🎉 Discovered ${{ steps.check_discoveries.outputs.count }} new destinations!"
+          echo "Download the artifacts to review and import them."

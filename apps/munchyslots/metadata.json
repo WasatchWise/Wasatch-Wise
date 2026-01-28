@@ -1,0 +1,5 @@
+{
+  "name": "Zion Slots: Dining Decider",
+  "description": "A Utah-themed slot machine app that helps groups decide where to eat using Google Gemini and Maps.",
+  "requestFramePermissions": []
+}

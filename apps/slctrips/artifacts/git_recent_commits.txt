@@ -1,0 +1,20 @@
+41dc3b2 (HEAD -> main, origin/main, origin/HEAD) Update guardian transparent images: rename UINTAH and fix WASHINGTON
+bc71997 Save all pending changes before system restart
+2af3828 Show guardian transparency and compress PNGs
+a2f04bb Fix guardian image paths to use Guardians - Transparent directory
+0bb42d6 Restore real guardians
+822fad8 Trigger redeploy: Guardians data now in production database
+7271941 Fix build error: replace curly apostrophe with straight quote
+d324946 Fix 500 error on guardian pages - add null checks
+0e9e369 Add Guardian Dossier section to individual guardian pages
+5823a53 Fix Duchesne County guardian: Opal → Tavaputs
+7ac6b75 Add Mt. Olympians (Guardians) - 29 county characters
+0e13d79 perf: Optimize homepage images for faster load times
+74409f0 feat: Add photo carousel and authentic affiliate recommendations
+258ffa6 Add scripts to automatically fetch missing destination images
+cef82c2 Fix: Use Favicon_3.png (circular logo) instead of square favicon_2
+b4e4923 Fix: Update favicon to use favicon_2.png (square logo)
+e864b91 Add mobile navigation and PWA support
+c4513b3 (origin/claude/investigate-cursor-issue-011CUSej88ez8Cw9x9mGzzZt) Fix build errors: add fallback env vars for Supabase client initialization
+a7bb106 Apply best practices: fix critical errors, security, types, and enhance UX
+b98fb25 Switch guardians pages to use public_destinations view for consistency

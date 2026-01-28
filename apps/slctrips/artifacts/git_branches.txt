@@ -1,0 +1,8 @@
+  claude/investigate-cursor-issue-011CUSej88ez8Cw9x9mGzzZt
+* main
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/chore/work-order-alignments
+  remotes/origin/claude/investigate-cursor-issue-011CUSej88ez8Cw9x9mGzzZt
+  remotes/origin/claude/nextjs-15-migration-011CURKmNyi6Uu5M6MsJdSGS
+  remotes/origin/codex/build-next.js-frontend-for-slctrips
+  remotes/origin/main

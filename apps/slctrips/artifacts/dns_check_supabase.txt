@@ -1,0 +1,7 @@
+Server:		192.168.0.1
+Address:	192.168.0.1#53
+
+Non-authoritative answer:
+*** Can't find db.mkepcjzqnbowrgbvjfem.supabase.co: No answer
+
+ping: cannot resolve db.mkepcjzqnbowrgbvjfem.supabase.co: Unknown host

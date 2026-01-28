@@ -1,0 +1,602 @@
+[
+  {
+    "person": "Adam Klopp",
+    "role": "Lead Vocals",
+    "groups": ["Choir Boy"],
+    "source": "therocksalt.com/bands/choir-boy"
+  },
+  {
+    "person": "Al Robison",
+    "role": null,
+    "groups": ["Protohorus Vex"],
+    "source": "SUPER FORM (Form Responses 2)"
+  },
+  {
+    "person": "Allison Arana-Skvortsov",
+    "role": null,
+    "groups": ["Willoh"],
+    "source": "SUPER FORM (Form Responses 2)"
+  },
+  {
+    "person": "Aaron Davis",
+    "role": null,
+    "groups": ["DimeDust"],
+    "source": "SUPER FORM (Form Responses 2)"
+  },
+  {
+    "person": "Bert McCracken",
+    "role": "Lead Vocals",
+    "groups": ["The Used"],
+    "source": "therocksalt.com/bands/the-used"
+  },
+  {
+    "person": "Cory Peterson",
+    "role": null,
+    "groups": ["Freakbreed", "THE BIND"],
+    "source": "SUPER FORM (Form Responses 2)"
+  },
+  {
+    "person": "Dallon Weekes",
+    "role": "Founder, Vocals; Bass, Vocals",
+    "groups": ["I Dont Know How But They Found Me", "The Brobecks"],
+    "source": "therocksalt.com/bands/idkhow, therocksalt.com/bands/the-brobecks"
+  },
+  {
+    "person": "Dan Reynolds",
+    "role": "Lead Vocals",
+    "groups": ["Imagine Dragons"],
+    "source": "therocksalt.com/bands/imagine-dragons"
+  },
+  {
+    "person": "David Durrant (aka Durrantula)",
+    "role": null,
+    "groups": ["YESOUISI"],
+    "source": "SUPER FORM (Form Responses 2)"
+  },
+  {
+    "person": "Dia Frampton",
+    "role": "Lead Vocals",
+    "groups": ["Meg & Dia"],
+    "source": "therocksalt.com/bands/meg-and-dia"
+  },
+  {
+    "person": "Ethan Stenis",
+    "role": null,
+    "groups": ["Cosmic Fates"],
+    "source": "SUPER FORM (Form Responses 2)"
+  },
+  {
+    "person": "Gentry Densley",
+    "role": null,
+    "groups": ["Iceburn", "Eagle Twin"],
+    "source": "therocksalt.com/bands/iceburn, therocksalt.com/bands/eagle-twin"
+  },
+  {
+    "person": "George Charles Nelson III",
+    "role": "Unknown - Folk/Americana",
+    "groups": [null],
+    "source": "SUPER FORM (Form Responses 2)"
+  },
+  {
+    "person": "Jack Rutter",
+    "role": null,
+    "groups": ["Ritt Momney"],
+    "source": "therocksalt.com/bands/ritt-momney"
+  },
+  {
+    "person": "John Moore",
+    "role": null,
+    "groups": ["Death Persona"],
+    "source": "SUPER FORM (Form Responses 2)"
+  },
+  {
+    "person": "Kiri Monks",
+    "role": null,
+    "groups": ["Graveyard Violet"],
+    "source": "SUPER FORM (Form Responses 2)"
+  },
+  {
+    "person": "Kurt Landenberger",
+    "role": null,
+    "groups": ["Dealin' In Dirt"],
+    "source": "SUPER FORM (Form Responses 2)"
+  },
+  {
+    "person": "Mark Middlemas",
+    "role": null,
+    "groups": ["Red Pete"],
+    "source": "SUPER FORM (Form Responses 2)"
+  },
+  {
+    "person": "Matt Parsons",
+    "role": null,
+    "groups": ["Media Queen"],
+    "source": "SUPER FORM (Form Responses 2)"
+  },
+  {
+    "person": "Meg Frampton",
+    "role": "Guitar",
+    "groups": ["Meg & Dia"],
+    "source": "therocksalt.com/bands/meg-and-dia"
+  },
+  {
+    "person": "Michael Gross",
+    "role": "Guitar, Vocals",
+    "groups": ["The Brobecks"],
+    "source": "therocksalt.com/bands/the-brobecks"
+  },
+  {
+    "person": "Ryan Mills",
+    "role": null,
+    "groups": ["Dirty Birds", "Starmy", "Gerald Music", "Hello Amsterdam", "Sons of Carlisle", "Daisy Gray"],
+    "source": "SUPER FORM (Form Responses 2) + NotebookLM Curated"
+  },
+  {
+    "person": "Rhett Malochowski",
+    "role": null,
+    "groups": ["Dub Nectar"],
+    "source": "SUPER FORM (Form Responses 2)"
+  },
+  {
+    "person": "Rick Vance",
+    "role": null,
+    "groups": ["Wasting Tuesday"],
+    "source": "SUPER FORM (Form Responses 2)"
+  },
+  {
+    "person": "Sonya Castillo",
+    "role": null,
+    "groups": ["Sweet Guthrie", "Red Coats"],
+    "source": "SUPER FORM (Form Responses 2)"
+  },
+  {
+    "person": "Steven Wells",
+    "role": null,
+    "groups": ["GHOSTOWNE"],
+    "source": "SUPER FORM (Form Responses 2)"
+  },
+  {
+    "person": "Thierry De Carvalho",
+    "role": null,
+    "groups": ["Allo Monroe"],
+    "source": "SUPER FORM (Form Responses 2)"
+  },
+  {
+    "person": "Tyler Glenn",
+    "role": "Lead Vocals",
+    "groups": ["Neon Trees"],
+    "source": "therocksalt.com/bands/neon-trees"
+  },
+  {
+    "person": "Tyler Smith",
+    "role": null,
+    "groups": ["Eagle Twin"],
+    "source": "therocksalt.com/bands/eagle-twin"
+  },
+  {
+    "person": "Zak Davis",
+    "role": null,
+    "groups": ["Z Frequency"],
+    "source": "SUPER FORM (Form Responses 2)"
+  },
+  {
+    "person": "Dan Whitesides",
+    "role": null,
+    "groups": ["The Used", "The New Transit Direction", "Tiger Kant", "Mich!gan", "Sandkicker", "Fale", "Adherence", "Fahrenheit 451", "The Federation", "Sprinklerhead", "The Kill", "The Wolfs", "Form of Rocket", "Young Blood"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "David Payne",
+    "role": null,
+    "groups": ["The Red Bennies", "Starmy", "Jazz Jaguars", "Sea Monster", "Puri-Do", "Mouthbreather", "Optimus Prime/Blue Sparks", "Deviance", "Jr. Caveman Players"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Andy Patterson",
+    "role": null,
+    "groups": ["Hudson River School", "Oxcross", "State of the Nation", "Bluetip", "Shelter", "Done", "Top Dead Celebrity", "SubRosa", "The Wolfs", "Red Bennies"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Gentry Densley",
+    "role": null,
+    "groups": ["Iceburn", "Eagle Twin", "Ascend", "Form of Rocket", "Furious Fire", "Smashy Smashy", "Longarm"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Tyler Smith",
+    "role": null,
+    "groups": ["Clear", "Eagle Twin", "Form of Rocket", "Hammergun"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Chaz Costello",
+    "role": null,
+    "groups": ["Baby Ghosts", "Choir Boy", "JAWWZZ!!", "Fossil Arms", "Broken Spells", "Bears On Parade", "Sculpture Club"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Bret Meisenbach",
+    "role": null,
+    "groups": ["Baby Ghosts", "Big Trub", "The Mighty Sequoyah", "Choir Boy"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Jesse Tucker",
+    "role": null,
+    "groups": ["Neighborhood Zero", "Burnt Reynolds and His Hot Bones", "The Broken Spells", "Onan Spurtz OMB", "The Clear Coats"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Joey Mayes",
+    "role": null,
+    "groups": ["Neighborhood Zero", "Burnt Reynolds and His Hot Bones", "The Broken Spells", "Onan Spurtz OMB", "The Clear Coats"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Josh Asher",
+    "role": null,
+    "groups": ["Clear", "The Kill", "The New Transit Direction", "Still Breaking Hearts"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Jason Knott",
+    "role": null,
+    "groups": ["Clear", "The Kill", "Motherkilljoy", "Minerva"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Sean McClaugherty",
+    "role": null,
+    "groups": ["Clear", "Hammergun", "Minerva", "Invaders"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Mike Sartain",
+    "role": null,
+    "groups": ["Starmy", "Red Bennies", "Optimus Prime", "Pleasure Thieves", "Fumamos", "The Possibilities"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Eli Morrison",
+    "role": null,
+    "groups": ["Red Bennies", "Wolfs", "Ambergris", "Mouthbreather"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Cathy Foy",
+    "role": null,
+    "groups": ["Bluebird Radio", "The Future of the Ghost", "Sea Monster"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Pat Boyer",
+    "role": null,
+    "groups": ["Baby Ghosts", "Desert Noises", "Gypsy Cab"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Dallon Weekes",
+    "role": null,
+    "groups": ["The Brobecks", "Panic! at the Disco", "IDKHOW", "1000 West"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Ryan Seaman",
+    "role": null,
+    "groups": ["The Brobecks", "Falling In Reverse", "IDKHOW"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Dave Jones",
+    "role": null,
+    "groups": ["Oxcross", "Dwellers", "Old Timer"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Levi Lebo",
+    "role": null,
+    "groups": ["Clear", "Decontaminate", "The Kill", "Exes"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Mick Morris",
+    "role": null,
+    "groups": ["Clear", "Decontaminate", "Eighteen Visions"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Charlie Tucker",
+    "role": null,
+    "groups": ["Neighborhood Zero", "Burnt Reynolds", "The Clear Coats"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Ben Dodds",
+    "role": null,
+    "groups": ["Form of Rocket", "La Verkin", "Accidente"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Adam Sherlock",
+    "role": null,
+    "groups": ["White Hot Ferrari", "Art of Kanly", "Hammergun", "Sherlock"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Will Sartain",
+    "role": "Owner",
+    "groups": ["Kilby Court", "Redd Tape", "Will Sartain"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Lance Saunders",
+    "role": "Owner",
+    "groups": ["Kilby Court", "Pleasure Thieves"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Scott Selfridge",
+    "role": null,
+    "groups": ["Red Bennies", "Night Sweats"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Terrence Warburton",
+    "role": null,
+    "groups": ["Red Bennies", "KNVS"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Dan Thomas",
+    "role": null,
+    "groups": ["Red Bennies", "Tolchock Trio", "Optimus Prime"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Tommy Nguyen",
+    "role": null,
+    "groups": ["Red Bennies", "Tolchock Trio"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Ryan Fedor",
+    "role": null,
+    "groups": ["Tolchock Trio", "Salt Lake Electric Ensemble", "Blue Hour"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Halee Jean",
+    "role": null,
+    "groups": ["Red Bennies", "Jazz Jaguars"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Amber Jarvis",
+    "role": null,
+    "groups": ["Optimus Prime/Blue Sparks", "Jr. Caveman Players"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Andrew Tolman",
+    "role": null,
+    "groups": ["Imagine Dragons", "The Moth & The Flame"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Branden Steineckert",
+    "role": null,
+    "groups": ["The Used", "Dumb Luck"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Rebecca Vernon",
+    "role": null,
+    "groups": ["SubRosa", "The Keening"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "John Lyman",
+    "role": null,
+    "groups": ["Starmy", "Red Pete", "Sons of Carlisle", "YESOUISI", "Manlyman"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Joshua Harmon",
+    "role": null,
+    "groups": ["The Backseat Lovers"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Jonas Swanson",
+    "role": null,
+    "groups": ["The Backseat Lovers"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Juice Welch",
+    "role": null,
+    "groups": ["The Backseat Lovers"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "KJ Ward",
+    "role": null,
+    "groups": ["The Backseat Lovers"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "David Flinn",
+    "role": null,
+    "groups": ["Chelsea Grin"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Stephen Rutishauser",
+    "role": null,
+    "groups": ["Chelsea Grin"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Tom Barber",
+    "role": null,
+    "groups": ["Chelsea Grin"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Josh Miller",
+    "role": null,
+    "groups": ["Chelsea Grin"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Neal Middleton",
+    "role": null,
+    "groups": ["Royal Bliss"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Taylor Richards",
+    "role": null,
+    "groups": ["Royal Bliss"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Jake Smith",
+    "role": null,
+    "groups": ["Royal Bliss"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Brian Hennessy",
+    "role": null,
+    "groups": ["Royal Bliss"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Andrew Wells",
+    "role": null,
+    "groups": ["Eidola"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Matthew Dommer",
+    "role": null,
+    "groups": ["Eidola"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Matthew Hansen",
+    "role": null,
+    "groups": ["Eidola"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Sergio Medina",
+    "role": null,
+    "groups": ["Eidola"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Ben Hoagland",
+    "role": null,
+    "groups": ["Extortionist"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Clayton Blue",
+    "role": null,
+    "groups": ["Extortionist"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Vince Alvarez",
+    "role": null,
+    "groups": ["Extortionist"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Jacob Hall",
+    "role": null,
+    "groups": ["Daisy & The Moonshines"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Jared Asplund",
+    "role": null,
+    "groups": ["Daisy & The Moonshines"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Shea Ledesma",
+    "role": null,
+    "groups": ["Daisy & The Moonshines"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Beverly Smith",
+    "role": null,
+    "groups": ["Daisy & The Moonshines"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Thomas Fowler",
+    "role": null,
+    "groups": ["Daisy & The Moonshines"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Eric",
+    "role": null,
+    "groups": ["Funk and Gonzo"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Justin",
+    "role": null,
+    "groups": ["Funk and Gonzo"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Dallas",
+    "role": null,
+    "groups": ["Funk and Gonzo"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Matt G.",
+    "role": null,
+    "groups": ["Funk and Gonzo"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Jeremy",
+    "role": null,
+    "groups": ["Funk and Gonzo"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Steve Babcock",
+    "role": null,
+    "groups": ["Hudson River School"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Spencer Jacobs",
+    "role": null,
+    "groups": ["Hudson River School"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Bobby Brinton",
+    "role": null,
+    "groups": ["Hudson River School"],
+    "source": "NotebookLM Curated"
+  },
+  {
+    "person": "Greg Baker",
+    "role": null,
+    "groups": ["Hudson River School"],
+    "source": "NotebookLM Curated"
+  }
+]

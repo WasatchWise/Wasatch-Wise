@@ -1,0 +1,656 @@
+{
+  "timestamp": "2025-11-23T02:12:56.606Z",
+  "backupFile": "youtube-backup-1763863976606.json",
+  "summary": {
+    "totalRemoved": 92,
+    "errors": 0,
+    "irrelevantRemoved": 39,
+    "brokenRemoved": 53
+  },
+  "updates": [
+    {
+      "id": "4fbec068-0eda-4684-995f-42ed6d2d6223",
+      "name": "31 Freak Street",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=Q2hxlxWYTN0",
+      "status": "removed",
+      "reason": "Low relevance (14% match)"
+    },
+    {
+      "id": "9b1de876-1ea8-4468-a747-195214303ae4",
+      "name": "Alta Ski Area",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=VLPnqYVq93E",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "6b52a06f-f5a9-48db-a3cb-8e986ceba5c7",
+      "name": "American Legion Post No. 9 - Ogden",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=HmcioUagp2Q",
+      "status": "removed",
+      "reason": "Low relevance (0% match)"
+    },
+    {
+      "id": "eef1a1a9-a32c-44f2-bdce-85fb949d8e0f",
+      "name": "Arapahoe Basin",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=Uv5hLnONz0o",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "62c0ee17-32f2-4a80-8d77-cd08ad689f02",
+      "name": "Arizona Snowbowl",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=QxXj3FLqBvE",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "c4a0baf9-b7e4-474e-b5ce-e5c283927dcf",
+      "name": "Aspen Highlands",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=HAI8W_LQSQM",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "5a400263-a838-488e-b2a7-af0c481f08de",
+      "name": "Aspen Mountain",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=P2g8pT7cQmk",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "86e9d3f0-6e41-42ff-aa0d-fa0b3b5762ad",
+      "name": "Aspen Snowmass",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=sXs4QnTbW3g",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "471c1b87-92c9-4c81-868f-8105029e5eab",
+      "name": "Bennett Curse",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=IGpMDUEiJi4",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "8c1f28cf-d202-4765-8915-85a583f98f57",
+      "name": "Big Sky",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=tUXDto9t5h8",
+      "status": "removed",
+      "reason": "Low relevance (0% match)"
+    },
+    {
+      "id": "7e57b62d-1b10-40bf-b0d3-4eec1f353702",
+      "name": "Big Sky Resort",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=8-wX6nE15lw",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "dae42546-7893-4167-92c6-830b439381d3",
+      "name": "Bingham Creek Library",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=4rxI8y2wWdE",
+      "status": "removed",
+      "reason": "Low relevance (0% match)"
+    },
+    {
+      "id": "0866e8ef-843f-4614-adf0-0635a2fe5a79",
+      "name": "Black Book Barred Hotels",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=Bp1UtbE1dak",
+      "status": "removed",
+      "reason": "Low relevance (0% match)"
+    },
+    {
+      "id": "58d67b5d-072e-4ac9-b569-1679747dcb46",
+      "name": "Bogus Basin Mountain Resort",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=0V0wv3rFzas",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "ce499747-8c6f-4d1b-98f3-5a2f29c8d30d",
+      "name": "Breckenridge Ski Resort",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=K8NfVqPcmhI",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "2d0adff3-0dcd-49d8-acd3-3a847ed01c78",
+      "name": "Brian Head Resort",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=VkU9LGUvtFU",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "d5d408be-d920-4280-957f-a79fe9f5505d",
+      "name": "Bridger Bowl",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=vJt6W7m5jRc",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "68e0dbb9-bc95-4d9b-a285-0409574dc123",
+      "name": "Brighton Resort",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=2yPVKcBxbkg",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "e52080ad-4335-4461-b007-797cd4be8775",
+      "name": "Brundage Mountain Resort",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=vgF9O0LlL9I",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "420949c9-5ba1-47ee-8460-69d5b878c582",
+      "name": "Buttermilk Mountain",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=tQdXgYNH5bA",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "d6b82bba-b6f8-4d71-a590-9d93cf1c121b",
+      "name": "Chappel Brewing",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=gmpny9aP24c",
+      "status": "removed",
+      "reason": "Low relevance (0% match)"
+    },
+    {
+      "id": "9534b4d5-b3b4-460c-836c-2c5bca74c4d9",
+      "name": "Copper Mountain Resort",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=tqDq6NWTTc8",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "e58faf22-90c6-4231-899a-7a3e5a82bd3b",
+      "name": "Crested Butte Mountain Resort",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=MfONQz1YLzw",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "c53dd943-1705-4209-a66e-c1f245a419b0",
+      "name": "Deer Valley Resort",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=Rn-p0pYfgQI",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "a882f12b-dc3a-49de-a69b-2bd5d0c8a48c",
+      "name": "Diamond Peak",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=V8nN6H7XDWA",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "281b2864-014c-4741-b597-81d221efa81c",
+      "name": "Drift Lounge",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=0f6aijZ8mCU",
+      "status": "removed",
+      "reason": "Low relevance (0% match)"
+    },
+    {
+      "id": "f37ce6d7-4330-460b-919e-c680b9495d98",
+      "name": "Dry Creek Canyon Campsite",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=ZhJVb3q62J0",
+      "status": "removed",
+      "reason": "Low relevance (0% match)"
+    },
+    {
+      "id": "a14bfe83-c1ec-493f-a8b5-5695000a7894",
+      "name": "Eldora Mountain Resort",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=6WGVX0OP-n4",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "f4539cc5-e3ac-48d9-8081-ffcac52cf98c",
+      "name": "Ensenada",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=eYHq2Ss5vUE",
+      "status": "removed",
+      "reason": "Low relevance (0% match)"
+    },
+    {
+      "id": "6c80bf9b-f4f1-4182-b997-e63419b85d0e",
+      "name": "Grand Targhee Resort",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=jf0Hb5fN7yU",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "7d584963-ad5c-45bd-8b48-a1b316e2bd52",
+      "name": "Great Falls",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=tUXDto9t5h8",
+      "status": "removed",
+      "reason": "Low relevance (0% match)"
+    },
+    {
+      "id": "cbfbd4b2-c920-4e2c-a6f9-d0d2c1a6533a",
+      "name": "Haunted Web",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=9vST6hVRj2A",
+      "status": "removed",
+      "reason": "Low relevance (0% match)"
+    },
+    {
+      "id": "bea64f8e-fe7c-4304-b4a9-f510370bdce5",
+      "name": "Heavenly Mountain Resort",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=z6-W6mPZQ3M",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "6c3e5722-bb94-489e-bb80-85534890845b",
+      "name": "Henry Mountains Petrified Wood",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=kWdUoOj7N0w",
+      "status": "removed",
+      "reason": "Low relevance (0% match)"
+    },
+    {
+      "id": "1cc6f587-b41a-4eee-bb7d-87df3c0ebc3b",
+      "name": "Hi-Fi Murders Site",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=tWdb5h9a-eQ",
+      "status": "removed",
+      "reason": "Low relevance (17% match)"
+    },
+    {
+      "id": "d5588435-bd2a-4694-9296-d51d797b0695",
+      "name": "Idaho Unsolved Disappearances",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=HusdidojxiU",
+      "status": "removed",
+      "reason": "Low relevance (0% match)"
+    },
+    {
+      "id": "db23bac0-96be-421e-9e49-3ee14996afd4",
+      "name": "Jackson Hole Mountain Resort",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=Bpi-PprMgRQ",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "5a2c09c3-ad35-4060-b1c7-9503d41514ff",
+      "name": "June Mountain",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=S4xV0wfQ5xQ",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "f14b1fb2-e005-4535-850e-687599020c65",
+      "name": "Keystone Resort",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=QwHV7b7Cp7A",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "6beda21f-d45a-4327-937c-b5584db44ab6",
+      "name": "Kirkwood Mountain Resort",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=G_rW6YsXkDk",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "f0f2dbd7-9a24-4720-87b1-4ad8fef084e8",
+      "name": "Leadville",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=zZCshjt6HYU",
+      "status": "removed",
+      "reason": "Low relevance (0% match)"
+    },
+    {
+      "id": "c129aa6e-d73d-4bef-b15c-a9aaba566464",
+      "name": "Leavenworth",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=wuIgLZy0gPg",
+      "status": "removed",
+      "reason": "Low relevance (0% match)"
+    },
+    {
+      "id": "84a263a7-6e7a-4541-bdc4-616b92869c48",
+      "name": "Lee Canyon",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=UdJLNNh5XcY",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "b9cb9840-8987-4328-993d-d5fd333d8df0",
+      "name": "Little Hollywood Museum",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=IROLRx0Bypw",
+      "status": "removed",
+      "reason": "Low relevance (0% match)"
+    },
+    {
+      "id": "a3c6d5db-d0e6-44fa-921f-149b2733240c",
+      "name": "Mammoth Mountain",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=mq5p8B5F5OE",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "42f1a1b1-96ac-47ab-ac4a-9b54603da87c",
+      "name": "Marble Brewery",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=FWLCfwCH48c",
+      "status": "removed",
+      "reason": "Low relevance (0% match)"
+    },
+    {
+      "id": "b612739f-b4ee-4ce5-824d-8bfbdd67ca45",
+      "name": "McCall Haunted Farm",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=c4TO2E-vYX8",
+      "status": "removed",
+      "reason": "Low relevance (0% match)"
+    },
+    {
+      "id": "29ccd79b-2561-40d7-bae2-0c49eebc9dcd",
+      "name": "Missouri River Breaks",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=c4TO2E-vYX8",
+      "status": "removed",
+      "reason": "Low relevance (0% match)"
+    },
+    {
+      "id": "f8a74aeb-2822-4dab-b4f8-9fae4083336a",
+      "name": "Mt. Rose Ski Tahoe",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=dA4l6Qf0JpU",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "9fb95b45-5d36-4526-bff3-f1a08eb57e2c",
+      "name": "Murray Aquatic Center",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=V0JuWjSeS74",
+      "status": "removed",
+      "reason": "Low relevance (0% match)"
+    },
+    {
+      "id": "53fc54d8-0f04-43c9-9809-798e905754b5",
+      "name": "Newspaper Rock State Historical Monument",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=tWdb5h9a-eQ",
+      "status": "removed",
+      "reason": "Low relevance (0% match)"
+    },
+    {
+      "id": "5ca1a202-abeb-4661-9171-7ea266f6da80",
+      "name": "Northstar California",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=kA8XZI_HAKU",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "7045d4ba-e936-47ad-ab3c-01e135eed9c6",
+      "name": "Obsidian Hill (Black Rock)",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=bXfwhOxMM9I",
+      "status": "removed",
+      "reason": "Low relevance (0% match)"
+    },
+    {
+      "id": "913eac26-85d0-46a9-8ca1-c4ba29c173eb",
+      "name": "Old New Mexico Penitentiary Riot",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=NRe6r0poexs",
+      "status": "removed",
+      "reason": "Low relevance (11% match)"
+    },
+    {
+      "id": "71e2b2b5-98bb-4cf2-9ce0-a3fe7d8cb6e5",
+      "name": "Palisades Tahoe",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=Gy0QjF6QJng",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "7d1dcda9-38a0-4a69-8f34-bc03457f35ea",
+      "name": "Park City Mountain Resort",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=AhYr_K7tgQk",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "1b09d5c5-5430-48e8-b3db-44759fcfada0",
+      "name": "Phoenix",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=oR3MmILeU-0",
+      "status": "removed",
+      "reason": "Low relevance (0% match)"
+    },
+    {
+      "id": "dcd40769-8f13-4faa-a67e-b1af0fe50cd2",
+      "name": "Powder Mountain",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=1vqE7A5qGMc",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "3232d374-a262-4863-8375-dd7679f33275",
+      "name": "Procession Panel",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=9WquMr6mBCs",
+      "status": "removed",
+      "reason": "Low relevance (0% match)"
+    },
+    {
+      "id": "6b5667cd-c060-4c38-a1aa-273f0229d6a6",
+      "name": "Pronghorn Resort - Nicklaus Course",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=1H9Y5EWe7xY",
+      "status": "removed",
+      "reason": "Low relevance (0% match)"
+    },
+    {
+      "id": "7dcff60a-b639-4f5d-bd95-d8f51d8d4442",
+      "name": "Ratio Beerworks",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=RrMD5JQ4ZYs",
+      "status": "removed",
+      "reason": "Low relevance (0% match)"
+    },
+    {
+      "id": "d2daf353-928d-4387-a951-beab4a6763eb",
+      "name": "Red Lodge Mountain",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=yzAGYCzNq0w",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "5f1acbde-fb83-4f60-8f87-e980760b9c8d",
+      "name": "Salt Flats Brewing",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=XdsAyAQut1k",
+      "status": "removed",
+      "reason": "Low relevance (0% match)"
+    },
+    {
+      "id": "d5aa0c7f-0a80-48fb-8f49-35758eb795a7",
+      "name": "Salt Lake Coffee Break",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=1sKXBo743OQ",
+      "status": "removed",
+      "reason": "Low relevance (0% match)"
+    },
+    {
+      "id": "fb499340-cf11-49e3-89c5-b584f97fcfeb",
+      "name": "Sand Creek Massacre Site",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=I6H6SjijoRI",
+      "status": "removed",
+      "reason": "Low relevance (0% match)"
+    },
+    {
+      "id": "b4f76e36-7bf1-4a0c-9784-ddc12e5aa768",
+      "name": "Sand Island Campground & Recreation Area",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=pKcJ-0bAHB4",
+      "status": "removed",
+      "reason": "Low relevance (0% match)"
+    },
+    {
+      "id": "0ec5d9d6-717e-4591-9443-ff870dd08947",
+      "name": "Santa Rosa",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=2Dh5rKgrraU",
+      "status": "removed",
+      "reason": "Low relevance (0% match)"
+    },
+    {
+      "id": "fef9d533-8e0d-4e9d-92dd-51f643c57f47",
+      "name": "Schweitzer Mountain Resort",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=MKT8aqfgOaA",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "cf547023-ff28-4ef4-ac20-65b0f9b200f8",
+      "name": "Silver Mountain Resort",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=Bh5FFxK5C5k",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "2c78d90f-041b-4235-a481-d81a16fb73b3",
+      "name": "Silverton Mountain",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=aH8bDGqRJMo",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "186ab7f6-33ef-47c5-8cdd-70271bc3d87c",
+      "name": "Ski Santa Fe",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=GEQfKr7Kk7M",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "5dca63f4-0273-41b0-ab28-17bdeaf56d7c",
+      "name": "Snow King Mountain Resort",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=4dHXWS3lM3c",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "dfa2dcb7-4473-4378-98cc-83f30fb30363",
+      "name": "Snowbird Ski Resort",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=1Y8_3b3XrqE",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "1d6023a6-084f-4440-a947-e3d51882d0c8",
+      "name": "Snowmass",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=8R_0fC3Qjzg",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "fcad6a92-637c-430d-83e3-f82e66edac70",
+      "name": "Solitude Mountain Resort",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=6nOfUo_uKWE",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "5b023cb4-af72-4e4d-8e58-fefdbc9db0ce",
+      "name": "Spanish Fork Fiesta Days Rodeo",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=rLDAEa8RQfU",
+      "status": "removed",
+      "reason": "Low relevance (0% match)"
+    },
+    {
+      "id": "30c79a7b-8236-427c-8900-1b8519bad00f",
+      "name": "Spring Canyon",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=dZsW-VoezLk",
+      "status": "removed",
+      "reason": "Low relevance (0% match)"
+    },
+    {
+      "id": "727f7828-2960-48e8-9bc7-d17b46e4048e",
+      "name": "Steamboat Ski Resort",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=U8fwJqfyLb4",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "098d29d6-28bc-44da-8ecd-26f813c5a131",
+      "name": "Sugar Bowl Resort",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=8gIbYpSV4uo",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "c70d25d8-6264-469c-8019-44f966db414a",
+      "name": "Sun Valley Resort",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=FcLLDJ7lkPg",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "74cc72f1-1e55-47f4-a549-e59419bfe9c5",
+      "name": "Sunrise Park Resort",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=7Yv9ZDLT9X0",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "e217bcd3-a683-4ec3-bed2-e2b209ccb266",
+      "name": "Tamarack Resort",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=vn9V3L6X7ug",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "46a271e6-5d29-4c16-b50b-df2adafd5df8",
+      "name": "Taos Ski Valley",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=GWXZ3nCqZqQ",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "f0052b4c-57f8-45a1-bd16-df7794f90ac3",
+      "name": "Telluride Ski Resort",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=gKNi1NdBKe8",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "73b624f4-5ff0-470d-b4fb-8c59aedb0c2c",
+      "name": "Tosh's Ramen",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=mXIn5r0PcK4",
+      "status": "removed",
+      "reason": "Low relevance (0% match)"
+    },
+    {
+      "id": "c2862ea2-d51f-42aa-b6bb-242e6a8d09b3",
+      "name": "Trinidad",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=_nefATUjpQ8",
+      "status": "removed",
+      "reason": "Low relevance (0% match)"
+    },
+    {
+      "id": "9538b31d-3aee-45b9-979e-dc2397447efd",
+      "name": "Under Current",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=ZYh-JxvmI4g",
+      "status": "removed",
+      "reason": "Low relevance (0% match)"
+    },
+    {
+      "id": "2b10829a-7ef5-427d-b255-cb9d3ba3ce71",
+      "name": "Vail",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=RrMD5JQ4ZYs",
+      "status": "removed",
+      "reason": "Low relevance (0% match)"
+    },
+    {
+      "id": "ee6bb5f3-8349-4566-90ac-be5c20d5137c",
+      "name": "Vail Mountain Resort",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=c_5EGRW5Oks",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "74b06e35-c815-439e-881d-2842f9048cf5",
+      "name": "Whitefish Mountain Resort",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=VzS8rq-UwYs",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "4bbb4511-3865-43dd-a133-dd4a824cfaad",
+      "name": "Winter Park Resort",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=H0-cR0hYlHo",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    },
+    {
+      "id": "ca0312e4-e384-473e-872e-83adb1c54b4b",
+      "name": "Woodward Park City",
+      "oldVideoUrl": "https://www.youtube.com/watch?v=3v8Jn0ZLxiY",
+      "status": "removed",
+      "reason": "Video not found or API error"
+    }
+  ]
+}

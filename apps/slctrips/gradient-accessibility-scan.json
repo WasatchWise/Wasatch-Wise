@@ -1,0 +1,116 @@
+{
+  "timestamp": "2025-11-23T02:32:01.008Z",
+  "filesScanned": 3,
+  "filesWithIssues": 2,
+  "totalIssues": 14,
+  "issues": [
+    {
+      "file": "src/app/faq/page.tsx",
+      "issues": [
+        {
+          "line": 26,
+          "type": "missing-focus",
+          "severity": "medium",
+          "pattern": "<div className=\"min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white\">",
+          "fix": "    <div className=\"min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white focus:outline-2 focus:outline-blue-400 focus:outline-offset-2\">"
+        },
+        {
+          "line": 28,
+          "type": "missing-focus",
+          "severity": "medium",
+          "pattern": "<header className=\"bg-gray-900/80 backdrop-blur-sm border-b border-gray-800 sticky top-0 z-50\">",
+          "fix": "      <header className=\"bg-gray-900/80 backdrop-blur-sm border-b border-gray-800 sticky top-0 z-50 focus:outline-2 focus:outline-blue-400 focus:outline-offset-2\">"
+        },
+        {
+          "line": 31,
+          "type": "missing-focus",
+          "severity": "medium",
+          "pattern": "<Link href=\"/\" className=\"text-2xl font-bold text-blue-400 bg-gradient-to-r from-blue-400 to-yellow-400 bg-clip-text [-webkit-background-clip:text] [background-clip:text]\">",
+          "fix": "            <Link href=\"/\" className=\"text-2xl font-bold text-blue-400 bg-gradient-to-r from-blue-400 to-yellow-400 bg-clip-text [-webkit-background-clip:text] [background-clip:text] focus:outline-2 focus:outline-blue-400 focus:outline-offset-2\">"
+        },
+        {
+          "line": 35,
+          "type": "missing-focus",
+          "severity": "medium",
+          "pattern": "<Link href=\"/\" className=\"text-gray-300 hover:text-white transition-colors\">",
+          "fix": "              <Link href=\"/\" className=\"text-gray-300 hover:text-white transition-colors focus:outline-2 focus:outline-blue-400 focus:outline-offset-2\">"
+        },
+        {
+          "line": 38,
+          "type": "missing-focus",
+          "severity": "medium",
+          "pattern": "<Link href=\"/destinations\" className=\"text-gray-300 hover:text-white transition-colors\">",
+          "fix": "              <Link href=\"/destinations\" className=\"text-gray-300 hover:text-white transition-colors focus:outline-2 focus:outline-blue-400 focus:outline-offset-2\">"
+        },
+        {
+          "line": 41,
+          "type": "missing-focus",
+          "severity": "medium",
+          "pattern": "<Link href=\"/tripkits\" className=\"text-gray-300 hover:text-white transition-colors\">",
+          "fix": "              <Link href=\"/tripkits\" className=\"text-gray-300 hover:text-white transition-colors focus:outline-2 focus:outline-blue-400 focus:outline-offset-2\">"
+        },
+        {
+          "line": 52,
+          "type": "missing-focus",
+          "severity": "medium",
+          "pattern": "<h1 className=\"text-5xl font-extrabold mb-4 text-blue-400 bg-gradient-to-r from-blue-400 to-yellow-400 bg-clip-text [-webkit-background-clip:text] [background-clip:text]\">",
+          "fix": "          <h1 className=\"text-5xl font-extrabold mb-4 text-blue-400 bg-gradient-to-r from-blue-400 to-yellow-400 bg-clip-text [-webkit-background-clip:text] [background-clip:text] focus:outline-2 focus:outline-blue-400 focus:outline-offset-2\">"
+        },
+        {
+          "line": 62,
+          "type": "missing-focus",
+          "severity": "medium",
+          "pattern": "<div className=\"bg-gray-800/60 rounded-xl p-8 border border-gray-700\">",
+          "fix": "          <div className=\"bg-gray-800/60 rounded-xl p-8 border border-gray-700 focus:outline-2 focus:outline-blue-400 focus:outline-offset-2\">"
+        },
+        {
+          "line": 141,
+          "type": "missing-focus",
+          "severity": "medium",
+          "pattern": "<div className=\"mt-12 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-xl p-8 border border-blue-500/30 text-center\">",
+          "fix": "        <div className=\"mt-12 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-xl p-8 border border-blue-500/30 text-center focus:outline-2 focus:outline-blue-400 focus:outline-offset-2\">"
+        },
+        {
+          "line": 158,
+          "type": "missing-focus",
+          "severity": "medium",
+          "pattern": "<footer className=\"bg-gray-900 border-t border-gray-800 mt-16\">",
+          "fix": "      <footer className=\"bg-gray-900 border-t border-gray-800 mt-16 focus:outline-2 focus:outline-blue-400 focus:outline-offset-2\">"
+        },
+        {
+          "line": 165,
+          "type": "missing-focus",
+          "severity": "medium",
+          "pattern": "<Link href=\"/legal/privacy\" className=\"text-gray-400 hover:text-white text-sm transition-colors\">",
+          "fix": "              <Link href=\"/legal/privacy\" className=\"text-gray-400 hover:text-white text-sm transition-colors focus:outline-2 focus:outline-blue-400 focus:outline-offset-2\">"
+        },
+        {
+          "line": 168,
+          "type": "missing-focus",
+          "severity": "medium",
+          "pattern": "<Link href=\"/legal/terms\" className=\"text-gray-400 hover:text-white text-sm transition-colors\">",
+          "fix": "              <Link href=\"/legal/terms\" className=\"text-gray-400 hover:text-white text-sm transition-colors focus:outline-2 focus:outline-blue-400 focus:outline-offset-2\">"
+        },
+        {
+          "line": 171,
+          "type": "missing-focus",
+          "severity": "medium",
+          "pattern": "<Link href=\"/faq\" className=\"text-gray-400 hover:text-white text-sm transition-colors\">",
+          "fix": "              <Link href=\"/faq\" className=\"text-gray-400 hover:text-white text-sm transition-colors focus:outline-2 focus:outline-blue-400 focus:outline-offset-2\">"
+        }
+      ]
+    },
+    {
+      "file": "src/components/SafeImage.tsx",
+      "issues": [
+        {
+          "line": 26,
+          "type": "missing-focus",
+          "severity": "medium",
+          "pattern": "<div className={`flex items-center justify-center bg-gray-100 text-gray-400 ${className || ''} ${fill ? 'absolute inset-0 w-full h-full' : ''}`} style={!fill && width && height ? { width, height } : undefined}>",
+          "fix": "      <div className={`flex items-center justify-center bg-gray-100 text-gray-400 ${className || ''} ${fill ? 'absolute inset-0 w-full h-full' : ''}`} style={!fill && width && height ? { width, height } : undefined}>"
+        }
+      ]
+    }
+  ]
+}

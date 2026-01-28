@@ -1,0 +1,315 @@
+{
+  "timestamp": "2025-11-23T02:30:57.433Z",
+  "colorContrast": [
+    {
+      "name": "Gradient Text (Blue-400) on Gray-900",
+      "context": "Hero headings, gradient text",
+      "foreground": "#60A5FA",
+      "background": "#111827",
+      "ratio": 6.98,
+      "aa": {
+        "normal": true,
+        "large": true
+      },
+      "aaa": {
+        "normal": false,
+        "large": true
+      },
+      "status": "warning",
+      "issue": "Gradient text may not render correctly"
+    },
+    {
+      "name": "Gradient Text (Yellow-400) on Gray-900",
+      "context": "Hero headings, gradient text",
+      "foreground": "#FBBF24",
+      "background": "#111827",
+      "ratio": 10.63,
+      "aa": {
+        "normal": true,
+        "large": true
+      },
+      "aaa": {
+        "normal": true,
+        "large": true
+      },
+      "status": "pass",
+      "issue": "Gradient text may not render correctly"
+    },
+    {
+      "name": "White on Gray-900",
+      "context": "Main content text",
+      "foreground": "#FFFFFF",
+      "background": "#111827",
+      "ratio": 17.74,
+      "aa": {
+        "normal": true,
+        "large": true
+      },
+      "aaa": {
+        "normal": true,
+        "large": true
+      },
+      "status": "pass",
+      "issue": null
+    },
+    {
+      "name": "White on Gray-800",
+      "context": "Content sections",
+      "foreground": "#FFFFFF",
+      "background": "#1F2937",
+      "ratio": 14.68,
+      "aa": {
+        "normal": true,
+        "large": true
+      },
+      "aaa": {
+        "normal": true,
+        "large": true
+      },
+      "status": "pass",
+      "issue": null
+    },
+    {
+      "name": "Gray-300 on Gray-900",
+      "context": "Body text",
+      "foreground": "#D1D5DB",
+      "background": "#111827",
+      "ratio": 12.04,
+      "aa": {
+        "normal": true,
+        "large": true
+      },
+      "aaa": {
+        "normal": true,
+        "large": true
+      },
+      "status": "pass",
+      "issue": null
+    },
+    {
+      "name": "Gray-300 on Gray-800",
+      "context": "Body text",
+      "foreground": "#D1D5DB",
+      "background": "#1F2937",
+      "ratio": 9.96,
+      "aa": {
+        "normal": true,
+        "large": true
+      },
+      "aaa": {
+        "normal": true,
+        "large": true
+      },
+      "status": "pass",
+      "issue": null
+    },
+    {
+      "name": "Gray-400 on Gray-900",
+      "context": "Secondary text",
+      "foreground": "#9CA3AF",
+      "background": "#111827",
+      "ratio": 6.99,
+      "aa": {
+        "normal": true,
+        "large": true
+      },
+      "aaa": {
+        "normal": false,
+        "large": true
+      },
+      "status": "warning",
+      "issue": null
+    },
+    {
+      "name": "Blue-400 on Gray-900",
+      "context": "Links",
+      "foreground": "#60A5FA",
+      "background": "#111827",
+      "ratio": 6.98,
+      "aa": {
+        "normal": true,
+        "large": true
+      },
+      "aaa": {
+        "normal": false,
+        "large": true
+      },
+      "status": "warning",
+      "issue": null
+    },
+    {
+      "name": "Yellow-400 on Gray-900",
+      "context": "Accents",
+      "foreground": "#FBBF24",
+      "background": "#111827",
+      "ratio": 10.63,
+      "aa": {
+        "normal": true,
+        "large": true
+      },
+      "aaa": {
+        "normal": true,
+        "large": true
+      },
+      "status": "pass",
+      "issue": null
+    },
+    {
+      "name": "White on Blue-500",
+      "context": "Primary buttons",
+      "foreground": "#FFFFFF",
+      "background": "#3B82F6",
+      "ratio": 3.68,
+      "aa": {
+        "normal": false,
+        "large": true
+      },
+      "aaa": {
+        "normal": false,
+        "large": false
+      },
+      "status": "fail",
+      "issue": null
+    },
+    {
+      "name": "White on Blue-600",
+      "context": "Button hover",
+      "foreground": "#FFFFFF",
+      "background": "#2563EB",
+      "ratio": 5.17,
+      "aa": {
+        "normal": true,
+        "large": true
+      },
+      "aaa": {
+        "normal": false,
+        "large": true
+      },
+      "status": "warning",
+      "issue": null
+    },
+    {
+      "name": "Gray-900 on Yellow-400",
+      "context": "CTA buttons",
+      "foreground": "#111827",
+      "background": "#FBBF24",
+      "ratio": 10.63,
+      "aa": {
+        "normal": true,
+        "large": true
+      },
+      "aaa": {
+        "normal": true,
+        "large": true
+      },
+      "status": "pass",
+      "issue": null
+    },
+    {
+      "name": "White on Yellow-400",
+      "context": "Yellow buttons",
+      "foreground": "#FFFFFF",
+      "background": "#FBBF24",
+      "ratio": 1.67,
+      "aa": {
+        "normal": false,
+        "large": false
+      },
+      "aaa": {
+        "normal": false,
+        "large": false
+      },
+      "status": "fail",
+      "issue": null
+    },
+    {
+      "name": "White on Orange-500",
+      "context": "Orange buttons",
+      "foreground": "#FFFFFF",
+      "background": "#F97316",
+      "ratio": 2.8,
+      "aa": {
+        "normal": false,
+        "large": false
+      },
+      "aaa": {
+        "normal": false,
+        "large": false
+      },
+      "status": "fail",
+      "issue": null
+    }
+  ],
+  "gradientIssues": [
+    {
+      "issue": "Gradient text uses text-transparent which removes text color",
+      "severity": "high",
+      "impact": "Text may be invisible if gradient fails to render",
+      "location": "Hero headings, FAQ page headings, navigation links",
+      "fix": "Add fallback color before gradient: color: #60A5FA; background: linear-gradient(...)",
+      "codeExample": "Before: bg-gradient-to-r from-blue-400 to-yellow-400 bg-clip-text text-transparent\nAfter: text-blue-400 bg-gradient-to-r from-blue-400 to-yellow-400 bg-clip-text"
+    },
+    {
+      "issue": "bg-clip-text may not work in all browsers",
+      "severity": "medium",
+      "impact": "Text may not display correctly in older browsers",
+      "location": "All gradient text elements",
+      "fix": "Add -webkit-background-clip: text for Safari support",
+      "codeExample": "Add: -webkit-background-clip: text;"
+    },
+    {
+      "issue": "Gradient text contrast varies across gradient",
+      "severity": "high",
+      "impact": "Some parts of gradient may not meet contrast requirements",
+      "location": "Hero headings with blue-to-yellow gradients",
+      "fix": "Ensure minimum contrast at all gradient stops, or use solid color",
+      "codeExample": "Test contrast at blue-400, middle, and yellow-400 points"
+    },
+    {
+      "issue": "No focus indicators on gradient text links",
+      "severity": "medium",
+      "impact": "Keyboard users cannot see focus state",
+      "location": "Navigation links with gradient text",
+      "fix": "Add visible focus outline: focus:outline-2 focus:outline-blue-500 focus:outline-offset-2"
+    }
+  ],
+  "axeViolations": [],
+  "recommendations": [
+    {
+      "priority": "high",
+      "category": "color-contrast",
+      "issue": "3 color combinations fail WCAG AA",
+      "fix": "Increase contrast ratio to at least 4.5:1 for normal text, 3:1 for large text (18pt+)",
+      "examples": [
+        "White on Blue-500",
+        "White on Yellow-400",
+        "White on Orange-500"
+      ]
+    },
+    {
+      "priority": "medium",
+      "category": "color-contrast",
+      "issue": "4 color combinations only pass WCAG AA, not AAA",
+      "fix": "Consider increasing contrast to 7:1 for AAA compliance",
+      "examples": [
+        "Gradient Text (Blue-400) on Gray-900",
+        "Gray-400 on Gray-900",
+        "Blue-400 on Gray-900",
+        "White on Blue-600"
+      ]
+    },
+    {
+      "priority": "high",
+      "category": "gradient-text",
+      "issue": "Gradient text may be invisible if gradient fails to render",
+      "fix": "Add fallback solid color before gradient background",
+      "code": "text-blue-400 bg-gradient-to-r from-blue-400 to-yellow-400 bg-clip-text"
+    }
+  ],
+  "summary": {
+    "totalTests": 14,
+    "passing": 7,
+    "warnings": 4,
+    "failing": 3
+  }
+}

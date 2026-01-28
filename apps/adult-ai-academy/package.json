@@ -1,0 +1,31 @@
+{
+  "name": "adult-ai-academy",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "test:e2e": "tsx scripts/test-e2e.ts",
+    "test:hci": "tsx src/lib/hci/run-tests.ts"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "@supabase/supabase-js": "^2.89.0",
+    "next": "latest",
+    "openai": "^6.15.0",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "latest",
+    "tsx": "^4.21.0",
+    "typescript": "^5"
+  }
+}

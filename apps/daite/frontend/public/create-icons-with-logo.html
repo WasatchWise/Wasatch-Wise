@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DAiTE Icon Generator - Using Your Logo</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(to bottom right, #0f172a, #1e1b4b);
+            color: white;
+        }
+        .container {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid rgba(124, 58, 237, 0.3);
+        }
+        h1 {
+            background: linear-gradient(to right, #a855f7, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #cbd5e1;
+            margin-bottom: 30px;
+        }
+        .logo-selector {
+            background: rgba(15, 23, 42, 0.6);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border: 2px solid rgba(124, 58, 237, 0.2);
+        }
+        .logo-preview {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .logo-preview:hover {
+            border-color: #7c3aed;
+            background: rgba(124, 58, 237, 0.1);
+        }
+        .logo-preview.selected {
+            border-color: #ec4899;
+            background: rgba(236, 72, 153, 0.2);
+        }
+        .logo-preview img {
+            max-width: 100px;
+            max-height: 100px;
+            display: block;
+            border-radius: 4px;
+        }
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        .icon-preview {
+            text-align: center;
+            background: rgba(15, 23, 42, 0.6);
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px solid rgba(124, 58, 237, 0.2);
+        }
+        canvas {
+            border: 3px solid #7c3aed;
+            border-radius: 16px;
+            background: white;
+            box-shadow: 0 8px 32px rgba(124, 58, 237, 0.3);
+            margin: 10px 0;
+        }
+        button {
+            background: linear-gradient(to right, #7c3aed, #ec4899);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            margin: 10px 5px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4);
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.6);
+        }
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .instructions {
+            background: rgba(124, 58, 237, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #7c3aed;
+        }
+        .info {
+            color: #94a3b8;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        .upload-label {
+            display: inline-block;
+            padding: 10px 20px;
+            background: rgba(124, 58, 237, 0.2);
+            border: 2px dashed #7c3aed;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        .upload-label:hover {
+            background: rgba(124, 58, 237, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 DAiTE Icon Generator</h1>
+        <p class="subtitle">Japanese-inspired PWA icons with your logo</p>
+        
+        <div class="instructions">
+            <strong>📋 Instructions:</strong>
+            <ol>
+                <li>Select or upload a logo image below</li>
+                <li>Icons will be generated with Japanese embrace theme</li>
+                <li>Download and save to <code>frontend/public/</code></li>
+            </ol>
+            <p class="info">Your logo will be combined with purple-pink gradient background and Japanese design elements.</p>
+        </div>
+
+        <div class="logo-selector">
+            <h3>Select Logo Source:</h3>
+            <label class="upload-label">
+                📤 Upload Your Logo
+                <input type="file" id="logoUpload" accept="image/*" onchange="handleLogoUpload(event)">
+            </label>
+            <div id="logoPreview" style="margin-top: 15px;">
+                <div class="logo-preview" onclick="selectLogo('default')" id="preview-default">
+                    <strong>Use Generated Design</strong>
+                    <p style="font-size: 12px; margin-top: 5px;">Japanese embrace symbol</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="icon-grid">
+            <div class="icon-preview">
+                <h3>192×192</h3>
+                <canvas id="icon192" width="192" height="192"></canvas>
+                <br>
+                <button onclick="downloadIcon('icon192', 'icon-192.png')">Download icon-192.png</button>
+            </div>
+
+            <div class="icon-preview">
+                <h3>512×512</h3>
+                <canvas id="icon512" width="512" height="512"></canvas>
+                <br>
+                <button onclick="downloadIcon('icon512', 'icon-512.png')">Download icon-512.png</button>
+            </div>
+
+            <div class="icon-preview">
+                <h3>32×32 (Favicon)</h3>
+                <canvas id="favicon" width="32" height="32"></canvas>
+                <br>
+                <button onclick="downloadIcon('favicon', 'favicon.ico')">Download favicon.ico</button>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <button onclick="downloadAll()" style="padding: 15px 30px; font-size: 18px;">📥 Download All Icons</button>
+            <button onclick="regenerate()" style="padding: 15px 30px; font-size: 18px;">🔄 Regenerate</button>
+        </div>
+    </div>
+
+    <script>
+        let selectedLogo = null;
+        let logoImage = null;
+
+        function handleLogoUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        logoImage = img;
+                        selectedLogo = 'uploaded';
+                        document.getElementById('preview-uploaded')?.remove();
+                        const preview = document.createElement('div');
+                        preview.className = 'logo-preview selected';
+                        preview.id = 'preview-uploaded';
+                        preview.innerHTML = `<img src="${e.target.result}" alt="Uploaded logo"><p style="font-size: 12px; margin-top: 5px;">Uploaded</p>`;
+                        preview.onclick = () => selectLogo('uploaded');
+                        document.getElementById('logoPreview').appendChild(preview);
+                        regenerate();
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function selectLogo(type) {
+            selectedLogo = type;
+            document.querySelectorAll('.logo-preview').forEach(p => p.classList.remove('selected'));
+            document.getElementById(`preview-${type}`)?.classList.add('selected');
+            regenerate();
+        }
+
+        function drawIcon(canvasId, size) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, size, size);
+            
+            // Create gradient background
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#7c3aed'); // Purple
+            gradient.addColorStop(1, '#ec4899'); // Pink
+            
+            // Draw background circle (ensō-inspired)
+            const centerX = size / 2;
+            const centerY = size / 2;
+            const radius = size * 0.45;
+            
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Draw white circle outline (Japanese aesthetic)
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.25)';
+            ctx.lineWidth = Math.max(2, size * 0.015);
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius - size * 0.025, 0, Math.PI * 2);
+            ctx.stroke();
+            
+            if (logoImage && selectedLogo === 'uploaded') {
+                // Draw uploaded logo
+                const logoSize = size * 0.6;
+                const logoX = centerX - logoSize / 2;
+                const logoY = centerY - logoSize / 2;
+                
+                // Create a clipping path for rounded corners
+                ctx.save();
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, logoSize / 2, 0, Math.PI * 2);
+                ctx.clip();
+                
+                ctx.drawImage(logoImage, logoX, logoY, logoSize, logoSize);
+                ctx.restore();
+            } else {
+                // Draw embrace/human connection symbol
+                const symbolSize = size * 0.3;
+                const offset = symbolSize * 0.35;
+                
+                ctx.fillStyle = 'white';
+                ctx.strokeStyle = 'white';
+                ctx.lineWidth = Math.max(2, size * 0.012);
+                
+                // Left circle (person 1)
+                ctx.beginPath();
+                ctx.arc(centerX - offset, centerY, symbolSize * 0.4, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Right circle (person 2)
+                ctx.beginPath();
+                ctx.arc(centerX + offset, centerY, symbolSize * 0.4, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Connection arc between them (embrace)
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, offset * 1.3, Math.PI * 0.65, Math.PI * 1.35);
+                ctx.lineWidth = Math.max(2, size * 0.018);
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.85)';
+                ctx.stroke();
+                
+                // Japanese character-inspired element
+                if (size >= 64) {
+                    ctx.save();
+                    ctx.translate(centerX, centerY + size * 0.22);
+                    const kanjiSize = size * 0.12;
+                    ctx.scale(kanjiSize / 100, kanjiSize / 100);
+                    
+                    // Simplified "人" (person) symbol
+                    ctx.beginPath();
+                    ctx.moveTo(-18, -25);
+                    ctx.lineTo(-12, 25);
+                    ctx.moveTo(18, -25);
+                    ctx.lineTo(12, 25);
+                    ctx.moveTo(-18, -25);
+                    ctx.quadraticCurveTo(0, -32, 18, -25);
+                    ctx.lineWidth = 8;
+                    ctx.strokeStyle = 'rgba(255, 255, 255, 0.9)';
+                    ctx.stroke();
+                    ctx.restore();
+                }
+            }
+            
+            // Add sakura petals for Japanese aesthetic (only for larger sizes)
+            if (size >= 128 && !logoImage) {
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
+                const petals = 5;
+                for (let i = 0; i < petals; i++) {
+                    const angle = (Math.PI * 2 * i) / petals;
+                    const petalX = centerX + Math.cos(angle) * (radius * 0.72);
+                    const petalY = centerY + Math.sin(angle) * (radius * 0.72);
+                    const petalSize = size * 0.035;
+                    
+                    ctx.beginPath();
+                    ctx.arc(petalX, petalY, petalSize, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+        }
+
+        function downloadIcon(canvasId, filename) {
+            const canvas = document.getElementById(canvasId);
+            canvas.toBlob((blob) => {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }, 'image/png');
+        }
+
+        function downloadAll() {
+            downloadIcon('icon192', 'icon-192.png');
+            setTimeout(() => downloadIcon('icon512', 'icon-512.png'), 300);
+            setTimeout(() => downloadIcon('favicon', 'favicon.ico'), 600);
+        }
+
+        function regenerate() {
+            drawIcon('icon192', 192);
+            drawIcon('icon512', 512);
+            drawIcon('favicon', 32);
+        }
+
+        // Initialize
+        window.onload = () => {
+            selectLogo('default');
+            regenerate();
+        };
+    </script>
+</body>
+</html>
+

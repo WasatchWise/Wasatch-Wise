@@ -1,0 +1,4 @@
+Google Drive inspection - no credentials available
+GOOGLE_DRIVE_FOLDER_URL: Not provided
+GOOGLE_APPLICATION_CREDENTIALS: Not provided
+Status: Unable to audit Drive folder
