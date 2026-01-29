@@ -25,9 +25,7 @@ async function getNeo4jDriver() {
     }
 
     try {
-        // Dynamic import to avoid requiring neo4j-driver as a hard dependency
-        // Only loads if Neo4j is actually configured
-        // @ts-expect-error - neo4j-driver is an optional dependency
+        // Dynamic import so it only loads when Neo4j is configured
         const neo4j = await import('neo4j-driver');
         const driver = neo4j.driver(
             config.uri!,

@@ -1,4 +1,4 @@
 {
-    "buildCommand": "npm run build",
-      "installCommand": "npm install"
+  "installCommand": "cd ../.. && pnpm install --frozen-lockfile",
+  "buildCommand": "cd ../.. && pnpm run build --filter=adult-ai-academy"
 }
