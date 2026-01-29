@@ -10,18 +10,18 @@
 |-------------------|---------------------|--------------------------|---------------------|
 | wasatchwise       | wasatchwise.vercel.app | Wasatch-Wise ✅        | apps/dashboard       |
 | askbeforeyouapp   | willoh-puce.vercel.app | Wasatch-Wise ✅        | apps/ask-before-you-app |
-| **slctrips**      | www.slctrips.com    | slctrips-v2 (standalone) | apps/slctrips ✅     |
-| **the-rock-salt** | www.therocksalt.com | therocksalt (standalone) | apps/rock-salt ✅    |
+| slctrips         | www.slctrips.com    | Wasatch-Wise ✅         | apps/slctrips        |
+| the-rock-salt    | www.therocksalt.com | Wasatch-Wise ✅         | apps/rock-salt       |
 | the-rings        | www.getintherings.com | Wasatch-Wise ✅        | apps/the-rings/TheRings/app |
 | d-ai-te          | www.daiteapp.com     | Wasatch-Wise ✅         | apps/daite/frontend  |
-| **groove**       | pipelineiq.net       | Groove (standalone)     | apps/pipeline-iq ✅  |
-| **adult-ai-academy** | adult-ai-academy.vercel.app | adultaiacademy (standalone) | apps/adult-ai-academy ✅ |
+| groove           | pipelineiq.net       | Wasatch-Wise ✅         | apps/pipeline-iq     |
+| adult-ai-academy | adult-ai-academy.vercel.app | Wasatch-Wise ✅           | apps/adult-ai-academy   |
 | gmc_mag           | gmcmag.vercel.app    | — (not connected)       | apps/gmc-mag         |
 | www.johnlyman.net | www.johnlyman.net    | Lyman (standalone)      | (not in monorepo)    |
 
-**Bold** = still on a standalone repo but the app already exists under `apps/`.
+All listed apps (except Lyman) are deployed from Wasatch-Wise with Root Directory set per table.
 
-**Migration progress (6 of 7):** gmc_mag ✅, adult-ai-academy ✅, slctrips ✅, rock-salt ✅, the-rings ✅, daite ✅ → remaining: pipeline-iq (Groove).
+**Migration progress (7 of 7):** gmc_mag ✅, adult-ai-academy ✅, slctrips ✅, rock-salt ✅, the-rings ✅, daite ✅, pipeline-iq (Groove) ✅ — all complete.
 
 ---
 
