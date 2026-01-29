@@ -9,8 +9,13 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const host = request.headers.get('host') ?? '';
 
-  // Adult AI Academy domain: serve AAA marketing page at root
-  if ((host === 'www.adultaiacademy.com' || host === 'adultaiacademy.com') && pathname === '/') {
+  // Adult AI Academy domain: serve AAA marketing page at root (strip port if present)
+  // Use host or x-forwarded-host (Vercel/proxies) for correct host-based rewrite
+  const forwardedHost = request.headers.get('x-forwarded-host') ?? '';
+  const effectiveHost = (host || forwardedHost).split(':')[0].toLowerCase();
+  const isAdultAIAcademy =
+    effectiveHost === 'www.adultaiacademy.com' || effectiveHost === 'adultaiacademy.com';
+  if (isAdultAIAcademy && pathname === '/') {
     const url = request.nextUrl.clone();
     url.pathname = '/adult-ai-academy';
     return NextResponse.rewrite(url);
