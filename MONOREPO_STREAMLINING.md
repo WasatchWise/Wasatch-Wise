@@ -12,14 +12,16 @@
 | askbeforeyouapp   | willoh-puce.vercel.app | Wasatch-Wise ✅        | apps/ask-before-you-app |
 | **slctrips**      | www.slctrips.com    | slctrips-v2 (standalone) | apps/slctrips ✅     |
 | **the-rock-salt** | www.therocksalt.com | therocksalt (standalone) | apps/rock-salt ✅    |
-| **the-rings**     | www.getintherings.com | TheRings (standalone)  | apps/the-rings/TheRings ✅ |
-| **d-ai-te**       | www.daiteapp.com     | DAiTE (standalone)      | apps/daite ✅        |
-| **groove**        | pipelineiq.net       | Groove (standalone)     | apps/pipeline-iq ✅  |
+| the-rings        | www.getintherings.com | Wasatch-Wise ✅        | apps/the-rings/TheRings/app |
+| d-ai-te          | www.daiteapp.com     | Wasatch-Wise ✅         | apps/daite/frontend  |
+| **groove**       | pipelineiq.net       | Groove (standalone)     | apps/pipeline-iq ✅  |
 | **adult-ai-academy** | adult-ai-academy.vercel.app | adultaiacademy (standalone) | apps/adult-ai-academy ✅ |
 | gmc_mag           | gmcmag.vercel.app    | — (not connected)       | apps/gmc-mag         |
 | www.johnlyman.net | www.johnlyman.net    | Lyman (standalone)      | (not in monorepo)    |
 
 **Bold** = still on a standalone repo but the app already exists under `apps/`.
+
+**Migration progress (6 of 7):** gmc_mag ✅, adult-ai-academy ✅, slctrips ✅, rock-salt ✅, the-rings ✅, daite ✅ → remaining: pipeline-iq (Groove).
 
 ---
 
@@ -56,7 +58,7 @@ Otherwise you might deploy an older version from the monorepo.
 |-------------------|--------------------|-----------------------------|
 | slctrips          | WasatchWise/Wasatch-Wise | `apps/slctrips`        |
 | the-rock-salt     | WasatchWise/Wasatch-Wise | `apps/rock-salt`       |
-| the-rings         | WasatchWise/Wasatch-Wise | `apps/the-rings/TheRings` |
+| the-rings         | WasatchWise/Wasatch-Wise | `apps/the-rings/TheRings/app` |
 | d-ai-te           | WasatchWise/Wasatch-Wise | `apps/daite/frontend`  |
 | groove            | WasatchWise/Wasatch-Wise | `apps/pipeline-iq`     |
 | adult-ai-academy  | WasatchWise/Wasatch-Wise | `apps/adult-ai-academy` |
@@ -87,7 +89,7 @@ Repeat for the next project. Easiest to start with the one that changes least (e
 2. **adult-ai-academy** — Usually low churn; sync then switch.
 3. **slctrips** — High traffic; sync carefully, then switch and test.
 4. **the-rock-salt** — Same idea; sync then switch.
-5. **the-rings** — Root is `apps/the-rings/TheRings` (nested app).
+5. **the-rings** — Root is `apps/the-rings/TheRings/app` (Next.js app lives in `app/`; `vercel.json` added there).
 6. **d-ai-te** — Root is `apps/daite/frontend`.
 7. **groove** (Pipeline IQ) — Root is `apps/pipeline-iq`.
 
