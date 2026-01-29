@@ -174,7 +174,7 @@ export function SendEmailDialog({
           {/* Contact Selection */}
           <div>
             <label className="text-sm font-medium mb-2 block">
-              Recipients ({validContacts.length} contact{validContacts.length !== 1 ? 's' : ''})
+              Recipients ({String(validContacts.length)} contact{validContacts.length !== 1 ? 's' : ''})
             </label>
             <div className="border rounded-md p-3 max-h-32 overflow-y-auto space-y-2">
               {validContacts.length === 0 ? (
@@ -244,7 +244,7 @@ export function SendEmailDialog({
               ) : (
                 <>
                   <Send className="mr-2 h-4 w-4" />
-                  Send to {selectedContacts.length} contact{selectedContacts.length !== 1 ? 's' : ''}
+                  Send to {String(selectedContacts.length)} contact{selectedContacts.length !== 1 ? 's' : ''}
                 </>
               )}
             </Button>
