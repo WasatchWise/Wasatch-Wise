@@ -23,7 +23,7 @@ export default function AdultAIAcademyPage() {
             Adult AI Academy
           </h1>
           <p className="text-lg sm:text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
-            Practical AI literacy for educators—clear, responsible, and ready for real-world use in K-12 classrooms.
+            Practical AI literacy for adults—whether you're upskilling, hesitant to try AI, or ready to go beyond the basics. Built for real people, not just tech early adopters.
           </p>
         </header>
 
@@ -38,20 +38,20 @@ export default function AdultAIAcademyPage() {
                 Foundation Courses
               </h3>
               <p className="text-sm sm:text-base text-gray-600 mb-4 leading-relaxed">
-                Core AI concepts, safety principles, and policy-ready guidance for adult learners who are new to AI tools.
+                Core AI concepts, safety principles, and clear guidance for adult learners who are new to AI or have been reluctant to dive in.
               </p>
               <ul className="space-y-2 text-sm sm:text-base text-gray-700">
                 <li className="flex items-start gap-2">
                   <CheckCircle className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" />
-                  <span>AI basics for educators</span>
+                  <span>AI basics without the jargon</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" />
-                  <span>FERPA and COPPA compliance</span>
+                  <span>Privacy and safety in everyday use</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" />
-                  <span>Policy development basics</span>
+                  <span>When and how to trust AI outputs</span>
                 </li>
               </ul>
             </div>
@@ -60,20 +60,20 @@ export default function AdultAIAcademyPage() {
                 Application Workshops
               </h3>
               <p className="text-sm sm:text-base text-gray-600 mb-4 leading-relaxed">
-                Hands-on training for using AI tools in instruction, operations, and communication—beyond basic prompting.
+                Hands-on practice using AI for work, side projects, and daily life—beyond basic prompting.
               </p>
               <ul className="space-y-2 text-sm sm:text-base text-gray-700">
                 <li className="flex items-start gap-2">
                   <CheckCircle className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" />
-                  <span>Lesson planning with AI</span>
+                  <span>Writing, research, and productivity with AI</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" />
-                  <span>Assessment redesign</span>
+                  <span>Evaluating AI outputs and spotting bias</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircle className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" />
-                  <span>Bias detection and evaluation</span>
+                  <span>Staying in control when tools get it wrong</span>
                 </li>
               </ul>
             </div>
@@ -82,7 +82,7 @@ export default function AdultAIAcademyPage() {
                 Governance Training
               </h3>
               <p className="text-sm sm:text-base text-gray-600 mb-4 leading-relaxed">
-                Responsible AI adoption aligned with district policies and compliance requirements for administrators and leaders.
+                Responsible use and simple governance—for yourself, your team, or your organization—without needing a compliance department.
               </p>
               <ul className="space-y-2 text-sm sm:text-base text-gray-700">
                 <li className="flex items-start gap-2">
@@ -109,21 +109,21 @@ export default function AdultAIAcademyPage() {
           </h2>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
             <div className="bg-white rounded-lg border border-orange-100 p-5 sm:p-6 text-center">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Teachers</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Reluctant or Hesitant Learners</h3>
               <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-                Learn to use AI tools safely and effectively in your classroom while protecting student data.
+                You've heard the hype but held back. We meet you where you are—no shame, no assumed tech fluency.
               </p>
             </div>
             <div className="bg-white rounded-lg border border-orange-100 p-5 sm:p-6 text-center">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Principals</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Gen X, Xennials & Career Upskilling</h3>
               <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-                Build AI literacy across your school with training that aligns to district policies.
+                You need AI literacy for work or life. Practical, clear training that fits your pace and goals.
               </p>
             </div>
             <div className="bg-white rounded-lg border border-orange-100 p-5 sm:p-6 text-center sm:col-span-2 md:col-span-1">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Instructional Coaches</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Anyone Ready to Go Beyond Basics</h3>
               <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-                Support teachers with practical AI training that goes beyond surface-level prompting.
+                You've dabbled and want to use AI responsibly and effectively—without drinking the Kool-Aid.
               </p>
             </div>
           </div>
@@ -204,7 +204,7 @@ export default function AdultAIAcademyPage() {
         {/* CTA */}
         <section className="text-center">
           <p className="text-base sm:text-lg text-gray-700 mb-6 leading-relaxed">
-            Ready to build AI literacy in your school or district?
+            Ready to build AI literacy on your terms?
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button href="/contact?service=Adult%20AI%20Academy" variant="primary" size="lg">
@@ -215,7 +215,7 @@ export default function AdultAIAcademyPage() {
             </Button>
           </div>
           <p className="mt-4 text-sm text-gray-500">
-            Or explore our <Link href="/" className="text-orange-500 hover:text-orange-600 underline">enterprise solutions</Link> for districts
+            K-12 or higher ed? See <Link href="/ask-before-you-app" className="text-orange-500 hover:text-orange-600 underline">Ask Before You App</Link>. Need compliance or consulting? <Link href="/" className="text-orange-500 hover:text-orange-600 underline">WasatchWise</Link>.
           </p>
         </section>
       </div>

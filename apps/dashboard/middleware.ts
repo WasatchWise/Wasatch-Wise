@@ -7,6 +7,14 @@ import { rateLimiter, getRateLimitKey } from '@/lib/utils/rate-limit';
  */
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  const host = request.headers.get('host') ?? '';
+
+  // Adult AI Academy domain: serve AAA marketing page at root
+  if ((host === 'www.adultaiacademy.com' || host === 'adultaiacademy.com') && pathname === '/') {
+    const url = request.nextUrl.clone();
+    url.pathname = '/adult-ai-academy';
+    return NextResponse.rewrite(url);
+  }
 
   // CORS headers for API routes
   if (pathname.startsWith('/api/')) {

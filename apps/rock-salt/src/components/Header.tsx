@@ -50,7 +50,7 @@ export default function Header() {
   }
 
   return (
-    <header className="bg-zinc-950 border-b border-zinc-800 sticky top-0 z-50 backdrop-blur-sm bg-opacity-95">
+    <header className="bg-zinc-950 border-b border-zinc-800 z-50 backdrop-blur-sm bg-opacity-95">
       <Container>
         <nav className="flex items-center justify-between py-4">
           {/* Logo */}

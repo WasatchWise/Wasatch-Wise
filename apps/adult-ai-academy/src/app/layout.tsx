@@ -7,7 +7,7 @@ import styles from "./Layout.module.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Adult AI Academy | Content Factory",
+  title: "Content Factory",
   description: "Strategy Hub for AI Content Creation and Curriculum Development.",
 };
 

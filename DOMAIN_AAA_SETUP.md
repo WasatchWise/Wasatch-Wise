@@ -63,8 +63,14 @@
 
 After Step 1 + 2:
 
-- **www.adultaiacademy.com** → AAA marketing page (same content as www.wasatchwise.com/adult-ai-academy).
+- **www.adultaiacademy.com** → AAA marketing page. The dashboard app **rewrites** the root path to `/adult-ai-academy` when the host is adultaiacademy.com (see `apps/dashboard/middleware.ts`), so the AAA marketing page (adults/upskilling copy) is shown at the root.
 - **adult-ai-academy.vercel.app** (or content-factory.vercel.app) → Content Factory app, no AAA domain attached.
+
+## Branding (AAA + nav) and deploy
+
+- **Code:** AAA page copy (adults, upskilling, Gen X/Xennials), nav (AAA out of header, footer only), and Content Factory branding are in the repo.
+- **Live:** The **new** deployment is failing at `pnpm run build` (6 errors in build logs). The **previous** deployment is still serving both URLs, so they show **old** content (homepage on both; no AAA rewrite yet).
+- **Next:** Fix the build errors (check Vercel build logs for the 6 errors), then redeploy. After a successful deploy: www.adultaiacademy.com will show the AAA marketing page at root (rewrite); www.wasatchwise.com will show the updated nav and homepage.
 
 ---
 

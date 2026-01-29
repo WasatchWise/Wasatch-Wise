@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
@@ -90,6 +91,7 @@ export default function RootLayout({
           <Footer />
           <FloatingPlayer />
         </AudioPlayerProvider>
+        <Script src="/sticky-header.js" strategy="afterInteractive" />
       </body>
     </html>
   );

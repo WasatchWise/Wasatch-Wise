@@ -15,9 +15,9 @@ export default function Sidebar() {
         <aside className={`${styles.sidebar} glass`}>
             <div className={styles.branding}>
                 <h1 className={`${styles.title} glow-text`}>
-                    ADULT AI ACADEMY
+                    CONTENT FACTORY
                 </h1>
-                <p className={styles.subtitle}>CONTENT FACTORY V1.0</p>
+                <p className={styles.subtitle}>V1.0</p>
             </div>
 
             <nav className={styles.nav}>

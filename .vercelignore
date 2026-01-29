@@ -1,0 +1,32 @@
+# Large directories - not needed for Vercel build
+Documents/
+Archive/
+Media/
+WolfTok/
+
+# Dependencies - Vercel installs these
+node_modules/
+.npm-cache/
+
+# Git
+.git/
+
+# Test artifacts
+test-results/
+
+# Video files
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.webm
+*.wmv
+
+# Large media files
+*.psd
+*.ai
+*.sketch
+
+# Misc
+.DS_Store
+*.log

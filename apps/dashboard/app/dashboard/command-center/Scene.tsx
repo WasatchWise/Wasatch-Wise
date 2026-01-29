@@ -155,18 +155,19 @@ export default function DashboardScene() {
             if (supabaseUrl && supabaseKey) {
                 globalPulse = initializeGlobalPulse(supabaseUrl, supabaseKey);
 
-                // Subscribe to each building's health updates via Realtime
-                for (const building of buildings) {
-                    globalPulse.subscribeToBuildingHealth(
-                        building.config.id,
-                        (health) => {
-                            if (!isAlive) return;
-                            building.updateHealth(health);
-                        }
-                    ).then((unsubscribe) => {
-                        unsubscribeFunctions.push(unsubscribe);
-                    });
-                }
+                // Subscribe to each building's health updates via Realtime (await so cleanup has unsubscribes)
+                const unsubs = await Promise.all(
+                    buildings.map((building) =>
+                        globalPulse!.subscribeToBuildingHealth(
+                            building.config.id,
+                            (health) => {
+                                if (!isAlive) return;
+                                building.updateHealth(health);
+                            }
+                        )
+                    )
+                );
+                unsubscribeFunctions.push(...unsubs);
 
                 // Fetch initial health for all buildings
                 Promise.all(

@@ -45,6 +45,28 @@ apps/gmc-mag/GMC*/
 .DS_Store
 *.pem
 
+# cursor
+.cursorrules
+
+# planning/documentation files (keep in local notes, not git)
+/*.md
+!README.md
+**/VERCEL_MIGRATION.md
+
+# one-off SQL scripts
+/*.sql
+
+# root-level images (use proper asset locations)
+/*.png
+
+# stray config files
+/components.json
+/.eslintrc.json
+
+# duplicate pnpm files in wrong locations
+apps/slctrips/pnpm-lock.yaml
+apps/slctrips/pnpm-workspace.yaml
+
 # debug
 npm-debug.log*
 yarn-debug.log*
