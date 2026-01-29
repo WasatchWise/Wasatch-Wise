@@ -628,6 +628,5 @@ export default function SceneWeb({ data }: SceneWebProps) {
                 </div>
             </div>
         )}
-    </div>
-)
+    </div>)
 }
