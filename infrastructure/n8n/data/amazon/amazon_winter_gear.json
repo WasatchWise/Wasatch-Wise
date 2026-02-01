@@ -1,0 +1,12 @@
+{
+  "category": "Winter Sports & Snow Gear",
+  "slug": "amazon_winter_gear",
+  "tag": "wasatchwise20-20",
+  "products": [
+    { "name": "Ski/Snow Goggles", "productName": "Smith Optics I/O Mag", "priceRange": [200, 260], "commissionPct": 3, "asin": "", "notes": "$6-7.80" },
+    { "name": "Hand Warmers", "productName": "HotHands 40-pack", "priceRange": [15, 20], "commissionPct": 3, "asin": "", "notes": "$0.45-0.60" },
+    { "name": "Insulated Water Bottle", "productName": "Hydro Flask 32oz", "priceRange": [40, 50], "commissionPct": 3, "asin": "", "notes": "$1.20-1.50" },
+    { "name": "Neck Gaiter/Balaclava", "productName": "Smartwool", "priceRange": [25, 35], "commissionPct": 4, "asin": "", "notes": "$1-1.40" },
+    { "name": "Ice Cleats", "productName": "Yaktrax Walk", "priceRange": [20, 25], "commissionPct": 3, "asin": "", "notes": "$0.60-0.75" }
+  ]
+}

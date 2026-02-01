@@ -1,0 +1,12 @@
+{
+  "category": "Utah Winter Road Trip Essentials",
+  "slug": "amazon_roadtrip_essentials",
+  "tag": "wasatchwise20-20",
+  "products": [
+    { "name": "Portable Jump Starter", "productName": "NOCO Genius Boost", "priceRange": [100, 125], "commissionPct": 4, "asin": "", "notes": "$4-5 per sale" },
+    { "name": "Emergency Car Kit", "productName": "AAA 66-Piece Road Kit", "priceRange": [30, 40], "commissionPct": 4.5, "asin": "", "notes": "$1.35-1.80" },
+    { "name": "Heated Travel Mug", "productName": "Yeti Rambler 20oz", "priceRange": [35, 35], "commissionPct": 3, "asin": "", "notes": "$1.05" },
+    { "name": "Traction Mats", "productName": "MAXTRAX Recovery Boards or ActionTrax", "priceRange": [60, 300], "commissionPct": 4.5, "asin": "", "notes": "$2.70 or $13.50" },
+    { "name": "First Aid Kit", "productName": "Adventure Medical Kits", "priceRange": [25, 40], "commissionPct": 4.5, "asin": "", "notes": "$1.13-1.80" }
+  ]
+}

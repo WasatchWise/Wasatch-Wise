@@ -1,0 +1,12 @@
+{
+  "category": "Camping & Overnight Gear",
+  "slug": "amazon_camping_gear",
+  "tag": "wasatchwise20-20",
+  "products": [
+    { "name": "Cooler", "productName": "YETI Roadie 24", "priceRange": [200, 250], "commissionPct": 3, "asin": "", "notes": "$6-7.50" },
+    { "name": "Sleeping Bag", "productName": "Coleman 0°F", "priceRange": [60, 80], "commissionPct": 3, "asin": "", "notes": "$1.80-2.40" },
+    { "name": "Camping Stove", "productName": "Coleman Portable", "priceRange": [45, 60], "commissionPct": 3, "asin": "", "notes": "$1.35-1.80" },
+    { "name": "Headlamp", "productName": "Black Diamond Spot", "priceRange": [40, 50], "commissionPct": 3, "asin": "", "notes": "$1.20-1.50" },
+    { "name": "Camp Chairs", "productName": "Helinox Chair One", "priceRange": [120, 140], "commissionPct": 3, "asin": "", "notes": "$3.60-4.20" }
+  ]
+}

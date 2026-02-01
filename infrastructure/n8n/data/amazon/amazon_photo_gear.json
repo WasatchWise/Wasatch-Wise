@@ -1,0 +1,12 @@
+{
+  "category": "Photography & Content Creation",
+  "slug": "amazon_photo_gear",
+  "tag": "wasatchwise20-20",
+  "products": [
+    { "name": "Drone", "productName": "DJI Mini 3 Pro", "priceRange": [670, 760], "commissionPct": 3, "asin": "", "notes": "$20-23 per sale" },
+    { "name": "Action Camera", "productName": "GoPro Hero 11", "priceRange": [350, 400], "commissionPct": 3, "asin": "", "notes": "$10.50-12" },
+    { "name": "Phone Tripod", "productName": "UBeesize Tripod", "priceRange": [20, 30], "commissionPct": 3, "asin": "", "notes": "$0.60-0.90" },
+    { "name": "Portable Charger", "productName": "Anker PowerCore", "priceRange": [40, 60], "commissionPct": 3, "asin": "", "notes": "$1.20-1.80" },
+    { "name": "Camera Backpack", "productName": "Lowepro", "priceRange": [80, 120], "commissionPct": 3, "asin": "", "notes": "$2.40-3.60" }
+  ]
+}

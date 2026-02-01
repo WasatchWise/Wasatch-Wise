@@ -1,0 +1,12 @@
+{
+  "category": "Road Trip Entertainment & Comfort",
+  "slug": "amazon_roadtrip_comfort",
+  "tag": "wasatchwise20-20",
+  "products": [
+    { "name": "Phone Mount", "productName": "Quad Lock Car Mount", "priceRange": [40, 60], "commissionPct": 4.5, "asin": "", "notes": "$1.80-2.70" },
+    { "name": "Bluetooth FM Transmitter", "productName": "LIHAN", "priceRange": [20, 25], "commissionPct": 4.5, "asin": "", "notes": "$0.90-1.13" },
+    { "name": "Car Organizer", "productName": "FORTEM Back Seat", "priceRange": [25, 35], "commissionPct": 4.5, "asin": "", "notes": "$1.13-1.58" },
+    { "name": "Travel Pillow", "productName": "Trtl Pillow", "priceRange": [30, 40], "commissionPct": 4, "asin": "", "notes": "$1.20-1.60" },
+    { "name": "Portable Cooler", "productName": "Coleman 16-Quart", "priceRange": [30, 40], "commissionPct": 3, "asin": "", "notes": "$0.90-1.20" }
+  ]
+}

@@ -1,0 +1,295 @@
+{
+  "name": "Stripe → daily_revenue + per-building metrics",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "stripe-webhook",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Stripe Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300],
+      "webhookId": "stripe-revenue"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "payment-intent-direct",
+              "leftValue": "={{ $json.type }}",
+              "rightValue": "payment_intent.succeeded",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "payment-intent-body",
+              "leftValue": "={{ $json.body?.type }}",
+              "rightValue": "payment_intent.succeeded",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "charge-direct",
+              "leftValue": "={{ $json.type }}",
+              "rightValue": "charge.succeeded",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "charge-body",
+              "leftValue": "={{ $json.body?.type }}",
+              "rightValue": "charge.succeeded",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "id": "filter-payment",
+      "name": "Is Payment Success?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// Extract payment amount and building_id from Stripe event\nconst payload = $input.all()[0].json;\nconst event = payload.body || payload;\nconst obj = event.data?.object || {};\nconst amount = obj.amount || event.amount || 0;\nconst amountInDollars = amount / 100;\nconst buildingId = obj.metadata?.building_id || null;\n\n// Map building_id to city_metrics key\nconst BUILDING_TO_METRIC = {\n  'B002': 'slctrips_revenue', 'B006': 'abya_revenue', 'B003': 'rocksalt_revenue',\n  'B010': 'automation_mrr', 'B009': 'pipelineiq_revenue'\n};\nconst buildingMetricKey = buildingId ? BUILDING_TO_METRIC[buildingId] || null : null;\n\nreturn [{\n  json: {\n    amount: amountInDollars,\n    building_id: buildingId,\n    building_metric_key: buildingMetricKey,\n    stripe_event_id: event.id || payload.id,\n    customer: obj.customer || 'unknown',\n    timestamp: new Date().toISOString()\n  }\n}];"
+      },
+      "id": "extract-amount",
+      "name": "Extract Amount + Building",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [680, 200]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.SUPABASE_URL }}/rest/v1/rpc/increment_daily_revenue",
+        "authentication": "none",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $env.SUPABASE_SERVICE_ROLE_KEY }}"
+            },
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $env.SUPABASE_SERVICE_ROLE_KEY }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={ \"amount_to_add\": {{ $json.amount }} }",
+        "options": {}
+      },
+      "id": "update-gauge",
+      "name": "Update daily_revenue",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [900, 200]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "has-building",
+              "leftValue": "={{ $json.building_metric_key }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "has-building-metric",
+      "name": "Has Building ID?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [1120, 200]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.SUPABASE_URL }}/rest/v1/rpc/upsert_revenue_metric",
+        "authentication": "none",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $env.SUPABASE_SERVICE_ROLE_KEY }}"
+            },
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $env.SUPABASE_SERVICE_ROLE_KEY }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"p_metric_key\": \"{{ $json.building_metric_key }}\",\n  \"p_amount_to_add\": {{ $json.amount }}\n}",
+        "options": {}
+      },
+      "id": "update-building-metric",
+      "name": "Update building metric",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1340, 100]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={ \"received\": true }",
+        "options": {}
+      },
+      "id": "respond-ok",
+      "name": "Respond OK",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1560, 200]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={ \"received\": true, \"skipped\": true }",
+        "options": {}
+      },
+      "id": "respond-skip",
+      "name": "Respond Skip",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [680, 420]
+    }
+  ],
+  "connections": {
+    "Stripe Webhook": {
+      "main": [
+        [
+          {
+            "node": "Is Payment Success?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Payment Success?": {
+      "main": [
+        [
+          {
+            "node": "Extract Amount + Building",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond Skip",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Amount + Building": {
+      "main": [
+        [
+          {
+            "node": "Update daily_revenue",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update daily_revenue": {
+      "main": [
+        [
+          {
+            "node": "Has Building ID?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Building ID?": {
+      "main": [
+        [
+          {
+            "node": "Update building metric",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond OK",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update building metric": {
+      "main": [
+        [
+          {
+            "node": "Respond OK",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "1",
+  "meta": {
+    "templateCredsSetupCompleted": false
+  }
+}
