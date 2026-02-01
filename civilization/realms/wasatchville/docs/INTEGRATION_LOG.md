@@ -138,10 +138,21 @@ Document specific webhook URLs and payloads here as they are added.
 
 ---
 
+## Wiring report follow-up (2025-02-01)
+
+From Chrome Extension wiring check:
+
+- **Dashboard 404 at wasatchwise.com/dashboard/command-center:** Command center lives in `apps/dashboard` at route `/dashboard/command-center`. The **wasatchwise** Vercel project currently deploys the main marketing site (ask-before-you-app or root app), not the dashboard app. To expose the command center: (1) Deploy the dashboard app (e.g. as a separate Vercel project or subdomain like `dashboard.wasatchwise.com`), or (2) Configure the wasatchwise project to build/serve the dashboard app and route `/dashboard/*` to it. No code change required; this is a deployment/domain decision.
+- **adultaiacademy.com serving wrong content:** In Vercel, assign **www.adultaiacademy.com** (and adultaiacademy.com) to the **adult-ai-academy** project, not the wasatchwise project. Vercel Dashboard → adult-ai-academy project → Settings → Domains → Add domain.
+- **n8n Stripe webhook – production:** Stripe cannot call localhost. For live Stripe events: (1) Deploy n8n (e.g. Cloud Run, Railway, Render) and set Stripe webhook URL to `https://<your-n8n-host>/webhook/stripe-webhook`, or (2) Use a tunnel (ngrok, Cloudflare Tunnel) to localhost and use the tunnel URL in Stripe. Store the Stripe webhook signing secret in n8n credentials.
+
+---
+
 ## Changelog
 
 | Date | Change |
 |------|--------|
+| 2025-02-01 | Wiring report follow-up: dashboard 404, adultaiacademy.com domain, n8n Stripe production note. |
 | 2025-02-01 | Added n8n Automation Status (Implemented vs Planned), verification checklist, Stripe webhook URL note. |
 | 2025-01-31 | Linked affiliate in-depth review (AFFILIATE_REVIEW_2025-01-31.md / .json); top actions and config additions. |
 | 2025-01-31 | Added per-building Stripe revenue metrics, affiliate infrastructure expansion, n8n workflows table. |

@@ -85,6 +85,9 @@ export default function Footer() {
               Affiliate Disclosure
             </a>
           </div>
+          <p className="text-center text-gray-500 text-sm mb-2">
+            As an Amazon Associate I earn from qualifying purchases.
+          </p>
           <p className="text-center text-gray-500 text-sm">
             © {new Date().getFullYear()} SLCTrips, a{' '}
             <a

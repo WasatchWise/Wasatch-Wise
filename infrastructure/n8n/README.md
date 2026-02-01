@@ -122,6 +122,15 @@ For now, workflows can update `city_metrics` gauges; we'll add an events table w
 | B007       | Bank            | Financial Ops     |
 | B008       | Library         | NotebookLM Hub    |
 
+## Stripe webhook – production
+
+**Stripe cannot reach localhost.** For Stripe to send events to n8n you must either:
+
+1. **Deploy n8n** (e.g. Cloud Run, Railway, Render) and in Stripe Dashboard → Developers → Webhooks add endpoint `https://<your-n8n-host>/webhook/stripe-webhook` with events `payment_intent.succeeded` and `charge.succeeded`, then store the signing secret (whsec_…) in n8n credentials; or  
+2. **Use a tunnel** (ngrok, Cloudflare Tunnel) to expose localhost and use the tunnel URL in Stripe (good for testing only).
+
+---
+
 ## Deploying beyond local (e.g. Cloud Run)
 
 - Use the same image `docker.n8n.io/n8nio/n8n` and set `N8N_HOST` / `N8N_PROTOCOL` (e.g. `https`) and secure auth (e.g. `N8N_BASIC_AUTH_ACTIVE=true` or OIDC).
