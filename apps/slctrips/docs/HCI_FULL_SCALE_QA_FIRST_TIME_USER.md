@@ -187,7 +187,7 @@
 
 | Issue | Notes |
 |-------|--------|
-| **React hydration errors (#418, #423)** | **Addressed:** Footer uses stable `COPYRIGHT_YEAR`; TripKitViewer and welcome-wagon ShareButton/ClientOnlyShareButton use canonical URLs instead of `window.location` so server and client render the same. Re-run QA to confirm console is clear. |
+| **React hydration errors (#418, #423)** | **Addressed:** Footer stable `COPYRIGHT_YEAR`; share URLs canonical; **ShareButton** now detects `navigator.share` in `useEffect` only (state `hasNativeShare`), so server and first client render match (no conditional "Share via..." button until after mount). Re-run QA on `/welcome-wagon` to confirm console is clear. |
 | **Destination card images** | On `/destinations` list, card images show gray placeholders; consider lazy-load tuning or image source. |
 | **Google Maps image proxy 403** | `/api/image-proxy` failed for Google Places photo (Vercel logs). Check proxy auth/headers or fallback. |
 | **TripKit slug mismatch** | "Utah Unlocked" uses slug `meet-the-mt-olympians` instead of `utah-unlocked`; confirm if intentional (e.g. campaign slug). |

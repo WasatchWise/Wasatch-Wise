@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface ShareButtonProps {
   url: string;
@@ -21,6 +21,11 @@ export default function ShareButton({
 }: ShareButtonProps) {
   const [copied, setCopied] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
+  // Detect native share after mount to avoid SSR/client hydration mismatch
+  const [hasNativeShare, setHasNativeShare] = useState(false);
+  useEffect(() => {
+    setHasNativeShare(typeof navigator !== 'undefined' && 'share' in navigator);
+  }, []);
 
   const shareData = {
     url,
@@ -107,7 +112,7 @@ export default function ShareButton({
             />
             <div className="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-xl z-20 border border-gray-200 animate-slideUp">
               <div className="py-2">
-                {typeof navigator !== 'undefined' && 'share' in navigator && (
+                {hasNativeShare && (
                   <button
                     onClick={shareViaNative}
                     className="w-full px-4 py-2 text-left hover:bg-gray-100 flex items-center gap-3"
@@ -196,7 +201,7 @@ export default function ShareButton({
   if (variant === 'icon') {
     return (
       <div className={`flex items-center gap-2 ${className}`}>
-        {typeof navigator !== 'undefined' && 'share' in navigator && (
+        {hasNativeShare && (
           <button
             onClick={shareViaNative}
             className="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-full transition-colors"
