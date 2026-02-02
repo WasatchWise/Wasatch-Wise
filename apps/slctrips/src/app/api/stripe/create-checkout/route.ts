@@ -47,6 +47,7 @@ export async function POST(request: NextRequest) {
 
   const { tripkitId } = body;
 
+  try {
     // Resolve authenticated user from cookies (do NOT trust client-provided user ids)
     const cookieStore = cookies();
     const supabaseSSR = createServerClient(
