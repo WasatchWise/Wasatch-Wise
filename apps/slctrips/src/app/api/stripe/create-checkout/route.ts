@@ -28,18 +28,24 @@ const supabase = createClient(
 export async function POST(request: NextRequest) {
   logger.info('Stripe checkout request received');
 
-  try {
-    // Validate environment variables are present
-    if (!process.env.STRIPE_SECRET_KEY) {
-      console.error('[Stripe Checkout] Missing STRIPE_SECRET_KEY');
-      return NextResponse.json({ error: 'Server configuration error: Missing Stripe key' }, { status: 500 });
-    }
-    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
-      console.error('[Stripe Checkout] Missing Supabase configuration');
-      return NextResponse.json({ error: 'Server configuration error: Missing database config' }, { status: 500 });
-    }
+  // Validate environment variables are present
+  if (!process.env.STRIPE_SECRET_KEY) {
+    console.error('[Stripe Checkout] Missing STRIPE_SECRET_KEY');
+    return NextResponse.json({ error: 'Server configuration error: Missing Stripe key' }, { status: 500 });
+  }
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+    console.error('[Stripe Checkout] Missing Supabase configuration');
+    return NextResponse.json({ error: 'Server configuration error: Missing database config' }, { status: 500 });
+  }
 
-    const { tripkitId } = await request.json();
+  let body: { tripkitId?: string };
+  try {
+    body = await request.json();
+  } catch {
+    return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
+  }
+
+  const { tripkitId } = body;
 
     // Resolve authenticated user from cookies (do NOT trust client-provided user ids)
     const cookieStore = cookies();
@@ -174,14 +180,14 @@ export async function POST(request: NextRequest) {
   } catch (error: unknown) {
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     const errorType = (error && typeof error === 'object' && 'type' in error) ? (error as any).type : undefined;
-    const errorMessageForResponse = error instanceof Error ? error.message : 'Failed to create checkout session';
     logger.error('Stripe checkout error', {
       error: errorMessage,
       type: errorType,
       siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'undefined'
     });
+    // Server/Stripe/DB errors → 500 so client can show "try again" not "bad request"
     return NextResponse.json({
-      error: 'Stripe error: ' + errorMessageForResponse
-    }, { status: 400 });
+      error: 'Checkout failed. Please try again or contact support.'
+    }, { status: 500 });
   }
 }

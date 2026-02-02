@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { STRIPE_CONFIG, getActivePrice, validateStripeConfig } from '@/lib/stripe-config';
-import { supabase } from '@/lib/supabaseClient';
+import { supabaseServer as supabase } from '@/lib/supabaseServer';
 import { TripKit } from '@/types/database.types';
 import { cookies } from 'next/headers';
 import { createServerClient } from '@supabase/ssr';
+import type { AttributionData } from '@/lib/attribution';
 
 // Validate configuration on module load
 validateStripeConfig();
@@ -25,12 +26,29 @@ export async function POST(request: NextRequest) {
     );
   }
 
+  let body: Record<string, unknown>;
   try {
-    const { tripkitId, productType, productId, successUrl, cancelUrl, attribution } = await request.json();
+    body = await request.json();
+  } catch {
+    return NextResponse.json(
+      { error: 'Invalid request body' },
+      { status: 400 }
+    );
+  }
 
+  const { tripkitId, productType, productId, successUrl, cancelUrl, attribution } = body as {
+    tripkitId?: string;
+    productType?: string;
+    productId?: string;
+    successUrl?: string;
+    cancelUrl?: string;
+    attribution?: AttributionData | Record<string, string | null>;
+  };
+
+  try {
     // Handle Welcome Wagon checkout
     if (productType === 'welcome-wagon') {
-      return handleWelcomeWagonCheckout(request, productId, successUrl, cancelUrl, attribution);
+      return await handleWelcomeWagonCheckout(request, productId, successUrl, cancelUrl, attribution);
     }
 
     // Handle TripKit checkout (existing flow)
@@ -129,6 +147,7 @@ export async function POST(request: NextRequest) {
       success_url: finalSuccessUrl,
       cancel_url: finalCancelUrl,
       metadata: {
+        building_id: 'B002',
         ...(resolvedUserId ? { user_id: resolvedUserId } : {}),
         tripkit_id: tripkitData.id,
         tripkit_slug: tripkitData.slug,
@@ -142,6 +161,9 @@ export async function POST(request: NextRequest) {
         utm_campaign: attribution?.utm_campaign || '',
         referrer: attribution?.referrer || '',
         landing_page: attribution?.landing_page || '',
+      },
+      payment_intent_data: {
+        metadata: { building_id: 'B002' },
       },
       allow_promotion_codes: true,
       billing_address_collection: 'auto',
@@ -178,15 +200,13 @@ export async function POST(request: NextRequest) {
 /**
  * Handle Welcome Wagon checkout
  */
-import { AttributionData } from '@/lib/attribution';
-
 async function handleWelcomeWagonCheckout(
   request: NextRequest,
-  productId: string,
+  productId: string | undefined,
   successUrl: string | undefined,
   cancelUrl: string | undefined,
-  attribution: AttributionData
-) {
+  attribution?: AttributionData | Record<string, string | null> | null
+): Promise<NextResponse> {
   if (!stripe) {
     return NextResponse.json(
       { error: 'Stripe is not configured. Please contact support.' },
@@ -221,61 +241,68 @@ async function handleWelcomeWagonCheckout(
   }
 
   const priceInCents = Math.round(product.price * 100);
-  const baseUrl = request.headers.get('origin') || process.env.NEXT_PUBLIC_SITE_URL || 'https://slctrips.com';
+  const baseUrl = request.headers.get('origin') || process.env.NEXT_PUBLIC_SITE_URL || 'https://www.slctrips.com';
   const finalSuccessUrl = successUrl || `${baseUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}`;
   const finalCancelUrl = cancelUrl || `${baseUrl}/welcome-wagon`;
 
-  // Create Checkout Session
-  const session = await stripe.checkout.sessions.create({
-    payment_method_types: ['card'],
-    line_items: [
-      {
-        price_data: {
-          currency: 'usd',
-          product_data: {
-            name: product.name,
-            description: product.description,
-            images: product.image ? [`${baseUrl}${product.image}`] : [`${baseUrl}/images/Site_logo.png`],
-            metadata: {
-              product_type: 'welcome-wagon',
-              product_id: productIdToUse,
+  try {
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      line_items: [
+        {
+          price_data: {
+            currency: 'usd',
+            product_data: {
+              name: product.name,
+              description: product.description,
+              images: product.image ? [`${baseUrl}${product.image}`] : [`${baseUrl}/images/Site_logo.png`],
+              metadata: {
+                product_type: 'welcome-wagon',
+                product_id: productIdToUse,
+              },
             },
+            unit_amount: priceInCents,
           },
-          unit_amount: priceInCents,
+          quantity: 1,
         },
-        quantity: 1,
+      ],
+      mode: 'payment',
+      success_url: finalSuccessUrl,
+      cancel_url: finalCancelUrl,
+      metadata: {
+        building_id: 'B002',
+        product_type: 'welcome-wagon',
+        product_id: productIdToUse,
+        product_name: product.name,
+        price_paid_cents: priceInCents.toString(),
+        utm_source: (attribution?.utm_source as string) || 'unknown',
+        utm_medium: (attribution?.utm_medium as string) || 'unknown',
+        utm_campaign: (attribution?.utm_campaign as string) || '',
+        referrer: (attribution?.referrer as string) || '',
+        landing_page: (attribution?.landing_page as string) || '',
       },
-    ],
-    mode: 'payment',
-    success_url: finalSuccessUrl,
-    cancel_url: finalCancelUrl,
-    metadata: {
-      product_type: 'welcome-wagon',
-      product_id: productIdToUse,
-      product_name: product.name,
-      price_paid_cents: priceInCents.toString(),
-      // Attribution tracking
-      utm_source: attribution?.utm_source || 'unknown',
-      utm_medium: attribution?.utm_medium || 'unknown',
-      utm_campaign: attribution?.utm_campaign || '',
-      referrer: attribution?.referrer || '',
-      landing_page: attribution?.landing_page || '',
-    },
-    allow_promotion_codes: true,
-    billing_address_collection: 'auto',
-    customer_email: undefined, // Let Stripe collect email
-  });
+      payment_intent_data: {
+        metadata: { building_id: 'B002' },
+      },
+      allow_promotion_codes: true,
+      billing_address_collection: 'auto',
+      customer_email: undefined,
+    });
 
-  if (process.env.NODE_ENV === 'development') {
-    console.log(`Checkout session created for Welcome Wagon ${productIdToUse}: ${session.id}`);
+    return NextResponse.json({
+      sessionId: session.id,
+      url: session.url,
+      product: {
+        name: product.name,
+        price: product.price,
+      },
+    });
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : 'Stripe checkout failed';
+    console.error('[Checkout] Welcome Wagon Stripe error:', error);
+    return NextResponse.json(
+      { error: message },
+      { status: 500 }
+    );
   }
-
-  return NextResponse.json({
-    sessionId: session.id,
-    url: session.url,
-    product: {
-      name: product.name,
-      price: product.price,
-    },
-  });
 }

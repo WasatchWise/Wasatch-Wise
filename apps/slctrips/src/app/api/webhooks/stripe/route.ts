@@ -140,9 +140,15 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
     return;
   }
 
+  // Check if this is a StayKit purchase
+  if (metadata?.product_type === 'staykit' && metadata?.staykit_id && metadata?.user_id) {
+    await handleStayKitPurchase(session, metadata.user_id, metadata.staykit_id, amountPaid, customerEmail);
+    return;
+  }
+
   // Otherwise, handle as TripKit purchase
   if (!metadata || !metadata.tripkit_id) {
-    console.error('Missing tripkit_id in session metadata');
+    logger.warn('Missing tripkit_id in session metadata', { sessionId: session.id, metadata: metadata ?? {} });
     return;
   }
 
@@ -390,6 +396,81 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
 
   } catch (error) {
     console.error('Error processing checkout completion:', error);
+    throw error;
+  }
+}
+
+/**
+ * Handle StayKit purchase: grant access and send confirmation email.
+ */
+async function handleStayKitPurchase(
+  session: Stripe.Checkout.Session,
+  userId: string,
+  staykitId: string,
+  amountPaid: number,
+  customerEmail: string | null | undefined
+) {
+  const metadata = session.metadata ?? {};
+  logger.info('Processing StayKit purchase', { sessionId: session.id, staykitId, userId });
+
+  try {
+    const { error: accessError } = await supabase
+      .from('customer_product_access')
+      .insert({
+        user_id: userId,
+        product_id: staykitId,
+        product_type: 'staykit',
+        access_type: 'purchased',
+        stripe_session_id: session.id,
+        stripe_payment_intent_id: session.payment_intent as string,
+        amount_paid: Math.round(amountPaid * 100),
+        access_granted_at: new Date().toISOString(),
+      });
+
+    if (accessError) {
+      console.error('Failed to grant StayKit access:', accessError);
+      throw accessError;
+    }
+    logger.info('StayKit access granted', { userId, staykitId });
+
+    const productName = metadata.staykit_name ?? 'StayKit';
+    if (customerEmail && process.env.SENDGRID_API_KEY) {
+      try {
+        const accessUrl = `${process.env.NEXT_PUBLIC_SITE_URL || 'https://slctrips.com'}/my-staykit`;
+        const emailHtml = `
+          <div style="max-width: 600px; margin: 0 auto; font-family: Arial, sans-serif;">
+            <h1 style="color: #059669; margin-bottom: 20px;">🎉 Your StayKit is ready!</h1>
+            <p style="font-size: 16px; line-height: 1.6; color: #374151;">
+              Your payment has been processed. You now have access to:
+            </p>
+            <div style="background: linear-gradient(135deg, #059669 0%, #0d9488 100%); border-radius: 12px; padding: 30px; margin: 30px 0; text-align: center;">
+              <h2 style="color: white; margin: 0; font-size: 24px;">${productName}</h2>
+              <p style="color: #ccfbf1; margin: 10px 0 0 0;">Paid: $${amountPaid.toFixed(2)}</p>
+            </div>
+            <div style="text-align: center; margin: 30px 0;">
+              <a href="${accessUrl}" style="background: #059669; color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block; font-size: 18px;">
+                🚀 Open My StayKit
+              </a>
+            </div>
+            <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #e5e7eb; text-align: center;">
+              <p style="color: #9ca3af; font-size: 12px;">SLCTrips • From Salt Lake, to Everywhere<br/>
+              <a href="mailto:Dan@slctrips.com" style="color: #6b7280;">Dan@slctrips.com</a></p>
+            </div>
+          </div>
+        `;
+        await sgMail.send({
+          to: customerEmail,
+          from: 'SLCTrips <dan@slctrips.com>',
+          subject: `🎉 Your ${productName} is ready!`,
+          html: emailHtml,
+        });
+        logger.info('StayKit confirmation email sent', { email: customerEmail });
+      } catch (error) {
+        console.error('Error sending StayKit confirmation email:', error);
+      }
+    }
+  } catch (error) {
+    console.error('Error processing StayKit purchase:', error);
     throw error;
   }
 }

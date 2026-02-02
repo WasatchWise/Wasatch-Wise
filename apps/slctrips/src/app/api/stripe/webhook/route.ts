@@ -31,8 +31,12 @@ export async function POST(request: NextRequest) {
   try {
     switch (event.type) {
       case 'checkout.session.completed': {
-        const session = event.data.object as Stripe.Checkout.Session;
-        await handleCheckoutSessionCompleted(session);
+        // DEPRECATED: Fulfillment is handled by /api/webhooks/stripe only (purchases, access codes, email).
+        // Do not register this URL for checkout in Stripe — use https://yourdomain.com/api/webhooks/stripe.
+        // No-op here to avoid double-grant if both were ever registered.
+        logger.info('checkout.session.completed ignored (use /api/webhooks/stripe for fulfillment)', {
+          sessionId: (event.data.object as Stripe.Checkout.Session).id,
+        });
         break;
       }
 

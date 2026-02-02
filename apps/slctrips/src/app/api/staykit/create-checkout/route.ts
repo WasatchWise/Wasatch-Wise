@@ -71,6 +71,7 @@ export async function POST(request: NextRequest) {
         user_id: userId,
         staykit_id: staykitId,
         staykit_code: staykit.code,
+        staykit_name: staykit.name,
         product_type: 'staykit',
       },
       customer_email: undefined, // Stripe will prompt for email
