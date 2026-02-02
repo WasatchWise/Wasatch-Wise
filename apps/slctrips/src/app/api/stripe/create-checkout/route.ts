@@ -43,6 +43,7 @@ export async function POST(request: NextRequest) {
     body = await request.json();
   } catch {
     logger.warn('[Stripe Checkout] 400: invalid_request_body');
+    console.warn('[Stripe Checkout] 400: invalid_request_body'); // Vercel logs (logger is dev-only for warn)
     return NextResponse.json({ error: 'Invalid request body', code: 'invalid_body' }, { status: 400 });
   }
 
@@ -72,11 +73,13 @@ export async function POST(request: NextRequest) {
 
     if (!userId) {
       logger.warn('[Stripe Checkout] 401: user_not_authenticated', { tripkitId });
+      console.warn('[Stripe Checkout] 401: user_not_authenticated', tripkitId);
       return NextResponse.json({ error: 'User not authenticated', code: 'auth_required' }, { status: 401 });
     }
 
     if (!tripkitId) {
       logger.warn('[Stripe Checkout] 400: tripkit_id_required');
+      console.warn('[Stripe Checkout] 400: tripkit_id_required');
       return NextResponse.json({ error: 'TripKit ID required', code: 'tripkit_id_required' }, { status: 400 });
     }
 
@@ -106,17 +109,20 @@ export async function POST(request: NextRequest) {
 
     if (existingAccess) {
       logger.info('[Stripe Checkout] 400: already_owned', { tripkitId, userId: userId.substring(0, 8) });
+      console.warn('[Stripe Checkout] 400: already_owned', tripkitId);
       return NextResponse.json({ error: 'You already own this TripKit', code: 'already_owned' }, { status: 400 });
     }
 
     // Validate required data before calling Stripe
     if (!tripkit.price || isNaN(tripkit.price) || tripkit.price <= 0) {
       logger.warn('[Stripe Checkout] 400: invalid_price', { tripkitId, price: tripkit.price });
+      console.warn('[Stripe Checkout] 400: invalid_price', tripkitId, tripkit.price);
       return NextResponse.json({ error: 'Invalid TripKit price', code: 'invalid_price' }, { status: 400 });
     }
 
     if (!tripkit.name) {
       logger.warn('[Stripe Checkout] 400: invalid_name', { tripkitId });
+      console.warn('[Stripe Checkout] 400: invalid_name', tripkitId);
       return NextResponse.json({ error: 'Invalid TripKit name', code: 'invalid_name' }, { status: 400 });
     }
 
