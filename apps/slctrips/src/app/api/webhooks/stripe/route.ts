@@ -23,9 +23,6 @@ const stripe = STRIPE_CONFIG.secretKey
  * IMPORTANT: This endpoint must be configured in Stripe Dashboard
  */
 export async function POST(request: NextRequest) {
-  // #region agent log (debug-session)
-  fetch('http://127.0.0.1:7243/ingest/9934ba6e-ffcf-48d8-922e-9c87005464bd',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'pre-fix',hypothesisId:'H2',location:'src/app/api/webhooks/stripe/route.ts:POST:entry',message:'Stripe webhook POST entry',data:{stripeConfigured:!!stripe,webhookSecretConfigured:!!STRIPE_CONFIG.webhookSecret,hasSignature:!!request.headers.get('stripe-signature')},timestamp:Date.now()})}).catch(()=>{});
-  // #endregion
   // Check if Stripe is configured
   if (!stripe) {
     console.error('Stripe is not configured');
@@ -64,9 +61,6 @@ export async function POST(request: NextRequest) {
       signature,
       STRIPE_CONFIG.webhookSecret
     );
-    // #region agent log (debug-session)
-    fetch('http://127.0.0.1:7243/ingest/9934ba6e-ffcf-48d8-922e-9c87005464bd',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'pre-fix',hypothesisId:'H2',location:'src/app/api/webhooks/stripe/route.ts:POST:verified',message:'Stripe webhook signature verified',data:{eventType:event?.type,bodyLength:body?.length||0},timestamp:Date.now()})}).catch(()=>{});
-    // #endregion
   } catch (err: unknown) {
     const errorMessage = err instanceof Error ? err.message : 'Unknown error';
     console.error('Webhook signature verification failed:', errorMessage);
@@ -139,9 +133,6 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
   const metadata = session.metadata;
   const customerEmail = session.customer_details?.email;
   const amountPaid = session.amount_total ? session.amount_total / 100 : 0;
-  // #region agent log (debug-session)
-  fetch('http://127.0.0.1:7243/ingest/9934ba6e-ffcf-48d8-922e-9c87005464bd',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'pre-fix',hypothesisId:'H3',location:'src/app/api/webhooks/stripe/route.ts:handleCheckoutCompleted:context',message:'Checkout completed context',data:{sessionIdPrefix:(session.id||'').slice(0,8),hasMetadata:!!metadata,metadataKeys:metadata?Object.keys(metadata).slice(0,20):[],hasCustomerEmail:!!customerEmail,amountPaid,hasUserIdMeta:!!metadata?.user_id,hasTripkitIdMeta:!!metadata?.tripkit_id,productType:metadata?.product_type||null},timestamp:Date.now()})}).catch(()=>{});
-  // #endregion
 
   // Check if this is a Welcome Wagon purchase
   if (metadata?.product_type === 'welcome-wagon') {
@@ -244,14 +235,8 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
     if (purchaseError) {
       console.error('Failed to record purchase:', purchaseError);
       // Continue even if purchase recording fails - payment went through
-      // #region agent log (debug-session)
-      fetch('http://127.0.0.1:7243/ingest/9934ba6e-ffcf-48d8-922e-9c87005464bd',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'pre-fix',hypothesisId:'H1',location:'src/app/api/webhooks/stripe/route.ts:handleCheckoutCompleted:purchases_insert_error',message:'Purchase insert failed (possible RLS/anon client)',data:{sessionIdPrefix:(session.id||'').slice(0,8),errorCode:(purchaseError as any)?.code||null,errorMessage:(purchaseError as any)?.message||String(purchaseError)},timestamp:Date.now()})}).catch(()=>{});
-      // #endregion
     } else if (purchaseRecord) {
       logger.info('Purchase recorded successfully', { purchaseId: purchaseRecord.id });
-      // #region agent log (debug-session)
-      fetch('http://127.0.0.1:7243/ingest/9934ba6e-ffcf-48d8-922e-9c87005464bd',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'pre-fix',hypothesisId:'H1',location:'src/app/api/webhooks/stripe/route.ts:handleCheckoutCompleted:purchases_insert_ok',message:'Purchase insert succeeded',data:{sessionIdPrefix:(session.id||'').slice(0,8),hasPurchaseId:!!purchaseRecord?.id},timestamp:Date.now()})}).catch(()=>{});
-      // #endregion
     }
 
     // Generate unique access code for this purchase
@@ -294,14 +279,8 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
 
       if (accessCodeError) {
         console.error('Failed to store access code:', accessCodeError);
-        // #region agent log (debug-session)
-        fetch('http://127.0.0.1:7243/ingest/9934ba6e-ffcf-48d8-922e-9c87005464bd',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'pre-fix',hypothesisId:'H1',location:'src/app/api/webhooks/stripe/route.ts:handleCheckoutCompleted:access_code_insert_error',message:'tripkit_access_codes insert failed (possible RLS/anon client)',data:{sessionIdPrefix:(session.id||'').slice(0,8),errorCode:(accessCodeError as any)?.code||null,errorMessage:(accessCodeError as any)?.message||String(accessCodeError)},timestamp:Date.now()})}).catch(()=>{});
-        // #endregion
       } else {
         logger.info('Access code generated', { accessCode });
-        // #region agent log (debug-session)
-        fetch('http://127.0.0.1:7243/ingest/9934ba6e-ffcf-48d8-922e-9c87005464bd',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'pre-fix',hypothesisId:'H1',location:'src/app/api/webhooks/stripe/route.ts:handleCheckoutCompleted:access_code_insert_ok',message:'tripkit_access_codes insert succeeded',data:{sessionIdPrefix:(session.id||'').slice(0,8),accessCodePrefix:(accessCode||'').slice(0,6)},timestamp:Date.now()})}).catch(()=>{});
-        // #endregion
       }
 
       // Grant access in customer_product_access table
@@ -322,20 +301,11 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
 
         if (accessRecordError) {
           console.error('Failed to create customer_product_access record:', accessRecordError);
-          // #region agent log (debug-session)
-          fetch('http://127.0.0.1:7243/ingest/9934ba6e-ffcf-48d8-922e-9c87005464bd',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'pre-fix',hypothesisId:'H4',location:'src/app/api/webhooks/stripe/route.ts:handleCheckoutCompleted:cpa_insert_error',message:'customer_product_access insert failed (RLS/schema/unique)',data:{sessionIdPrefix:(session.id||'').slice(0,8),tripkitIdPrefix:(tripkitId||'').slice(0,8),errorCode:(accessRecordError as any)?.code||null,errorMessage:(accessRecordError as any)?.message||String(accessRecordError)},timestamp:Date.now()})}).catch(()=>{});
-          // #endregion
         } else {
           logger.info('Customer access granted', { userId, tripkitId });
-          // #region agent log (debug-session)
-          fetch('http://127.0.0.1:7243/ingest/9934ba6e-ffcf-48d8-922e-9c87005464bd',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'pre-fix',hypothesisId:'H4',location:'src/app/api/webhooks/stripe/route.ts:handleCheckoutCompleted:cpa_insert_ok',message:'customer_product_access insert succeeded',data:{sessionIdPrefix:(session.id||'').slice(0,8),tripkitIdPrefix:(tripkitId||'').slice(0,8)},timestamp:Date.now()})}).catch(()=>{});
-          // #endregion
         }
       } else {
         logger.warn('Could not grant access - user not found', { email: customerEmail, metadataUserId: metadata.user_id });
-        // #region agent log (debug-session)
-        fetch('http://127.0.0.1:7243/ingest/9934ba6e-ffcf-48d8-922e-9c87005464bd',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:'debug-session',runId:'pre-fix',hypothesisId:'H3',location:'src/app/api/webhooks/stripe/route.ts:handleCheckoutCompleted:no_user_to_grant',message:'No userId resolved for entitlement grant',data:{sessionIdPrefix:(session.id||'').slice(0,8),metadataHadUserId:!!metadata?.user_id,hasCustomerEmail:!!customerEmail},timestamp:Date.now()})}).catch(()=>{});
-        // #endregion
       }
     }
 
