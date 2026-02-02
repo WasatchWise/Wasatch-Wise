@@ -108,6 +108,7 @@ All create a Stripe Checkout Session and redirect to Stripe; after payment, Stri
 2. **Logs:** Check Vercel (or host) logs for `/api/webhooks/stripe` (signature failure, DB errors, SendGrid errors).
 3. **DB:** Confirm `purchases`, `customer_product_access`, `tripkit_access_codes` (for TripKit) after a test payment.
 4. **Email:** If confirmation not received, verify `SENDGRID_API_KEY` and sender (e.g. `dan@slctrips.com`) and check SendGrid activity.
+5. **Checkout returns 400:** Check Vercel Runtime Logs for `[Stripe Checkout] 400: <reason>`. Response body includes `code`: `invalid_body` | `tripkit_id_required` | `already_owned` | `invalid_price` | `invalid_name`. If `already_owned`, the signed-in user already has that TripKit—test with a different TripKit or a different account. If `auth_required` (401), user must be signed in before clicking Buy.
 
 ---
 
