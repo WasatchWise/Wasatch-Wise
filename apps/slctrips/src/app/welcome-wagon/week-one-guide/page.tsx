@@ -185,7 +185,7 @@ export default function WeekOneGuidePage() {
                 🖨️ Print
               </button>
               <ShareButton
-                url={typeof window !== 'undefined' ? window.location.href : ''}
+                url="https://www.slctrips.com/welcome-wagon/week-one-guide"
                 title="Week 1 Welcome Wagon Kit - Salt Lake City"
                 description="Comprehensive Week 1 Survival Guide for new Utah residents - essential relocation checklist"
                 variant="dropdown"

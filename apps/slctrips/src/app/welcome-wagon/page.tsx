@@ -568,7 +568,7 @@ export default function WelcomeWagonPage() {
             </button>
             <div className="flex items-center gap-2 mt-4 md:mt-0">
               <ShareButton
-                url={typeof window !== 'undefined' ? window.location.href : ''}
+                url="https://www.slctrips.com/welcome-wagon"
                 title="Welcome Wagon - Your 90-Day Utah Relocation Guide"
                 description="From moving day to feeling like a local - comprehensive relocation guide for new Utah residents"
                 variant="icon"

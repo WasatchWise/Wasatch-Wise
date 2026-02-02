@@ -505,7 +505,7 @@ export default function TripKitViewer({
                         {story.title}
                       </h3>
                       <ClientOnlyShareButton
-                        url={typeof window !== 'undefined' ? `${window.location.origin}/stories/${story.slug}` : ''}
+                        url={`https://www.slctrips.com/stories/${story.slug}`}
                         title={story.title}
                         description={story.subtitle || story.summary || ''}
                         image={story.featured_image_url || undefined}
@@ -605,7 +605,7 @@ export default function TripKitViewer({
             📄 Print / Save as PDF
           </button>
           <ClientOnlyShareButton
-            url={typeof window !== 'undefined' ? window.location.href : `https://www.slctrips.com/tripkits/${tripkit.slug}/view`}
+            url={`https://www.slctrips.com/tripkits/${tripkit.slug}/view`}
             title={tripkit.name}
             description={tripkit.tagline || `Explore ${destinations.length} destinations in ${tripkit.name}`}
             image={tripkit.cover_image_url || undefined}
@@ -634,7 +634,7 @@ export default function TripKitViewer({
           </p>
           <div className="flex justify-center gap-2">
             <ClientOnlyShareButton
-              url={typeof window !== 'undefined' ? window.location.href : `https://www.slctrips.com/tripkits/${tripkit.slug}/view`}
+              url={`https://www.slctrips.com/tripkits/${tripkit.slug}/view`}
               title={tripkit.name}
               description={tripkit.tagline || `Explore ${destinations.length} destinations`}
               variant="icon"

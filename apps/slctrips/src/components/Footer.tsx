@@ -3,6 +3,9 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
+// Stable year for SSR/client hydration; update annually if desired.
+const COPYRIGHT_YEAR = 2026;
+
 export default function Footer() {
   return (
     <footer className="bg-gray-900 border-t border-gray-800 text-gray-300">
@@ -89,7 +92,7 @@ export default function Footer() {
             As an Amazon Associate I earn from qualifying purchases.
           </p>
           <p className="text-center text-gray-500 text-sm">
-            © {new Date().getFullYear()} SLCTrips, a{' '}
+            © {COPYRIGHT_YEAR} SLCTrips, a{' '}
             <a
               href="https://wasatchwise.com"
               target="_blank"
