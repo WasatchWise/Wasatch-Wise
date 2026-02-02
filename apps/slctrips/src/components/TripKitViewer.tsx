@@ -9,6 +9,7 @@ import InfoBlurb from './InfoBlurb';
 import EnhanceYourVisit from './EnhanceYourVisit';
 import DanConcierge from './DanConcierge';
 import TripKitResourceCenter from './TripKitResourceCenter';
+import TripKitAffiliateCTA from './TripKitAffiliateCTA';
 import SafeImage from './SafeImage';
 import ShareButton from '@/components/ShareButton';
 import ClientOnlyShareButton from '@/components/ClientOnlyShareButton';
@@ -895,6 +896,14 @@ function DestinationCard({
               destinationName={destination.name}
               hotelRecommendations={destination.hotel_recommendations}
               tourRecommendations={destination.tour_recommendations}
+            />
+
+            {/* Book Your Stay / Find Tours - Affiliate CTAs */}
+            <TripKitAffiliateCTA
+              destinationName={destination.name}
+              lat={destination.latitude}
+              lon={destination.longitude}
+              state="Utah"
             />
 
             {/* Notes Section */}
