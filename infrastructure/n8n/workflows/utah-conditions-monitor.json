@@ -1,0 +1,174 @@
+{
+  "name": "Utah Conditions Monitor → Activity Recommendations",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 6
+            }
+          ]
+        }
+      },
+      "id": "schedule-trigger",
+      "name": "Every 6 Hours",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://api.openweathermap.org/data/2.5/weather",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            { "name": "q", "value": "Salt Lake City,US" },
+            { "name": "appid", "value": "={{$env.OPENWEATHER_API_KEY}}" },
+            { "name": "units", "value": "imperial" }
+          ]
+        }
+      },
+      "id": "get-weather",
+      "name": "Get SLC Weather",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [440, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://api.openweathermap.org/data/2.5/air_pollution",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            { "name": "lat", "value": "40.7608" },
+            { "name": "lon", "value": "-111.8910" },
+            { "name": "appid", "value": "={{$env.OPENWEATHER_API_KEY}}" }
+          ]
+        }
+      },
+      "id": "get-air-quality",
+      "name": "Get Air Quality",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [440, 500]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Utah Conditions Router\nconst weather = $('Get SLC Weather').first().json;\nconst airQuality = $('Get Air Quality').first().json;\n\nconst temp = weather.main.temp;\nconst conditions = weather.weather[0].main;\nconst description = weather.weather[0].description;\nconst aqi = airQuality.list[0].main.aqi; // 1=Good, 5=Very Poor\n\nconst today = new Date();\nconst month = today.getMonth() + 1;\n\n// Determine season\nlet season = 'shoulder';\nif (month >= 11 || month <= 3) season = 'winter';\nelse if (month >= 6 && month <= 8) season = 'summer';\n\n// Determine condition mode\nlet mode = 'IDEAL';\nlet urgency = 'normal';\nlet recommendations = [];\nlet contentAngle = '';\nlet alertType = null;\n\n// HAZARD CHECK (highest priority)\nif (aqi >= 4) {\n  mode = 'HAZARD';\n  urgency = 'high';\n  alertType = 'AIR_QUALITY';\n  contentAngle = '⚠️ Air Quality Alert - Indoor activities recommended';\n  recommendations = [\n    { name: 'The Gateway Mall', type: 'indoor', link: '/destinations/slc-downtown' },\n    { name: 'Natural History Museum', type: 'museum', link: '/destinations/museums' },\n    { name: 'Cowabunga Bay (indoor areas)', type: 'water', link: '/activities/pools' }\n  ];\n}\n// WINTER CONDITIONS\nelse if (season === 'winter') {\n  if (conditions === 'Snow' || description.includes('snow')) {\n    mode = 'POWDER_DAY';\n    urgency = 'high';\n    contentAngle = '❄️ SNOW DAY - Hit the slopes!';\n    recommendations = [\n      { name: 'Alta Ski Area', type: 'ski', link: '/destinations/alta' },\n      { name: 'Snowbird', type: 'ski', link: '/destinations/snowbird' },\n      { name: 'Brighton (night skiing)', type: 'ski', link: '/destinations/brighton' }\n    ];\n  } else if (temp < 32) {\n    mode = 'WINTER_COLD';\n    contentAngle = '🥶 Bundle up! Cold but clear';\n    recommendations = [\n      { name: 'Temple Square Lights', type: 'outdoor', link: '/activities/temple-square' },\n      { name: 'Olympic Oval (ice skating)', type: 'activity', link: '/activities/ice-skating' },\n      { name: 'Cozy coffee shops', type: 'indoor', link: '/food-drink/coffee' }\n    ];\n  } else {\n    mode = 'WINTER_MILD';\n    contentAngle = '☀️ Mild winter day - great for exploring';\n    recommendations = [\n      { name: 'City Creek Canyon', type: 'hike', link: '/outdoors/city-creek' },\n      { name: 'Skiing (spring conditions)', type: 'ski', link: '/destinations/park-city' },\n      { name: 'Downtown SLC', type: 'explore', link: '/destinations/slc-downtown' }\n    ];\n  }\n}\n// SUMMER CONDITIONS  \nelse if (season === 'summer') {\n  if (temp > 100) {\n    mode = 'EXTREME_HEAT';\n    urgency = 'high';\n    contentAngle = '🔥 EXTREME HEAT - Water activities only!';\n    recommendations = [\n      { name: 'Liberty Park Splash Pad', type: 'free', link: '/family/liberty-park' },\n      { name: 'Cowabunga Bay', type: 'water-park', link: '/activities/water-parks' },\n      { name: 'Early AM hike (before 8am)', type: 'hike', link: '/outdoors/summer-hikes' }\n    ];\n  } else if (temp > 90) {\n    mode = 'HOT';\n    contentAngle = '☀️ Hot day - find shade and water';\n    recommendations = [\n      { name: 'Great Salt Lake', type: 'beach', link: '/outdoors/great-salt-lake' },\n      { name: 'Mountain trails (cooler temps)', type: 'hike', link: '/outdoors/mountain-hikes' },\n      { name: 'Evening outdoor dining', type: 'food', link: '/food-drink/patios' }\n    ];\n  } else {\n    mode = 'PERFECT_SUMMER';\n    contentAngle = '✨ PERFECT Utah day - get outside!';\n    recommendations = [\n      { name: 'Big Cottonwood Canyon', type: 'hike', link: '/outdoors/big-cottonwood' },\n      { name: 'Bonneville Shoreline Trail', type: 'bike', link: '/outdoors/biking' },\n      { name: 'Red Butte Garden', type: 'garden', link: '/activities/gardens' }\n    ];\n  }\n}\n// SHOULDER SEASON\nelse {\n  if (temp >= 60 && temp <= 75) {\n    mode = 'IDEAL';\n    contentAngle = '🌸 Perfect weather - ideal for anything!';\n    recommendations = [\n      { name: 'Antelope Island', type: 'outdoor', link: '/outdoors/antelope-island' },\n      { name: 'Memory Grove Park', type: 'park', link: '/outdoors/memory-grove' },\n      { name: 'Farmers Market', type: 'activity', link: '/activities/farmers-markets' }\n    ];\n  } else {\n    mode = 'VARIABLE';\n    contentAngle = '🌤️ Variable conditions - layer up!';\n    recommendations = [\n      { name: 'Flexible indoor/outdoor plans', type: 'mixed', link: '/itineraries/flexible' },\n      { name: 'Museums + outdoor time', type: 'combo', link: '/itineraries/combo-day' }\n    ];\n  }\n}\n\nreturn [{\n  json: {\n    timestamp: today.toISOString(),\n    weather: {\n      temp: Math.round(temp),\n      conditions,\n      description,\n      humidity: weather.main.humidity\n    },\n    airQuality: {\n      aqi,\n      level: ['Good', 'Fair', 'Moderate', 'Poor', 'Very Poor'][aqi - 1]\n    },\n    season,\n    mode,\n    urgency,\n    alertType,\n    contentAngle,\n    recommendations,\n    utmCampaign: `slctrips-weather-${mode.toLowerCase()}`\n  }\n}];"
+      },
+      "id": "conditions-router",
+      "name": "Conditions Router",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [700, 400]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "high-urgency",
+              "leftValue": "={{ $json.urgency }}",
+              "rightValue": "high",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        }
+      },
+      "id": "urgency-check",
+      "name": "High Urgency?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [920, 400]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.SUPABASE_URL}}/rest/v1/weather_alerts",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "apikey", "value": "={{$env.SUPABASE_SERVICE_ROLE_KEY}}" },
+            { "name": "Authorization", "value": "Bearer {{$env.SUPABASE_SERVICE_ROLE_KEY}}" },
+            { "name": "Content-Type", "value": "application/json" },
+            { "name": "Prefer", "value": "return=minimal" }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "timestamp", "value": "={{ $json.timestamp }}" },
+            { "name": "mode", "value": "={{ $json.mode }}" },
+            { "name": "temp", "value": "={{ $json.weather.temp }}" },
+            { "name": "conditions", "value": "={{ $json.weather.conditions }}" },
+            { "name": "aqi", "value": "={{ $json.airQuality.aqi }}" },
+            { "name": "content_angle", "value": "={{ $json.contentAngle }}" },
+            { "name": "recommendations", "value": "={{ JSON.stringify($json.recommendations) }}" }
+          ]
+        }
+      },
+      "id": "log-to-supabase",
+      "name": "Log to Supabase",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1140, 500]
+    },
+    {
+      "parameters": {
+        "content": "## Utah Conditions Monitor\n\n**Purpose:** Check weather, air quality, and conditions every 6 hours and generate activity recommendations.\n\n**Outputs:**\n- High urgency alerts (powder days, extreme heat, air quality)\n- Daily content angles for social media\n- Activity recommendations logged to Supabase\n\n**Modes:**\n- POWDER_DAY, WINTER_COLD, WINTER_MILD\n- EXTREME_HEAT, HOT, PERFECT_SUMMER\n- HAZARD (air quality/fire)\n- IDEAL, VARIABLE (shoulder seasons)",
+        "height": 340,
+        "width": 320
+      },
+      "id": "sticky-note",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [180, 80]
+    }
+  ],
+  "connections": {
+    "Every 6 Hours": {
+      "main": [
+        [
+          { "node": "Get SLC Weather", "type": "main", "index": 0 },
+          { "node": "Get Air Quality", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Get SLC Weather": {
+      "main": [
+        [{ "node": "Conditions Router", "type": "main", "index": 0 }]
+      ]
+    },
+    "Get Air Quality": {
+      "main": [
+        [{ "node": "Conditions Router", "type": "main", "index": 0 }]
+      ]
+    },
+    "Conditions Router": {
+      "main": [
+        [{ "node": "High Urgency?", "type": "main", "index": 0 }]
+      ]
+    },
+    "High Urgency?": {
+      "main": [
+        [{ "node": "Log to Supabase", "type": "main", "index": 0 }],
+        [{ "node": "Log to Supabase", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

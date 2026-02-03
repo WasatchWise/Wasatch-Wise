@@ -1,11 +1,18 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Header } from '@/components/layout/Header'
 import { ALL_STATES, SDPC_MEMBER_STATES, STATE_ECOSYSTEMS } from '@/lib/ecosystem'
+import { getStoredPersona } from '@/lib/persona'
 
 export default function EcosystemPage() {
   const availableStates = Object.keys(STATE_ECOSYSTEMS)
+  const [persona, setPersona] = useState<string | null>(null)
+
+  useEffect(() => {
+    setPersona(getStoredPersona())
+  }, [])
 
   return (
     <>
@@ -24,10 +31,23 @@ export default function EcosystemPage() {
                 Ecosystems
               </span>
             </h1>
-            <p className="text-xl text-slate-300 max-w-3xl mx-auto mb-8">
+            <p className="text-xl text-slate-300 max-w-3xl mx-auto mb-2">
               Comprehensive guides to student data privacy laws, contacts, resources, and workflows 
               for every state. Built on the SDPC framework.
             </p>
+            <p className="text-slate-400 max-w-2xl mx-auto mb-4">
+              See exactly what your state requires—laws, roles, workflows—so you can verify, not guess.
+            </p>
+            {persona && (
+              <p className="text-[#00A3E0]/90 text-sm max-w-xl mx-auto mb-8">
+                {persona === 'administrator' && 'As an administrator, here are the state-by-state requirements and contacts.'}
+                {persona === 'educator' && 'As an educator, pick your state to see which laws and workflows apply to your district.'}
+                {(persona === 'parent' || persona === 'student') && 'Pick your state to see laws and procedures that apply to you.'}
+                {persona === 'just_learning' && 'Pick your state to see what’s required and who to contact.'}
+                {!['administrator', 'educator', 'parent', 'student', 'just_learning'].includes(persona) && 'Pick your state to see laws and procedures that apply to you.'}
+              </p>
+            )}
+            {!persona && <div className="mb-8" />}
 
             {/* Stats */}
             <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto mb-12">

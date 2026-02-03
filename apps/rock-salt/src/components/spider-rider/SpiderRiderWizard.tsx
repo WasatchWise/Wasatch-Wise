@@ -213,8 +213,13 @@ export default function SpiderRiderWizard({
         throw new Error(errorData.error || 'Failed to publish Spider Rider')
       }
 
-      // Success - redirect to dashboard
-      router.push('/dashboard?spider_rider=published')
+      const publishData = await publishResponse.json()
+      // Success - redirect to post-publication success screen
+      const params = new URLSearchParams({
+        rider_id: publishData.rider?.id ?? savedRider.id,
+        rider_code: publishData.riderCode || '',
+      })
+      router.push(`/dashboard/bands/${bandId}/spider-rider/published?${params.toString()}`)
       router.refresh()
     } catch (err) {
       console.error('Error publishing spider rider:', err)

@@ -38,6 +38,16 @@ Exported JSON can contain **node config** but n8n typically does **not** embed c
 
 ---
 
+## Content Factory (SLC Trips)
+
+| # | Workflow | Filename | Status | Purpose |
+|---|----------|----------|--------|---------|
+| **1** | **Utah Conditions Monitor** | `utah-conditions-monitor-v2.json` | **🟢 LIVE** | Every 6h: OpenWeather + optional AQI → conditions router → content angles + activity recommendations → `weather_alerts` table. Year-round (winter/summer/hazard/shoulder). See [UTAH_CONDITIONS_SETUP.md](UTAH_CONDITIONS_SETUP.md). |
+| 2 | UTM Link Generator | *(planned)* | — | Generate tracked links for content team from destination + campaign. |
+| 3 | Performance Reporter | *(planned)* | — | Aggregate Awin/TikTok metrics → content performance digest. |
+
+---
+
 ## Suggested first exports
 
 | Workflow idea | Filename | Purpose |
@@ -45,7 +55,7 @@ Exported JSON can contain **node config** but n8n typically does **not** embed c
 | **Test insert (pre-made)** | `test-city-metrics-insert.json` | Import this first: Manual trigger → insert one row into `city_metrics` (metric_key: `test_workflow_insert`). Add your Supabase credential in n8n, run it, then check the dashboard. |
 | **Stripe → daily_revenue** | `stripe-revenue-webhook.json` | Webhook: Stripe events → IF payment_intent.succeeded → Extract amount → HTTP POST to Supabase RPC `increment_daily_revenue`. **HTTP node uses $env.SUPABASE_URL / $env.SUPABASE_SERVICE_ROLE_KEY** — set Authentication to **None** (no credential). |
 | **Amazon → city_metrics** | `amazon-commission-to-city-metrics.json` | Manual trigger → Set amount (default 0) → HTTP POST to Supabase RPC `upsert_revenue_metric` for `slctrips_amazon_revenue`. Replace “Set amount” with Amazon API/scrape when reporting is available. See `../data/amazon/` and civilization docs `AMAZON_N8N_FEBRUARY_PLAN.md`. |
-| TikTok / social sync | `tiktok-views-sync.json` | Update `slctrips_tiktok_views` gauge |
+| **TikTok Views Sync** | `tiktok-views-sync.json` | **Placeholder in repo.** Manual → Set views (0) → HTTP POST to RPC `set_metric_value` → `slctrips_tiktok_views`. Replace "Set views" with TikTok API when ready. Community n8n: hardcode URL + service_role in HTTP node (same as Stripe/Amazon) or use Supabase node Execute Function. Migration: `009_slctrips_tiktok_views.sql`. |
 | ConvertKit → enrollees | `convertkit-to-city-metrics.json` | Update `academy_subscribers` gauge |
 
 **Product data:** `../data/amazon/*.json` – SLC Trips Amazon product categories for link generator / bio page workflows. Fill ASINs via SiteStripe or Product Linking Tool.

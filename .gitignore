@@ -67,6 +67,10 @@ apps/gmc-mag/GMC*/
 apps/slctrips/pnpm-lock.yaml
 apps/slctrips/pnpm-workspace.yaml
 
+# app-level npm/yarn lockfiles — root pnpm is source of truth
+apps/**/package-lock.json
+apps/**/yarn.lock
+
 # debug
 npm-debug.log*
 yarn-debug.log*

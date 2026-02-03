@@ -43,7 +43,7 @@ export default function TopicImportModal({ isOpen, onClose, onImport }: TopicImp
     }
 
     const newItem: ContentItem = {
-      id: Date.now().toString(),
+      id: crypto.randomUUID(),
       topic: formData.topic,
       cluster: formData.cluster,
       audience: formData.audience || '35-55 Professionals',
@@ -74,7 +74,7 @@ export default function TopicImportModal({ isOpen, onClose, onImport }: TopicImp
       const parts = trimmed.split('|').map(p => p.trim());
       
       const newItem: ContentItem = {
-        id: `${Date.now()}-${index}`,
+        id: crypto.randomUUID(),
         topic: parts[0] || trimmed,
         cluster: (parts[1] as TopicCluster) || 'AI Anxiety',
         audience: parts[2] || '35-55 Professionals',

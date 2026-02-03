@@ -42,6 +42,9 @@ export async function createOneTimeCheckout(
     success_url: params.successUrl,
     cancel_url: params.cancelUrl,
     metadata: params.metadata || {},
+    payment_intent_data: params.metadata?.building_id
+      ? { metadata: { building_id: params.metadata.building_id } }
+      : undefined,
   })
 }
 

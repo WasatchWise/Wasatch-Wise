@@ -11,9 +11,12 @@ interface BuildingInspectorProps {
     buildingName: string | null;
     currentHealth: BuildingHealth | null;
     appUrl?: string | null;
+    onTalkToAgent?: () => void;
+    agentName?: string;
+    onEnterBuilding?: () => void;
 }
 
-export default function BuildingInspector({ isOpen, onClose, buildingId, buildingName, currentHealth, appUrl }: BuildingInspectorProps) {
+export default function BuildingInspector({ isOpen, onClose, buildingId, buildingName, currentHealth, appUrl, onTalkToAgent, agentName, onEnterBuilding }: BuildingInspectorProps) {
     if (!isOpen) return null;
 
     return (
@@ -86,7 +89,17 @@ export default function BuildingInspector({ isOpen, onClose, buildingId, buildin
                     </div>
                 </Win95Panel>
 
-                <div className="flex justify-end gap-2">
+                <div className="flex justify-end gap-2 flex-wrap">
+                    {onEnterBuilding && (
+                        <Win95Button onClick={onEnterBuilding}>
+                            🚪 Enter Building
+                        </Win95Button>
+                    )}
+                    {onTalkToAgent && (
+                        <Win95Button onClick={onTalkToAgent}>
+                            💬 Talk to {agentName || 'Agent'}
+                        </Win95Button>
+                    )}
                     <Win95Button onClick={() => console.log('Ping')}>Ping</Win95Button>
                     {appUrl && (
                         <Win95Button

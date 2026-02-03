@@ -7,7 +7,7 @@ import { Mail, Send, Loader2 } from 'lucide-react'
 import { toast } from 'sonner'
 
 interface Contact {
-  id: string
+  id: string | number
   first_name: string
   last_name: string
   email: string | null
@@ -58,8 +58,8 @@ export function SendEmailDialog({
         })
         .catch(console.error)
 
-      // Pre-select all contacts
-      setSelectedContacts(contacts.map(c => c.id))
+      // Pre-select all contacts (coerce id to string for state)
+      setSelectedContacts(contacts.map(c => String(c.id)))
     }
   }, [open, contacts])
 
@@ -116,9 +116,9 @@ export function SendEmailDialog({
       const result = await response.json()
 
       if (response.ok) {
-        toast.success(`Successfully sent ${result.sent} email(s)!`)
-        if (result.failed > 0) {
-          toast.warning(`${result.failed} email(s) failed to send`)
+        toast.success(`Successfully sent ${String(result.sent)} email(s)!`)
+        if (Number(result.failed) > 0) {
+          toast.warning(`${String(result.failed)} email(s) failed to send`)
         }
         setOpen(false)
 
@@ -181,15 +181,15 @@ export function SendEmailDialog({
                 <p className="text-sm text-muted-foreground">No contacts with email addresses</p>
               ) : (
                 validContacts.map(contact => (
-                  <label key={contact.id} className="flex items-center space-x-2 cursor-pointer">
+                  <label key={String(contact.id)} className="flex items-center space-x-2 cursor-pointer">
                     <input
                       type="checkbox"
-                      checked={selectedContacts.includes(contact.id)}
+                      checked={selectedContacts.includes(String(contact.id))}
                       onChange={(e) => {
                         if (e.target.checked) {
-                          setSelectedContacts([...selectedContacts, contact.id])
+                          setSelectedContacts([...selectedContacts, String(contact.id)])
                         } else {
-                          setSelectedContacts(selectedContacts.filter(id => id !== contact.id))
+                          setSelectedContacts(selectedContacts.filter(id => id !== String(contact.id)))
                         }
                       }}
                       className="rounded"

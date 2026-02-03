@@ -74,9 +74,10 @@ Re-import the JSON from `infrastructure/n8n/workflows/utah-conditions-monitor-v2
 - **API:** `GET /api/weekly-picks` reads the active `weekly_picks` row and returns `headline`, `weather`, `recommendations`, etc.
 - **Env:**
   - If slctrips and dashboard use the **same** Supabase project: no extra env; the app’s `NEXT_PUBLIC_SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` are used (and `weekly_picks` must exist in that project).
-  - If they use **different** projects: set in slctrips (e.g. Vercel):
+  - If they use **different** projects (typical for Vercel: slctrips has its own Supabase for destinations/tripkits): set in slctrips (e.g. Vercel) so the API can read from the dashboard DB:
     - `DASHBOARD_SUPABASE_URL` = dashboard project URL  
     - `DASHBOARD_SUPABASE_SERVICE_ROLE_KEY` = dashboard service role key  
+  - **Deployment:** If “This Week’s Picks” works locally but not on slctrips.com, add these two variables in Vercel and redeploy (see §5 below).  
 
 ---
 
@@ -88,6 +89,33 @@ Re-import the JSON from `infrastructure/n8n/workflows/utah-conditions-monitor-v2
   - Weather badge shows **temp** and **conditions** when present.
   - Cards are built from **recommendations** (name, type, link) with UTM params.
 - If no active weekly pick (null or error), the section falls back to the existing logic (weather-aware rotation from `public_destinations`).
+
+---
+
+## 5. Deployment (Vercel) – “This Week’s Picks” not showing
+
+The pipeline and `weekly_picks` table live in the **dashboard** Supabase project. The slctrips app on Vercel must be able to **read** from that project. If slctrips uses a different Supabase (e.g. slctrips-only for destinations/tripkits), production will not see weekly picks until you add the dashboard credentials.
+
+**Fix:**
+
+1. In **Vercel** → your **slctrips** project → **Settings** → **Environment Variables**, add:
+   - **`DASHBOARD_SUPABASE_URL`** = the Supabase project URL where n8n writes `weekly_picks` (same as dashboard app / n8n `SUPABASE_URL`).
+   - **`DASHBOARD_SUPABASE_SERVICE_ROLE_KEY`** = that project’s **service role** key (same as dashboard/n8n `SUPABASE_SERVICE_ROLE_KEY`).
+2. Apply to **Production** (and **Preview** if you want picks on preview deploys).
+3. **Redeploy** the slctrips app (e.g. trigger a new deployment or push a commit) so the build uses the new env.
+
+**Verify:**
+
+- `curl https://slctrips.com/api/weekly-picks` (or your production URL) → should return one JSON object with `headline`, `weather`, `recommendations`, not `503` or `null`.
+- Reload the homepage; “This Week’s Picks” should show the headline (e.g. “☀️ Mild winter day - great for exploring”), weather badge, and recommendation cards.
+
+**Troubleshooting:**
+
+| Symptom | Likely cause |
+|--------|----------------|
+| API returns **503** | `DASHBOARD_SUPABASE_URL` or `DASHBOARD_SUPABASE_SERVICE_ROLE_KEY` not set (or not applied to the env you’re testing). |
+| API returns **500** | Wrong project (no `weekly_picks` table) or RLS/perms; confirm table exists in the project pointed to by `DASHBOARD_SUPABASE_URL`. |
+| API returns **200** but **null** | No row with `is_active = true` in that project; run the n8n workflow or check `weekly_picks` in the dashboard Supabase. |
 
 ---
 

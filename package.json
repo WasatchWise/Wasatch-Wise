@@ -9,15 +9,17 @@
     "build": "turbo run build",
     "start": "turbo run start",
     "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
     "dev:abya": "turbo run dev --filter=ask-before-you-app",
     "dev:dashboard": "turbo run dev --filter=dashboard",
     "dev:slctrips": "turbo run dev --filter=slctrips-v2",
-    "test:hci": "npx playwright test --config=tests/hci/playwright.config.ts",
-    "test:hci:ui": "npx playwright test --config=tests/hci/playwright.config.ts --ui",
-    "test:hci:report": "npx playwright show-report tests/hci/hci-report",
-    "test:hci:scenarios": "npx playwright test tests/hci/specs/*-scenarios.spec.ts --config=tests/hci/playwright.config.ts",
-    "test:hci:superintendent": "npx playwright test tests/hci/specs/superintendent-scenarios.spec.ts --config=tests/hci/playwright.config.ts",
-    "test:hci:teacher": "npx playwright test tests/hci/specs/teacher-scenarios.spec.ts --config=tests/hci/playwright.config.ts"
+    "test:hci": "pnpm --filter ask-before-you-app exec playwright test --config=tests/hci/playwright.config.ts",
+    "test:hci:ui": "pnpm --filter ask-before-you-app exec playwright test --config=tests/hci/playwright.config.ts --ui",
+    "test:hci:report": "pnpm --filter ask-before-you-app exec playwright show-report tests/hci/hci-report",
+    "test:hci:scenarios": "pnpm --filter ask-before-you-app exec playwright test tests/hci/specs/*-scenarios.spec.ts --config=tests/hci/playwright.config.ts",
+    "test:hci:superintendent": "pnpm --filter ask-before-you-app exec playwright test tests/hci/specs/superintendent-scenarios.spec.ts --config=tests/hci/playwright.config.ts",
+    "test:hci:teacher": "pnpm --filter ask-before-you-app exec playwright test tests/hci/specs/teacher-scenarios.spec.ts --config=tests/hci/playwright.config.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.71.2",

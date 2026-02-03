@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { stripe } from './client';
+import { getStripe } from './client';
+import { getServerEnv } from '@/lib/env';
 import { headers } from 'next/headers';
 import Stripe from 'stripe';
 
@@ -18,11 +19,20 @@ export async function verifyStripeWebhook(
     );
   }
 
+  const env = getServerEnv();
+  if (!env.STRIPE_WEBHOOK_SECRET) {
+    return NextResponse.json(
+      { error: 'Stripe webhook not configured' },
+      { status: 503 }
+    );
+  }
+
   try {
+    const stripe = getStripe();
     const event = stripe.webhooks.constructEvent(
       body,
       signature,
-      process.env.STRIPE_WEBHOOK_SECRET!
+      env.STRIPE_WEBHOOK_SECRET
     );
 
     await handler(event);

@@ -7,6 +7,7 @@ import BandMemberEditor from '@/components/BandMemberEditor'
 import UploadTrackForm from '@/components/UploadTrackForm'
 import UploadPhotoForm from '@/components/UploadPhotoForm'
 import SpiderRiderWizard from '@/components/spider-rider/SpiderRiderWizard'
+import { CompatibleVenuesSection } from '@/components/compatibility'
 import Link from 'next/link'
 
 interface BandDashboardTabsProps {
@@ -249,6 +250,16 @@ export default function BandDashboardTabs({
                 </div>
               )}
             </div>
+
+            {/* Compatible Venues (when rider published) */}
+            {publishedRider && (
+              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+                  Compatible Venues
+                </h3>
+                <CompatibleVenuesSection riderId={publishedRider.id} />
+              </div>
+            )}
 
             {/* Recent Activity */}
             <div className="grid md:grid-cols-2 gap-6">

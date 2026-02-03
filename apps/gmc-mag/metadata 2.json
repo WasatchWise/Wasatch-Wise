@@ -1,8 +1,0 @@
-
-{
-  "name": "GMC Investor Influence Page",
-  "description": "A professional, fact-driven investor landing page prototype for a North American magnesium production project, focusing on supply chain security and strategic critical minerals.",
-  "requestFramePermissions": [
-    "geolocation"
-  ]
-}

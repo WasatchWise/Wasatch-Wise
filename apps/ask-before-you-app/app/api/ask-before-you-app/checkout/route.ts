@@ -1,14 +1,23 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { stripe } from '@/lib/stripe/client';
+import { getStripe } from '@/lib/stripe/client';
+import { getServerEnv } from '@/lib/env';
 import { createClient } from '@supabase/supabase-js';
 
 export async function POST(req: NextRequest) {
-  // Create Supabase client inside function to avoid build-time errors
+  const env = getServerEnv();
+  if (!env.SUPABASE_SERVICE_ROLE_KEY) {
+    return NextResponse.json(
+      { error: 'Server configuration error: SUPABASE_SERVICE_ROLE_KEY required for checkout' },
+      { status: 503 }
+    );
+  }
   const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
+    env.NEXT_PUBLIC_SUPABASE_URL,
+    env.SUPABASE_SERVICE_ROLE_KEY,
+    { auth: { persistSession: false } }
   );
   try {
+    const stripe = getStripe();
     const body = await req.json();
     const { tier, name, email, role, appName, appUrl } = body;
 
@@ -80,9 +89,13 @@ export async function POST(req: NextRequest) {
       cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.wasatchwise.com'}/ask-before-you-app/request`,
       customer_email: email,
       metadata: {
+        building_id: 'B006',
         review_id: review.id,
         tier: tier,
         app_name: appName,
+      },
+      payment_intent_data: {
+        metadata: { building_id: 'B006' },
       },
     });
 

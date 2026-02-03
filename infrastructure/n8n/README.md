@@ -2,6 +2,10 @@
 
 **WasatchVille** is your interface to run all business through agentic work: departments, agents, and councils live in the dashboard; **n8n** is the automation layer that feeds data into the city and runs tasks (Stripe, TikTok, approvals, etc.). This same pattern will power **Business Realms** for future clients.
 
+**Lock-in playbook:** **[LOCKIN.md](LOCKIN.md)** — step-by-step verification (local + production), current workflows, and roadmap.
+
+**What n8n supports:** **[N8N_SUPPORTED.md](N8N_SUPPORTED.md)** — triggers, integrations, city_metrics contract, and quick decision rule.
+
 ## Quick start (local, Docker)
 
 1. **Copy env and set Postgres + optional Supabase:**

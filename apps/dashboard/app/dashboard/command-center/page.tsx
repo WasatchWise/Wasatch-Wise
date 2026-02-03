@@ -2,7 +2,22 @@
 import { useEffect, useState } from 'react';
 import Scene from './Scene';
 import BuildingInspector from './components/BuildingInspector';
+import AgentChat from './components/AgentChat';
+import BuildingInterior from './components/BuildingInterior';
+import CouncilRoom, { COUNCIL_LIST } from './components/CouncilRoom';
+import AffiliateRevenueCard from './components/AffiliateRevenueCard';
 import type { BuildingHealth } from '@/lib/pixi/entities/BaseBuilding';
+
+// Map building IDs to their primary agent IDs
+const BUILDING_AGENTS: Record<string, { id: string; name: string; role: string; avatar: string }> = {
+    'wasatchwise-capitol': { id: 'A001', name: 'The Mayor', role: 'CEO & Founder', avatar: '🏛️' },
+    'wasatchwise-bank': { id: 'A008', name: 'Bank Manager', role: 'Treasury Operations', avatar: '🏦' },
+    'adult-ai-academy': { id: 'A005', name: 'The Dean', role: 'Training Lead', avatar: '🎓' },
+    'ask-before-you-app': { id: 'A007', name: 'Superintendent', role: 'Compliance Lead', avatar: '📚' },
+    'rock-salt': { id: 'A004', name: 'Concert Manager', role: 'Music Platform Lead', avatar: '🎸' },
+    'slctrips': { id: 'A003', name: 'Park Director', role: 'Content Strategy Lead', avatar: '🎢' },
+    'daite': { id: 'A006', name: 'Park Ranger', role: 'Community Lead', avatar: '🌳' },
+};
 
 const BUILDING_LABELS: Record<string, string> = {
     'wasatchwise-capitol': 'WasatchWise Capitol',
@@ -50,6 +65,79 @@ export default function CommandCenterPage() {
         appUrl: null,
     });
 
+    const [agentChatState, setAgentChatState] = useState<{
+        isOpen: boolean;
+        agentId: string | null;
+        agentName: string | null;
+        agentRole: string | null;
+        agentAvatar: string | null;
+    }>({
+        isOpen: false,
+        agentId: null,
+        agentName: null,
+        agentRole: null,
+        agentAvatar: null,
+    });
+
+    const [interiorState, setInteriorState] = useState<{
+        isOpen: boolean;
+        buildingId: string | null;
+        buildingName: string | null;
+    }>({
+        isOpen: false,
+        buildingId: null,
+        buildingName: null,
+    });
+
+    const [councilState, setCouncilState] = useState<{
+        isOpen: boolean;
+        councilId: string | null;
+    }>({
+        isOpen: false,
+        councilId: null,
+    });
+
+    const [councilMenuOpen, setCouncilMenuOpen] = useState(false);
+
+    const openAgentChat = (buildingId: string) => {
+        const agent = BUILDING_AGENTS[buildingId];
+        if (agent) {
+            setAgentChatState({
+                isOpen: true,
+                agentId: agent.id,
+                agentName: agent.name,
+                agentRole: agent.role,
+                agentAvatar: agent.avatar,
+            });
+        }
+    };
+
+    const openAgentChatDirect = (agentId: string, agentName: string, agentRole: string) => {
+        setAgentChatState({
+            isOpen: true,
+            agentId,
+            agentName,
+            agentRole,
+            agentAvatar: null,
+        });
+    };
+
+    const openInterior = () => {
+        if (inspectorState.buildingId) {
+            setInteriorState({
+                isOpen: true,
+                buildingId: inspectorState.buildingId,
+                buildingName: inspectorState.buildingName,
+            });
+            setInspectorState(prev => ({ ...prev, isOpen: false }));
+        }
+    };
+
+    const openCouncil = (councilId: string) => {
+        setCouncilState({ isOpen: true, councilId });
+        setCouncilMenuOpen(false);
+    };
+
     useEffect(() => {
         const handleOpenInspector = (e: Event) => {
             const detail = (e as CustomEvent).detail;
@@ -76,6 +164,28 @@ export default function CommandCenterPage() {
                 <div className="flex gap-4 text-xs font-mono">
                     <button className="hover:bg-[#000080] hover:text-white px-2">File</button>
                     <button className="hover:bg-[#000080] hover:text-white px-2">View</button>
+                    <div className="relative">
+                        <button
+                            onClick={() => setCouncilMenuOpen(!councilMenuOpen)}
+                            className={`px-2 ${councilMenuOpen ? 'bg-[#000080] text-white' : 'hover:bg-[#000080] hover:text-white'}`}
+                        >
+                            Councils
+                        </button>
+                        {councilMenuOpen && (
+                            <div className="absolute top-full left-0 bg-[#c0c0c0] border-2 border-white border-b-black border-r-black shadow-lg min-w-48 z-50">
+                                {COUNCIL_LIST.map((council) => (
+                                    <button
+                                        key={council.id}
+                                        onClick={() => openCouncil(council.id)}
+                                        className="w-full text-left px-3 py-1 hover:bg-[#000080] hover:text-white flex items-center gap-2"
+                                    >
+                                        <span>{council.icon}</span>
+                                        <span>{council.name}</span>
+                                    </button>
+                                ))}
+                            </div>
+                        )}
+                    </div>
                     <button className="hover:bg-[#000080] hover:text-white px-2">Windows</button>
                 </div>
             </div>
@@ -83,6 +193,9 @@ export default function CommandCenterPage() {
             {/* Content Area */}
             <div className="flex-1 relative">
                 <Scene />
+
+                {/* Amazon Affiliate Revenue (city_metrics after migration 008) */}
+                <AffiliateRevenueCard />
 
                 {/* Modal Overlay Layer */}
                 {inspectorState.isOpen && (
@@ -93,8 +206,51 @@ export default function CommandCenterPage() {
                         buildingName={inspectorState.buildingName}
                         currentHealth={inspectorState.health}
                         appUrl={inspectorState.appUrl}
+                        onTalkToAgent={inspectorState.buildingId && BUILDING_AGENTS[inspectorState.buildingId]
+                            ? () => openAgentChat(inspectorState.buildingId!)
+                            : undefined
+                        }
+                        agentName={inspectorState.buildingId ? BUILDING_AGENTS[inspectorState.buildingId]?.name : undefined}
+                        onEnterBuilding={openInterior}
                     />
                 )}
+
+                {/* Building Interior View */}
+                <BuildingInterior
+                    isOpen={interiorState.isOpen}
+                    onClose={() => setInteriorState(prev => ({ ...prev, isOpen: false }))}
+                    buildingId={interiorState.buildingId}
+                    buildingName={interiorState.buildingName}
+                    onSelectAgent={openAgentChatDirect}
+                    onBack={() => {
+                        setInteriorState(prev => ({ ...prev, isOpen: false }));
+                        if (interiorState.buildingId) {
+                            setInspectorState(prev => ({
+                                ...prev,
+                                isOpen: true,
+                                buildingId: interiorState.buildingId,
+                                buildingName: interiorState.buildingName,
+                            }));
+                        }
+                    }}
+                />
+
+                {/* Council Room */}
+                <CouncilRoom
+                    isOpen={councilState.isOpen}
+                    onClose={() => setCouncilState(prev => ({ ...prev, isOpen: false }))}
+                    councilId={councilState.councilId}
+                />
+
+                {/* Agent Chat Window */}
+                <AgentChat
+                    isOpen={agentChatState.isOpen}
+                    onClose={() => setAgentChatState(prev => ({ ...prev, isOpen: false }))}
+                    agentId={agentChatState.agentId}
+                    agentName={agentChatState.agentName || undefined}
+                    agentRole={agentChatState.agentRole || undefined}
+                    agentAvatar={agentChatState.agentAvatar || undefined}
+                />
             </div>
 
             {/* Status Bar */}

@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useParams } from 'next/navigation';
+import { useState, useEffect, useMemo } from 'react';
+import { useParams, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/shared/Button';
 
@@ -36,13 +36,26 @@ interface DistrictData {
   adoptionPlans: any[];
 }
 
+const TAB_KEYS = ['overview', 'briefing', 'artifacts', 'controls', 'vendors'] as const;
+type TabKey = (typeof TAB_KEYS)[number];
+
 export default function DistrictDetailPage() {
   const params = useParams();
+  const searchParams = useSearchParams();
   const districtId = params.id as string;
   const [data, setData] = useState<DistrictData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<'overview' | 'briefing' | 'artifacts' | 'controls' | 'vendors'>('overview');
+  const tabParam = searchParams.get('tab');
+  const initialTab: TabKey = useMemo(
+    () => (TAB_KEYS.includes(tabParam as TabKey) ? (tabParam as TabKey) : 'overview'),
+    [tabParam]
+  );
+  const [activeTab, setActiveTab] = useState<TabKey>(initialTab);
+
+  useEffect(() => {
+    if (TAB_KEYS.includes(tabParam as TabKey)) setActiveTab(tabParam as TabKey);
+  }, [tabParam]);
 
   useEffect(() => {
     async function fetchDistrict() {
@@ -109,7 +122,7 @@ export default function DistrictDetailPage() {
         {/* Tabs */}
         <div className="border-b border-gray-200 mb-6">
           <nav className="-mb-px flex space-x-8">
-            {(['overview', 'briefing', 'artifacts', 'controls', 'vendors'] as const).map((tab) => (
+            {TAB_KEYS.map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
@@ -254,7 +267,7 @@ function BriefingTab({ data, districtId }: { data: DistrictData | null; district
     <div>
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-semibold">Briefing Sessions</h2>
-        <Button href={`/dashboard/districts/${districtId}/briefing/new`} variant="primary">
+        <Button href={`/dashboard/districts/${districtId}/session`} variant="primary">
           New Briefing Session
         </Button>
       </div>
@@ -262,7 +275,7 @@ function BriefingTab({ data, districtId }: { data: DistrictData | null; district
       {briefingSessions.length === 0 ? (
         <div className="text-center py-12 text-gray-500">
           <p className="mb-4">No briefing sessions yet</p>
-          <Button href={`/dashboard/districts/${districtId}/briefing/new`} variant="outline">
+          <Button href={`/dashboard/districts/${districtId}/session`} variant="outline">
             Schedule First Session
           </Button>
         </div>
@@ -292,7 +305,7 @@ function BriefingTab({ data, districtId }: { data: DistrictData | null; district
                     <p className="text-sm text-gray-500 mt-2">{session.notes}</p>
                   )}
                 </div>
-                <Button href={`/dashboard/districts/${districtId}/briefing/${session.id}`} variant="outline" size="sm">
+                <Button href={`/dashboard/districts/${districtId}/session/${session.id}`} variant="outline" size="sm">
                   View
                 </Button>
               </div>

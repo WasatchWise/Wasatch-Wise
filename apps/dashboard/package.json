@@ -8,6 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "typecheck": "tsc --noEmit",
     "test:hci": "npx playwright test --config=tests/hci/playwright.config.ts",
     "test:hci:ui": "npx playwright test --config=tests/hci/playwright.config.ts --ui",
     "test:hci:report": "npx playwright show-report tests/hci/hci-report",

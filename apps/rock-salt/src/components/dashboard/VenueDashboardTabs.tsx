@@ -6,6 +6,9 @@ import VenueProfileEditor from '@/components/VenueProfileEditor'
 import UploadVenuePhotoForm from '@/components/UploadVenuePhotoForm'
 import VenueSlotManager from '@/components/VenueSlotManager'
 import ShowSubmissionsList from '@/components/ShowSubmissionsList'
+import { CompatibleRidersSection } from '@/components/compatibility'
+import VenueCapabilityWizard from '@/components/venue-capability/VenueCapabilityWizard'
+import ProfileCompletenessIndicator from '@/components/venue-capability/ProfileCompletenessIndicator'
 import Link from 'next/link'
 
 interface VenueDashboardTabsProps {
@@ -21,7 +24,7 @@ interface VenueDashboardTabsProps {
     initialTab: string
 }
 
-type TabKey = 'overview' | 'profile' | 'slots' | 'submissions' | 'bookings' | 'wallet'
+type TabKey = 'overview' | 'profile' | 'capabilities' | 'slots' | 'submissions' | 'bookings' | 'wallet'
 
 const TABS: { key: TabKey; label: string; icon: JSX.Element }[] = [
     {
@@ -39,6 +42,15 @@ const TABS: { key: TabKey; label: string; icon: JSX.Element }[] = [
         icon: (
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+            </svg>
+        ),
+    },
+    {
+        key: 'capabilities',
+        label: 'Capabilities',
+        icon: (
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
             </svg>
         ),
     },
@@ -142,6 +154,12 @@ export default function VenueDashboardTabs({
                 {/* Overview Tab */}
                 {activeTab === 'overview' && (
                     <div className="space-y-8">
+                        {/* Profile Completeness */}
+                        <ProfileCompletenessIndicator
+                            venue={venue}
+                            showDetails={true}
+                            showEditButton={true}
+                        />
                         {/* Quick Stats */}
                         <div className="grid md:grid-cols-4 gap-6">
                             <StatCard
@@ -168,6 +186,14 @@ export default function VenueDashboardTabs({
                                 value={saltRocksBalance}
                                 color="purple"
                             />
+                        </div>
+
+                        {/* Compatible Spider Riders */}
+                        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+                            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+                                Compatible Spider Riders
+                            </h3>
+                            <CompatibleRidersSection venueId={venue.id} />
                         </div>
 
                         {/* Recent Activity */}
@@ -294,6 +320,45 @@ export default function VenueDashboardTabs({
                                     ))}
                                 </div>
                             )}
+                        </div>
+                    </div>
+                )}
+
+                {/* Capabilities Tab */}
+                {activeTab === 'capabilities' && (
+                    <div className="space-y-6">
+                        <ProfileCompletenessIndicator
+                            venue={venue}
+                            showDetails={false}
+                            showEditButton={false}
+                        />
+                        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+                        <VenueCapabilityWizard
+                            venueId={venue.id}
+                            venueName={venue.name}
+                            initialData={{
+                                typical_guarantee_min: venue.typical_guarantee_min ?? undefined,
+                                typical_guarantee_max: venue.typical_guarantee_max ?? undefined,
+                                payment_methods: venue.payment_methods || [],
+                                w9_on_file: venue.w9_on_file ?? false,
+                                insurance_coi_on_file: venue.insurance_coi_on_file ?? false,
+                                stage_width_feet: venue.stage_width_feet ?? undefined,
+                                stage_depth_feet: venue.stage_depth_feet ?? undefined,
+                                input_channels: venue.input_channels ?? undefined,
+                                has_house_drums: venue.has_house_drums ?? false,
+                                has_backline: venue.has_backline ?? false,
+                                green_room_available: venue.green_room_available ?? false,
+                                green_room_description: venue.green_room_description || undefined,
+                                meal_buyout_available: venue.meal_buyout_available ?? false,
+                                typical_meal_buyout_amount: venue.typical_meal_buyout_amount ?? undefined,
+                                drink_tickets_available: venue.drink_tickets_available ?? undefined,
+                                guest_list_spots: venue.guest_list_spots ?? undefined,
+                                parking_spaces: venue.parking_spaces ?? undefined,
+                                age_restrictions: venue.age_restrictions || [],
+                                load_in_notes: venue.load_in_notes || undefined,
+                                curfew_time: venue.curfew_time ? String(venue.curfew_time).slice(0, 5) : undefined,
+                            }}
+                        />
                         </div>
                     </div>
                 )}

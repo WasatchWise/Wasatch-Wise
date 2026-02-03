@@ -104,10 +104,10 @@ export default function ModulePage() {
   const { completedLessons, markComplete, loaded } = useProgress(moduleId)
   const scrollProgress = useReadingProgress()
 
-  const module = COURSE_MODULES.find(m => m.id === moduleId)
+  const courseModule = COURSE_MODULES.find(m => m.id === moduleId)
   const isLastModule = moduleId === COURSE_MODULES.length - 1
 
-  if (!module) {
+  if (!courseModule) {
     return (
       <div className="min-h-screen bg-[#050508] flex items-center justify-center">
         <div className="text-center">
@@ -120,16 +120,16 @@ export default function ModulePage() {
     )
   }
 
-  const lesson = module.lessons[currentLesson]
-  const isLastLesson = currentLesson === module.lessons.length - 1
-  const allLessonsComplete = loaded && module.lessons.every(l => completedLessons.includes(l.id))
-  const progressPercent = loaded ? (completedLessons.length / module.lessons.length) * 100 : 0
+  const lesson = courseModule.lessons[currentLesson]
+  const isLastLesson = currentLesson === courseModule.lessons.length - 1
+  const allLessonsComplete = loaded && courseModule.lessons.every(l => completedLessons.includes(l.id))
+  const progressPercent = loaded ? (completedLessons.length / courseModule.lessons.length) * 100 : 0
 
   const handleMarkComplete = () => {
     markComplete(lesson.id)
     
     // Check if this completes the module
-    const willBeComplete = module.lessons.every(l => 
+    const willBeComplete = courseModule.lessons.every(l => 
       l.id === lesson.id || completedLessons.includes(l.id)
     )
     
@@ -140,7 +140,7 @@ export default function ModulePage() {
 
   const nextLesson = () => {
     handleMarkComplete()
-    if (currentLesson < module.lessons.length - 1) {
+    if (currentLesson < courseModule.lessons.length - 1) {
       setCurrentLesson(currentLesson + 1)
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }
@@ -158,7 +158,7 @@ export default function ModulePage() {
       {/* Badge Unlock Celebration */}
       {showBadgeUnlock && (
         <BadgeUnlockCelebration 
-          badge={module.badge} 
+          badge={courseModule.badge} 
           onClose={() => setShowBadgeUnlock(false)} 
         />
       )}
@@ -193,8 +193,8 @@ export default function ModulePage() {
                   </svg>
                 </Link>
                 <div>
-                  <p className="text-xs font-medium text-gray-500 uppercase tracking-wider">Module {module.id}</p>
-                  <h1 className="text-base sm:text-lg font-bold text-white">{module.title}</h1>
+                  <p className="text-xs font-medium text-gray-500 uppercase tracking-wider">Module {courseModule.id}</p>
+                  <h1 className="text-base sm:text-lg font-bold text-white">{courseModule.title}</h1>
                 </div>
               </div>
               
@@ -203,7 +203,7 @@ export default function ModulePage() {
                 <div className="hidden sm:flex items-center gap-3">
                   <div className="text-right">
                     <p className="text-xs text-gray-500">Progress</p>
-                    <p className="text-sm font-bold text-white">{completedLessons.length}/{module.lessons.length}</p>
+                    <p className="text-sm font-bold text-white">{completedLessons.length}/{courseModule.lessons.length}</p>
                   </div>
                   <div className="w-24 h-2 bg-white/10 rounded-full overflow-hidden">
                     <div 
@@ -217,7 +217,7 @@ export default function ModulePage() {
                     ? 'bg-gradient-to-br from-amber-500/30 to-orange-500/30 border-amber-500/50 shadow-lg shadow-amber-500/20' 
                     : 'bg-gradient-to-br from-violet-500/20 to-fuchsia-500/20 border-violet-500/20'
                 }`}>
-                  <span className="text-xl">{module.badge.emoji}</span>
+                  <span className="text-xl">{courseModule.badge.emoji}</span>
                 </div>
               </div>
             </div>
@@ -231,7 +231,7 @@ export default function ModulePage() {
               <div className="sticky top-28">
                 <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-4">Lessons</h3>
                 <nav className="space-y-2">
-                  {module.lessons.map((l, idx) => {
+                  {courseModule.lessons.map((l, idx) => {
                     const isActive = idx === currentLesson
                     const isComplete = completedLessons.includes(l.id)
                     
@@ -281,17 +281,17 @@ export default function ModulePage() {
                 }`}>
                   <div className="flex items-center gap-3 mb-3">
                     <span className={`text-2xl transition-transform ${allLessonsComplete ? 'animate-bounce' : ''}`}>
-                      {module.badge.emoji}
+                      {courseModule.badge.emoji}
                     </span>
                     <div>
                       <p className="text-xs text-amber-400/70">
                         {allLessonsComplete ? 'Badge Earned!' : 'Complete to Earn'}
                       </p>
-                      <p className="text-sm font-bold text-white">{module.badge.name}</p>
+                      <p className="text-sm font-bold text-white">{courseModule.badge.name}</p>
                     </div>
                   </div>
                   <div className="flex gap-1">
-                    {module.lessons.map((l, idx) => (
+                    {courseModule.lessons.map((l, idx) => (
                       <div 
                         key={idx} 
                         className={`flex-1 h-1.5 rounded-full transition-all duration-500 ${
@@ -331,7 +331,7 @@ export default function ModulePage() {
             <main className="flex-1 min-w-0">
               {/* Mobile Lesson Tabs */}
               <div className="lg:hidden flex gap-2 mb-6 overflow-x-auto pb-2 -mx-2 px-2 scrollbar-hide">
-                {module.lessons.map((l, idx) => (
+                {courseModule.lessons.map((l, idx) => (
                   <button
                     key={l.id}
                     onClick={() => setCurrentLesson(idx)}
@@ -354,7 +354,7 @@ export default function ModulePage() {
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-500/10 text-violet-400 text-xs font-semibold mb-4">
                   <span>Lesson {lesson.id}</span>
                   <span className="w-1 h-1 rounded-full bg-violet-400/50" />
-                  <span>{module.duration}</span>
+                  <span>{courseModule.duration}</span>
                 </div>
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white leading-tight">{lesson.title}</h2>
               </div>
@@ -471,7 +471,7 @@ export default function ModulePage() {
                         className="group flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-2xl bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white font-bold hover:shadow-lg hover:shadow-violet-500/25 transition-all hover:scale-105"
                       >
                         Complete & Earn Badge
-                        <span className="text-lg group-hover:scale-125 transition-transform">{module.badge.emoji}</span>
+                        <span className="text-lg group-hover:scale-125 transition-transform">{courseModule.badge.emoji}</span>
                       </button>
                     )
                   ) : (
@@ -492,16 +492,16 @@ export default function ModulePage() {
               <div className="lg:hidden mt-8 p-4 rounded-2xl bg-white/[0.02] border border-white/10">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <span className="text-2xl">{module.badge.emoji}</span>
+                    <span className="text-2xl">{courseModule.badge.emoji}</span>
                     <div>
                       <p className="text-xs text-gray-500">
                         {allLessonsComplete ? 'Completed!' : 'In Progress'}
                       </p>
-                      <p className="text-sm font-medium text-white">{module.badge.name}</p>
+                      <p className="text-sm font-medium text-white">{courseModule.badge.name}</p>
                     </div>
                   </div>
                   <div className="flex gap-1">
-                    {module.lessons.map((l, idx) => (
+                    {courseModule.lessons.map((l, idx) => (
                       <div 
                         key={idx} 
                         className={`w-6 h-1.5 rounded-full transition-colors ${

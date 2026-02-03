@@ -1,0 +1,586 @@
+{
+  "review_metadata": {
+    "reviewed_at": "2025-01-31T20:30:00Z",
+    "context_version": "WasatchVille 2025-01-31"
+  },
+  "current_merchants": [
+    {
+      "merchant_key": "booking",
+      "merchant_name": "Booking.com",
+      "network": "awin",
+      "merchant_id": "6776",
+      "status": "active",
+      "primary_building_id": "B002",
+      "secondary_building_ids": ["B009"],
+      "campaign_prefix": "slctrips",
+      "fit_score": 10,
+      "recommendation": "expand_to_buildings",
+      "notes": "Perfect fit for SLC Trips (travel accommodations). Also strong fit for Pipeline IQ - construction crews need hotel bookings for job sites. Commission: 4%. Should expand with pipelineiq-* campaigns for team travel."
+    },
+    {
+      "merchant_key": "viator",
+      "merchant_name": "Viator",
+      "network": "direct",
+      "merchant_id": "via_partner_id",
+      "status": "active",
+      "primary_building_id": "B002",
+      "secondary_building_ids": [],
+      "campaign_prefix": "slctrips",
+      "fit_score": 9,
+      "recommendation": "keep",
+      "notes": "Excellent for SLC Trips tours and activities. Commission: 8-10%. Currently only SLC Trips; could expand to Fanon (movie location tours) but lower priority."
+    },
+    {
+      "merchant_key": "amazon",
+      "merchant_name": "Amazon Associates",
+      "network": "direct",
+      "merchant_id": "wasatchwise-20",
+      "status": "active",
+      "primary_building_id": "B002",
+      "secondary_building_ids": ["B003", "B004", "B009", "B010", "B011"],
+      "campaign_prefix": "slctrips",
+      "fit_score": 7,
+      "recommendation": "expand_to_buildings",
+      "notes": "Universal merchant - fits ALL buildings but lacks campaign attribution (single tag). Commission: 1-10% depending on category. Critical gap: need building-specific tracking. Should implement sub-ID tracking or separate tags per building for proper attribution to city_metrics."
+    },
+    {
+      "merchant_key": "sitpack",
+      "merchant_name": "Sitpack",
+      "network": "awin",
+      "merchant_id": "env_var",
+      "status": "configured_missing_env",
+      "primary_building_id": "B002",
+      "secondary_building_ids": [],
+      "campaign_prefix": "slctrips",
+      "fit_score": 6,
+      "recommendation": "keep",
+      "notes": "Niche camping/outdoor seating. Good for hiking/camping content on SLC Trips. Commission: typically 5-8% on AWIN. Moderate fit - not essential but adds variety to outdoor gear recommendations."
+    },
+    {
+      "merchant_key": "flextail",
+      "merchant_name": "FLEXTAIL",
+      "network": "awin",
+      "merchant_id": "env_var",
+      "status": "configured_missing_env",
+      "primary_building_id": "B002",
+      "secondary_building_ids": [],
+      "campaign_prefix": "slctrips",
+      "fit_score": 6,
+      "recommendation": "keep",
+      "notes": "Outdoor gear (portable pumps, camping accessories). Decent fit for adventure/camping content. Commission: likely 5-8%. Similar to Sitpack - nice to have for gear roundups but not core."
+    },
+    {
+      "merchant_key": "vsgo",
+      "merchant_name": "VSGO",
+      "network": "awin",
+      "merchant_id": "env_var",
+      "status": "configured_missing_env",
+      "primary_building_id": "B002",
+      "secondary_building_ids": ["B011"],
+      "campaign_prefix": "slctrips",
+      "fit_score": 5,
+      "recommendation": "expand_to_buildings",
+      "notes": "Camera/photography cleaning gear. Weak fit for SLC Trips (unless photography-focused travel content). STRONG fit for Fanon Movies (filmmaking gear). Commission: 5-10%. Should prioritize fanon-* campaigns over travel."
+    },
+    {
+      "merchant_key": "gowithguide",
+      "merchant_name": "GoWithGuide US",
+      "network": "awin",
+      "merchant_id": "env_var",
+      "status": "configured_missing_env",
+      "primary_building_id": "B002",
+      "secondary_building_ids": [],
+      "campaign_prefix": "slctrips",
+      "fit_score": 8,
+      "recommendation": "keep",
+      "notes": "Private tour guides - excellent fit for premium travel content on SLC Trips. Commission: typically 10-15% on tour bookings. Higher AOV than Viator. Should prioritize setting env var and promoting."
+    },
+    {
+      "merchant_key": "getyourguide",
+      "merchant_name": "GetYourGuide",
+      "network": "direct",
+      "merchant_id": "none",
+      "status": "disabled",
+      "primary_building_id": "B002",
+      "secondary_building_ids": [],
+      "campaign_prefix": "slctrips",
+      "fit_score": 8,
+      "recommendation": "keep",
+      "notes": "Direct competitor to Viator - tours and activities. Commission: 8%. Currently disabled; should enable as alternative to Viator for comparison/availability. Having both gives users options and increases conversion."
+    },
+    {
+      "merchant_key": "yelp",
+      "merchant_name": "Yelp",
+      "network": "none",
+      "merchant_id": "utm_tracking_only",
+      "status": "active",
+      "primary_building_id": "B002",
+      "secondary_building_ids": ["B003"],
+      "campaign_prefix": "slctrips",
+      "fit_score": 3,
+      "recommendation": "deprioritize",
+      "notes": "No affiliate program - UTM tracking only. Useful for local business recommendations but generates no direct revenue. Keep for SEO/content value but don't prioritize. Rock Salt could use for venue discovery but same issue."
+    }
+  ],
+  "gaps_by_building": {
+    "B002": {
+      "has": ["booking", "viator", "amazon", "sitpack", "flextail", "vsgo", "gowithguide", "getyourguide"],
+      "missing": [
+        "REI/Outdoor gear (AWIN/CJ)",
+        "Rental cars (Budget/Avis via AWIN)",
+        "Travel insurance (World Nomads, SafetyWing)",
+        "Luggage/travel gear (Away, Samsonite)",
+        "Airbnb/VRBO (Airbnb has referral program)"
+      ],
+      "top_recommendations": [
+        "REI Co-op via AWIN (outdoor gear, 5% commission, perfect for hiking/camping content)",
+        "Rental Cars (Budget/Avis on AWIN, 3-5% commission, fills gap for road trip content)",
+        "World Nomads travel insurance (10-15% commission, high-value upsell for international content)",
+        "Backcountry via CJ (outdoor gear, 6-8% commission, complements REI)",
+        "Airbnb referral program (direct, $25-50 per signup, alternative to hotels)"
+      ]
+    },
+    "B003": {
+      "has": ["amazon"],
+      "missing": [
+        "Music equipment (Sweetwater, Guitar Center)",
+        "Concert tickets (StubHub, Vivid Seats)",
+        "Streaming services (Spotify, Apple Music - limited affiliate options)",
+        "Merchandise platforms (Merchbar, Bandcamp)",
+        "Recording studio software (Plugin Boutique, Splice)"
+      ],
+      "top_recommendations": [
+        "Sweetwater via ShareASale (music gear, 3-5% commission, essential for artist audience)",
+        "StubHub via CJ (concert tickets, 5-7% commission, perfect for show promotions)",
+        "Plugin Boutique via ShareASale (audio plugins, 10-20% commission, high margins)",
+        "Reverb via direct program (used gear, 5% commission, musician marketplace)",
+        "Splice via direct (samples/plugins, 20-30% recurring, SaaS model)"
+      ]
+    },
+    "B004": {
+      "has": ["amazon"],
+      "missing": [
+        "AI/ML courses (Udemy, Coursera, Pluralsight)",
+        "SaaS tools (OpenAI, Anthropic - no affiliate programs yet)",
+        "Books (Amazon covers this)",
+        "Cloud hosting (AWS, DigitalOcean)",
+        "Development tools (JetBrains, GitHub)"
+      ],
+      "top_recommendations": [
+        "Udemy via Rakuten (AI courses, 15-20% commission, huge course catalog)",
+        "Coursera via direct (AI certifications, 20-45% commission, high-value courses)",
+        "DigitalOcean via direct (cloud hosting, $25-50 per referral, recurring credits)",
+        "O'Reilly Media via direct (tech books/learning, 10-15% commission)",
+        "DataCamp via ShareASale (data science learning, 30% commission)"
+      ]
+    },
+    "B006": {
+      "has": [],
+      "missing": [
+        "EdTech software (ClassDojo, Google Workspace)",
+        "Privacy/security tools (VPNs, password managers)",
+        "Curriculum resources",
+        "School supplies (Amazon covers this)",
+        "Professional development"
+      ],
+      "top_recommendations": [
+        "ExpressVPN via direct (privacy education, 30-40% commission, high conversion)",
+        "1Password via direct (school security, 25% recurring, B2B pricing)",
+        "Teachers Pay Teachers via direct (curriculum, 10% commission, teacher-focused)",
+        "Canva Pro via direct (school design tools, 30% recurring, widely used in education)",
+        "NordVPN via CJ (alternative to ExpressVPN, 30-40% commission)"
+      ]
+    },
+    "B009": {
+      "has": ["amazon", "booking"],
+      "missing": [
+        "Construction management software (Procore, PlanGrid)",
+        "Equipment rental platforms",
+        "Safety gear/PPE",
+        "Project management tools (Asana, Monday)",
+        "Accounting software (QuickBooks)"
+      ],
+      "top_recommendations": [
+        "Home Depot Pro via AWIN (tools/equipment, 2-5% commission, massive catalog)",
+        "Lowe's via CJ (construction supplies, 2-4% commission, alternative to HD)",
+        "Safety Glasses USA via ShareASale (PPE, 8-10% commission, recurring orders)",
+        "Monday.com via direct (project management, 20-30% recurring, SaaS upsell)",
+        "Grainger via direct (industrial supplies, 2-5% commission, B2B pricing)"
+      ]
+    },
+    "B010": {
+      "has": ["amazon"],
+      "missing": [
+        "Marketing automation (HubSpot, Mailchimp)",
+        "Social media tools (Buffer, Hootsuite)",
+        "Design tools (Canva, Adobe)",
+        "Video editing (Descript, CapCut)",
+        "AI writing tools (Jasper, Copy.ai)"
+      ],
+      "top_recommendations": [
+        "Canva Pro via direct (design automation, 30% recurring, SMB sweet spot)",
+        "Buffer via direct (social scheduling, 20-30% recurring, core use case)",
+        "Descript via direct (video editing, 25% recurring, AI-powered)",
+        "Mailchimp via direct (email marketing, 15-25% recurring, standard tool)",
+        "Hootsuite via direct (social management, 20% recurring, enterprise option)"
+      ]
+    },
+    "B011": {
+      "has": ["amazon", "vsgo"],
+      "missing": [
+        "Streaming services (Max, Criterion, Mubi)",
+        "Film equipment (B&H Photo, Adorama)",
+        "Blu-ray/physical media (Zavvi, Amazon)",
+        "Filmmaking courses (MasterClass, Skillshare)",
+        "Theater tickets (Fandango, Atom Tickets)"
+      ],
+      "top_recommendations": [
+        "B&H Photo via direct (camera gear, 1-4% commission, industry standard)",
+        "Adorama via ShareASale (film equipment, 2-4% commission, B&H alternative)",
+        "MasterClass via direct (filmmaking courses, 30% commission, high-value)",
+        "Criterion Collection via direct (classic films, 10% commission, cinephile audience)",
+        "Fandango via CJ (movie tickets, 5-8% commission, direct conversion)"
+      ]
+    }
+  },
+  "new_merchant_recommendations": [
+    {
+      "merchant_name": "REI Co-op",
+      "network": "awin",
+      "product_category": "outdoor_gear",
+      "primary_building_id": "B002",
+      "campaign_prefix": "slctrips",
+      "rationale": "Essential outdoor retailer for hiking/camping content. Trusted brand, wide catalog, seasonal sales. Perfect for gear guides and trip preparation content.",
+      "commission_notes": "5% commission, 45-day cookie",
+      "priority": "high"
+    },
+    {
+      "merchant_name": "Sweetwater",
+      "network": "shareasale",
+      "product_category": "music_equipment",
+      "primary_building_id": "B003",
+      "campaign_prefix": "rocksalt",
+      "rationale": "Largest online music gear retailer. Essential for Rock Salt artist audience. Huge catalog of instruments, recording gear, pro audio. Sweetwater is THE name in music retail.",
+      "commission_notes": "3-5% commission, 60-day cookie",
+      "priority": "high"
+    },
+    {
+      "merchant_name": "Coursera",
+      "network": "direct",
+      "product_category": "online_courses",
+      "primary_building_id": "B004",
+      "campaign_prefix": "academy",
+      "rationale": "Major online learning platform with extensive AI/ML course catalog. Certificates from top universities. Perfect for Adult AI Academy audience seeking credentials.",
+      "commission_notes": "20-45% commission on course sales, 30-day cookie",
+      "priority": "high"
+    },
+    {
+      "merchant_name": "ExpressVPN",
+      "network": "direct",
+      "product_category": "privacy_security",
+      "primary_building_id": "B006",
+      "campaign_prefix": "abya",
+      "rationale": "Leading VPN service, perfect fit for Ask Before You App's privacy focus. High commission, excellent conversion rate, schools increasingly interested in privacy tools.",
+      "commission_notes": "30-40% commission, 90-day cookie, recurring for subscriptions",
+      "priority": "high"
+    },
+    {
+      "merchant_name": "Canva Pro",
+      "network": "direct",
+      "product_category": "design_tools",
+      "primary_building_id": "B010",
+      "campaign_prefix": "automation",
+      "rationale": "Essential design tool for SMBs. Automation Studio audience needs graphics for social media. Recurring revenue model, high adoption, widely used.",
+      "commission_notes": "30% recurring commission, 30-day cookie",
+      "priority": "high"
+    },
+    {
+      "merchant_name": "B&H Photo Video",
+      "network": "direct",
+      "product_category": "camera_film_equipment",
+      "primary_building_id": "B011",
+      "campaign_prefix": "fanon",
+      "rationale": "Industry-leading camera and filmmaking equipment retailer. Perfect for Fanon Movies filmmaking content. Huge catalog, trusted brand, pro-level gear.",
+      "commission_notes": "1-4% commission (low but high AOV), 30-day cookie",
+      "priority": "high"
+    },
+    {
+      "merchant_name": "Home Depot Pro",
+      "network": "awin",
+      "product_category": "construction_tools",
+      "primary_building_id": "B009",
+      "campaign_prefix": "pipelineiq",
+      "rationale": "Essential for Pipeline IQ construction audience. Tools, equipment, materials. Pro program for contractors. Massive catalog, frequent purchases.",
+      "commission_notes": "2-5% commission, 7-day cookie (short but high conversion)",
+      "priority": "high"
+    },
+    {
+      "merchant_name": "StubHub",
+      "network": "cj",
+      "product_category": "concert_tickets",
+      "primary_building_id": "B003",
+      "campaign_prefix": "rocksalt",
+      "rationale": "Major ticket resale marketplace. Perfect for Rock Salt concert promotions and music events. High AOV, good commission, direct conversion from content to ticket sales.",
+      "commission_notes": "5-7% commission, 30-day cookie",
+      "priority": "high"
+    },
+    {
+      "merchant_name": "Udemy",
+      "network": "rakuten",
+      "product_category": "online_courses",
+      "primary_building_id": "B004",
+      "campaign_prefix": "academy",
+      "rationale": "Massive course marketplace with thousands of AI/tech courses. Lower-cost alternative to Coursera. Frequent sales make conversion easier. Good for budget-conscious learners.",
+      "commission_notes": "15-20% commission, 7-day cookie",
+      "priority": "medium"
+    },
+    {
+      "merchant_name": "Plugin Boutique",
+      "network": "shareasale",
+      "product_category": "audio_plugins",
+      "primary_building_id": "B003",
+      "campaign_prefix": "rocksalt",
+      "rationale": "Largest audio plugin retailer. Essential for Rock Salt producer/recording audience. High margins, frequent sales, lower AOV but high conversion.",
+      "commission_notes": "10-20% commission, 90-day cookie",
+      "priority": "medium"
+    },
+    {
+      "merchant_name": "World Nomads",
+      "network": "direct",
+      "product_category": "travel_insurance",
+      "primary_building_id": "B002",
+      "campaign_prefix": "slctrips",
+      "rationale": "Leading travel insurance for international trips. High-value upsell for adventure travel content. Good commission, relatively low competition in content space.",
+      "commission_notes": "10-15% commission, 45-day cookie",
+      "priority": "medium"
+    },
+    {
+      "merchant_name": "Buffer",
+      "network": "direct",
+      "product_category": "social_media_tools",
+      "primary_building_id": "B010",
+      "campaign_prefix": "automation",
+      "rationale": "Popular social media scheduling tool. Perfect for Automation Studio audience. Recurring revenue, affordable pricing, widely recommended.",
+      "commission_notes": "20-30% recurring commission, 90-day cookie",
+      "priority": "medium"
+    },
+    {
+      "merchant_name": "MasterClass",
+      "network": "direct",
+      "product_category": "online_learning",
+      "primary_building_id": "B011",
+      "campaign_prefix": "fanon",
+      "rationale": "Celebrity-taught courses including filmmaking (Martin Scorsese, Spike Lee, etc.). Perfect for Fanon Movies audience. High production value, aspirational brand.",
+      "commission_notes": "30% commission on annual membership, 30-day cookie",
+      "priority": "medium"
+    },
+    {
+      "merchant_name": "Reverb",
+      "network": "direct",
+      "product_category": "used_music_gear",
+      "primary_building_id": "B003",
+      "campaign_prefix": "rocksalt",
+      "rationale": "Leading used music gear marketplace. Great for budget-conscious musicians. Complements Sweetwater (new gear). Owned by Etsy, trusted platform.",
+      "commission_notes": "5% commission, 30-day cookie",
+      "priority": "low"
+    },
+    {
+      "merchant_name": "Backcountry",
+      "network": "cj",
+      "product_category": "outdoor_gear",
+      "primary_building_id": "B002",
+      "campaign_prefix": "slctrips",
+      "rationale": "Premium outdoor gear retailer. Complements REI with higher-end brands. Good for gear reviews and premium content. Expert gearheads trust Backcountry.",
+      "commission_notes": "6-8% commission, 30-day cookie",
+      "priority": "low"
+    }
+  ],
+  "affiliate_config_additions": [
+    {
+      "key": "rei",
+      "config_snippet": {
+        "rei": {
+          "enabled": true,
+          "merchantId": "AWIN_REI_MERCHANT_ID",
+          "network": "awin",
+          "campaigns": {
+            "slctrips-outdoorgear": "General outdoor gear",
+            "slctrips-hiking": "Hiking-specific gear",
+            "slctrips-camping": "Camping equipment"
+          }
+        }
+      },
+      "building_id": "B002",
+      "campaign_prefix": "slctrips"
+    },
+    {
+      "key": "sweetwater",
+      "config_snippet": {
+        "sweetwater": {
+          "enabled": true,
+          "merchantId": "SHAREASALE_SWEETWATER_MERCHANT_ID",
+          "network": "shareasale",
+          "campaigns": {
+            "rocksalt-equipment": "General music equipment",
+            "rocksalt-recording": "Recording gear",
+            "rocksalt-instruments": "Instruments"
+          }
+        }
+      },
+      "building_id": "B003",
+      "campaign_prefix": "rocksalt"
+    },
+    {
+      "key": "coursera",
+      "config_snippet": {
+        "coursera": {
+          "enabled": true,
+          "merchantId": "COURSERA_PARTNER_ID",
+          "network": "direct",
+          "campaigns": {
+            "academy-aicourses": "AI/ML courses",
+            "academy-certifications": "Professional certifications"
+          }
+        }
+      },
+      "building_id": "B004",
+      "campaign_prefix": "academy"
+    },
+    {
+      "key": "expressvpn",
+      "config_snippet": {
+        "expressvpn": {
+          "enabled": true,
+          "merchantId": "EXPRESSVPN_AFFILIATE_ID",
+          "network": "direct",
+          "campaigns": {
+            "abya-privacy": "Privacy tools for schools",
+            "abya-security": "Digital security"
+          }
+        }
+      },
+      "building_id": "B006",
+      "campaign_prefix": "abya"
+    },
+    {
+      "key": "canva",
+      "config_snippet": {
+        "canva": {
+          "enabled": true,
+          "merchantId": "CANVA_AFFILIATE_ID",
+          "network": "direct",
+          "campaigns": {
+            "automation-design": "Design tools",
+            "automation-socialmedia": "Social media graphics"
+          }
+        }
+      },
+      "building_id": "B010",
+      "campaign_prefix": "automation"
+    },
+    {
+      "key": "bhphoto",
+      "config_snippet": {
+        "bhphoto": {
+          "enabled": true,
+          "merchantId": "BHPHOTO_AFFILIATE_ID",
+          "network": "direct",
+          "campaigns": {
+            "fanon-cameragear": "Camera equipment",
+            "fanon-filmmaking": "Filmmaking gear"
+          }
+        }
+      },
+      "building_id": "B011",
+      "campaign_prefix": "fanon"
+    },
+    {
+      "key": "homedepot",
+      "config_snippet": {
+        "homedepot": {
+          "enabled": true,
+          "merchantId": "AWIN_HOMEDEPOT_MERCHANT_ID",
+          "network": "awin",
+          "campaigns": {
+            "pipelineiq-tools": "Construction tools",
+            "pipelineiq-materials": "Building materials"
+          }
+        }
+      },
+      "building_id": "B009",
+      "campaign_prefix": "pipelineiq"
+    },
+    {
+      "key": "stubhub",
+      "config_snippet": {
+        "stubhub": {
+          "enabled": true,
+          "merchantId": "CJ_STUBHUB_MERCHANT_ID",
+          "network": "cj",
+          "campaigns": {
+            "rocksalt-tickets": "Concert tickets",
+            "rocksalt-events": "Music events"
+          }
+        }
+      },
+      "building_id": "B003",
+      "campaign_prefix": "rocksalt"
+    }
+  ],
+  "rock_salt_affiliate_types": [
+    {
+      "affiliate_type": "equipment",
+      "affiliate_partner": "sweetwater",
+      "recommended_network": "shareasale",
+      "notes": "Primary music gear retailer - instruments, recording equipment, pro audio. Commission: 3-5%"
+    },
+    {
+      "affiliate_type": "equipment",
+      "affiliate_partner": "reverb",
+      "recommended_network": "direct",
+      "notes": "Used/vintage gear marketplace. Lower commission (5%) but fills budget-conscious segment"
+    },
+    {
+      "affiliate_type": "streaming",
+      "affiliate_partner": "spotify",
+      "recommended_network": "none",
+      "notes": "Spotify has no public affiliate program. Use referral links for artist pages but expect no commission"
+    },
+    {
+      "affiliate_type": "streaming",
+      "affiliate_partner": "apple_music",
+      "recommended_network": "apple_services",
+      "notes": "Apple Music affiliate program via Apple Services. Low commission (~2-5%) but worth tracking"
+    },
+    {
+      "affiliate_type": "tickets",
+      "affiliate_partner": "stubhub",
+      "recommended_network": "cj",
+      "notes": "Major ticket resale platform. 5-7% commission. Primary ticket affiliate"
+    },
+    {
+      "affiliate_type": "tickets",
+      "affiliate_partner": "vivid_seats",
+      "recommended_network": "cj",
+      "notes": "Alternative to StubHub. Similar commission structure"
+    },
+    {
+      "affiliate_type": "merch",
+      "affiliate_partner": "merchbar",
+      "recommended_network": "shareasale",
+      "notes": "Artist merchandise platform. 10-15% commission on band merch"
+    },
+    {
+      "affiliate_type": "studio",
+      "affiliate_partner": "plugin_boutique",
+      "recommended_network": "shareasale",
+      "notes": "Audio plugins and software. High margins (10-20%), popular with producers"
+    },
+    {
+      "affiliate_type": "studio",
+      "affiliate_partner": "splice",
+      "recommended_network": "direct",
+      "notes": "Sample library subscription. 20-30% recurring commission. SaaS model"
+    }
+  ]
+}

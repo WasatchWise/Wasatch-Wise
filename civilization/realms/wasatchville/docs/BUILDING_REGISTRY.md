@@ -1,8 +1,8 @@
 # BUILDING_REGISTRY: WasatchVille
 
 **Realm:** WasatchVille
-**Last Updated:** 2025-01-25
-**Total Buildings:** 8 (expandable)
+**Last Updated:** 2025-01-31
+**Total Buildings:** 11 (expandable)
 
 ---
 
@@ -18,6 +18,9 @@
 | B006 | Board of Education | Ask Before You App | 🟢 Active |
 | B007 | Bank | Financial Operations | 🟢 Active |
 | B008 | Library | NotebookLM Hub | 🟢 Active |
+| B009 | Telecom Tower | Pipeline IQ | 🟡 Building |
+| B010 | Automation Studio | AI Social Media Agency | 🟡 Building |
+| B011 | Cinema | Fanon Movies | 🟡 Building |
 
 ---
 
@@ -621,15 +624,195 @@ When clicked, expands to show:
 
 ---
 
-## Future Buildings (Empty Lots)
+## B009: Telecom Tower (Pipeline IQ)
 
-Reserved spaces for future ventures:
+### Identity
+| Property | Value |
+|----------|-------|
+| Building ID | B009 |
+| Building Name | Telecom Tower |
+| Business Entity | Pipeline IQ / GrooveLeads Pro |
+| Building Type | Industry - Telecom |
+| Icon | 📡 |
+| Sprite | `/assets/sprites/telecom.png` |
 
-| Lot ID | Location | Potential Use |
-|--------|----------|---------------|
-| LOT01 | { x: 80, y: 50 } | PipelineIQ (if productized) |
-| LOT02 | { x: 10, y: 60 } | Starmy/Manlyman music ventures |
-| LOT03 | { x: 55, y: 15 } | Future venture TBD |
+### Position & Size
+| Property | Value |
+|----------|-------|
+| Grid Position | { x: 80, y: 50 } (LOT01) |
+| Size Category | Medium |
+| Footprint | 2x2 tiles |
+| Z-Index | 85 |
+
+### Business Mapping
+| Game Concept | Business Reality |
+|--------------|------------------|
+| Building | Construction project intelligence platform |
+| Purpose | Discover, qualify, close high-value construction projects |
+| Signals | Project pipeline data |
+| Revenue | Stripe (SaaS), affiliate (construction tools) |
+
+### Metrics Displayed
+| Metric | Label | Source | Format |
+|--------|-------|--------|--------|
+| pipeline_value | Pipeline Value | Supabase | Currency |
+| hot_leads | Hot Leads (80+) | Supabase | Number |
+| revenue | MRR | Stripe | Currency |
+
+### Affiliate Expansion
+Pipeline IQ can use city-wide affiliate infrastructure with campaign prefix `pipelineiq-*` for construction tools, software, and related merchants.
+
+### Agent Assignment
+- **Primary:** Project Director (pipeline strategy)
+
+---
+
+## B010: Automation Studio
+
+### Identity
+| Property | Value |
+|----------|-------|
+| Building ID | B010 |
+| Building Name | Automation Studio |
+| Business Entity | AI Social Media Agency |
+| Building Type | Industry - Services |
+| Icon | 🤖 |
+| Sprite | `/assets/sprites/automation.png` |
+
+### Position & Size
+| Property | Value |
+|----------|-------|
+| Grid Position | { x: 55, y: 15 } (LOT03) |
+| Size Category | Medium |
+| Footprint | 3x2 tiles |
+| Z-Index | 85 |
+
+### Business Mapping
+| Game Concept | Business Reality |
+|--------------|------------------|
+| Building | Productized AI content automation |
+| Purpose | "AI Social Media for [Niche]" – SLC Trips pipeline packaged for clients |
+| Clients | Businesses needing social content |
+| Output | Automated content generation, posting, approval workflows |
+
+### Metrics Displayed
+| Metric | Label | Source | Format |
+|--------|-------|--------|--------|
+| automation_clients | Clients | Manual / CRM | Number |
+| automation_mrr | MRR | Stripe | Currency |
+
+### Data Sources
+```javascript
+{
+  stripe: {
+    metadata: { building_id: 'B010' },
+    metrics: ['revenue', 'mrr']
+  },
+  manual: {
+    fields: ['client_count', 'retention']
+  }
+}
+```
+
+### Agent Assignment
+- **Primary:** Automation Director (client success, pipeline)
+
+---
+
+## B011: Cinema (Fanon Movies)
+
+### Identity
+| Property | Value |
+|----------|-------|
+| Building ID | B011 |
+| Building Name | City Cinema |
+| Business Entity | Fanon Movies |
+| Building Type | Culture - Entertainment |
+| Icon | 🎬 |
+| Sprite | `/assets/sprites/cinema.png` |
+
+### Position & Size
+| Property | Value |
+|----------|-------|
+| Grid Position | { x: 10, y: 60 } (LOT02) |
+| Size Category | Medium |
+| Footprint | 3x2 tiles |
+| Z-Index | 80 |
+
+### Business Mapping
+| Game Concept | Business Reality |
+|--------------|------------------|
+| Building | Fanon Movies platform |
+| Purpose | Cinema content, streaming, film-related commerce |
+| Screenings | Content pieces, reviews, recommendations |
+| Box Office | Affiliate (streaming, DVDs, merch), subscriptions |
+
+### Affiliate Expansion
+Fanon Movies uses city-wide affiliate infrastructure with campaign prefix `fanon-*` for streaming services, DVD/Blu-ray, movie merch, and film gear.
+
+### Metrics Displayed
+| Metric | Label | Source | Format |
+|--------|-------|--------|--------|
+| views | Screenings | Analytics | Number |
+| affiliate_revenue | Box Office (Affiliates) | AWIN / manual | Currency |
+| subscribers | Subscribers | Manual | Number |
+
+### Agent Assignment
+- **Primary:** Cinema Manager (content, audience)
+
+---
+
+## Shared Infrastructure (City-Wide)
+
+### Affiliate Infrastructure
+
+Affiliates (AWIN, Viator, Amazon, etc.) are shared infrastructure. Any building can plug in with its own campaign prefix:
+
+| Building | Campaign Prefix | Use Case |
+|----------|-----------------|----------|
+| SLC Trips (B002) | `slctrips-*` | Hotels, gear, tours |
+| Rock Salt (B003) | `rocksalt-*` | Concert tickets, merch |
+| Adult AI Academy (B004) | `academy-*` | Course tools, books |
+| Fanon Movies (B011) | `fanon-*` | Streaming, DVDs, merch |
+| Pipeline IQ (B009) | `pipelineiq-*` | Construction tools |
+
+**Extraction path:** `apps/slctrips/src/lib/affiliates.ts` → `packages/wasatchwise-affiliates` (or shared `lib/affiliates`) with configurable `campaignPrefix` / `building_id`.
+
+### Weather Service
+
+**Provider:** OpenWeather API  
+**Current Implementation:** SLC Trips (B002)  
+**Expansion:** All buildings
+
+Weather data enables content strategy timing, event planning, and operational decisions. See [WEATHER_SERVICE.md](./WEATHER_SERVICE.md) for full documentation.
+
+| Building | Weather Use Case | Status |
+|----------|-----------------|---------|
+| SLC Trips (B002) | Content timing (ski conditions, bluebird days, storm urgency) | 🟢 Active |
+| Rock Salt (B003) | Outdoor event planning, venue selection | 🟡 Manual |
+| Adult AI Academy (B004) | Corporate training travel, workshop scheduling | ⚪ Future |
+| DAiTE (B005) | Weather-appropriate date suggestions | ⚪ Future |
+| Pipeline IQ (B009) | Construction timing, site visit planning | ⚪ Future |
+| Automation Studio (B010) | Client content strategy (weather-aware social) | ⚪ Future |
+
+**Agent Integration:**
+- Park Director (A003): Receives weather briefings for weekly content calendar
+- Director of Awin Monetization (A011): Adjusts CTA urgency based on booking windows
+- All agents: Optional morning briefing weather context
+
+**Configuration:** `OPENWEATHER_API_KEY` (shared environment variable)
+
+---
+
+## Future Lots (Reserved)
+
+| Lot ID | Location | Assigned |
+|--------|----------|----------|
+| LOT01 | { x: 80, y: 50 } | B009 Pipeline IQ |
+| LOT02 | { x: 10, y: 60 } | B011 Fanon Movies |
+| LOT03 | { x: 55, y: 15 } | B010 Automation Studio |
+
+**Note:** Starmy and Manlyman are personal projects, not Building Registry ventures.
 
 Empty lots display as:
 - Grassy area with "FOR DEVELOPMENT" sign
@@ -661,4 +844,5 @@ Empty lots display as:
 
 | Date | Building | Change |
 |------|----------|--------|
+| 2025-01-31 | B009, B010, B011 | Added Pipeline IQ, Automation Studio, Fanon Movies; updated LOT assignments; affiliate expansion |
 | 2025-01-25 | All | Initial registry created |

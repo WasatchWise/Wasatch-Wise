@@ -1,0 +1,236 @@
+{
+  "name": "Utah Conditions Monitor v2 (Air Quality Optional)",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 6
+            }
+          ]
+        }
+      },
+      "id": "schedule-trigger",
+      "name": "Every 6 Hours",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "https://api.openweathermap.org/data/2.5/weather",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            { "name": "q", "value": "Salt Lake City,US" },
+            { "name": "appid", "value": "={{$env.OPENWEATHER_API_KEY}}" },
+            { "name": "units", "value": "imperial" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "get-weather",
+      "name": "Get SLC Weather",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [440, 300],
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "https://api.openweathermap.org/data/2.5/air_pollution",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            { "name": "lat", "value": "40.7608" },
+            { "name": "lon", "value": "-111.8910" },
+            { "name": "appid", "value": "={{$env.OPENWEATHER_API_KEY}}" }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      },
+      "id": "get-air-quality",
+      "name": "Get Air Quality (Optional)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [440, 500],
+      "alwaysOutputData": true,
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Utah Conditions Router with Air Quality Fallback\nconst weather = $('Get SLC Weather').first().json;\n\n// Try to get air quality, but handle failure gracefully\nlet airQuality = null;\nlet aqi = 1; // Default to \"Good\" if air quality API fails\ntry {\n  const aqData = $('Get Air Quality (Optional)').first().json;\n  if (aqData && aqData.list && aqData.list[0]) {\n    airQuality = aqData;\n    aqi = aqData.list[0].main.aqi;\n  }\n} catch (e) {\n  console.log('Air quality data unavailable, using default (Good)');\n}\n\nconst temp = weather.main.temp;\nconst conditions = weather.weather[0].main;\nconst description = weather.weather[0].description;\n\nconst today = new Date();\nconst month = today.getMonth() + 1;\n\n// Determine season\nlet season = 'shoulder';\nif (month >= 11 || month <= 3) season = 'winter';\nelse if (month >= 6 && month <= 8) season = 'summer';\n\n// Determine condition mode\nlet mode = 'IDEAL';\nlet urgency = 'normal';\nlet recommendations = [];\nlet contentAngle = '';\nlet alertType = null;\n\n// HAZARD CHECK (only if we have air quality data)\nif (airQuality && aqi >= 4) {\n  mode = 'HAZARD';\n  urgency = 'high';\n  alertType = 'AIR_QUALITY';\n  contentAngle = '⚠️ Air Quality Alert - Indoor activities recommended';\n  recommendations = [\n    { name: 'The Gateway Mall', type: 'indoor', link: '/destinations/slc-downtown' },\n    { name: 'Natural History Museum', type: 'museum', link: '/destinations/museums' },\n    { name: 'Cowabunga Bay (indoor areas)', type: 'water', link: '/activities/pools' }\n  ];\n}\n// WINTER CONDITIONS\nelse if (season === 'winter') {\n  if (conditions === 'Snow' || description.includes('snow')) {\n    mode = 'POWDER_DAY';\n    urgency = 'high';\n    contentAngle = '❄️ SNOW DAY - Hit the slopes!';\n    recommendations = [\n      { name: 'Alta Ski Area', type: 'ski', link: '/destinations/alta' },\n      { name: 'Snowbird', type: 'ski', link: '/destinations/snowbird' },\n      { name: 'Brighton (night skiing)', type: 'ski', link: '/destinations/brighton' }\n    ];\n  } else if (temp < 32) {\n    mode = 'WINTER_COLD';\n    contentAngle = '🥶 Bundle up! Cold but clear';\n    recommendations = [\n      { name: 'Temple Square Lights', type: 'outdoor', link: '/activities/temple-square' },\n      { name: 'Olympic Oval (ice skating)', type: 'activity', link: '/activities/ice-skating' },\n      { name: 'Cozy coffee shops', type: 'indoor', link: '/food-drink/coffee' }\n    ];\n  } else {\n    mode = 'WINTER_MILD';\n    contentAngle = '☀️ Mild winter day - great for exploring';\n    recommendations = [\n      { name: 'City Creek Canyon', type: 'hike', link: '/outdoors/city-creek' },\n      { name: 'Skiing (spring conditions)', type: 'ski', link: '/destinations/park-city' },\n      { name: 'Downtown SLC', type: 'explore', link: '/destinations/slc-downtown' }\n    ];\n  }\n}\n// SUMMER CONDITIONS  \nelse if (season === 'summer') {\n  if (temp > 100) {\n    mode = 'EXTREME_HEAT';\n    urgency = 'high';\n    contentAngle = '🔥 EXTREME HEAT - Water activities only!';\n    recommendations = [\n      { name: 'Liberty Park Splash Pad', type: 'free', link: '/family/liberty-park' },\n      { name: 'Cowabunga Bay', type: 'water-park', link: '/activities/water-parks' },\n      { name: 'Early AM hike (before 8am)', type: 'hike', link: '/outdoors/summer-hikes' }\n    ];\n  } else if (temp > 90) {\n    mode = 'HOT';\n    contentAngle = '☀️ Hot day - find shade and water';\n    recommendations = [\n      { name: 'Great Salt Lake', type: 'beach', link: '/outdoors/great-salt-lake' },\n      { name: 'Mountain trails (cooler temps)', type: 'hike', link: '/outdoors/mountain-hikes' },\n      { name: 'Evening outdoor dining', type: 'food', link: '/food-drink/patios' }\n    ];\n  } else {\n    mode = 'PERFECT_SUMMER';\n    contentAngle = '✨ PERFECT Utah day - get outside!';\n    recommendations = [\n      { name: 'Big Cottonwood Canyon', type: 'hike', link: '/outdoors/big-cottonwood' },\n      { name: 'Bonneville Shoreline Trail', type: 'bike', link: '/outdoors/biking' },\n      { name: 'Red Butte Garden', type: 'garden', link: '/activities/gardens' }\n    ];\n  }\n}\n// SHOULDER SEASON\nelse {\n  if (temp >= 60 && temp <= 75) {\n    mode = 'IDEAL';\n    contentAngle = '🌸 Perfect weather - ideal for anything!';\n    recommendations = [\n      { name: 'Antelope Island', type: 'outdoor', link: '/outdoors/antelope-island' },\n      { name: 'Memory Grove Park', type: 'park', link: '/outdoors/memory-grove' },\n      { name: 'Farmers Market', type: 'activity', link: '/activities/farmers-markets' }\n    ];\n  } else {\n    mode = 'VARIABLE';\n    contentAngle = '🌤️ Variable conditions - layer up!';\n    recommendations = [\n      { name: 'Flexible indoor/outdoor plans', type: 'mixed', link: '/itineraries/flexible' },\n      { name: 'Museums + outdoor time', type: 'combo', link: '/itineraries/combo-day' }\n    ];\n  }\n}\n\nreturn [{\n  json: {\n    timestamp: today.toISOString(),\n    weather: {\n      temp: Math.round(temp),\n      conditions,\n      description,\n      humidity: weather.main.humidity\n    },\n    airQuality: airQuality ? {\n      aqi,\n      level: ['Good', 'Fair', 'Moderate', 'Poor', 'Very Poor'][aqi - 1],\n      available: true\n    } : {\n      aqi: 1,\n      level: 'Unknown (API unavailable)',\n      available: false\n    },\n    season,\n    mode,\n    urgency,\n    alertType,\n    contentAngle,\n    recommendations,\n    utmCampaign: `slctrips-weather-${mode.toLowerCase()}`\n  }\n}];"
+      },
+      "id": "conditions-router",
+      "name": "Conditions Router",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [700, 400]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "high-urgency",
+              "leftValue": "={{ $json.urgency }}",
+              "rightValue": "high",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        }
+      },
+      "id": "urgency-check",
+      "name": "High Urgency?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [920, 400]
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "={{$env.SUPABASE_URL}}/rest/v1/weekly_picks?is_active=eq.true",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "apikey", "value": "={{$env.SUPABASE_SERVICE_ROLE_KEY}}" },
+            { "name": "Authorization", "value": "Bearer {{$env.SUPABASE_SERVICE_ROLE_KEY}}" },
+            { "name": "Content-Type", "value": "application/json" },
+            { "name": "Prefer", "value": "return=minimal" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\"is_active\": false}",
+        "options": {}
+      },
+      "id": "deactivate-weekly-picks",
+      "name": "Deactivate Previous Weekly Picks",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1140, 100]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.SUPABASE_URL}}/rest/v1/weekly_picks",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "apikey", "value": "={{$env.SUPABASE_SERVICE_ROLE_KEY}}" },
+            { "name": "Authorization", "value": "Bearer {{$env.SUPABASE_SERVICE_ROLE_KEY}}" },
+            { "name": "Content-Type", "value": "application/json" },
+            { "name": "Prefer", "value": "return=minimal" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"mode\": \"{{ $('Conditions Router').first().json.mode }}\",\n  \"content_angle\": \"{{ $('Conditions Router').first().json.contentAngle }}\",\n  \"weather_temp\": {{ $('Conditions Router').first().json.weather.temp }},\n  \"weather_conditions\": \"{{ $('Conditions Router').first().json.weather.conditions }}\",\n  \"recommendations\": {{ JSON.stringify($('Conditions Router').first().json.recommendations) }},\n  \"is_active\": true\n}",
+        "options": {}
+      },
+      "id": "insert-weekly-pick",
+      "name": "Insert Weekly Pick (Landing Page)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1360, 100]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.SUPABASE_URL}}/rest/v1/weather_alerts",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "apikey", "value": "={{$env.SUPABASE_SERVICE_ROLE_KEY}}" },
+            { "name": "Authorization", "value": "Bearer {{$env.SUPABASE_SERVICE_ROLE_KEY}}" },
+            { "name": "Content-Type", "value": "application/json" },
+            { "name": "Prefer", "value": "return=minimal" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"timestamp\": \"{{ $json.timestamp }}\",\n  \"mode\": \"{{ $json.mode }}\",\n  \"temp\": {{ $json.weather.temp }},\n  \"conditions\": \"{{ $json.weather.conditions }}\",\n  \"aqi\": {{ $json.airQuality.aqi }},\n  \"content_angle\": \"{{ $json.contentAngle }}\",\n  \"recommendations\": {{ JSON.stringify($json.recommendations) }}\n}",
+        "options": {}
+      },
+      "id": "log-to-supabase",
+      "name": "Log to Supabase",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1140, 300],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "content": "## Utah Conditions Monitor v2\n\n**Updates:**\n- Air quality API is now OPTIONAL\n- Workflow continues even if AQ fails\n- Defaults to \"Good\" air quality if unavailable\n\n**Purpose:** Check weather and air quality every 6 hours\n\n**Outputs:**\n- High urgency alerts (powder, heat, AQ)\n- Daily content angles\n- Activity recommendations\n\n**Modes:**\n- POWDER_DAY, WINTER_COLD, WINTER_MILD\n- EXTREME_HEAT, HOT, PERFECT_SUMMER\n- HAZARD (air quality/fire)\n- IDEAL, VARIABLE (shoulder)",
+        "height": 380,
+        "width": 320
+      },
+      "id": "sticky-note",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [180, 80]
+    }
+  ],
+  "connections": {
+    "Every 6 Hours": {
+      "main": [
+        [
+          { "node": "Get SLC Weather", "type": "main", "index": 0 },
+          { "node": "Get Air Quality (Optional)", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Get SLC Weather": {
+      "main": [
+        [{ "node": "Conditions Router", "type": "main", "index": 0 }]
+      ]
+    },
+    "Get Air Quality (Optional)": {
+      "main": [
+        [{ "node": "Conditions Router", "type": "main", "index": 0 }]
+      ]
+    },
+    "Conditions Router": {
+      "main": [
+        [
+          { "node": "High Urgency?", "type": "main", "index": 0 },
+          { "node": "Deactivate Previous Weekly Picks", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Deactivate Previous Weekly Picks": {
+      "main": [
+        [{ "node": "Insert Weekly Pick (Landing Page)", "type": "main", "index": 0 }]
+      ]
+    },
+    "High Urgency?": {
+      "main": [
+        [{ "node": "Log to Supabase", "type": "main", "index": 0 }],
+        [{ "node": "Log to Supabase", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

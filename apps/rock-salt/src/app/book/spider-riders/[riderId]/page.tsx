@@ -1,7 +1,8 @@
-import { notFound, redirect } from 'next/navigation'
+import { notFound } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
 import AcceptRiderForm from '@/components/booking/AcceptRiderForm'
+import { RiderVenueCompatibility } from '@/components/compatibility'
 
 export async function generateMetadata({ params }: { params: Promise<{ riderId: string }> }) {
   const { riderId } = await params
@@ -118,10 +119,15 @@ export default async function SpiderRiderDetailPage({
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
           <div className="absolute bottom-6 left-6 right-6">
-            <div className="flex items-center gap-2 mb-2">
+            <div className="flex items-center gap-2 mb-2 flex-wrap">
               <span className="bg-indigo-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
                 Spider Rider
               </span>
+              {rider.rider_code && (
+                <span className="bg-white/20 text-white text-xs px-2 py-1 rounded-full font-mono">
+                  {rider.rider_code}
+                </span>
+              )}
               <span className="text-white/80 text-sm">
                 {rider.version}
               </span>
@@ -312,7 +318,14 @@ export default async function SpiderRiderDetailPage({
 
         {/* Sidebar - Accept Form */}
         <div className="md:col-span-1">
-          <div className="sticky top-6">
+          <div className="sticky top-6 space-y-6">
+            {/* Compatibility with user's venues */}
+            {user && userVenues.length > 0 && (
+              <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6">
+                <RiderVenueCompatibility riderId={riderId} venues={userVenues} />
+              </div>
+            )}
+
             {existingAcceptance ? (
               <div className="bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-xl p-6">
                 <div className="flex items-center gap-2 mb-2">
@@ -366,6 +379,26 @@ export default async function SpiderRiderDetailPage({
                 >
                   Sign In
                 </Link>
+              </div>
+            )}
+
+            {/* Download PDF */}
+            {rider.pdf_storage_path && (
+              <div className="mb-6">
+                <a
+                  href={`/api/spider-rider/${riderId}/download`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full text-center px-4 py-3 bg-gray-800 dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 text-white rounded-xl font-semibold transition-colors flex items-center justify-center gap-2"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  Download Rider PDF
+                </a>
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-2 text-center">
+                  SHA-256 verified · Official Spider Network document
+                </p>
               </div>
             )}
 

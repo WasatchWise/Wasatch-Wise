@@ -1,13 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { verifyStripeWebhook } from '@/lib/stripe/webhooks';
+import { getServerEnv } from '@/lib/env';
 import { createClient } from '@supabase/supabase-js';
 import Stripe from 'stripe';
 
 export async function POST(req: NextRequest) {
-  // Create Supabase client inside function to avoid build-time errors
+  const env = getServerEnv();
+  if (!env.SUPABASE_SERVICE_ROLE_KEY) {
+    return NextResponse.json(
+      { error: 'Server configuration error: SUPABASE_SERVICE_ROLE_KEY required for webhook' },
+      { status: 503 }
+    );
+  }
   const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
+    env.NEXT_PUBLIC_SUPABASE_URL,
+    env.SUPABASE_SERVICE_ROLE_KEY,
+    { auth: { persistSession: false } }
   );
 
   return verifyStripeWebhook(req, async (event: Stripe.Event) => {

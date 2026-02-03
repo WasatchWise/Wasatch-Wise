@@ -45,10 +45,11 @@ export async function POST(request: NextRequest) {
 
     const customerEmail = profile?.email || user.email
 
-    // Add user metadata
+    // Add user metadata and building_id for city_metrics attribution
     const checkoutMetadata = {
       ...metadata,
       user_id: user.id,
+      building_id: 'B003',
     }
 
     let session

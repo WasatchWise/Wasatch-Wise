@@ -1,6 +1,9 @@
 import { Suspense } from 'react'
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
+import { calculateCompatibility } from '@/lib/compatibility'
+import { CompatibilityFilters, CompatibilityBadge } from '@/components/compatibility'
+import type { CompatibilityStatus } from '@/lib/compatibility'
 
 export const metadata = {
   title: 'Browse Spider Riders | The Rock Salt',
@@ -10,9 +13,14 @@ export const metadata = {
 interface SpiderRiderWithBand {
   id: string
   version: string
+  rider_code?: string | null
   guarantee_min: number
   guarantee_max: number | null
   door_split_percentage: number | null
+  min_stage_width_feet?: number | null
+  min_stage_depth_feet?: number | null
+  min_input_channels?: number | null
+  requires_house_drums?: boolean | null
   age_restriction: string | null
   published_at: string
   acceptance_count: number
@@ -36,20 +44,53 @@ export default async function SpiderRidersBrowsePage({
     maxFee?: string
     genre?: string
     age?: string
+    compatibility?: CompatibilityStatus
+    venueId?: string
   }>
 }) {
   const params = await searchParams
   const supabase = await createClient()
 
-  // Build query for published spider riders
+  // Get current user and their venues
+  const { data: { user } } = await supabase.auth.getUser()
+  let userVenues: Array<{ id: string; name: string }> = []
+  if (user) {
+    const { data: venues } = await supabase
+      .from('venues')
+      .select('id, name, capacity, stage_width_feet, stage_depth_feet, input_channels, has_house_drums, has_backline')
+      .eq('claimed_by', user.id)
+    userVenues = (venues || []).map((v) => ({ id: v.id, name: v.name }))
+  }
+
+  const activeVenueId =
+    params.venueId && userVenues.some((v) => v.id === params.venueId)
+      ? params.venueId
+      : userVenues[0]?.id
+  const activeVenue = userVenues.find((v) => v.id === activeVenueId)
+  const fullVenue = activeVenueId
+    ? (
+        await supabase
+          .from('venues')
+          .select('id, name, slug, capacity, stage_width_feet, stage_depth_feet, input_channels, has_house_drums, has_backline, typical_guarantee_max, typical_guarantee_min, age_restrictions')
+          .eq('id', activeVenueId)
+          .single()
+      ).data
+    : null
+
+  // Build query for published spider riders (include fields needed for compatibility)
   let query = supabase
     .from('spider_riders')
     .select(`
       id,
       version,
+      rider_code,
       guarantee_min,
       guarantee_max,
       door_split_percentage,
+      min_stage_width_feet,
+      min_stage_depth_feet,
+      min_input_channels,
+      requires_house_drums,
       age_restriction,
       published_at,
       acceptance_count,
@@ -69,7 +110,7 @@ export default async function SpiderRidersBrowsePage({
     .eq('status', 'published')
     .order('published_at', { ascending: false })
 
-  // Apply filters
+  // Apply existing filters
   if (params.minFee) {
     query = query.gte('guarantee_min', Number(params.minFee) * 100)
   }
@@ -85,6 +126,49 @@ export default async function SpiderRidersBrowsePage({
   if (error) {
     console.error('Error fetching spider riders:', error)
   }
+
+  // Calculate compatibility for each rider (when venue owner viewing)
+  const ridersWithCompatibility = (riders || []).map((rider) => {
+    let compatibility = null
+    if (fullVenue) {
+      compatibility = calculateCompatibility(
+        {
+          id: rider.id,
+          guarantee_min: rider.guarantee_min,
+          guarantee_max: rider.guarantee_max,
+          min_stage_width_feet: rider.min_stage_width_feet,
+          min_stage_depth_feet: rider.min_stage_depth_feet,
+          min_input_channels: rider.min_input_channels,
+          requires_house_drums: rider.requires_house_drums,
+          age_restriction: rider.age_restriction,
+        },
+        {
+          id: fullVenue.id,
+          name: fullVenue.name,
+          slug: fullVenue.slug,
+          capacity: fullVenue.capacity,
+          stage_width_feet: fullVenue.stage_width_feet,
+          stage_depth_feet: fullVenue.stage_depth_feet,
+          input_channels: fullVenue.input_channels,
+          has_house_drums: fullVenue.has_house_drums,
+          has_backline: fullVenue.has_backline,
+          typical_guarantee_max: fullVenue.typical_guarantee_max ?? undefined,
+          typical_guarantee_min: fullVenue.typical_guarantee_min ?? undefined,
+          age_restrictions: fullVenue.age_restrictions ?? undefined,
+        }
+      )
+    }
+    return { ...rider, compatibility }
+  })
+
+  // Filter by compatibility status if specified
+  const filteredRiders = params.compatibility
+    ? ridersWithCompatibility.filter(
+        (r) => r.compatibility?.status === params.compatibility
+      )
+    : ridersWithCompatibility
+
+  const showCompatibility = userVenues.length > 0 && !!fullVenue
 
   return (
     <div className="max-w-6xl mx-auto py-8 px-4">
@@ -113,6 +197,15 @@ export default async function SpiderRidersBrowsePage({
           When you accept a Spider Rider, you pre-approve the band's terms and can request specific booking dates.
         </p>
       </div>
+
+      {/* Compatibility Filters (venue owners only) */}
+      {showCompatibility && (
+        <CompatibilityFilters
+          venues={userVenues}
+          activeVenueId={activeVenueId}
+          selectedStatus={params.compatibility ?? null}
+        />
+      )}
 
       {/* Filters */}
       <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-4 mb-8">
@@ -182,17 +275,38 @@ export default async function SpiderRidersBrowsePage({
         </form>
       </div>
 
+      {/* Rider Count */}
+      {showCompatibility && (
+        <div className="mb-4 text-sm text-gray-600 dark:text-gray-400">
+          Showing {filteredRiders.length} of {ridersWithCompatibility.length} riders
+          {params.compatibility && (
+            <>
+              {' '}
+              with <strong className="capitalize">{params.compatibility}</strong>{' '}
+              compatibility
+            </>
+          )}
+        </div>
+      )}
+
       {/* Results */}
       <Suspense fallback={<LoadingSkeleton />}>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {riders && riders.length > 0 ? (
-            riders.map((rider) => (
-              <SpiderRiderCard key={rider.id} rider={rider as SpiderRiderWithBand} />
+          {filteredRiders.length > 0 ? (
+            filteredRiders.map((rider) => (
+              <SpiderRiderCard
+                key={rider.id}
+                rider={rider as SpiderRiderWithBand}
+                compatibility={rider.compatibility}
+                showCompatibility={showCompatibility}
+              />
             ))
           ) : (
             <div className="col-span-full text-center py-12">
               <p className="text-gray-500 dark:text-gray-400 text-lg">
-                No Spider Riders found matching your criteria.
+                {params.compatibility
+                  ? `No ${params.compatibility} riders found. Try adjusting your filters.`
+                  : 'No Spider Riders found matching your criteria.'}
               </p>
               <p className="text-sm text-gray-400 mt-2">
                 Try adjusting your filters or check back later.
@@ -205,7 +319,15 @@ export default async function SpiderRidersBrowsePage({
   )
 }
 
-function SpiderRiderCard({ rider }: { rider: SpiderRiderWithBand }) {
+function SpiderRiderCard({
+  rider,
+  compatibility,
+  showCompatibility = false,
+}: {
+  rider: SpiderRiderWithBand
+  compatibility?: { overallScore: number; status: string; dealBreakers: string[] } | null
+  showCompatibility?: boolean
+}) {
   const band = rider.band
   const genres = band?.band_genres
     ?.map(bg => bg.genre?.name)
@@ -241,10 +363,22 @@ function SpiderRiderCard({ rider }: { rider: SpiderRiderWithBand }) {
             </p>
           )}
         </div>
-        {/* Spider Rider Badge */}
-        <div className="absolute top-3 right-3 bg-indigo-600 text-white text-xs px-2 py-1 rounded-full font-semibold">
-          Spider Rider
-        </div>
+        {/* Compatibility Badge (venue owners) */}
+        {showCompatibility && compatibility && (
+          <div className="absolute top-3 right-3">
+            <CompatibilityBadge
+              score={compatibility.overallScore}
+              status={compatibility.status as 'excellent' | 'good' | 'partial' | 'incompatible'}
+              size="sm"
+            />
+          </div>
+        )}
+        {/* Spider Rider Badge (when no compatibility shown) */}
+        {(!showCompatibility || !compatibility) && (
+          <div className="absolute top-3 right-3 bg-indigo-600 text-white text-xs px-2 py-1 rounded-full font-semibold">
+            Spider Rider
+          </div>
+        )}
       </div>
 
       {/* Details */}
@@ -301,6 +435,13 @@ function SpiderRiderCard({ rider }: { rider: SpiderRiderWithBand }) {
             <span className="text-green-600 dark:text-green-400 font-medium">
               {rider.acceptance_count} venue{rider.acceptance_count !== 1 ? 's' : ''}
             </span>
+          </div>
+        )}
+
+        {/* Deal-Breakers Warning (if incompatible) */}
+        {showCompatibility && compatibility?.dealBreakers && compatibility.dealBreakers.length > 0 && (
+          <div className="mt-3 p-2 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-xs text-red-700 dark:text-red-300">
+            <strong>⚠️ {compatibility.dealBreakers.length} deal-breaker(s)</strong>
           </div>
         )}
 

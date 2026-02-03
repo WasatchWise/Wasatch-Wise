@@ -1,205 +1,180 @@
 import Link from 'next/link';
 import { Button } from '@/components/shared/Button';
-import { CheckCircle, Shield, Search, FileCheck, Users, BookOpen, Handshake } from 'lucide-react';
+import { OpenWhoModalButton } from '@/components/OpenWhoModalButton';
+import { Shield, MapPin, Smartphone, Users, Megaphone, BookOpen, GraduationCap } from 'lucide-react';
 
 export default function AskBeforeYouAppPage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-orange-50 to-white py-12 sm:py-16 md:py-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        {/* Hero Section */}
+        {/* Campaign nav */}
+        <nav className="flex flex-wrap items-center justify-between gap-4 mb-10 sm:mb-12">
+          <Link href="/" className="text-xl font-bold text-orange-500 hover:text-orange-600">
+            Ask Before You App
+          </Link>
+          <div className="flex items-center gap-4 sm:gap-6 text-sm font-medium text-gray-600">
+            <OpenWhoModalButton />
+            <Link href="/learn" className="hover:text-orange-500">
+              Knowledge hub
+            </Link>
+            <Link href="/certification" className="hover:text-orange-500">
+              Certification
+            </Link>
+            <Link href="/ecosystem" className="hover:text-orange-500">
+              State resources
+            </Link>
+          </div>
+        </nav>
+
+        {/* Campaign Hero */}
         <header className="text-center mb-12 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-100 text-orange-700 text-sm font-medium mb-6">
-            <Handshake className="w-4 h-4" />
-            <span>Supporting the SDPC Mission</span>
+            <Megaphone className="w-4 h-4" />
+            <span>National awareness campaign</span>
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-4 leading-tight">
             Ask Before <span className="text-orange-500">You App</span>
           </h1>
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
-            Free resources, training, and tools to help educators protect student data privacy—built on the SDPC framework.
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed mb-2">
+            Before you download that app—ask. Ask a parent. Ask an administrator. Ask your boss. Ask someone.
+          </p>
+          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
+            One simple habit that protects privacy everywhere: at home, at school, at work.
           </p>
         </header>
 
-        {/* Partnership Banner */}
-        <section className="bg-gradient-to-r from-[#005696] to-[#2b6cb0] rounded-2xl p-6 sm:p-8 mb-12 text-white">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-xl sm:text-2xl font-bold mb-3">
-              Extending the Student Data Privacy Consortium
-            </h2>
-            <p className="text-blue-100 leading-relaxed">
-              The <a href="https://privacy.a4l.org" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">Student Data Privacy Consortium (SDPC)</a> created the National Data Privacy Agreement (NDPA) used by 30+ state alliances. We provide free training, tools, and resources to help educators use these frameworks effectively.
+        {/* Risk-averse: you're in the right place */}
+        <section className="mb-12 max-w-3xl mx-auto">
+          <div className="bg-white rounded-xl border border-gray-200 p-6 sm:p-8 text-center">
+            <p className="text-gray-700 leading-relaxed">
+              If you&apos;re cautious about what gets on your devices or into your kids&apos; schools—you&apos;re in the right place. We don&apos;t tell you to relax. We give you the facts: what the law actually says, what procedures your state uses, and how to verify before you trust. No hype, no hand-waving. Just information you can use and check yourself.
             </p>
           </div>
         </section>
 
-        {/* What We Provide - Free */}
+        {/* Who It's For — Campaign Audience */}
+        <section className="mb-12">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 text-center">
+            Whether you&apos;re a parent, educator, administrator, student, or just curious
+          </h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6">
+            <div className="bg-white rounded-lg border border-orange-100 p-5 sm:p-6 text-center">
+              <div className="mx-auto mb-3 w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center">
+                <Users className="w-6 h-6 text-orange-500" />
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Parents</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                You have a right to know what apps touch your kids&apos; data. We show you what to ask and where to find real answers—not reassurance.
+              </p>
+            </div>
+            <div className="bg-white rounded-lg border border-orange-100 p-5 sm:p-6 text-center">
+              <div className="mx-auto mb-3 w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center">
+                <BookOpen className="w-6 h-6 text-orange-500" />
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Educators</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Know the actual rules and how to vet tools before you use them. Fact-based, so you&apos;re not guessing.
+              </p>
+            </div>
+            <div className="bg-white rounded-lg border border-orange-100 p-5 sm:p-6 text-center">
+              <div className="mx-auto mb-3 w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center">
+                <Shield className="w-6 h-6 text-orange-500" />
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Administrators</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Get the procedures, roles, and compliance requirements for your state—so you can run a tight ship and show it.
+              </p>
+            </div>
+            <div className="bg-white rounded-lg border border-orange-100 p-5 sm:p-6 text-center">
+              <div className="mx-auto mb-3 w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center">
+                <GraduationCap className="w-6 h-6 text-orange-500" />
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Students</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Your school uses apps that touch your data. Learn what to ask and what your rights are—so you&apos;re not in the dark.
+              </p>
+            </div>
+            <div className="bg-white rounded-lg border border-orange-100 p-5 sm:p-6 text-center">
+              <div className="mx-auto mb-3 w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center">
+                <Smartphone className="w-6 h-6 text-orange-500" />
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Everyone else</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Want to verify before you trust? Here you get the criteria, the laws, and the sources—not marketing.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* What You Get — The Hub */}
         <section className="bg-white rounded-2xl shadow-sm border border-orange-100 p-6 sm:p-8 md:p-10 mb-12">
           <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2 text-center">
-            Free Resources for Educators
+            One place to learn and take action
           </h2>
           <p className="text-gray-600 text-center mb-8 max-w-2xl mx-auto">
-            Everything you need to protect student privacy—no cost, no catch.
+            Understand different apps, state laws, and procedures. See how your state works—and how you can be a better advocate and steward.
           </p>
           <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
             <div className="text-center">
               <div className="mx-auto mb-4 w-16 h-16 rounded-full bg-orange-100 flex items-center justify-center">
-                <BookOpen className="w-8 h-8 text-orange-500" />
+                <Smartphone className="w-8 h-8 text-orange-500" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                NDPA Certification Course
-              </h3>
-              <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-4">
-                Master student data privacy in 50 minutes. Earn badges, build confidence, protect students.
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Understand apps</h3>
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                How to evaluate tools, what to ask vendors, and where to find vetted apps (e.g. SDPC Registry).
               </p>
-              <ul className="space-y-2 text-sm text-gray-700 text-left">
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="w-4 h-4 text-orange-500 mt-0.5 flex-shrink-0" />
-                  <span>5 interactive modules</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="w-4 h-4 text-orange-500 mt-0.5 flex-shrink-0" />
-                  <span>Real breach case studies</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="w-4 h-4 text-orange-500 mt-0.5 flex-shrink-0" />
-                  <span>Certificate upon completion</span>
-                </li>
-              </ul>
             </div>
             <div className="text-center">
               <div className="mx-auto mb-4 w-16 h-16 rounded-full bg-orange-100 flex items-center justify-center">
-                <Search className="w-8 h-8 text-orange-500" />
+                <MapPin className="w-8 h-8 text-orange-500" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                App Vetting Guidance
-              </h3>
-              <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-4">
-                Learn to evaluate EdTech tools using the Traffic Light System and SDPC Registry.
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">State laws & procedures</h3>
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                Federal and state privacy laws, workflows, and compliance—by state. Pick yours and get the details.
               </p>
-              <ul className="space-y-2 text-sm text-gray-700 text-left">
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="w-4 h-4 text-orange-500 mt-0.5 flex-shrink-0" />
-                  <span>Green/Yellow/Red classification</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="w-4 h-4 text-orange-500 mt-0.5 flex-shrink-0" />
-                  <span>AI detection frameworks</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="w-4 h-4 text-orange-500 mt-0.5 flex-shrink-0" />
-                  <span>Registry navigation tips</span>
-                </li>
-              </ul>
             </div>
             <div className="text-center">
               <div className="mx-auto mb-4 w-16 h-16 rounded-full bg-orange-100 flex items-center justify-center">
-                <FileCheck className="w-8 h-8 text-orange-500" />
+                <Megaphone className="w-8 h-8 text-orange-500" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                Templates & Toolkits
-              </h3>
-              <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-4">
-                Ready-to-use email templates, decision trees, and crisis response protocols.
-              </p>
-              <ul className="space-y-2 text-sm text-gray-700 text-left">
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="w-4 h-4 text-orange-500 mt-0.5 flex-shrink-0" />
-                  <span>Vendor outreach scripts</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="w-4 h-4 text-orange-500 mt-0.5 flex-shrink-0" />
-                  <span>Shadow IT response plans</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="w-4 h-4 text-orange-500 mt-0.5 flex-shrink-0" />
-                  <span>Breach notification checklists</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        {/* Who It's For */}
-        <section className="mb-12">
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 text-center">
-            Who We Serve
-          </h2>
-          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-            <div className="bg-white rounded-lg border border-orange-100 p-5 sm:p-6 text-center">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Tech Coordinators</h3>
-              <p className="text-sm text-gray-600 leading-relaxed">
-                Streamline app vetting and master the SDPC Registry workflow.
-              </p>
-            </div>
-            <div className="bg-white rounded-lg border border-orange-100 p-5 sm:p-6 text-center">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">District Privacy Officers</h3>
-              <p className="text-sm text-gray-600 leading-relaxed">
-                Build expertise in NDPA negotiation and vendor management.
-              </p>
-            </div>
-            <div className="bg-white rounded-lg border border-orange-100 p-5 sm:p-6 text-center">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Teachers</h3>
-              <p className="text-sm text-gray-600 leading-relaxed">
-                Understand what to check before using apps in your classroom.
-              </p>
-            </div>
-            <div className="bg-white rounded-lg border border-orange-100 p-5 sm:p-6 text-center">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">State Alliances</h3>
-              <p className="text-sm text-gray-600 leading-relaxed">
-                Training resources to onboard new member districts.
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Be an advocate</h3>
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                Increase your knowledge. Share it. Push for better practices in your school, district, or state.
               </p>
             </div>
           </div>
         </section>
 
-        {/* Trust Indicators */}
+        {/* Trust / SDPC — factual, verifiable */}
         <section className="bg-orange-50 rounded-2xl border border-orange-100 p-6 sm:p-8 mb-12">
-          <div className="grid sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            <div className="flex items-start gap-3">
-              <Shield className="w-6 h-6 text-orange-500 flex-shrink-0 mt-1" />
-              <div>
-                <h3 className="font-semibold text-gray-900 mb-1">SDPC Framework</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  Built on the National Data Privacy Agreement used by 30+ state alliances.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3">
-              <Users className="w-6 h-6 text-orange-500 flex-shrink-0 mt-1" />
-              <div>
-                <h3 className="font-semibold text-gray-900 mb-1">A4L Community</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  Aligned with Access 4 Learning standards and best practices.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3">
-              <Handshake className="w-6 h-6 text-orange-500 flex-shrink-0 mt-1" />
-              <div>
-                <h3 className="font-semibold text-gray-900 mb-1">Always Free</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  Training and resources provided at no cost to educators.
-                </p>
-              </div>
-            </div>
+          <div className="max-w-3xl mx-auto text-center">
+            <p className="text-gray-700 leading-relaxed">
+              We&apos;re built on the same frameworks used by the{' '}
+              <a href="https://privacy.a4l.org" target="_blank" rel="noopener noreferrer" className="text-orange-600 hover:text-orange-700 font-medium underline">
+                Student Data Privacy Consortium (SDPC)
+              </a>
+              {' '}and state alliances nationwide. That means what you see here—laws, roles, workflows—tracks what districts and states actually use. You can cross-check with official sources; we point you to them.
+            </p>
           </div>
         </section>
 
-        {/* CTA */}
+        {/* Primary CTA — Go to the hub */}
         <section className="text-center">
           <p className="text-base sm:text-lg text-gray-700 mb-6 leading-relaxed">
-            Ready to become a student data privacy expert? Start your free certification today.
+            Explore apps, state laws, procedures, and advocacy—all in one place.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button href="/certification" variant="primary" size="lg">
-              Start Free Certification
+            <Button href="/learn" variant="primary" size="lg">
+              Explore the knowledge hub
             </Button>
-            <Button href="/ecosystem" variant="outline" size="lg">
-              Explore State Resources
+            <Button href="/certification" variant="outline" size="lg">
+              For educators: free certification
             </Button>
           </div>
           <p className="mt-6 text-sm text-gray-500">
-            Learn more about the <a href="https://privacy.a4l.org" target="_blank" rel="noopener noreferrer" className="text-orange-500 hover:text-orange-600 underline">Student Data Privacy Consortium</a> and the <a href="https://a4l.org" target="_blank" rel="noopener noreferrer" className="text-orange-500 hover:text-orange-600 underline">A4L Community</a>
+            <a href="https://privacy.a4l.org" target="_blank" rel="noopener noreferrer" className="text-orange-500 hover:text-orange-600 underline">SDPC</a>
+            {' · '}
+            <a href="https://a4l.org" target="_blank" rel="noopener noreferrer" className="text-orange-500 hover:text-orange-600 underline">A4L Community</a>
           </p>
         </section>
       </div>

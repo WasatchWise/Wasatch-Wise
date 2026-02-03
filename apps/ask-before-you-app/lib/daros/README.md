@@ -88,10 +88,12 @@ Core tables:
 ## Build Status
 
 - [x] Database schema
-- [ ] Policy & Controls Engine
-- [ ] Stakeholder Outcomes Engine
-- [ ] Training & Change Management Packager
-- [ ] Vendor & Data Flow Mapper
-- [ ] Artifact generation (PDF/JSON)
-- [ ] District portal interface
-- [ ] Admin dashboard
+- [x] Policy & Controls Engine (PCE)
+- [x] Stakeholder Outcomes Engine (SOE)
+- [x] Training & Change Management Packager (TCMP)
+- [x] Vendor & Data Flow Mapper (VDFM)
+- [x] Artifact generation (JSON; PDF via download API)
+- [x] District portal interface (dashboard app: list, detail, tabs)
+- [x] Admin dashboard (dashboard app: districts, session wizard, artifact download)
+- [x] Briefing session flow (create → run wizard → complete → generate artifacts)
+- [ ] Vendors bulk import (placeholder page in place)

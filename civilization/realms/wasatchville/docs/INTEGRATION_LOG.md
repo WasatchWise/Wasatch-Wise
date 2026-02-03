@@ -2,7 +2,7 @@
 
 **Realm:** WasatchVille  
 **Purpose:** Data connections and automation that feed the city (city_metrics, agents, councils).  
-**Last Updated:** 2025-02-01
+**Last Updated:** 2026-02-01
 
 ---
 
@@ -81,15 +81,20 @@ See **infrastructure/n8n/README.md** for quick start, city_metrics contract, and
 
 **Amazon Associates:** [AMAZON_ASSOCIATES.md](AMAZON_ASSOCIATES.md) — account and building tags (`wasatchwise20-20`, `wasatchwise20-slc20`, etc.), 180-day rule, disclosure, link generation, and reporting to city_metrics via `upsert_revenue_metric`.
 
+**Awin / Booking.com:** [AWIN_MONETIZATION_SECTOR.md](AWIN_MONETIZATION_SECTOR.md) — Director of Awin Monetization role (Chrome extension in browser; Cursor in repo). Publisher ID `2060961`, Booking.com merchant `6776`. Scale to 10+ platforms; slctrips first.
+
 ---
 
 ## n8n Workflows
 
+**Lock-in playbook:** [infrastructure/n8n/LOCKIN.md](../../../infrastructure/n8n/LOCKIN.md) — verification steps, production checklist, roadmap. **Exhaustive n8n list:** [infrastructure/n8n/N8N_AUTOMATION_BACKLOG.md](../../../infrastructure/n8n/N8N_AUTOMATION_BACKLOG.md) — trim and prioritize.
+
 | Workflow | Purpose | Metric Keys | Status |
 |----------|---------|-------------|--------|
 | `stripe-revenue-webhook` | Stripe payment_intent.succeeded → increment daily_revenue + per-building metrics | `daily_revenue`, `slctrips_revenue`, `abya_revenue`, etc. | Implemented |
-| `test-city-metrics-insert` | Manual test insert | `test_workflow_insert` | Template available |
-| `tiktok-views-sync` | SLC Trips TikTok views | `slctrips_tiktok_views` | Planned |
+| `test-city-metrics-insert` | Manual test insert (verify Supabase from n8n) | `test_workflow_insert` | Template available |
+| `amazon-commission-to-city-metrics` | Manual/scheduled: add Amazon commission → slctrips_amazon_revenue | `slctrips_amazon_revenue` | Implemented (manual amount; API later) |
+| `tiktok-views-sync` | TikTok views → city_metrics (placeholder) | `slctrips_tiktok_views` | Placeholder in repo; replace Set with TikTok API when ready |
 | `convertkit-to-city-metrics` | Academy subscribers | `academy_subscribers` | Planned |
 
 ---
@@ -106,10 +111,18 @@ See **infrastructure/n8n/README.md** for quick start, city_metrics contract, and
 - **Test Workflow** (`infrastructure/n8n/workflows/test-city-metrics-insert.json`)
   - Manual trigger → one row into `city_metrics` (`test_workflow_insert`)
   - Use to verify Supabase connection from n8n
+- **Amazon Commission → city_metrics** (`infrastructure/n8n/workflows/amazon-commission-to-city-metrics.json`)
+  - Manual trigger → Set amount → HTTP POST to `upsert_revenue_metric` for `slctrips_amazon_revenue`
+  - Replace "Set amount" with Amazon API/scrape when reporting is available
+- **TikTok Views Sync** (`infrastructure/n8n/workflows/tiktok-views-sync.json`)
+  - Placeholder: Manual trigger → Set views (0) → HTTP POST to RPC `set_metric_value` for `slctrips_tiktok_views`
+  - Replace "Set views" with TikTok API node when Business/Display API access is ready; add Schedule trigger (e.g. daily). Migration: `apps/dashboard/lib/supabase/migrations/009_slctrips_tiktok_views.sql` (RPC + seed).
+
+**Verification and production:** See [infrastructure/n8n/LOCKIN.md](../../../infrastructure/n8n/LOCKIN.md).
 
 ### Planned (not yet in repo)
 
-- **TikTok Views Sync** (SLC Trips) — TikTok API → `slctrips_tiktok_views` in city_metrics
+- **TikTok API integration** — Replace "Set views" in `tiktok-views-sync.json` with TikTok API when ready; workflow and RPC `set_metric_value` already in repo
 - **Spotify Plays** (Rock Salt) — Spotify API → Rock Salt metrics
 - **ConvertKit Subscribers** (Adult AI Academy) — ConvertKit API → `academy_subscribers` in city_metrics
 - **Universal Lead Router** — Webhooks: `wasatchwise-lead`, `adult-ai-academy-lead`, `ask-before-lead`; route leads to appropriate systems
@@ -152,6 +165,12 @@ From Chrome Extension wiring check:
 
 | Date | Change |
 |------|--------|
+| 2026-02-01 | TikTok Views Sync: Workflow imported and operational in n8n (Manual → Set views → HTTP set_metric_value → slctrips_tiktok_views). Community fix applied (hardcoded Supabase in HTTP node). Tested; slctrips_tiktok_views in city_metrics. Do not export/commit workflow JSON with keys. Next: Schedule trigger and TikTok API when ready. |
+| 2026-02-01 | TikTok Views Sync: Added placeholder workflow `tiktok-views-sync.json` (Manual → Set views → RPC set_metric_value → slctrips_tiktok_views). Migration 009: set_metric_value RPC + seed slctrips_tiktok_views. Replace Set with TikTok API when ready. LOCKIN + INTEGRATION_LOG updated. |
+| 2026-02-01 | n8n full lock-in achieved. All 3 workflows operational: Stripe (active, payments → daily_revenue + per-building), Test (Supabase connection verified), Amazon (slctrips_amazon_revenue). Community n8n $env limitation documented; fix (hardcode or Supabase node) in infrastructure/n8n/LOCKIN.md §5.1. Do not commit workflow JSON with hardcoded service_role. |
+| 2026-02-01 | n8n lock-in: Added infrastructure/n8n/LOCKIN.md (verify local + production, roadmap). INTEGRATION_LOG: linked lock-in doc, added amazon-commission-to-city-metrics to workflows table and implemented list. |
+| 2026-02-01 | Phase 2 Awin invitations executed (Director): Betckey and Sparkle GmbH (Hey Happiness) accepted; Mars by GHC invitation not found in activity stream. See AWIN_STRATEGY.md § Phase 2. |
+| 2026-02-01 | Director of Awin Monetization link audit (slctrips Booking.com): PASS. Homepage Rent a Car/Find Hotels, footer Find Accommodations, destination Where to Stay all use Awin (6776, 2060961). Summary: civilization/archives/public/awin-audits/2026-02-01-awin-audit-summary.md. TripKit viewer "Where to Stay" verification pending login. |
 | 2025-02-01 | Wiring report follow-up: dashboard 404, adultaiacademy.com domain, n8n Stripe production note. |
 | 2025-02-01 | Added n8n Automation Status (Implemented vs Planned), verification checklist, Stripe webhook URL note. |
 | 2025-01-31 | Linked affiliate in-depth review (AFFILIATE_REVIEW_2025-01-31.md / .json); top actions and config additions. |

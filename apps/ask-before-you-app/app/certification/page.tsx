@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Header } from '@/components/layout/Header'
+import { getStoredPersona } from '@/lib/persona'
 
 const MODULES = [
   {
@@ -123,10 +124,16 @@ export default function CertificationPage() {
   const [selectedState] = useState('UT')
   const [hoveredModule, setHoveredModule] = useState<number | null>(null)
   const [mounted, setMounted] = useState(false)
+  const [persona, setPersona] = useState<string | null>(null)
 
   useEffect(() => {
     setMounted(true)
   }, [])
+
+  useEffect(() => {
+    if (!mounted || typeof window === 'undefined') return
+    setPersona(getStoredPersona())
+  }, [mounted])
 
   return (
     <>
@@ -168,7 +175,7 @@ export default function CertificationPage() {
           <div className="max-w-6xl mx-auto text-center">
             {/* Status Badge */}
             <div 
-              className={`inline-flex items-center gap-3 px-5 py-2.5 mb-10 rounded-full bg-gradient-to-r from-white/10 to-white/5 border border-white/10 backdrop-blur-xl transition-all duration-1000 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}
+              className={`inline-flex items-center gap-3 px-5 py-2.5 mb-6 rounded-full bg-gradient-to-r from-white/10 to-white/5 border border-white/10 backdrop-blur-xl transition-all duration-1000 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}
             >
               <span className="relative flex h-2.5 w-2.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -176,6 +183,17 @@ export default function CertificationPage() {
               </span>
               <span className="text-sm font-medium text-gray-300">Free Certification • No Account Required</span>
             </div>
+
+            {/* Persona one-liner */}
+            {persona && (
+              <p className="text-sm text-cyan-200/90 max-w-xl mx-auto mb-10">
+                {persona === 'educator' && <>As an educator, start with <strong>Module 1</strong> (Foundations) and work through in order.</>}
+                {persona === 'administrator' && <>As an administrator, you might also want <Link href="/ecosystem" className="underline hover:text-white">State laws & procedures</Link> first—then come back here for the DPA workflow.</>}
+                {persona === 'parent' && <>As a parent, the <Link href="/learn#apps" className="underline hover:text-white">Understand apps</Link> section on the hub is a great start; this certification is aimed at educators and admins.</>}
+                {persona === 'student' && <>As a student, the <Link href="/learn#apps" className="underline hover:text-white">Knowledge hub</Link> explains what to ask and what your rights are; this course is for educators and admins.</>}
+                {persona === 'just_learning' && <>Start with <strong>Module 1</strong> (Foundations) to get the big picture.</>}
+              </p>
+            )}
 
             {/* Main Title */}
             <h1 

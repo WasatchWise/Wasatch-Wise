@@ -13,7 +13,11 @@
 
 WasatchVille is the flagship Business REALMS implementation, serving as both John's personal business operating system and the reference implementation for all future client realms.
 
-**The Metaphor:** John is the Mayor of a small city where each building represents one of his business ventures. AI agents serve as department heads and building managers. Real data flows in to power the visualization.
+**The Metaphor:** John is the Mayor of a small city where each building represents one of his business ventures. AI agents serve as department heads and building managers. Real data flows in to power the visualization. For RTS/SimCity framing (building health, sectors, multi-platform media), see [WASATCHVILLE_RTS_AND_MEDIA.md](WASATCHVILLE_RTS_AND_MEDIA.md).
+
+**Operating principle:** Prefer **buy / adopt** over build. See [BUILD_VS_BUY.md](BUILD_VS_BUY.md).
+
+**Corporate org chart:** Who does what, who has access to what, when things are done. See [CORPORATE_ORG_CHART.md](CORPORATE_ORG_CHART.md).
 
 ---
 

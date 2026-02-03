@@ -13,12 +13,12 @@ type Props = {
 
 const ALLOWED_TABS = new Set([
   'overview',
-  'availability',
+  'profile',
+  'capabilities',
+  'slots',
   'submissions',
-  'requests',
-  'contracts',
-  'photos',
-  'billing',
+  'bookings',
+  'wallet',
 ])
 
 export default async function ManageVenuePage({ params, searchParams }: Props) {
@@ -62,6 +62,26 @@ export default async function ManageVenuePage({ params, searchParams }: Props) {
     social_media_links: Record<string, unknown> | null
     claimed_by: string | null
     claimed_at: string | null
+    stage_width_feet?: number | null
+    stage_depth_feet?: number | null
+    input_channels?: number | null
+    has_house_drums?: boolean | null
+    has_backline?: boolean | null
+    typical_guarantee_min?: number | null
+    typical_guarantee_max?: number | null
+    payment_methods?: string[] | null
+    w9_on_file?: boolean | null
+    insurance_coi_on_file?: boolean | null
+    green_room_available?: boolean | null
+    green_room_description?: string | null
+    meal_buyout_available?: boolean | null
+    typical_meal_buyout_amount?: number | null
+    drink_tickets_available?: number | null
+    guest_list_spots?: number | null
+    parking_spaces?: number | null
+    age_restrictions?: string[] | null
+    load_in_notes?: string | null
+    curfew_time?: string | null
     venue_photos: VenuePhoto[]
   }
   let venue: VenueRecord | null = null
@@ -86,6 +106,26 @@ export default async function ManageVenuePage({ params, searchParams }: Props) {
       social_media_links,
       claimed_by,
       claimed_at,
+      stage_width_feet,
+      stage_depth_feet,
+      input_channels,
+      has_house_drums,
+      has_backline,
+      typical_guarantee_min,
+      typical_guarantee_max,
+      payment_methods,
+      w9_on_file,
+      insurance_coi_on_file,
+      green_room_available,
+      green_room_description,
+      meal_buyout_available,
+      typical_meal_buyout_amount,
+      drink_tickets_available,
+      guest_list_spots,
+      parking_spaces,
+      age_restrictions,
+      load_in_notes,
+      curfew_time,
       venue_photos (
         id,
         url,

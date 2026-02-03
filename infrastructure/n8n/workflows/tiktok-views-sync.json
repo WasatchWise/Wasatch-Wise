@@ -1,0 +1,65 @@
+{
+  "name": "TikTok Views Sync → slctrips_tiktok_views",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "manual-trigger-1",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            { "id": "views", "name": "views", "value": 0, "type": "number" },
+            { "id": "metric_key", "name": "metric_key", "value": "slctrips_tiktok_views", "type": "string" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "set-views",
+      "name": "Set views (placeholder)",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.SUPABASE_URL }}/rest/v1/rpc/set_metric_value",
+        "authentication": "none",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "apikey", "value": "={{ $env.SUPABASE_SERVICE_ROLE_KEY }}" },
+            { "name": "Authorization", "value": "=Bearer {{ $env.SUPABASE_SERVICE_ROLE_KEY }}" },
+            { "name": "Content-Type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"p_metric_key\": \"{{ $json.metric_key }}\",\n  \"p_value\": {{ $json.views }}\n}",
+        "options": {}
+      },
+      "id": "set-metric",
+      "name": "Set slctrips_tiktok_views",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [680, 300]
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [[{ "node": "Set views (placeholder)", "type": "main", "index": 0 }]]
+    },
+    "Set views (placeholder)": {
+      "main": [[{ "node": "Set slctrips_tiktok_views", "type": "main", "index": 0 }]]
+    }
+  },
+  "active": false,
+  "settings": { "executionOrder": "v1" },
+  "versionId": "1",
+  "meta": { "templateCredsSetupCompleted": false }
+}

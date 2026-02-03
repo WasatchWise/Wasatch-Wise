@@ -139,7 +139,7 @@ export default function FeaturedTripKitsCarousel() {
                       {tk.tagline}
                     </p>
                   )}
-                  {tk.destination_count != null && tk.destination_count > 0 && (
+                  {tk.destination_count !== null && tk.destination_count > 0 && (
                     <p className="text-xs text-gray-500 mt-2">
                       {tk.destination_count} destination{tk.destination_count !== 1 ? 's' : ''}
                     </p>
