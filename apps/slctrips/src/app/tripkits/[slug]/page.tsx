@@ -111,14 +111,16 @@ export default async function TripKitDetailPage({ params }: { params: { slug: st
 
   // Sample destination for "full write-up" (first with content; show full value before purchase)
   const sampleDestination = destinations.length > 0 ? destinations[0] : null;
-  let sampleGuardian: { id: string; display_name: string; county: string; animal_type: string; backstory: string | null; personality: string | null } | null = null;
+
+  type GuardianIntroRow = { id: string; display_name: string; county: string; animal_type: string; backstory: string | null; personality: string | null };
+  let sampleGuardian: GuardianIntroRow | null = null;
   if (sampleDestination?.county) {
     const { data: g } = await supabase
       .from('guardians')
       .select('id, display_name, county, animal_type, backstory, personality')
       .ilike('county', sampleDestination.county)
       .maybeSingle();
-    sampleGuardian = g as typeof sampleGuardian;
+    sampleGuardian = g as GuardianIntroRow | null;
   }
 
   // Fetch deep dive stories for this TripKit (support both TK-XXX and TKE-XXX formats)
@@ -577,25 +579,28 @@ export default async function TripKitDetailPage({ params }: { params: { slug: st
                     </div>
                   );
                 })()}
-                {sampleGuardian && (
-                  <div className="mt-6">
-                    <GuardianIntroduction
-                      guardian={{
-                        display_name: sampleGuardian.display_name,
-                        county: sampleGuardian.county,
-                        animal_type: sampleGuardian.animal_type,
-                        backstory: sampleGuardian.backstory,
-                        personality: sampleGuardian.personality
-                      }}
-                      destination={{
-                        name: sampleDestination.name,
-                        subcategory: sampleDestination.subcategory || '',
-                        description: sampleDestination.description || sampleDestination.ai_summary || null
-                      }}
-                      guardianImagePath={getGuardianImagePath(sampleDestination.county)}
-                    />
-                  </div>
-                )}
+                {sampleGuardian != null && (() => {
+                  const g: GuardianIntroRow = sampleGuardian;
+                  return (
+                    <div className="mt-6">
+                      <GuardianIntroduction
+                        guardian={{
+                          display_name: g.display_name,
+                          county: g.county,
+                          animal_type: g.animal_type,
+                          backstory: g.backstory,
+                          personality: g.personality
+                        }}
+                        destination={{
+                          name: sampleDestination.name,
+                          subcategory: sampleDestination.subcategory || '',
+                          description: sampleDestination.description || sampleDestination.ai_summary || null
+                        }}
+                        guardianImagePath={getGuardianImagePath(sampleDestination.county)}
+                      />
+                    </div>
+                  );
+                })()}
               </div>
             </div>
           </section>
