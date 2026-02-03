@@ -10,8 +10,8 @@ interface Destination {
   name: string;
   slug: string;
   subcategory: string;
-  drive_time_minutes: number;
-  drive_distance_miles: number;
+  drive_minutes: number | null;
+  distance_miles: number | null;
   image_url: string;
   is_featured: boolean;
 }
@@ -32,11 +32,25 @@ export default function RandomDestinationPicker({ onPickStart, onPickComplete }:
     onPickStart?.();
 
     try {
-      // Get a random destination from the database
-      const { data, error } = await supabase
+      // Prefer curated destinations: featured or is_featured, with image. Avoids generic/wrong photos (e.g. construction).
+      let { data, error } = await supabase
         .from('public_destinations')
-        .select('*')
+        .select('id, name, slug, subcategory, drive_minutes, distance_miles, image_url, is_featured')
+        .not('image_url', 'is', null)
+        .or('featured.eq.true,is_featured.eq.true')
         .limit(100);
+
+      // Fallback: any destination with image, ordered by popularity so better picks surface first
+      if (error || !data || data.length === 0) {
+        const fallback = await supabase
+          .from('public_destinations')
+          .select('id, name, slug, subcategory, drive_minutes, distance_miles, image_url, is_featured')
+          .not('image_url', 'is', null)
+          .order('popularity_score', { ascending: false, nullsFirst: false })
+          .limit(100);
+        data = fallback.data;
+        error = fallback.error;
+      }
 
       if (error || !data || data.length === 0) {
         console.error('Error fetching destinations:', error);
@@ -44,7 +58,6 @@ export default function RandomDestinationPicker({ onPickStart, onPickComplete }:
         return;
       }
 
-      // Pick a random one from the batch
       const randomIndex = Math.floor(Math.random() * data.length);
       const destination = data[randomIndex] as Destination;
 
@@ -138,11 +151,11 @@ export default function RandomDestinationPicker({ onPickStart, onPickComplete }:
                 <div className="flex items-center gap-6 text-gray-300">
                   <span className="flex items-center gap-2">
                     <span className="text-xl">🚗</span>
-                    {selectedDestination.drive_time_minutes} min
+                    {selectedDestination.drive_minutes ?? '—'} min
                   </span>
                   <span className="flex items-center gap-2">
                     <span className="text-xl">📍</span>
-                    {selectedDestination.drive_distance_miles} mi
+                    {selectedDestination.distance_miles ?? '—'} mi
                   </span>
                   {selectedDestination.is_featured && (
                     <span className="text-yellow-400">⭐ Featured</span>

@@ -13,6 +13,7 @@ import WelcomeModal from '@/components/WelcomeModal';
 import DansScore from '@/components/DansScore';
 import DanSpeaks from '@/components/DanSpeaks';
 import BookYourAdventure from '@/components/BookYourAdventure';
+import FeaturedTripKitsCarousel from '@/components/FeaturedTripKitsCarousel';
 import { normalizeImageSrc } from '@/lib/normalizeImageSrc';
 import { useRouter } from 'next/navigation';
 
@@ -39,6 +40,15 @@ interface WeeklyPick extends Destination {
   popularity_score?: number;
 }
 
+/** From Utah Conditions Monitor (n8n) – drives "This Week's Picks" when present */
+interface DynamicWeeklyPick {
+  headline: string;
+  mode: string;
+  weather: { temp: number | null; conditions: string };
+  recommendations: { name: string; type: string; link: string }[];
+  createdAt?: string;
+}
+
 const driveTimeCategories = [
   { name: '30min', label: '30 min', emoji: '⚡' },
   { name: '90min', label: '90 min', emoji: '🚗' },
@@ -56,8 +66,16 @@ const emojiMap: Record<string, string> = {
   'Lake': '🏊', 'Waterfall': '💧', 'Ghost Town': '👻'
 };
 
+const recommendationTypeEmoji: Record<string, string> = {
+  ski: '⛷️', hike: '🥾', outdoor: '🏔️', explore: '🚗', indoor: '🏠',
+  museum: '🏛️', activity: '🎯', water: '🏊', 'water-park': '🌊', beach: '🏖️',
+  food: '🍽️', garden: '🌸', park: '🌳', bike: '🚵', free: '✨',
+  mixed: '🌤️', combo: '📋'
+};
+
 export default function HomePage() {
   const [weeklyPicks, setWeeklyPicks] = useState<WeeklyPick[]>([]);
+  const [dynamicWeeklyPick, setDynamicWeeklyPick] = useState<DynamicWeeklyPick | null>(null);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [userLanguage, setUserLanguage] = useState('en');
@@ -99,8 +117,21 @@ export default function HomePage() {
   async function loadWeeklyPicks() {
     setLoading(true);
     setLoadError(null);
+    setDynamicWeeklyPick(null);
 
     try {
+      // Prefer Utah Conditions Monitor (n8n) weekly pick when available
+      const picksRes = await fetch('/api/weekly-picks');
+      if (picksRes.ok) {
+        const data = await picksRes.json();
+        if (data && data.headline && Array.isArray(data.recommendations)) {
+          setDynamicWeeklyPick(data);
+          setLoading(false);
+          return;
+        }
+      }
+
+      // Fallback: existing weather-aware rotation from public_destinations
       // Get current week number for rotation
       const now = new Date();
       const startOfYear = new Date(now.getFullYear(), 0, 1);
@@ -174,9 +205,13 @@ export default function HomePage() {
 
         // CRITICAL: Sanitize destinations before processing
         const sanitizedData = sanitizeDestinations(data as Destination[]);
-        
+
+        // Prefer featured-only for landing so we don't show generic/wrong photos (e.g. construction, random places)
+        const featuredOnly = sanitizedData.filter((d: Destination) => d.featured === true || d.is_featured === true);
+        const candidates = featuredOnly.length > 0 ? featuredOnly : sanitizedData;
+
         // Score destinations based on season, weather, distance, and features
-        const scored = sanitizedData.map((d: Destination) => {
+        const scored = candidates.map((d: Destination) => {
           let score = 0;
 
           // Featured destinations get priority (check both fields)
@@ -303,9 +338,6 @@ export default function HomePage() {
                 Get Your TripKit
               </Link>
             </div>
-
-            {/* Quick Booking Links */}
-            <BookYourAdventure variant="compact" />
           </div>
         </section>
 
@@ -414,8 +446,7 @@ export default function HomePage() {
                 Meet the Guardians
               </h2>
               <p className="text-xl text-blue-100 mb-6">
-                Your introduction to Utah&apos;s 29 counties and their mythical protectors.
-                Perfect for teachers, parents, and explorers.
+                Utah&apos;s 29 counties, each with a mythical protector. For teachers, families, and explorers.
               </p>
 
               <div className="grid md:grid-cols-3 gap-4 mb-8 text-left">
@@ -451,6 +482,9 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* Featured TripKits carousel: thematic (Morbid, Haunted, Unexplained), Ski, Movies, Valentine's, etc. */}
+        <FeaturedTripKitsCarousel />
+
         {/* Book Your Adventure - Affiliate Section */}
         <BookYourAdventure />
 
@@ -459,13 +493,32 @@ export default function HomePage() {
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold mb-4 text-white">🌟 This Week's Picks</h2>
-              <p className="text-gray-400 text-lg">
-                Curated destinations based on season, popularity, and great opportunities
-              </p>
-              {weatherUnavailable && (
-                <p className="text-gray-500 text-sm mt-2">
-                  Weather data unavailable — showing seasonal recommendations
-                </p>
+              {dynamicWeeklyPick ? (
+                <>
+                  <p className="text-gray-300 text-lg">
+                    {dynamicWeeklyPick.headline}
+                  </p>
+                  {(dynamicWeeklyPick.weather.temp != null || dynamicWeeklyPick.weather.conditions) && (
+                    <p className="text-gray-500 text-sm mt-2">
+                      <span className="weather-badge">
+                        {dynamicWeeklyPick.weather.temp != null && `${dynamicWeeklyPick.weather.temp}°F`}
+                        {dynamicWeeklyPick.weather.temp != null && dynamicWeeklyPick.weather.conditions && ' • '}
+                        {dynamicWeeklyPick.weather.conditions}
+                      </span>
+                    </p>
+                  )}
+                </>
+              ) : (
+                <>
+                  <p className="text-gray-400 text-lg">
+                    Curated destinations based on season, popularity, and great opportunities
+                  </p>
+                  {weatherUnavailable && (
+                    <p className="text-gray-500 text-sm mt-2">
+                      Weather data unavailable — showing seasonal recommendations
+                    </p>
+                  )}
+                </>
               )}
             </div>
 
@@ -510,8 +563,38 @@ export default function HomePage() {
               </div>
             )}
 
-            {/* Loaded Content */}
-            {!loading && !loadError && weeklyPicks.length > 0 && (
+            {/* Dynamic weekly picks (from Utah Conditions Monitor / n8n) */}
+            {!loading && !loadError && dynamicWeeklyPick && dynamicWeeklyPick.recommendations.length > 0 && (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {dynamicWeeklyPick.recommendations.map((rec, idx) => {
+                  const typeEmoji = recommendationTypeEmoji[rec.type] ?? '📍';
+                  const sep = rec.link.includes('?') ? '&' : '?';
+                  const href = rec.link.startsWith('http') ? rec.link : `${rec.link}${sep}utm_source=slctrips&utm_medium=landing&utm_campaign=weekly-picks`;
+                  return (
+                    <Link
+                      key={`${rec.link}-${idx}`}
+                      href={href}
+                      className="group bg-gray-800/60 border border-gray-700 rounded-xl overflow-hidden hover:border-blue-500 hover:-translate-y-2 transition-all duration-300 p-6 flex flex-col"
+                    >
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className="text-sm bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full">
+                          {typeEmoji} {rec.type}
+                        </span>
+                      </div>
+                      <h3 className="text-xl font-bold mb-2 group-hover:text-blue-400 transition-colors">
+                        {typeEmoji} {rec.name}
+                      </h3>
+                      <span className="text-blue-400 text-sm mt-auto">
+                        Explore →
+                      </span>
+                    </Link>
+                  );
+                })}
+              </div>
+            )}
+
+            {/* Loaded Content (fallback: destination rotation) */}
+            {!loading && !loadError && !dynamicWeeklyPick && weeklyPicks.length > 0 && (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {weeklyPicks.map((pick) => {
                   const categoryEmoji = emojiMap[pick.subcategory] || '📍';
@@ -566,7 +649,9 @@ export default function HomePage() {
                         <p className="text-gray-400 text-sm mb-3">{pick.subcategory || 'Destination'}</p>
                         <div className="flex items-center gap-4 text-sm text-gray-400">
                           <span>🚗 {pick.category_label}</span>
-                          {pick.distance_miles && <span>📍 {pick.distance_miles} mi</span>}
+                          {pick.distance_miles != null && (
+                            <span>📍 {pick.distance_miles === 0 ? 'At SLC Airport' : `${pick.distance_miles} mi`}</span>
+                          )}
                         </div>
                         {(pick.is_family_friendly || pick.pet_allowed) && (
                           <div className="flex gap-2 mt-3">
@@ -590,7 +675,7 @@ export default function HomePage() {
             )}
 
             {/* Empty State */}
-            {!loading && !loadError && weeklyPicks.length === 0 && (
+            {!loading && !loadError && !dynamicWeeklyPick && weeklyPicks.length === 0 && (
               <div className="text-center py-12">
                 <div className="text-6xl mb-4">🏔️</div>
                 <h3 className="text-xl font-bold text-gray-300 mb-2">No Picks Available</h3>
@@ -634,16 +719,10 @@ export default function HomePage() {
                   {/* Description Text */}
                   <div className="text-gray-300 space-y-3 text-sm leading-relaxed">
                     <p>
-                      I didn&apos;t get the mascot job with the hockey team. The Mammoth had thicker fur and better skates.
-                      So now I&apos;m the guide for SLCTrips.com instead.
+                      I didn&apos;t get the mascot job with the hockey team—the Mammoth had thicker fur. So I&apos;m the guide for SLCTrips instead. I spent years around Liberty Park helping kids make music and wild ideas come to life; these mountains and canyons raised me as much as any classroom.
                     </p>
                     <p>
-                      I spent almost twenty years around Liberty Park helping kids make music, videos, and wild ideas come to life.
-                      These mountains and canyons raised me as much as any classroom.
-                    </p>
-                    <p>
-                      People call me the Wasatch Sasquatch, but you can call me Dan. I&apos;ll help you find the trails worth walking,
-                      the coffee that wakes your soul, and the Utah moments you can&apos;t buy in a gift shop.
+                      People call me the Wasatch Sasquatch, but you can call me Dan. I&apos;ll help you find the trails worth walking, the coffee that wakes your soul, and the Utah moments you can&apos;t buy in a gift shop.
                     </p>
                     <p className="text-lg text-yellow-400 font-semibold italic pt-2">
                       Wander wisely, travel kindly, and stay curious.
@@ -655,54 +734,31 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Trust Signals */}
-        <section className="py-8 border-y border-gray-800">
+        {/* Trust & Why SLCTrips — one section, compact */}
+        <section className="py-12 bg-gray-800/50 border-y border-gray-800">
           <div className="container mx-auto px-4">
-            <div className="flex flex-wrap justify-center gap-8 text-center">
-              <div className="flex items-center gap-2">
-                <span className="text-yellow-400">⭐⭐⭐⭐⭐</span>
-                <span className="text-gray-400">Highly rated by adventurers</span>
+            <h2 className="text-3xl font-bold mb-8 text-center text-white">Why SLCTrips?</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-10">
+              <div className="text-center">
+                <div className="text-4xl mb-2">🏔️</div>
+                <h3 className="text-lg font-bold mb-1 text-blue-400">1000+ Destinations</h3>
+                <p className="text-gray-400 text-sm">By drive time from SLC Airport—30 min to 12 hours.</p>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="text-blue-400 font-bold">✓</span>
-                <span className="text-gray-400">Thousands of trips planned</span>
+              <div className="text-center">
+                <div className="text-4xl mb-2">🗺️</div>
+                <h3 className="text-lg font-bold mb-1 text-blue-400">TripKits</h3>
+                <p className="text-gray-400 text-sm">Themed guides: spooky, skiing, romance, and more.</p>
               </div>
-              <div className="text-blue-400 flex items-center gap-2">
-                <span>✨ Funofficial SLC Airport Partner</span>
-                <span className="text-gray-500 text-xs italic">
-                  (Want to make it official? <a href="mailto:Dan@slctrips.com" className="text-blue-400 hover:text-blue-300 underline">Dan@slctrips.com</a>)
-                </span>
+              <div className="text-center">
+                <div className="text-4xl mb-2">🧭</div>
+                <h3 className="text-lg font-bold mb-1 text-blue-400">County Guardians</h3>
+                <p className="text-gray-400 text-sm">Hidden gems and stories across Utah counties.</p>
               </div>
             </div>
-          </div>
-        </section>
-
-        {/* Features Section */}
-        <section className="py-16 bg-gray-800/50">
-          <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-bold mb-12 text-center text-white">Why SLCTrips?</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              <div className="text-center">
-                <div className="text-5xl mb-4">🏔️</div>
-                <h3 className="text-xl font-bold mb-2 text-blue-400">1000+ Destinations</h3>
-                <p className="text-gray-400">
-                  Curated adventures from 30 minutes to 12 hours from SLC Airport
-                </p>
-              </div>
-              <div className="text-center">
-                <div className="text-5xl mb-4">🗺️</div>
-                <h3 className="text-xl font-bold mb-2 text-blue-400">TripKits</h3>
-                <p className="text-gray-400">
-                  Complete adventure packages with routes, tips, and insider knowledge
-                </p>
-              </div>
-              <div className="text-center">
-                <div className="text-5xl mb-4">🧭</div>
-                <h3 className="text-xl font-bold mb-2 text-blue-400">County Guardians</h3>
-                <p className="text-gray-400">
-                  Local experts guiding you to hidden gems across Utah counties
-                </p>
-              </div>
+            <div className="flex flex-wrap justify-center gap-6 md:gap-10 text-center text-sm text-gray-400">
+              <span className="flex items-center gap-2"><span className="text-yellow-400">⭐⭐⭐⭐⭐</span> Highly rated</span>
+              <span className="flex items-center gap-2"><span className="text-blue-400 font-bold">✓</span> Thousands of trips planned</span>
+              <span className="flex items-center gap-2">✨ Funofficial SLC Airport Partner · <a href="mailto:Dan@slctrips.com" className="text-blue-400 hover:text-blue-300 underline">Dan@slctrips.com</a></span>
             </div>
           </div>
         </section>

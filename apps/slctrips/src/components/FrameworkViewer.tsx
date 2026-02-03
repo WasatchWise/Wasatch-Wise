@@ -3,7 +3,10 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import SafeImage from '@/components/SafeImage';
 import { TripKit, Destination, Guardian } from '@/types/database.types';
+
+const GUARDIAN_PLACEHOLDER = '/images/default-guardian.webp';
 import { CurriculumFramework } from '@/types/curriculum.types';
 
 interface FrameworkViewerProps {
@@ -420,17 +423,15 @@ export default function FrameworkViewer({
             >
               <div className="absolute inset-0 bg-gradient-to-br from-blue-400 via-purple-400 to-pink-400 rounded-xl blur-lg opacity-0 group-hover:opacity-40 transition-opacity duration-300"></div>
               <div className="relative">
-                {guardian.image_url && (
-                  <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-lg p-2 mb-2 flex items-center justify-center h-24 relative">
-                    <Image
-                      src={guardian.image_url}
-                      alt={guardian.display_name}
-                      fill
-                      className="object-contain drop-shadow-xl transform group-hover:scale-110 transition-transform duration-300"
-                      sizes="80px"
-                    />
-                  </div>
-                )}
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-lg p-2 mb-2 flex items-center justify-center h-24 relative">
+                  <SafeImage
+                    src={guardian.image_url || GUARDIAN_PLACEHOLDER}
+                    alt={guardian.display_name}
+                    fill
+                    className="object-contain drop-shadow-xl transform group-hover:scale-110 transition-transform duration-300"
+                    fallbackSrc={GUARDIAN_PLACEHOLDER}
+                  />
+                </div>
                 <div className="text-center">
                   <div className="font-bold text-sm text-gray-900 mb-1">{guardian.display_name}</div>
                   <div className="text-xs text-gray-600">{guardian.county}</div>

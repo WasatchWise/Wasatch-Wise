@@ -51,6 +51,7 @@ This document provides a comprehensive overview of all tests in the SLCTrips v2 
 - ✅ `explorer.spec.ts` - Explorer feature
 - ✅ `planner.spec.ts` - Planner feature
 - ✅ `welcome-wagon.spec.ts` - Welcome Wagon feature
+- ✅ `full-scale-qa-first-time-user.spec.ts` - Full-scale HCI QA (first-time user, cache cleared; runbook: `docs/HCI_FULL_SCALE_QA_FIRST_TIME_USER.md`)
 
 ### Health Checks
 

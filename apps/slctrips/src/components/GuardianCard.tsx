@@ -1,8 +1,11 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Guardian } from '@/lib/types';
+
+const GUARDIAN_PLACEHOLDER = '/images/default-guardian.webp';
 
 interface GuardianCardProps {
   guardian: Guardian;
@@ -17,11 +20,12 @@ export default function GuardianCard({
   isDiscovered = true,
   showDiscoveryState = false,
 }: GuardianCardProps) {
+  const [imgError, setImgError] = useState(false);
   const guardianSlug = guardian.county?.toLowerCase().replace(/\s+/g, '-') || guardian.codename?.toLowerCase().replace(/\s+/g, '-');
 
-  // Generate image path - use guardians directory with county name
   const imagePath = guardian.avatar_url || guardian.image_url ||
-    (guardian.county ? `/images/guardians/${guardian.county.toUpperCase()}.png` : '/images/default-guardian.webp');
+    (guardian.county ? `/images/guardians/${guardian.county.replace(/\s*County$/i, '').trim().toUpperCase().replace(/\s+/g, ' ')}.png` : GUARDIAN_PLACEHOLDER);
+  const displaySrc = imgError ? GUARDIAN_PLACEHOLDER : imagePath;
 
   return (
     <Link
@@ -35,14 +39,12 @@ export default function GuardianCard({
       {/* Guardian Image */}
       <div className="aspect-square w-full overflow-hidden relative">
         <Image
-          src={imagePath}
+          src={displaySrc}
           alt={guardian.display_name || guardian.codename || "Guardian"}
           fill
           className="object-contain group-hover:scale-110 transition-transform duration-500"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          onError={(e) => {
-            (e.target as HTMLImageElement).src = '/images/default-guardian.webp';
-          }}
+          onError={() => setImgError(true)}
         />
         {showDiscoveryState && !isDiscovered && (
           <div className="absolute inset-0 flex items-center justify-center bg-black/40 text-white text-sm font-semibold tracking-wide">

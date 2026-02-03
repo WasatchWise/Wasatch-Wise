@@ -80,6 +80,10 @@ const CATEGORY_MAP: Record<string, TabCategory> = {
     'youtube-beginner-tips': 'essentials',
     'podcast-ski-utah': 'history',
     'youtube-park-city-tour': 'planning',
+    // TK-VAL: Romantic Road Trips & Valentine's Compendium
+    'staycation-itineraries': 'planning',
+    'valentines-slc-events': 'essentials',
+    'singles-events': 'essentials',
 };
 
 const TAB_CONFIG = {

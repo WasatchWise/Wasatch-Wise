@@ -720,15 +720,17 @@ export default async function DestinationDetail({ params, searchParams }: Params
             <div className="container mx-auto px-4 py-6">
               <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-md">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {/* Drive Time */}
+                  {/* Drive Time — never show "0h 0m" or "0 miles"; use "At SLC Airport" when 0 */}
                   <div>
                     <div className="text-xs text-gray-600 mb-1 uppercase tracking-wide">Drive Time from SLC</div>
-                    {d.drive_minutes ? (
+                    {(d.drive_minutes === 0 || d.distance_miles === 0) ? (
+                      <div className="text-2xl font-bold text-blue-600">At SLC Airport</div>
+                    ) : d.drive_minutes != null && d.drive_minutes > 0 ? (
                       <>
                         <div className="text-2xl font-bold text-blue-600">
                           {Math.floor(d.drive_minutes / 60)}h {d.drive_minutes % 60}m
                         </div>
-                        {d.distance_miles && (
+                        {d.distance_miles != null && d.distance_miles > 0 && (
                           <div className="text-sm text-gray-600 mt-1">{Math.round(d.distance_miles)} miles</div>
                         )}
                       </>
@@ -749,12 +751,7 @@ export default async function DestinationDetail({ params, searchParams }: Params
                       })();
 
                       if (!safeHours || safeHours.length === 0) {
-                        return (
-                          <div>
-                            <div className="text-xs text-gray-600 mb-1 uppercase tracking-wide">Hours</div>
-                            <div className="text-sm text-gray-500">Not specified</div>
-                          </div>
-                        );
+                        return null; // Hide Hours row when no data
                       }
 
                       const hoursToDisplay = safeHours.slice(0, 2); // Show first 2 hours lines
@@ -1839,15 +1836,17 @@ export default async function DestinationDetail({ params, searchParams }: Params
                   <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-md sticky top-4">
                     <h3 className="text-xl font-bold mb-4 text-gray-900">Quick Info</h3>
 
-                    {/* Drive Time */}
+                    {/* Drive Time — never show "0h 0m" or "0 miles"; use "At SLC Airport" when 0 */}
                     <div className="mb-4 pb-4 border-b border-gray-200">
                       <div className="text-sm text-gray-600 mb-1">Drive Time from SLC</div>
-                      {d.drive_minutes ? (
+                      {(d.drive_minutes === 0 || d.distance_miles === 0) ? (
+                        <div className="text-2xl font-bold text-blue-600">At SLC Airport</div>
+                      ) : d.drive_minutes != null && d.drive_minutes > 0 ? (
                         <>
                           <div className="text-2xl font-bold text-blue-600">
                             {Math.floor(d.drive_minutes / 60)}h {d.drive_minutes % 60}m
                           </div>
-                          {d.distance_miles && (
+                          {d.distance_miles != null && d.distance_miles > 0 && (
                             <div className="text-sm text-gray-700 mt-1">{Math.round(d.distance_miles)} miles</div>
                           )}
                         </>

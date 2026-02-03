@@ -3,6 +3,9 @@
 import { Guardian } from '@/types/database.types';
 import { useState } from 'react';
 import Image from 'next/image';
+import SafeImage from '@/components/SafeImage';
+
+const GUARDIAN_PLACEHOLDER = '/images/default-guardian.webp';
 
 interface GuardianGalleryProps {
   guardians: Guardian[];
@@ -34,17 +37,15 @@ export default function GuardianGallery({ guardians }: GuardianGalleryProps) {
 
             {/* Content */}
             <div className="relative">
-              {guardian.image_url && (
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl p-2 mb-2 flex items-center justify-center h-24 md:h-32 overflow-hidden relative">
-                  <Image
-                    src={guardian.image_url}
-                    alt={guardian.display_name}
-                    fill
-                    className="object-contain drop-shadow-2xl transform group-hover:scale-110 transition-transform duration-300"
-                    sizes="(max-width: 768px) 96px, 128px"
-                  />
-                </div>
-              )}
+              <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl p-2 mb-2 flex items-center justify-center h-24 md:h-32 overflow-hidden relative">
+                <SafeImage
+                  src={guardian.image_url || GUARDIAN_PLACEHOLDER}
+                  alt={guardian.display_name}
+                  className="object-contain drop-shadow-2xl transform group-hover:scale-110 transition-transform duration-300"
+                  fallbackSrc={GUARDIAN_PLACEHOLDER}
+                  fill
+                />
+              </div>
               <div className="text-center">
                 <div className="font-bold text-xs md:text-sm text-gray-900 truncate">
                   {guardian.display_name}
@@ -83,17 +84,15 @@ export default function GuardianGallery({ guardians }: GuardianGalleryProps) {
               </button>
 
               <div className="flex items-center gap-6">
-                {selectedGuardian.image_url && (
-                  <div className="flex-shrink-0 bg-white bg-opacity-20 backdrop-blur-sm rounded-2xl p-4 relative w-32 h-32">
-                    <Image
-                      src={selectedGuardian.image_url}
-                      alt={selectedGuardian.display_name}
-                      fill
-                      className="object-contain drop-shadow-2xl"
-                      sizes="128px"
-                    />
-                  </div>
-                )}
+                <div className="flex-shrink-0 bg-white bg-opacity-20 backdrop-blur-sm rounded-2xl p-4 relative w-32 h-32">
+                  <SafeImage
+                    src={selectedGuardian.image_url || GUARDIAN_PLACEHOLDER}
+                    alt={selectedGuardian.display_name}
+                    fill
+                    className="object-contain drop-shadow-2xl"
+                    fallbackSrc={GUARDIAN_PLACEHOLDER}
+                  />
+                </div>
                 <div>
                   <h3 className="text-4xl font-extrabold mb-2 text-white">
                     {selectedGuardian.display_name}

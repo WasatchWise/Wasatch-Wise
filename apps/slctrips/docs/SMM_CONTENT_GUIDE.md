@@ -177,4 +177,16 @@ When planning content:
 
 ---
 
+## Proven Winners (Data-Driven)
+
+*Populate after 2–3 weeks of Awin data.*
+
+| Destination | Conversion Rate | Top Content That Worked |
+|-------------|-----------------|-------------------------|
+| *(add as data comes in)* | | |
+
+**Purpose:** Data informs content, content generates more data. When a destination converts well, create a content series around it. Update this section monthly.
+
+---
+
 *Last updated: February 1, 2026*

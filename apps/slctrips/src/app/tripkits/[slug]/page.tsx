@@ -1,19 +1,28 @@
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { supabaseServer as supabase } from '@/lib/supabaseServer';
 import { TripKit } from '@/types/database.types';
 import { Destination } from '@/lib/types';
 import DestinationCard from '@/components/DestinationCard';
 import SafeImage from '@/components/SafeImage';
+import GuardianIntroduction from '@/components/GuardianIntroduction';
 import ReserveNowButton from '@/components/ReserveNowButton';
 import TripKitPurchaseButton from '@/components/TripKitPurchaseButton';
 import GiftPurchaseButton from '@/components/GiftPurchaseButton';
 import SchemaMarkup, { generateTripKitSchema, generateBreadcrumbSchema } from '@/components/SchemaMarkup';
 import InstructionalDesign from '@/components/InstructionalDesign';
 import { getLearningObjectives } from '@/data/tripkit-learning-objectives';
+import { normalizeImageSrc } from '@/lib/normalizeImageSrc';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+
+function getGuardianImagePath(county: string | null): string {
+  if (!county?.trim()) return '/images/default-guardian.webp';
+  const base = county.replace(/\s*County$/i, '').trim().toUpperCase().replace(/\s+/g, ' ');
+  return `/images/guardians/${base}.png`;
+}
 
 export const revalidate = 60;
 
@@ -98,6 +107,18 @@ export default async function TripKitDetailPage({ params }: { params: { slug: st
     // CRITICAL: Sanitize destinations before passing to components
     const { sanitizeDestinations } = await import('@/lib/sanitizeDestination');
     destinations = sanitizeDestinations((data as Destination[] | null) ?? []);
+  }
+
+  // Sample destination for "full write-up" (first with content; show full value before purchase)
+  const sampleDestination = destinations.length > 0 ? destinations[0] : null;
+  let sampleGuardian: { id: string; display_name: string; county: string; animal_type: string; backstory: string | null; personality: string | null } | null = null;
+  if (sampleDestination?.county) {
+    const { data: g } = await supabase
+      .from('guardians')
+      .select('id, display_name, county, animal_type, backstory, personality')
+      .ilike('county', sampleDestination.county)
+      .maybeSingle();
+    sampleGuardian = g as typeof sampleGuardian;
   }
 
   // Fetch deep dive stories for this TripKit (support both TK-XXX and TKE-XXX formats)
@@ -362,7 +383,7 @@ export default async function TripKitDetailPage({ params }: { params: { slug: st
 
                     <div className="text-center text-sm text-gray-500 space-y-1">
                       <p>✓ {tk.destination_count} destinations</p>
-                      <p>✓ Instant access after purchase</p>
+                      <p>✓ After purchase you&apos;ll get instant access via email with your unique code</p>
                       <p>✓ Lifetime updates included</p>
                       <p>✓ Secure payment via Stripe</p>
                     </div>
@@ -475,23 +496,132 @@ export default async function TripKitDetailPage({ params }: { params: { slug: st
           </section>
         )}
 
-        {/* Destinations Preview Section */}
+        {/* Sample from this TripKit — ONE full destination write-up so visitors see value before purchase */}
+        {sampleDestination && (
+          <section className="mb-12">
+            <div className="rounded-2xl border-2 border-blue-200 bg-blue-50/50 overflow-hidden">
+              <div className="px-6 pt-6 pb-2">
+                <h2 className="text-2xl font-bold text-gray-900 mb-1">Sample from this TripKit</h2>
+                <p className="text-gray-600 text-sm">
+                  This is what every destination in this TripKit looks like. Purchase to unlock all {tk.destination_count} destinations.
+                </p>
+              </div>
+              {/* Hero */}
+              <div className="relative h-[40vh] min-h-[240px] w-full overflow-hidden bg-gray-200">
+                {(() => {
+                  const raw = normalizeImageSrc(sampleDestination.image_url);
+                  const heroSrc = raw?.includes('maps.googleapis.com') ? `/api/image-proxy?url=${encodeURIComponent(raw)}` : raw;
+                  if (!heroSrc) return null;
+                  return (
+                    <>
+                      <Image src={heroSrc} alt={sampleDestination.name} fill className="object-cover" sizes="100vw" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                    </>
+                  );
+                })()}
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <span className="inline-block px-3 py-1 bg-blue-600 text-white text-sm font-semibold rounded-full mb-2">
+                    {sampleDestination.subcategory || 'Destination'}
+                  </span>
+                  <h3 className="text-3xl md:text-4xl font-bold text-white drop-shadow-lg">{sampleDestination.name}</h3>
+                  {((sampleDestination.drive_minutes === 0 || sampleDestination.distance_miles === 0) || (sampleDestination.drive_minutes != null && sampleDestination.drive_minutes > 0) || (sampleDestination.distance_miles != null && sampleDestination.distance_miles > 0)) && (
+                    <p className="text-white/90 mt-1">
+                      {sampleDestination.drive_minutes === 0 || sampleDestination.distance_miles === 0
+                        ? 'At SLC Airport'
+                        : (() => {
+                            const parts: string[] = [];
+                            if (sampleDestination.drive_minutes != null && sampleDestination.drive_minutes > 0) parts.push(`${Math.floor(sampleDestination.drive_minutes / 60)}h ${sampleDestination.drive_minutes % 60}m from SLC`);
+                            if (sampleDestination.distance_miles != null && sampleDestination.distance_miles > 0) parts.push(`${Math.round(sampleDestination.distance_miles)} mi`);
+                            return parts.join(' • ');
+                          })()}
+                    </p>
+                  )}
+                </div>
+              </div>
+              {/* Body: description, Tips from Dan, Guardian */}
+              <div className="p-6 bg-white">
+                {(sampleDestination.description || sampleDestination.ai_summary) && (
+                  <div className="prose prose-gray max-w-none mb-6">
+                    <p className="text-gray-700 leading-relaxed">
+                      {sampleDestination.description || sampleDestination.ai_summary}
+                    </p>
+                  </div>
+                )}
+                {sampleDestination.ai_tips && (() => {
+                  let tips: string[] = [];
+                  try {
+                    if (typeof sampleDestination.ai_tips === 'string') {
+                      const parsed = JSON.parse(sampleDestination.ai_tips);
+                      tips = Array.isArray(parsed) ? parsed : [parsed];
+                    } else if (Array.isArray(sampleDestination.ai_tips)) {
+                      tips = sampleDestination.ai_tips;
+                    } else {
+                      tips = [String(sampleDestination.ai_tips)];
+                    }
+                  } catch {
+                    tips = [String(sampleDestination.ai_tips)];
+                  }
+                  const safeTips = tips.filter((t): t is string => typeof t === 'string' && t.trim().length > 0);
+                  if (safeTips.length === 0) return null;
+                  return (
+                    <div className="mb-6">
+                      <h4 className="text-lg font-bold text-gray-900 mb-2">💡 Tips from Dan</h4>
+                      <ul className="space-y-1">
+                        {safeTips.map((tip, i) => (
+                          <li key={i} className="flex items-start gap-2 text-gray-700">
+                            <span className="text-yellow-600 font-bold mt-0.5">•</span>
+                            <span>{tip}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  );
+                })()}
+                {sampleGuardian && (
+                  <div className="mt-6">
+                    <GuardianIntroduction
+                      guardian={{
+                        display_name: sampleGuardian.display_name,
+                        county: sampleGuardian.county,
+                        animal_type: sampleGuardian.animal_type,
+                        backstory: sampleGuardian.backstory,
+                        personality: sampleGuardian.personality
+                      }}
+                      destination={{
+                        name: sampleDestination.name,
+                        subcategory: sampleDestination.subcategory || '',
+                        description: sampleDestination.description || sampleDestination.ai_summary || null
+                      }}
+                      guardianImagePath={getGuardianImagePath(sampleDestination.county)}
+                    />
+                  </div>
+                )}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* More destinations — preview cards (excluding the sample) */}
         {destinations.length > 0 && (
           <section>
-            <h2 className="text-3xl font-bold mb-2 text-gray-900">Sample Destinations</h2>
+            <h2 className="text-3xl font-bold mb-2 text-gray-900">
+              {sampleDestination ? 'More destinations in this TripKit' : 'Sample Destinations'}
+            </h2>
             <p className="text-gray-600 mb-6">
-              A preview of what's included. Purchase to unlock all {tk.destination_count} destinations.
+              {sampleDestination
+                ? `Purchase to unlock all ${tk.destination_count} destinations with full write-ups, Tips from Dan, and more.`
+                : `A preview of what's included. Purchase to unlock all ${tk.destination_count} destinations.`}
             </p>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-              {destinations.slice(0, 3).map(d => (
+              {(sampleDestination ? destinations.filter(d => d.id !== sampleDestination.id).slice(0, 3) : destinations.slice(0, 3)).map(d => (
                 <DestinationCard key={d.id} d={d} />
               ))}
             </div>
-            {destinations.length > 3 && (
+            {destinations.length > (sampleDestination ? 4 : 3) && (
               <div className="mt-8 text-center">
                 <div className="inline-block bg-gray-100 rounded-lg px-8 py-6">
                   <p className="text-lg font-semibold text-gray-700 mb-2">
-                    + {tk.destination_count - 3} more destinations
+                    + {destinations.length - (sampleDestination ? 4 : 3)} more destinations in this TripKit
                   </p>
                   <p className="text-sm text-gray-500">
                     Purchase this TripKit to unlock the complete collection

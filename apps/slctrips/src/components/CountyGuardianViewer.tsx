@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { TripKit, Destination, Guardian } from '@/types/database.types';
 import { CurriculumFramework } from '@/types/curriculum.types';
@@ -26,6 +26,11 @@ export default function CountyGuardianViewer({
   const [visitedCounties, setVisitedCounties] = useState<Set<string>>(new Set());
   const [expandedCounty, setExpandedCounty] = useState<string | null>(null);
   const [selectedFramework, setSelectedFramework] = useState<CurriculumFramework | null>(null);
+  const [accessLinkUrl, setAccessLinkUrl] = useState('');
+
+  useEffect(() => {
+    setAccessLinkUrl(typeof window !== 'undefined' ? window.location.href : '');
+  }, []);
 
   // Helper function to normalize county names (strip " County" suffix)
   const normalizeCountyName = (county: string): string => {
@@ -168,7 +173,7 @@ export default function CountyGuardianViewer({
             <div className="p-3 bg-blue-50 rounded-lg text-xs text-gray-600">
               <strong className="text-blue-900">Your access link:</strong>
               <div className="mt-1 p-2 bg-white rounded text-xs break-all font-mono border border-blue-200">
-                {typeof window !== 'undefined' ? window.location.href : 'Loading...'}
+                {accessLinkUrl || '\u00A0'}
               </div>
               <p className="mt-2 text-xs text-gray-500">Bookmark and share freely with your class!</p>
             </div>
@@ -259,17 +264,17 @@ export default function CountyGuardianViewer({
               <div className="bg-gradient-to-r from-gray-50 to-blue-50 p-6">
                 <div className="flex items-start gap-6">
                   {/* Guardian Avatar - ENHANCED with transparent image */}
-                  {guardian && guardian.image_url && (
+                  {guardian && (
                     <div className="flex-shrink-0 group relative">
                       <div className="absolute inset-0 bg-gradient-to-br from-blue-400 via-purple-400 to-pink-400 rounded-2xl blur-xl opacity-40 group-hover:opacity-60 transition-opacity duration-300"></div>
                       <div className="relative bg-white rounded-2xl p-4 shadow-2xl transform group-hover:scale-105 transition-transform duration-300">
                         <div className="relative w-32 h-32">
-                          <Image
-                            src={guardian.image_url}
+                          <SafeImage
+                            src={guardian.image_url || '/images/default-guardian.webp'}
                             alt={guardian.display_name}
                             fill
                             className="object-contain drop-shadow-2xl"
-                            sizes="128px"
+                            fallbackSrc="/images/default-guardian.webp"
                           />
                         </div>
                       </div>

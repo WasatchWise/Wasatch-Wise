@@ -22,8 +22,11 @@
     "paths": {
       "@/*": [
         "src/*"
-      ]
+      ],
+      "react": ["./node_modules/@types/react"],
+      "react-dom": ["./node_modules/@types/react-dom"]
     },
+    "typeRoots": ["./node_modules/@types", "../../node_modules/@types"],
     "plugins": [
       {
         "name": "next"

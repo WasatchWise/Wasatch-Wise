@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import Image from 'next/image';
 
 /**
@@ -23,6 +23,18 @@ export default function PhotoCarousel({ photos, destinationName }: PhotoCarousel
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [failedPhotos, setFailedPhotos] = useState<Set<number>>(new Set());
+  const [mainImageLoaded, setMainImageLoaded] = useState(false);
+  const [thumbLoaded, setThumbLoaded] = useState<Record<number, boolean>>({});
+
+  const onMainLoad = useCallback(() => setMainImageLoaded(true), []);
+  const onThumbLoad = useCallback((index: number) => {
+    setThumbLoaded(prev => ({ ...prev, [index]: true }));
+  }, []);
+
+  // Reset main image skeleton when slide changes so the new image shows skeleton until loaded
+  useEffect(() => {
+    setMainImageLoaded(false);
+  }, [currentIndex]);
 
   // Defensive check: ensure photos is a valid array with content - ALWAYS ensure it's an array
   const safePhotos = Array.isArray(photos) ? photos.filter(photo => photo !== null && photo !== undefined) : [];
@@ -107,14 +119,20 @@ export default function PhotoCarousel({ photos, destinationName }: PhotoCarousel
           onKeyDown={handleKeyDown}
           tabIndex={0}
         >
-          <div className="aspect-[16/9] relative overflow-hidden">
+          <div className="aspect-[16/9] relative overflow-hidden bg-gray-200">
+            <span
+              className="absolute inset-0 bg-gray-200 animate-pulse transition-opacity duration-300 z-[0]"
+              style={{ opacity: mainImageLoaded ? 0 : 1 }}
+              aria-hidden
+            />
             {safePhotos[currentIndex] && (
               <Image
                 src={getPhotoUrl(safePhotos[currentIndex])}
                 alt={`${destinationName} - Photo ${currentIndex + 1}`}
                 fill
-                className="object-cover cursor-pointer transition-opacity duration-300"
+                className={`object-cover cursor-pointer transition-opacity duration-300 z-[1] ${mainImageLoaded ? 'opacity-100' : 'opacity-0'}`}
                 onClick={() => setIsFullScreen(true)}
+                onLoad={onMainLoad}
                 onError={() => handlePhotoError(currentIndex)}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
                 loading={currentIndex === 0 ? 'eager' : 'lazy'}
@@ -166,18 +184,24 @@ export default function PhotoCarousel({ photos, destinationName }: PhotoCarousel
                   <button
                     key={index}
                     onClick={() => goToPhoto(index)}
-                    className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all relative ${
+                    className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all relative bg-gray-200 ${
                       index === currentIndex
                         ? 'border-blue-500 ring-2 ring-blue-200'
                         : 'border-gray-300 hover:border-gray-400'
                     }`}
                   >
+                    <span
+                      className="absolute inset-0 bg-gray-200 animate-pulse transition-opacity duration-200"
+                      style={{ opacity: thumbLoaded[index] ? 0 : 1 }}
+                      aria-hidden
+                    />
                     <Image
                       src={getPhotoUrl(photo)}
                       alt={`Thumbnail ${index + 1}`}
                       fill
-                      className="object-cover"
+                      className={`object-cover transition-opacity duration-200 ${thumbLoaded[index] ? 'opacity-100' : 'opacity-0'}`}
                       sizes="80px"
+                      onLoad={() => onThumbLoad(index)}
                       onError={() => handlePhotoError(index)}
                       loading="lazy"
                     />

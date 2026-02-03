@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { supabaseServer as supabase } from '@/lib/supabaseServer';
+import { normalizeImageSrc } from '@/lib/normalizeImageSrc';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import DestinationCard from '@/components/DestinationCard';
@@ -64,10 +65,13 @@ interface Destination {
   ai_story: string | null;
 }
 
-function getGuardianImagePath(county: string | null, codename: string, type: 'card' | 'hero' = 'hero'): string {
-  if (!county) return '/images/default-guardian.webp';
-  // Use the Guardians - Transparent directory with county name
-  return `/images/Guardians - Transparent/${county.toUpperCase()}.png`;
+/** Local guardian images live in /images/guardians/ (e.g. BEAVER.png, BOX ELDER.png). */
+const GUARDIAN_PLACEHOLDER = '/images/default-guardian.webp';
+
+function getGuardianImagePath(county: string | null, _codename: string, _type: 'card' | 'hero' = 'hero'): string {
+  if (!county?.trim()) return GUARDIAN_PLACEHOLDER;
+  const base = county.replace(/\s*County$/i, '').trim().toUpperCase().replace(/\s+/g, ' ');
+  return `/images/guardians/${base}.png`;
 }
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
@@ -200,7 +204,13 @@ export default async function GuardianDetail({ params }: Params) {
   const categories = Array.from(new Set(destinations.map(d => d.category).filter(Boolean)));
   const subcategories = Array.from(new Set(destinations.map(d => d.subcategory).filter(Boolean)));
 
-  const heroImage = getGuardianImagePath(guardian.county, guardian.codename, 'hero');
+  // Hero: use a place image from the county (destination in this county) when available; fallback to guardian illustration
+  const heroDestination = destinations.find(d => d.featured && d.image_url) ?? destinations.find(d => d.image_url);
+  const rawHeroUrl = heroDestination ? normalizeImageSrc(heroDestination.image_url) : null;
+  const heroImageFromPlace = rawHeroUrl?.includes('maps.googleapis.com')
+    ? `/api/image-proxy?url=${encodeURIComponent(rawHeroUrl)}`
+    : rawHeroUrl;
+  const heroImage = heroImageFromPlace || getGuardianImagePath(guardian.county, guardian.codename, 'hero');
 
   return (
     <>
@@ -215,6 +225,7 @@ export default async function GuardianDetail({ params }: Params) {
               alt={guardian.display_name}
               className="absolute inset-0 w-full h-full object-cover object-center"
               loading="eager"
+              fallbackSrc={GUARDIAN_PLACEHOLDER}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent" />
           </div>
@@ -355,7 +366,7 @@ export default async function GuardianDetail({ params }: Params) {
               {/* County Context Banner */}
               <div className="mt-12 bg-gradient-to-r from-indigo-600/50 to-purple-600/50 backdrop-blur-sm border border-white/20 rounded-xl p-8 text-center">
                 <h3 className="text-2xl font-bold text-white mb-3">
-                  Guardian of {guardian.county} County
+                  Guardian of {guardian.county}
                 </h3>
                 <p className="text-purple-100 text-lg">
                   Protector of the land, embodiment of the spirit, keeper of the stories
@@ -484,7 +495,7 @@ export default async function GuardianDetail({ params }: Params) {
           <div className="container mx-auto px-4">
             <div className="mb-12 text-center">
               <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
-                Explore {guardian.county ? `${guardian.county} County` : 'This Mystical Land'}
+                Explore {guardian.county || 'This Mystical Land'}
               </h2>
               <p className="text-xl text-gray-600">
                 Discover {destinations.length} amazing destination{destinations.length !== 1 ? 's' : ''} in this mystical land
@@ -524,7 +535,7 @@ export default async function GuardianDetail({ params }: Params) {
             ) : (
               <div className="text-center py-16 bg-white rounded-xl shadow-md">
                 <p className="text-gray-600 text-lg mb-4">
-                  No destinations found for {guardian.county ? `${guardian.county} County` : 'this region'} yet.
+                  No destinations found for {guardian.county || 'this region'} yet.
                 </p>
                 <p className="text-gray-500">
                   Check back soon as we continue to explore this mystical land!

@@ -30,7 +30,10 @@ export interface AffiliateConfig {
   };
   amazon?: {
     enabled: boolean;
+    /** Official Associate tracking ID (e.g. wasatchwise20-20). Used when no building_id. */
     affiliateTag?: string;
+    /** Building-specific tracking IDs for city_metrics attribution. Create in Associates Central → Tools → Tracking ID Manager. */
+    buildingTags?: Record<string, string>;
   };
   sitpack?: {
     enabled: boolean;
@@ -74,7 +77,14 @@ const AFFILIATE_CONFIG: AffiliateConfig = {
   },
   amazon: {
     enabled: true,
-    affiliateTag: process.env.AMAZON_AFFILIATE_TAG || 'wasatchwise-20',
+    affiliateTag: process.env.AMAZON_AFFILIATE_TAG || 'wasatchwise20-20',
+    buildingTags: {
+      B002: 'wasatchwise20-slc20', // SLC Trips
+      B003: 'wasatchwise20-rck20', // Rock Salt
+      B004: 'wasatchwise20-acd20', // Adult AI Academy
+      B009: 'wasatchwise20-piq20', // Pipeline IQ
+      B011: 'wasatchwise20-fnm20', // Fanon Movies
+    },
   },
   sitpack: {
     enabled: true,
@@ -292,13 +302,24 @@ export function getViatorLink(destinationName: string): string | null {
 }
 
 /**
- * Generate an Amazon affiliate link for gear/products
+ * Building ID type for Amazon attribution (WasatchVille BUILDING_REGISTRY).
+ * Use when generating links from a specific building so revenue can be attributed in city_metrics.
  */
-export function getAmazonLink(searchTerm: string): string | null {
+export type AmazonBuildingId = 'B002' | 'B003' | 'B004' | 'B009' | 'B011';
+
+/**
+ * Generate an Amazon affiliate link for gear/products.
+ * @param searchTerm - Search query for Amazon
+ * @param buildingId - Optional. When set, uses building-specific tracking ID for city_metrics attribution.
+ */
+export function getAmazonLink(searchTerm: string, buildingId?: AmazonBuildingId): string | null {
   const config = AFFILIATE_CONFIG.amazon;
   if (!config || !config.enabled) return null;
 
-  const tag = config.affiliateTag || 'wasatchwise-20';
+  const tag =
+    buildingId && config.buildingTags?.[buildingId]
+      ? config.buildingTags[buildingId]
+      : config.affiliateTag || 'wasatchwise20-20';
   const params = new URLSearchParams({
     k: searchTerm,
     tag: tag,

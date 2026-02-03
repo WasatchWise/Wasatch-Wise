@@ -323,6 +323,54 @@ export const tripkitLearningObjectives: Record<string, LearningObjective[]> = {
       category: 'culture',
     },
   ],
+
+  // ============================================
+  // TK-VAL: ROMANTIC ROAD TRIPS & VALENTINE'S COMPENDIUM
+  // ============================================
+  'TK-VAL': [
+    {
+      id: 'val-geo-1',
+      objective: 'Plan a romantic weekend route from SLC using drive times and seasonal road conditions',
+      bloomsLevel: 'apply',
+      category: 'geography',
+    },
+    {
+      id: 'val-plan-1',
+      objective: 'Match destinations to your vibe: hot springs vs red rock vs dark sky vs mountain town',
+      bloomsLevel: 'analyze',
+      category: 'planning',
+    },
+    {
+      id: 'val-plan-2',
+      objective: 'Combine Presidents\' Day ski + spa or staycation itineraries with road-trip options',
+      bloomsLevel: 'create',
+      category: 'planning',
+    },
+    {
+      id: 'val-local-1',
+      objective: 'Use brunch-to-departure hooks and lodging angles for each spot (from the research)',
+      bloomsLevel: 'apply',
+      category: 'local-knowledge',
+    },
+    {
+      id: 'val-local-2',
+      objective: 'Time visits for best season and avoid crowds (e.g. Mirror Lake winter closure, Salt Flats flood season)',
+      bloomsLevel: 'apply',
+      category: 'local-knowledge',
+    },
+    {
+      id: 'val-safety-1',
+      objective: 'Account for winter roads, mountain passes, and chains on high-elevation routes',
+      bloomsLevel: 'apply',
+      category: 'safety',
+    },
+    {
+      id: 'val-culture-1',
+      objective: 'Navigate Valentine\'s events, staycation spas/restaurants, and singles events (Craft & Crush, Galentine\'s)',
+      bloomsLevel: 'apply',
+      category: 'culture',
+    },
+  ],
 };
 
 /**
