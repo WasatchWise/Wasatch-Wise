@@ -12,17 +12,17 @@ export function generateMetadata(options: SEOOptions): Metadata {
   const { title, description, ogImage, noIndex, canonical } = options;
 
   return {
-    title: `${title} | WasatchWise`,
+    title: `${title} | Ask Before You App`,
     description,
     openGraph: {
-      title: `${title} | WasatchWise`,
+      title: `${title} | Ask Before You App`,
       description,
       images: ogImage ? [{ url: ogImage }] : [],
       type: 'website',
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${title} | WasatchWise`,
+      title: `${title} | Ask Before You App`,
       description,
       images: ogImage ? [ogImage] : [],
     },

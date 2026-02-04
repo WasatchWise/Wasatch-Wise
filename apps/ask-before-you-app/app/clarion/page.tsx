@@ -36,7 +36,7 @@ export default function ClarionBrief() {
             <div className="h-10 w-10 rounded-full bg-zinc-900 flex items-center justify-center text-white text-xs font-bold">JL</div>
             <div>
               <p className="text-sm font-bold text-zinc-900 leading-none">John Lyman</p>
-              <p className="text-xs text-zinc-500 mt-1">Wasatch Wise</p>
+              <p className="text-xs text-zinc-500 mt-1">Ask Before You App</p>
             </div>
           </div>
         </div>

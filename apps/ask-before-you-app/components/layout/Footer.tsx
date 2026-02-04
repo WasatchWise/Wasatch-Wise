@@ -6,9 +6,9 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-white text-xl font-bold mb-4">WasatchWise</h3>
+            <h3 className="text-white text-xl font-bold mb-4">Ask Before You App</h3>
             <p className="text-sm">
-              AI governance and deep training for school districts that actually works.
+              National awareness campaign for student data privacy. Learn, get certified, find your state.
             </p>
           </div>
           <div>
@@ -78,7 +78,7 @@ export function Footer() {
           </div>
         </div>
         <div className="mt-8 pt-8 border-t border-gray-800 text-sm text-center">
-          <p>&copy; {new Date().getFullYear()} WasatchWise LLC. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Ask Before You App / WasatchWise LLC. All rights reserved.</p>
         </div>
       </div>
     </footer>

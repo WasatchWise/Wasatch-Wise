@@ -7,7 +7,7 @@ import { Form, FormField, Input } from '@/components/shared/Form';
 
 // Set page title for accessibility
 if (typeof document !== 'undefined') {
-  document.title = 'AI Readiness Quiz | WasatchWise';
+  document.title = 'AI Readiness Quiz | Ask Before You App';
 }
 
 const QUESTIONS = [

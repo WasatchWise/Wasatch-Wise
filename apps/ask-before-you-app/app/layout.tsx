@@ -4,9 +4,9 @@ import { Analytics } from '@vercel/analytics/react';
 import { WhoAreYouModal } from '@/components/WhoAreYouModal';
 
 export const metadata: Metadata = {
-  title: "WasatchWise | AI Governance for School Districts",
+  title: "Ask Before You App | Student Data Privacy Campaign",
   description:
-    "Stop worrying about AI compliance. Start building trust with parents, protecting student data, and empowering teachers—all in 90 days.",
+    "Before you download that app—ask. National awareness campaign for K-12 student data privacy. Learn, get certified, and find your state's resources.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

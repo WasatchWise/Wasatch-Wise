@@ -7,7 +7,7 @@ import { Form, Input } from '@/components/shared/Form';
 
 // Set page title for accessibility
 if (typeof document !== 'undefined') {
-  document.title = 'WiseBot - AI Governance Assistant | WasatchWise';
+  document.title = 'WiseBot | Ask Before You App';
 }
 
 const EXAMPLE_PROMPTS = [

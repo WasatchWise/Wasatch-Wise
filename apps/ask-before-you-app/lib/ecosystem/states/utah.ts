@@ -140,11 +140,6 @@ export const UTAH_ECOSYSTEM: StateEcosystem = {
       email: 'privacy@schools.utah.gov',
     },
     {
-      name: 'John Lyman',
-      title: 'Student Data Privacy Specialist',
-      email: 'privacy@schools.utah.gov',
-    },
-    {
       name: 'Jeremy Zabriskie',
       title: 'Data Privacy and Security Specialist',
       email: 'privacy@schools.utah.gov',

@@ -17,7 +17,7 @@ export function Header() {
             <div className="relative w-10 h-10 flex-shrink-0">
               <Image
                 src="/wasatchwiselogo.png"
-                alt="WasatchWise Logo"
+                alt="Ask Before You App"
                 width={40}
                 height={40}
                 className="object-contain"
@@ -26,10 +26,10 @@ export function Header() {
             </div>
             <div className="flex flex-col">
               <span className="text-2xl font-bold text-orange-500 group-hover:text-orange-600 transition-colors">
-                WasatchWise
+                Ask Before You App
               </span>
               <span className="text-xs text-gray-600 font-medium tracking-wide">
-                SMART TECH * WISER PEOPLE
+                Where you wonder. For K-12ers
               </span>
             </div>
           </Link>
