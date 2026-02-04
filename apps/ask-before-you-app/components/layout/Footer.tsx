@@ -12,22 +12,32 @@ export function Footer() {
             </p>
           </div>
           <div>
-            <h4 className="text-white font-semibold mb-4">Services</h4>
+            <h4 className="text-white font-semibold mb-4">Campaign</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/#services" className="hover:text-white">
-                  Cognitive Audit
+                <Link href="/learn" className="hover:text-white">
+                  Knowledge hub
                 </Link>
               </li>
               <li>
-                <Link href="/#methodology" className="hover:text-white">
-                  90-Day Protocol
+                <Link href="/certification" className="hover:text-white">
+                  Certification
+                </Link>
+              </li>
+              <li>
+                <Link href="/ecosystem" className="hover:text-white">
+                  State resources
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:text-white">
+                  Contact
                 </Link>
               </li>
             </ul>
           </div>
           <div>
-            <h4 className="text-white font-semibold mb-4">Resources</h4>
+            <h4 className="text-white font-semibold mb-4">Tools & resources</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link href="/tools/ai-readiness-quiz" className="hover:text-white">
@@ -45,16 +55,6 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/adult-ai-academy" className="hover:text-white">
-                  Adult AI Academy
-                </Link>
-              </li>
-              <li>
-                <Link href="/ask-before-you-app" className="hover:text-white">
-                  Ask Before You App
-                </Link>
-              </li>
-              <li>
                 <Link href="/clarion" className="hover:text-white">
                   Clarion Brief
                 </Link>
@@ -62,17 +62,17 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <h4 className="text-white font-semibold mb-4">Company</h4>
+            <h4 className="text-white font-semibold mb-4">Our other properties</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/#case-studies" className="hover:text-white">
-                  Case Studies
-                </Link>
+                <a href="https://www.adultaiacademy.com" target="_blank" rel="noopener noreferrer" className="hover:text-white">
+                  Adult AI Academy
+                </a>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-white">
-                  Contact
-                </Link>
+                <a href="https://wasatchwise.com" target="_blank" rel="noopener noreferrer" className="hover:text-white">
+                  WasatchWise
+                </a>
               </li>
             </ul>
           </div>
@@ -84,4 +84,3 @@ export function Footer() {
     </footer>
   );
 }
-
