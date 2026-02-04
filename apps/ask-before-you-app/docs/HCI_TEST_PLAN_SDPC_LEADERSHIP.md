@@ -14,7 +14,8 @@
 
 - **Before a demo or interview:** Run **Section 2 (Smoke)** and **Section 3 (Critical Journeys)** so you know the site is up and key flows work.
 - **After a deployment:** Run **Section 2** and **Section 4 (Page-by-Page)**; optionally run **Section 6 (Automated Tests)**.
-- **For SDPC / stakeholders:** Share this document as the standard checklist; they can execute the manual steps or watch you run the automated suite.
+- **Full HCI run (test everything):** Use **[HCI_FULL_RUN.md](./HCI_FULL_RUN.md)** — single checklist for smoke, nav, footer, every persona journey, every page, accessibility, cross-device, and automation.
+- **For SDPC / stakeholders:** Share this document or the full run as the standard checklist.
 
 **Pass criteria:** Smoke tests and Critical Journeys must pass. Page-by-Page and Accessibility items should pass for a “production-ready” sign-off.
 
@@ -245,7 +246,6 @@ You can use this when sharing with SDPC or internal stakeholders:
 | State resources | https://www.askbeforeyouapp.com/ecosystem |
 | Utah (example state) | https://www.askbeforeyouapp.com/ecosystem/utah |
 | Contact | https://www.askbeforeyouapp.com/contact |
-| Pricing | https://www.askbeforeyouapp.com/pricing |
 | Registry | https://www.askbeforeyouapp.com/registry |
 | AI Readiness Quiz | https://www.askbeforeyouapp.com/tools/ai-readiness-quiz |
 | WiseBot | https://www.askbeforeyouapp.com/tools/wisebot |
