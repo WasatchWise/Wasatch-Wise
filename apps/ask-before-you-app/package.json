@@ -41,7 +41,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "iceberg-js": "^0.8.1",
-    "lucide-react": "^0.562.0",
+    "lucide-react": "0.468.0",
     "next": "^15.1.11",
     "nuqs": "^2.8.6",
     "peberminta": "^0.10.0",
