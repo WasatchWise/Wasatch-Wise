@@ -3,15 +3,17 @@
 import { useParams } from 'next/navigation'
 import Link from 'next/link'
 import { Header } from '@/components/layout/Header'
-import { getStateEcosystem, ALL_STATES } from '@/lib/ecosystem'
+import { getStateEcosystem, getStateFoundation, ALL_STATES } from '@/lib/ecosystem'
 
 export default function StateEcosystemPage() {
   const params = useParams()
   const stateCode = (params.stateCode as string).toUpperCase()
   const ecosystem = getStateEcosystem(stateCode)
+  const foundation = getStateFoundation(stateCode)
   const stateInfo = ALL_STATES.find((s) => s.code === stateCode)
 
-  if (!ecosystem) {
+  // No full guide and no foundation (invalid code)
+  if (!ecosystem && !foundation) {
     return (
       <>
         <Header />
@@ -21,7 +23,7 @@ export default function StateEcosystemPage() {
             <h1 className="text-2xl font-bold text-white mb-2">Coming Soon</h1>
             <p className="text-slate-400 mb-6">
               The {stateInfo?.name || stateCode} ecosystem guide is currently being developed.
-              Check back soon or explore Utah's model ecosystem.
+              Check back soon or explore Utah&apos;s model ecosystem.
             </p>
             <div className="flex gap-4 justify-center">
               <Link href="/ecosystem" className="px-4 py-2 bg-slate-700 text-white rounded-lg hover:bg-slate-600">
@@ -32,6 +34,122 @@ export default function StateEcosystemPage() {
               </Link>
             </div>
           </div>
+        </div>
+      </>
+    )
+  }
+
+  // Foundation overview only (no full guide yet)
+  if (!ecosystem && foundation) {
+    return (
+      <>
+        <Header />
+        <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
+          <section className="py-16 px-4 border-b border-slate-800">
+            <div className="max-w-6xl mx-auto">
+              <div className="flex items-center gap-2 text-slate-400 text-sm mb-4">
+                <Link href="/ecosystem" className="hover:text-white">Ecosystems</Link>
+                <span>/</span>
+                <span className="text-white">{foundation.name}</span>
+                <span className="px-2 py-0.5 bg-amber-500/20 text-amber-400 rounded text-xs font-medium">Overview</span>
+              </div>
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                <div>
+                  <h1 className="text-4xl font-bold text-white mb-2">{foundation.name}</h1>
+                  {foundation.agencyName && (
+                    <p className="text-slate-400">{foundation.agencyName}</p>
+                  )}
+                </div>
+                <div className="flex flex-wrap gap-3">
+                  {foundation.sdpcMember && (
+                    <span className="px-4 py-2 bg-[#005696]/20 text-[#00A3E0] rounded-full text-sm font-medium">
+                      SDPC Member
+                    </span>
+                  )}
+                </div>
+              </div>
+              <div className="mt-8 flex flex-wrap gap-4 text-sm">
+                {foundation.contactEmail && (
+                  <a href={`mailto:${foundation.contactEmail}`} className="flex items-center gap-2 text-slate-300 hover:text-white">
+                    <span>📧</span> {foundation.contactEmail}
+                  </a>
+                )}
+                {foundation.contactPhone && (
+                  <a href={`tel:${foundation.contactPhone}`} className="flex items-center gap-2 text-slate-300 hover:text-white">
+                    <span>📞</span> {foundation.contactPhone}
+                  </a>
+                )}
+                {foundation.website && (
+                  <a href={foundation.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-[#00A3E0] hover:underline">
+                    <span>🌐</span> Official website
+                  </a>
+                )}
+              </div>
+              <p className="mt-6 text-slate-500 text-sm">
+                This is a summary from our state privacy &amp; AI governance profiles. A full guide (laws, roles, workflows, resources) is in development. See Utah for a complete example.
+              </p>
+            </div>
+          </section>
+
+          <div className="max-w-6xl mx-auto px-4 py-12 space-y-12">
+            {foundation.federalLawsNote && (
+              <section>
+                <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">⚖️ Federal laws</h2>
+                <p className="text-slate-300">{foundation.federalLawsNote}</p>
+              </section>
+            )}
+            {foundation.stateLaws.length > 0 && (
+              <section>
+                <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">📜 State laws</h2>
+                <div className="space-y-4">
+                  {foundation.stateLaws.map((law) => (
+                    <div key={law.code} className="bg-slate-800/50 rounded-xl p-4 border border-slate-700 border-l-4 border-l-green-500">
+                      <h3 className="font-semibold text-white">{law.name}</h3>
+                      <p className="text-slate-400 text-sm">{law.code}</p>
+                      {law.description && <p className="text-slate-300 text-sm mt-1">{law.description}</p>}
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+            {foundation.requiredRolesSummary && (
+              <section>
+                <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">👥 Required roles</h2>
+                <p className="text-slate-300">{foundation.requiredRolesSummary}</p>
+              </section>
+            )}
+            {foundation.complianceSummary && (
+              <section>
+                <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">✅ Compliance</h2>
+                <p className="text-slate-300">{foundation.complianceSummary}</p>
+              </section>
+            )}
+            {foundation.dpaAvailable !== null && (
+              <section>
+                <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">📄 DPA</h2>
+                <p className="text-slate-300">{foundation.dpaAvailable ? 'DPA template available (e.g. NDPA or state-specific).' : 'Check with your state education agency for DPA requirements.'}</p>
+              </section>
+            )}
+            {foundation.aiGovernanceNotes && (
+              <section>
+                <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">🤖 AI governance</h2>
+                <p className="text-slate-300">{foundation.aiGovernanceNotes}</p>
+              </section>
+            )}
+          </div>
+
+          <footer className="py-8 px-4 border-t border-slate-800">
+            <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+              <p className="text-slate-500 text-sm">
+                Source: Ask Before You App state privacy &amp; AI governance profiles. Verify with your state education agency.
+              </p>
+              <div className="flex gap-4">
+                <Link href="/ecosystem" className="text-slate-400 hover:text-white text-sm">All States</Link>
+                <Link href="/ecosystem/ut" className="text-[#00A3E0] hover:underline text-sm">View full guide (Utah)</Link>
+                <Link href="/certification" className="text-[#00A3E0] hover:underline text-sm">Certification</Link>
+              </div>
+            </div>
+          </footer>
         </div>
       </>
     )
