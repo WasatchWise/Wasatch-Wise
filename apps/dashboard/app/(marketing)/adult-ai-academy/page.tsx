@@ -215,7 +215,7 @@ export default function AdultAIAcademyPage() {
             </Button>
           </div>
           <p className="mt-4 text-sm text-gray-500">
-            K-12 or higher ed? See <Link href="/ask-before-you-app" className="text-orange-500 hover:text-orange-600 underline">Ask Before You App</Link>. Need compliance or consulting? <Link href="/" className="text-orange-500 hover:text-orange-600 underline">WasatchWise</Link>.
+            K-12 or higher ed? See <Link href="https://www.askbeforeyouapp.com" target="_blank" rel="noopener noreferrer" className="text-orange-500 hover:text-orange-600 underline">Ask Before You App</Link>. Need compliance or consulting? <Link href="/" className="text-orange-500 hover:text-orange-600 underline">WasatchWise</Link>.
           </p>
         </section>
       </div>

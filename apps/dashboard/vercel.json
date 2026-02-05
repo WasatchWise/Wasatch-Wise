@@ -1,4 +1,26 @@
 {
   "installCommand": "cd ../.. && pnpm install --frozen-lockfile",
-  "buildCommand": "cd ../.. && pnpm run build --filter=dashboard"
+  "buildCommand": "cd ../.. && pnpm run build --filter=dashboard",
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/adult-ai-academy",
+      "has": [{ "type": "host", "value": "adultaiacademy.com" }]
+    },
+    {
+      "source": "/",
+      "destination": "/adult-ai-academy",
+      "has": [{ "type": "host", "value": "www.adultaiacademy.com" }]
+    },
+    {
+      "source": "/:path+",
+      "destination": "/adult-ai-academy/:path",
+      "has": [{ "type": "host", "value": "adultaiacademy.com" }]
+    },
+    {
+      "source": "/:path+",
+      "destination": "/adult-ai-academy/:path",
+      "has": [{ "type": "host", "value": "www.adultaiacademy.com" }]
+    }
+  ]
 }

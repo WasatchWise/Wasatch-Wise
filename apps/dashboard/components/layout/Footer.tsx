@@ -45,12 +45,12 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/adult-ai-academy" className="hover:text-white">
+                <Link href="https://www.adultaiacademy.com" className="hover:text-white" target="_blank" rel="noopener noreferrer">
                   Adult AI Academy
                 </Link>
               </li>
               <li>
-                <Link href="/ask-before-you-app" className="hover:text-white">
+                <Link href="https://www.askbeforeyouapp.com" className="hover:text-white" target="_blank" rel="noopener noreferrer">
                   Ask Before You App
                 </Link>
               </li>
