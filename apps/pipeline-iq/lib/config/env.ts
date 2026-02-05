@@ -95,9 +95,12 @@ export const featureFlags = {
 }
 
 /**
- * Validate environment on module load in production
+ * Validate environment on module load in production (runtime only).
+ * Skip during Next.js build (phase-production-build) so Vercel build can complete;
+ * env vars are available at runtime. See MONOREPO_STATUS_AND_SEND_OUT.md §5.
  */
-if (process.env.NODE_ENV === 'production') {
+const isBuildPhase = process.env.NEXT_PHASE === 'phase-production-build'
+if (process.env.NODE_ENV === 'production' && !isBuildPhase) {
   try {
     getEnv()
     console.log('✅ Environment validation passed')
