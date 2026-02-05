@@ -1,7 +1,7 @@
 {
   "framework": "nextjs",
-  "installCommand": "npm install",
-  "buildCommand": "npm run build",
+  "installCommand": "cd ../.. && pnpm install --frozen-lockfile",
+  "buildCommand": "cd ../.. && pnpm run build --filter=grooveleads-pro",
   "crons": [
     {
       "path": "/api/cron/scrape",
