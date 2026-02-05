@@ -1,3 +1,4 @@
 {
-  "installCommand": "pnpm install --frozen-lockfile"
+  "installCommand": "pnpm install --frozen-lockfile",
+  "buildCommand": "pnpm --filter dashboard run build"
 }
