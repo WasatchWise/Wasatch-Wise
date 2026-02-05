@@ -25,14 +25,17 @@ function verifySendGridSignature(payload: string, signature: string, timestamp: 
     }
 }
 
-const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+function getSupabase() {
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+    const key = process.env.SUPABASE_SERVICE_ROLE_KEY
+    if (!url || !key) throw new Error('supabaseKey is required.')
+    return createClient(url, key)
+}
 
 export async function POST(req: Request) {
     console.log('🔔 SendGrid webhook endpoint hit')
-    
+    const supabase = getSupabase()
+
     try {
         const signature = req.headers.get('x-twilio-email-event-webhook-signature') || ''
         const timestamp = req.headers.get('x-twilio-email-event-webhook-timestamp') || ''

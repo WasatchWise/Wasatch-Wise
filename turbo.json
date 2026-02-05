@@ -9,6 +9,13 @@
                 ".next/**",
                 "!.next/cache/**",
                 "dist/**"
+            ],
+            "env": [
+                "NEXT_PUBLIC_SUPABASE_URL",
+                "NEXT_PUBLIC_SUPABASE_ANON_KEY",
+                "SUPABASE_SERVICE_ROLE_KEY",
+                "ORGANIZATION_ID",
+                "NODE_ENV"
             ]
         },
         "lint": {},
