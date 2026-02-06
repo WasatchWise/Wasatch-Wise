@@ -82,7 +82,8 @@ export default function Header() {
               </Link>
             )}
             <Link className="bg-gradient-to-r from-yellow-400 to-orange-500 text-gray-900 px-2 md:px-3 lg:px-4 py-2 rounded-lg font-semibold hover:from-yellow-300 hover:to-orange-400 transition text-xs md:text-sm lg:text-base min-h-[44px] flex items-center whitespace-nowrap flex-shrink-0" href="/welcome-wagon">
-              <span className="hidden lg:inline">New to </span>Utah?
+              <span className="hidden lg:inline">New to Utah?</span>
+              <span className="lg:hidden">Utah?</span>
             </Link>
           </nav>
 

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { supabase } from '@/lib/supabaseClient';
+import { normalizeImageSrc } from '@/lib/normalizeImageSrc';
 
 /** Display order for the homepage carousel: thematic (spooky) first, then ski, movies, seasonal, free. */
 const FEATURED_TRIPKIT_CODES = [
@@ -106,9 +107,11 @@ export default function FeaturedTripKitsCarousel() {
                 className="group flex-shrink-0 w-[280px] snap-center rounded-xl bg-gray-800 border border-gray-700 overflow-hidden hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/10 transition-all"
               >
                 <div className="aspect-video w-full overflow-hidden bg-gray-700 relative">
-                  {tk.cover_image_url ? (
+                  {(() => {
+                    const imageSrc = normalizeImageSrc(tk.cover_image_url);
+                    return imageSrc ? (
                     <Image
-                      src={tk.cover_image_url}
+                      src={imageSrc}
                       alt={tk.name}
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-300"
@@ -118,7 +121,8 @@ export default function FeaturedTripKitsCarousel() {
                     <div className="absolute inset-0 flex items-center justify-center text-gray-500 text-4xl">
                       🗺️
                     </div>
-                  )}
+                  );
+                  })()}
                 </div>
                 <div className="p-4">
                   <div className="flex items-center justify-between gap-2 mb-1">

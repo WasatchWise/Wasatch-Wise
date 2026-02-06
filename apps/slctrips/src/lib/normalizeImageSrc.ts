@@ -13,7 +13,14 @@ export function normalizeImageSrc(input?: string | null): string | null {
   const raw = String(input).trim();
   if (!raw) return null;
 
-  // Already acceptable
+  // Same-origin absolute URL: use pathname so Next.js Image (same-origin) works
+  if (raw.startsWith('https://www.slctrips.com/') || raw.startsWith('https://slctrips.com/')) {
+    try {
+      return new URL(raw).pathname;
+    } catch {
+      return raw;
+    }
+  }
   if (raw.startsWith('http://') || raw.startsWith('https://')) return raw;
   if (raw.startsWith('/')) return raw;
 
