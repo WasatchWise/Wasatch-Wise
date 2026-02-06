@@ -17,6 +17,7 @@ import {
   ExternalLink,
 } from 'lucide-react';
 import { ALL_STATES, SDPC_MEMBER_STATES, hasEcosystemData } from '@/lib/ecosystem';
+import { EXTERNAL_RESOURCES } from '@/lib/ecosystem/partners';
 import { setStoredPersona } from '@/lib/persona';
 
 const PERSONAS = [
@@ -86,6 +87,21 @@ export default function LearnPage() {
                   {label}
                 </button>
               ))}
+            </div>
+            <p className="text-sm text-gray-500 mt-4 mb-1">Also on this page</p>
+            <div className="flex flex-wrap justify-center gap-3">
+              <button
+                onClick={() => scrollTo('#certification')}
+                className="px-3 py-1.5 rounded-full bg-white/80 border border-gray-200 text-gray-600 text-sm hover:bg-orange-50 hover:border-orange-200 transition-colors"
+              >
+                Certification
+              </button>
+              <button
+                onClick={() => scrollTo('#external-resources')}
+                className="px-3 py-1.5 rounded-full bg-white/80 border border-gray-200 text-gray-600 text-sm hover:bg-orange-50 hover:border-orange-200 transition-colors"
+              >
+                External resources
+              </button>
             </div>
           </div>
         </section>
@@ -252,6 +268,39 @@ export default function LearnPage() {
                   Start free certification
                 </Button>
               </div>
+            </div>
+          </section>
+
+          {/* External Resources */}
+          <section id="external-resources" className="scroll-mt-24">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+              <ExternalLink className="w-6 h-6 text-orange-500" />
+              External Resources
+            </h2>
+            <p className="text-gray-600 text-sm mb-6">
+              We point you to trusted partners and tools so you can verify at the source.
+            </p>
+            <div className="space-y-4">
+              {EXTERNAL_RESOURCES.map((resource) => (
+                <div key={resource.name} className="bg-white rounded-xl border border-gray-200 p-4 hover:border-orange-200 transition-colors">
+                  <a
+                    href={resource.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block group"
+                  >
+                    <h3 className="font-semibold text-gray-900 group-hover:text-orange-600 transition-colors">
+                      {resource.name}
+                    </h3>
+                    <p className="text-sm text-gray-500 mt-0.5">{resource.org}</p>
+                    <p className="text-sm text-gray-600 mt-2">{resource.description}</p>
+                    <span className="inline-flex items-center gap-1 text-orange-600 text-sm font-medium mt-2 group-hover:underline">
+                      Visit resource
+                      <ExternalLink className="w-4 h-4" />
+                    </span>
+                  </a>
+                </div>
+              ))}
             </div>
           </section>
         </div>

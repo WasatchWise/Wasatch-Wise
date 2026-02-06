@@ -4,6 +4,7 @@ import { useParams } from 'next/navigation'
 import Link from 'next/link'
 import { Header } from '@/components/layout/Header'
 import { getStateEcosystem, getStateFoundation, ALL_STATES } from '@/lib/ecosystem'
+import { getTecSupportForState, TEC_SDPA_URL } from '@/lib/ecosystem/partners'
 
 export default function StateEcosystemPage() {
   const params = useParams()
@@ -134,6 +135,12 @@ export default function StateEcosystemPage() {
               <section>
                 <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">🤖 AI governance</h2>
                 <p className="text-slate-300">{foundation.aiGovernanceNotes}</p>
+              </section>
+            )}
+            {getTecSupportForState(stateCode) && (
+              <section>
+                <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">🛠️ Implementation support</h2>
+                <TecSupportNote stateCode={stateCode} />
               </section>
             )}
           </div>
@@ -462,6 +469,15 @@ export default function StateEcosystemPage() {
               </div>
             </div>
           </section>
+
+          {getTecSupportForState(stateCode) && (
+            <section id="implementation-support" className="mb-16">
+              <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                <span className="text-3xl">🛠️</span> Implementation Support
+              </h2>
+              <TecSupportNote stateCode={stateCode} />
+            </section>
+          )}
         </div>
 
         {/* Footer */}
@@ -482,6 +498,31 @@ export default function StateEcosystemPage() {
         </footer>
       </div>
     </>
+  )
+}
+
+// TEC Implementation Support Note
+function TecSupportNote({ stateCode }: { stateCode: string }) {
+  const tec = getTecSupportForState(stateCode)
+  if (!tec) return null
+  if (tec.type === 'direct') {
+    return (
+      <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700 border-l-4 border-l-[#00A3E0]">
+        <p className="text-slate-300">
+          The <a href={TEC_SDPA_URL} target="_blank" rel="noopener noreferrer" className="text-[#00A3E0] hover:underline">TEC Student Data Privacy Alliance</a> provides DPA procurement services for {stateCode} districts. Contact TEC to learn about their offerings.
+        </p>
+      </div>
+    )
+  }
+  return (
+    <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700 border-l-4 border-l-[#00A3E0]">
+      <p className="text-slate-300">
+        {tec.partner} has partnered with the <a href={TEC_SDPA_URL} target="_blank" rel="noopener noreferrer" className="text-[#00A3E0] hover:underline">TEC Student Data Privacy Alliance</a> to provide DPA procurement services. Contact your {tec.partner} representative.
+        {tec.url && (
+          <> <a href={tec.url} target="_blank" rel="noopener noreferrer" className="text-[#00A3E0] hover:underline">Learn more →</a></>
+        )}
+      </p>
+    </div>
   )
 }
 
