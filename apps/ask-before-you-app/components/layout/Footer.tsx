@@ -50,6 +50,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/utah-agreements" className="hover:text-white">
+                  Utah Vendor Agreements
+                </Link>
+              </li>
+              <li>
                 <Link href="/tools/wisebot" className="hover:text-white">
                   WiseBot
                 </Link>

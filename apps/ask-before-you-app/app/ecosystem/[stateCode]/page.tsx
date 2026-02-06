@@ -215,6 +215,27 @@ export default function StateEcosystemPage() {
                 </a>
               )}
             </div>
+
+            {/* State Vendor Registry CTA — Utah */}
+            {stateCode === 'UT' && (
+              <Link
+                href="/utah-agreements"
+                className="mt-8 flex items-center gap-4 p-5 rounded-xl bg-[#005696]/20 border border-[#005696]/40 hover:bg-[#005696]/30 transition-colors group"
+              >
+                <span className="text-3xl">📋</span>
+                <div className="flex-1">
+                  <h3 className="font-semibold text-white group-hover:text-[#00A3E0] transition-colors">
+                    Check your state&apos;s current vendor registry listing
+                  </h3>
+                  <p className="text-slate-400 text-sm mt-0.5">
+                    See which agreements are live in Utah—search 1,200+ vendor and product DPAs by company, product, or district.
+                  </p>
+                </div>
+                <span className="text-[#00A3E0] font-medium text-sm group-hover:underline">
+                  Search agreements →
+                </span>
+              </Link>
+            )}
           </div>
         </section>
 
