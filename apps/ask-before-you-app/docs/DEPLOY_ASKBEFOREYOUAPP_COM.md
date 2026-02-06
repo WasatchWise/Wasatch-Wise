@@ -4,7 +4,13 @@
 
 ---
 
-## 0. Fix the build (lucide-react)
+## 0. Fix the build
+
+### 0a. Next.js version detection (monorepo)
+
+If you see **"No Next.js version detected"** during Vercel build, ensure `vercel.json` includes `"framework": "nextjs"` so Vercel skips auto-detection. The app's `package.json` has `next` in dependencies; the framework hint is required for monorepo Root Directory setups.
+
+### 0b. Lucide-react
 
 Recent Vercel builds were failing with:
 
