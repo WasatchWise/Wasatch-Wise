@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Button } from '@/components/shared/Button';
 import { OpenWhoModalButton } from '@/components/OpenWhoModalButton';
-import { Shield, MapPin, Smartphone, Users, Megaphone, BookOpen, GraduationCap } from 'lucide-react';
+import { Shield, MapPin, Smartphone, Users, Megaphone, BookOpen, GraduationCap, MessageCircle } from 'lucide-react';
 
 export default function AskBeforeYouAppPage() {
   return (
@@ -14,6 +14,10 @@ export default function AskBeforeYouAppPage() {
           </Link>
           <div className="flex items-center gap-4 sm:gap-6 text-sm font-medium text-gray-600">
             <OpenWhoModalButton />
+            <Link href="/tools/wisebot" className="inline-flex items-center gap-1.5 text-orange-600 font-semibold hover:text-orange-700">
+              <MessageCircle className="w-4 h-4" />
+              Ask WiseBot
+            </Link>
             <Link href="/learn" className="hover:text-orange-500">
               Knowledge hub
             </Link>
@@ -42,6 +46,22 @@ export default function AskBeforeYouAppPage() {
             One simple habit that protects privacy everywhere: at home, at school, at work.
           </p>
         </header>
+
+        {/* Primary CTA — Ask WiseBot */}
+        <section className="mb-12 max-w-2xl mx-auto">
+          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl p-8 sm:p-10 text-center shadow-xl">
+            <MessageCircle className="w-14 h-14 text-white/90 mx-auto mb-4" />
+            <h2 className="text-xl sm:text-2xl font-bold text-white mb-2">
+              Have a question? Ask WiseBot
+            </h2>
+            <p className="text-orange-50 text-sm sm:text-base mb-6 max-w-md mx-auto">
+              Our AI assistant answers questions about student data privacy, FERPA, AI in schools, and more. Get factual, cited answers in plain language.
+            </p>
+            <Button href="/tools/wisebot" variant="secondary" size="lg" className="bg-white text-orange-600 hover:bg-orange-50 border-0">
+              Ask WiseBot now
+            </Button>
+          </div>
+        </section>
 
         {/* Risk-averse: you're in the right place */}
         <section className="mb-12 max-w-3xl mx-auto">
@@ -106,7 +126,7 @@ export default function AskBeforeYouAppPage() {
           </div>
         </section>
 
-        {/* What You Get — The Hub */}
+        {/* What You Get — Tools & Hub */}
         <section id="services" className="bg-white rounded-2xl shadow-sm border border-orange-100 p-6 sm:p-8 md:p-10 mb-12 scroll-mt-20">
           <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2 text-center">
             One place to learn and take action
@@ -114,7 +134,16 @@ export default function AskBeforeYouAppPage() {
           <p className="text-gray-600 text-center mb-8 max-w-2xl mx-auto">
             Understand different apps, state laws, and procedures. See how your state works—and how you can be a better advocate and steward.
           </p>
-          <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+            <Link href="/tools/wisebot" className="text-center group block p-4 rounded-xl hover:bg-orange-50 transition-colors -m-4 sm:m-0">
+              <div className="mx-auto mb-4 w-16 h-16 rounded-full bg-orange-100 group-hover:bg-orange-200 flex items-center justify-center transition-colors">
+                <MessageCircle className="w-8 h-8 text-orange-500" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Ask WiseBot</h3>
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                AI assistant for privacy & AI governance. Get instant, cited answers.
+              </p>
+            </Link>
             <div className="text-center">
               <div className="mx-auto mb-4 w-16 h-16 rounded-full bg-orange-100 flex items-center justify-center">
                 <Smartphone className="w-8 h-8 text-orange-500" />
@@ -158,17 +187,20 @@ export default function AskBeforeYouAppPage() {
           </div>
         </section>
 
-        {/* Primary CTA — Go to the hub */}
+        {/* Primary CTAs */}
         <section className="text-center">
           <p className="text-base sm:text-lg text-gray-700 mb-6 leading-relaxed">
-            Explore apps, state laws, procedures, and advocacy—all in one place.
+            Start with WiseBot, explore the hub, or get certified.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button href="/learn" variant="primary" size="lg">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center flex-wrap">
+            <Button href="/tools/wisebot" variant="primary" size="lg">
+              Ask WiseBot
+            </Button>
+            <Button href="/learn" variant="outline" size="lg">
               Explore the knowledge hub
             </Button>
             <Button href="/certification" variant="outline" size="lg">
-              For educators: free certification
+              Free certification for educators
             </Button>
           </div>
           <p className="mt-6 text-sm text-gray-500">

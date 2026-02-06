@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import { Header } from '@/components/layout/Header';
 import { Button } from '@/components/shared/Button';
 import {
@@ -16,17 +16,24 @@ import {
   ChevronRight,
   ExternalLink,
 } from 'lucide-react';
-import { ALL_STATES, SDPC_MEMBER_STATES, hasEcosystemData } from '@/lib/ecosystem';
+import { ALL_STATES, hasEcosystemData } from '@/lib/ecosystem';
 import { EXTERNAL_RESOURCES } from '@/lib/ecosystem/partners';
 import { setStoredPersona } from '@/lib/persona';
+import {
+  getAppsContent,
+  getStateLawsContent,
+  getAdvocateContent,
+  getRolePersonaId,
+  type PersonaId,
+} from '@/lib/learn/role-content';
 
-const PERSONAS = [
+const PERSONAS: { id: PersonaId; label: string; icon: typeof Users; hash: string }[] = [
   { id: 'parent', label: "I'm a parent", icon: Users, hash: '#apps' },
   { id: 'educator', label: "I'm an educator", icon: BookOpen, hash: '#apps' },
   { id: 'administrator', label: "I'm an administrator", icon: Shield, hash: '#state-laws' },
   { id: 'student', label: "I'm a student", icon: GraduationCap, hash: '#apps' },
-  { id: 'everyone', label: "I'm just learning", icon: Smartphone, hash: '#apps' },
-] as const;
+  { id: 'just_learning', label: "I'm just learning", icon: Smartphone, hash: '#apps' },
+];
 
 const WHO_LABELS: Record<string, string> = {
   parent: 'parent',
@@ -37,19 +44,42 @@ const WHO_LABELS: Record<string, string> = {
 };
 
 export default function LearnPage() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const who = searchParams.get('who');
-  const whoLabel = who && WHO_LABELS[who] ? WHO_LABELS[who] : null;
-  // All states have overview; full guide = Utah only
+  const persona: PersonaId = getRolePersonaId(who) ?? 'just_learning';
+  const whoLabel = WHO_LABELS[persona] ?? null;
+
+  const appsContent = getAppsContent(persona);
+  const stateLawsContent = getStateLawsContent(persona);
+  const advocateContent = getAdvocateContent(persona);
 
   // Persist persona for the session so Certification / Ecosystem can use it
   useEffect(() => {
-    if (who && WHO_LABELS[who]) setStoredPersona(who);
+    if (persona) setStoredPersona(persona);
+  }, [persona]);
+
+  // Scroll to hash on load (e.g. from WhoAreYou modal: /learn?who=parent#apps)
+  useEffect(() => {
+    const hash = typeof window !== 'undefined' ? window.location.hash : '';
+    if (hash) {
+      const timer = setTimeout(() => scrollTo(hash || '#apps'), 300);
+      return () => clearTimeout(timer);
+    }
   }, [who]);
 
   const scrollTo = (hash: string) => {
     const el = document.querySelector(hash);
     el?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const switchPersona = (id: PersonaId, hash: string) => {
+    const targetHash = hash || '#apps';
+    router.push(`/learn?who=${id}${targetHash}`);
+    // Scroll after navigation; requestAnimationFrame ensures DOM has updated
+    requestAnimationFrame(() => {
+      setTimeout(() => scrollTo(targetHash), 150);
+    });
   };
 
   return (
@@ -74,15 +104,24 @@ export default function LearnPage() {
             <p className="text-lg text-gray-700 mb-4">
               Facts, procedures, and sources—so you can verify, not just trust. Understand apps, state laws, and how to be an advocate.
             </p>
-            <p className="text-sm text-gray-500 mb-8">
+            <p className="text-sm text-gray-500 mb-4">
               Pick your path below. Everything here is meant to be useful and checkable.
+            </p>
+            <p className="text-sm mb-8">
+              <Link href="/tools/wisebot" className="text-orange-600 font-medium hover:text-orange-700 underline">
+                Have a quick question? Ask WiseBot
+              </Link>
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               {PERSONAS.map(({ id, label, hash }) => (
                 <button
                   key={id}
-                  onClick={() => scrollTo(hash)}
-                  className="px-4 py-2 rounded-full bg-white border border-orange-200 text-gray-700 text-sm font-medium hover:bg-orange-50 hover:border-orange-300 transition-colors"
+                  onClick={() => switchPersona(id, hash)}
+                  className={`px-4 py-2 rounded-full border text-sm font-medium transition-colors ${
+                    persona === id
+                      ? 'bg-orange-500 text-white border-orange-500'
+                      : 'bg-white border-orange-200 text-gray-700 hover:bg-orange-50 hover:border-orange-300'
+                  }`}
                 >
                   {label}
                 </button>
@@ -107,74 +146,64 @@ export default function LearnPage() {
         </section>
 
         <div className="max-w-4xl mx-auto px-4 py-12 space-y-16">
-          {/* Understand apps */}
+          {/* Understand apps — role-specific */}
           <section id="apps" className="scroll-mt-24">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 rounded-xl bg-orange-100 flex items-center justify-center">
                 <Smartphone className="w-6 h-6 text-orange-600" />
               </div>
               <div>
-                <h2 className="text-2xl font-bold text-gray-900">Understand apps</h2>
-                <p className="text-gray-600 text-sm">What to ask before you (or your kids) use an app</p>
+                <h2 className="text-2xl font-bold text-gray-900">{appsContent.heading}</h2>
+                <p className="text-gray-600 text-sm">{appsContent.subheading}</p>
               </div>
             </div>
             <div className="bg-white rounded-xl border border-gray-200 p-6 sm:p-8">
-              {whoLabel && (
-                <p className="text-orange-600 text-sm font-medium mb-3">{who === 'just_learning' ? 'For you: ' : `For ${whoLabel}s: `}what to ask and where to check.</p>
-              )}
-              <p className="text-gray-600 text-sm mb-6">
-                It&apos;s reasonable to want to verify before you (or your kids) use an app. Here&apos;s what actually matters and where to check.
-              </p>
+              <p className="text-gray-600 text-sm mb-6">{appsContent.intro}</p>
               <ul className="space-y-4 text-gray-700">
-                <li className="flex items-start gap-3">
-                  <span className="text-orange-500 font-bold">•</span>
-                  <span><strong>Ask before you download.</strong> Parents: ask the school what apps they use and what data they collect—in writing if you want a record. Educators: ask your tech or privacy lead before adding a new tool.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-orange-500 font-bold">•</span>
-                  <span><strong>Traffic light thinking.</strong> Green = vetted and approved; Yellow = use with caution or after review; Red = not approved. We don&apos;t tell you which apps are green—we give you the criteria so you (or your district) can decide.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-orange-500 font-bold">•</span>
-                  <span><strong>SDPC Registry.</strong> Many states use the Student Data Privacy Consortium registry to see which vendors have signed standard agreements. Your state or district may use it; we link to the source so you can confirm.</span>
-                </li>
+                {appsContent.bullets.map((b, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <span className="text-orange-500 font-bold">•</span>
+                    <span><strong>{b.strong}</strong> {b.text}</span>
+                  </li>
+                ))}
               </ul>
               <div className="mt-6 flex flex-wrap gap-4">
-                <a
-                  href="https://privacy.a4l.org"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-orange-600 font-medium hover:text-orange-700"
-                >
-                  SDPC Registry & resources
-                  <ExternalLink className="w-4 h-4" />
-                </a>
-                <Link href="/certification" className="inline-flex items-center gap-2 text-orange-600 font-medium hover:text-orange-700">
-                  For educators: App vetting certification
-                  <ChevronRight className="w-4 h-4" />
-                </Link>
+                {appsContent.links.map((link) =>
+                  link.external ? (
+                    <a
+                      key={link.label}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-orange-600 font-medium hover:text-orange-700"
+                    >
+                      {link.label}
+                      <ExternalLink className="w-4 h-4" />
+                    </a>
+                  ) : (
+                    <Link key={link.label} href={link.href} className="inline-flex items-center gap-2 text-orange-600 font-medium hover:text-orange-700">
+                      {link.label}
+                      <ChevronRight className="w-4 h-4" />
+                    </Link>
+                  )
+                )}
               </div>
             </div>
           </section>
 
-          {/* State laws & procedures */}
+          {/* State laws & procedures — role-specific */}
           <section id="state-laws" className="scroll-mt-24">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center">
                 <MapPin className="w-6 h-6 text-blue-600" />
               </div>
               <div>
-                <h2 className="text-2xl font-bold text-gray-900">State laws & procedures</h2>
-                <p className="text-gray-600 text-sm">Federal and state privacy laws, workflows, and compliance by state</p>
+                <h2 className="text-2xl font-bold text-gray-900">{stateLawsContent.heading}</h2>
+                <p className="text-gray-600 text-sm">{stateLawsContent.subheading}</p>
               </div>
             </div>
             <div className="bg-white rounded-xl border border-gray-200 p-6 sm:p-8">
-              {whoLabel && (
-                <p className="text-blue-600 text-sm font-medium mb-3">{who === 'just_learning' ? 'For you: ' : `For ${whoLabel}s: `}roles, laws, and workflows that apply in your state.</p>
-              )}
-              <p className="text-gray-700 mb-6">
-                If you want to know exactly what&apos;s required in your state—not summaries, but roles, laws, and workflows—we lay it out. Federal laws (FERPA, PPRA), state-specific laws, who does what (Data Manager, Security Officer, etc.), and what your state actually requires. Pick your state and get the details; you can cross-reference with official state sources we link to.
-              </p>
+              <p className="text-gray-700 mb-6">{stateLawsContent.intro}</p>
               <div className="mb-6">
                 <p className="text-sm font-medium text-gray-500 mb-2">Select your state</p>
                 <div className="flex flex-wrap gap-2">
@@ -197,57 +226,40 @@ export default function LearnPage() {
                   })}
                 </div>
               </div>
-              <Button href="/ecosystem" variant="primary" size="md">
-                View all states & pick yours
+              <Button href={stateLawsContent.ctaHref} variant="primary" size="md">
+                {stateLawsContent.ctaLabel}
               </Button>
-              <p className="mt-4 text-sm text-gray-500">
-                {SDPC_MEMBER_STATES.length}+ states are SDPC members; we&apos;re adding full ecosystem guides state by state. Utah is available now as a model.
-              </p>
+              <p className="mt-4 text-sm text-gray-500">{stateLawsContent.footer}</p>
             </div>
           </section>
 
-          {/* Be an advocate */}
+          {/* Be an advocate — role-specific */}
           <section id="advocate" className="scroll-mt-24">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center">
                 <Megaphone className="w-6 h-6 text-green-600" />
               </div>
               <div>
-                <h2 className="text-2xl font-bold text-gray-900">Be an advocate & steward</h2>
-                <p className="text-gray-600 text-sm">Increase your knowledge and push for better practices</p>
+                <h2 className="text-2xl font-bold text-gray-900">{advocateContent.heading}</h2>
+                <p className="text-gray-600 text-sm">{advocateContent.subheading}</p>
               </div>
             </div>
             <div className="bg-white rounded-xl border border-gray-200 p-6 sm:p-8">
-              {whoLabel && (
-                <p className="text-green-600 text-sm font-medium mb-3">{who === 'just_learning' ? 'For you: ' : `For ${whoLabel}s: `}learn, ask, and advocate from a position of knowledge.</p>
-              )}
-              <p className="text-gray-600 text-sm mb-6">
-                Knowing the facts reduces guesswork and gives you a clear role. We&apos;re not here to calm you down—we&apos;re here to give you what you need to act.
-              </p>
+              <p className="text-gray-600 text-sm mb-6">{advocateContent.intro}</p>
               <ul className="space-y-4 text-gray-700">
-                <li className="flex items-start gap-3">
-                  <span className="text-green-500 font-bold">•</span>
-                  <span><strong>Learn.</strong> Use this hub and your state&apos;s ecosystem page so you know what laws and procedures actually apply where you live or work.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-green-500 font-bold">•</span>
-                  <span><strong>Ask.</strong> Ask your school, district, or employer what they do with data and how they vet apps. Document answers when it matters to you.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-green-500 font-bold">•</span>
-                  <span><strong>Share.</strong> Tell other parents, colleagues, or friends to ask before they app. One habit, scaled.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-green-500 font-bold">•</span>
-                  <span><strong>Get certified (educators).</strong> Our free NDPA-focused certification teaches the same language districts and state alliances use—so you can advocate from a position of knowledge, not just concern.</span>
-                </li>
+                {advocateContent.bullets.map((b, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <span className="text-green-500 font-bold">•</span>
+                    <span><strong>{b.strong}</strong> {b.text}</span>
+                  </li>
+                ))}
               </ul>
               <div className="mt-6 flex flex-wrap gap-4">
-                <Button href="/certification" variant="primary" size="md">
-                  Free certification for educators
+                <Button href={advocateContent.primaryCtaHref} variant="primary" size="md">
+                  {advocateContent.primaryCtaLabel}
                 </Button>
-                <Link href="/ecosystem" className="inline-flex items-center gap-2 text-gray-600 font-medium hover:text-gray-900">
-                  Your state&apos;s ecosystem
+                <Link href={advocateContent.secondaryCtaHref} className="inline-flex items-center gap-2 text-gray-600 font-medium hover:text-gray-900">
+                  {advocateContent.secondaryCtaLabel}
                   <ChevronRight className="w-4 h-4" />
                 </Link>
               </div>
