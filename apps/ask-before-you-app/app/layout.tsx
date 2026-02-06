@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: "Ask Before You App | Student Data Privacy Campaign",
   description:
     "Before you download that app—ask. National awareness campaign for K-12 student data privacy. Learn, get certified, and find your state's resources.",
+  icons: {
+    icon: '/wasatchwiselogo.png',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

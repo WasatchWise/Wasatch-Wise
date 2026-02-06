@@ -3,6 +3,7 @@ import { verifyStripeWebhook } from '@/lib/stripe/webhooks';
 import { getServerEnv } from '@/lib/env';
 import { createClient } from '@supabase/supabase-js';
 import Stripe from 'stripe';
+import { sendEmail } from '@/lib/email/send';
 
 export async function POST(req: NextRequest) {
   const env = getServerEnv();
@@ -34,8 +35,47 @@ export async function POST(req: NextRequest) {
           })
           .eq('id', reviewId);
 
-        // TODO: Send email notification to you (admin)
-        // TODO: Send confirmation email to customer
+        const customerEmail =
+          (session.customer_details?.email as string) ||
+          (session.customer_email as string) ||
+          null;
+        const { data: review } = await supabase
+          .from('app_reviews')
+          .select('customer_email, customer_name, app_name, review_tier')
+          .eq('id', reviewId)
+          .single();
+
+        const email = customerEmail || review?.customer_email;
+        const name = review?.customer_name || 'Customer';
+        const appName = review?.app_name || 'App';
+
+        if (process.env.RESEND_API_KEY) {
+          await sendEmail({
+            to: 'john@wasatchwise.com',
+            subject: `[ABYA] Paid app review started: ${appName} (${reviewId})`,
+            html: `
+              <h2>Paid app review payment received</h2>
+              <p><strong>Review ID:</strong> ${reviewId}</p>
+              <p><strong>Customer:</strong> ${name} &lt;${email}&gt;</p>
+              <p><strong>App:</strong> ${appName}</p>
+              <p><strong>Tier:</strong> ${review?.review_tier ?? '—'}</p>
+              <p>Status updated to in_progress. Proceed with the review.</p>
+            `,
+          }).catch((err) => console.error('Webhook admin email failed:', err));
+
+          if (email) {
+            await sendEmail({
+              to: email,
+              subject: 'We received your payment — Ask Before You App review',
+              html: `
+                <p>Hi ${name},</p>
+                <p>Thank you for your payment. Your app review for <strong>${appName}</strong> is now in progress.</p>
+                <p>We'll be in touch with next steps and the report when it's ready.</p>
+                <p>Best,<br />Ask Before You App</p>
+              `,
+            }).catch((err) => console.error('Webhook customer email failed:', err));
+          }
+        }
       }
     }
 

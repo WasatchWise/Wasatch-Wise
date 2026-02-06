@@ -43,6 +43,9 @@ services:
       N8N_BASIC_AUTH_PASSWORD: ${N8N_BASIC_AUTH_PASSWORD:-}
       # Timezone (optional)
       GENERIC_TIMEZONE: ${TZ:-America/Denver}
+      # Rock Salt events pipeline (POST ingest-events)
+      ROCK_SALT_URL: ${ROCK_SALT_URL:-https://therocksalt.com}
+      CRON_SECRET: ${CRON_SECRET:-}
     volumes:
       - n8n_data:/home/node/.n8n
     depends_on:

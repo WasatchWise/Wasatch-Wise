@@ -141,7 +141,7 @@ async function findOrCreateDistrict(
       size_band: 'medium', // Default, can be updated later
       contacts: {},
       metadata: {
-        imported_from: 'uspa_agreement_hub',
+        imported_from: 'utah_agreements',
         original_name: districtName,
       },
     })
@@ -399,7 +399,7 @@ async function findOrCreateVendorDirect(
       name,
       category: category || null,
       metadata: {
-        imported_from: 'uspa_agreement_hub',
+        imported_from: 'utah_agreements',
       },
     })
     .select()

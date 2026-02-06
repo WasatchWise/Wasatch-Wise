@@ -1,0 +1,40 @@
+{
+  "run_at": "2026-02-05T17:36:00Z",
+  "source": "slctrips",
+  "posts": [
+    {
+      "platform": "tiktok",
+      "post_url": "https://www.tiktok.com/@slctrips/video/7603074047374576910",
+      "campaign_id": "slctrips-valentines",
+      "posted_at": "2026-02-04T18:10:00Z",
+      "views": 132,
+      "likes": 3,
+      "comments": 0,
+      "saves": 1,
+      "shares": 2
+    },
+    {
+      "platform": "instagram",
+      "post_url": "https://www.instagram.com/p/DUWIikAEeWW/",
+      "campaign_id": "slctrips-valentines",
+      "posted_at": "2026-02-04T00:00:00Z",
+      "views": 4,
+      "likes": 0,
+      "comments": 1,
+      "saves": 0,
+      "shares": 0,
+      "accounts_reached": 3
+    },
+    {
+      "platform": "facebook",
+      "post_url": "https://www.facebook.com/reel/1620802586040202/",
+      "campaign_id": "slctrips-valentines",
+      "posted_at": "2026-02-04T18:21:00Z",
+      "views": 17,
+      "likes": 0,
+      "comments": 1,
+      "shares": 1,
+      "reactions": 0
+    }
+  ]
+}

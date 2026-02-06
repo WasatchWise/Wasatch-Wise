@@ -9,6 +9,7 @@ import AWINMasterTag from '@/components/AWINMasterTag';
 import SchemaMarkup, { generateOrganizationSchema } from '@/components/SchemaMarkup';
 import Providers from '@/components/Providers';
 import WebVitalsClient from '@/components/WebVitalsClient';
+import GlobalDanConcierge from '@/components/GlobalDanConcierge';
 
 export const metadata: Metadata = {
   title: 'SLCTrips - From Salt Lake, to Everywhere',
@@ -99,6 +100,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <AttributionCapture />
           <WebVitalsClient />
           {children}
+          <GlobalDanConcierge />
           <CookieConsent />
           <Analytics />
         </Providers>

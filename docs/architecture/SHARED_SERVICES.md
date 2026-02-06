@@ -246,6 +246,22 @@ CONVERTKIT_API_KEY=...
 
 ---
 
+### 10. Language Translation (i18n) (Planned)
+
+**Purpose:** UI language translation across all WasatchWise sites so every app can serve users in their preferred language (e.g. English, Spanish).
+
+**Current:** No app has full UI translation. SLC Trips has **voice** language detection for Dan (ElevenLabs TTS) only.
+
+**Planned:**
+- **Pattern:** Same i18n approach on every site (locale detection, message files, translated UI). Per-app message files (e.g. `messages/en.json`, `messages/es.json`).
+- **Stack:** `next-intl` for Next.js apps; `react-i18next` for Vite/other React apps.
+- **First languages:** English (default), Spanish (high impact for K–12 and families).
+- **Rollout order:** Ask Before You App, SLC Trips, Dashboard, Rock Salt, then others.
+
+**Documentation:** [I18N Language Translation Strategy](I18N_LANGUAGE_TRANSLATION_STRATEGY.md)
+
+---
+
 ## Service Cost Tracking
 
 ### Monthly Costs (Estimated)
@@ -331,6 +347,7 @@ briefing.weather = {
 - [WasatchVille Weather Service](../civilization/realms/wasatchville/docs/WEATHER_SERVICE.md)
 - [AWIN Monetization Sector](../civilization/realms/wasatchville/docs/AWIN_MONETIZATION_SECTOR.md)
 - [Week Priorities](../docs/WEEK_OF_2026-02-02_PRIORITIES.md)
+- [I18N Language Translation Strategy](I18N_LANGUAGE_TRANSLATION_STRATEGY.md)
 
 ---
 
@@ -340,6 +357,7 @@ briefing.weather = {
 |------|--------|
 | 2026-02-02 | Initial documentation: Weather, Affiliate, Supabase, Stripe, AI, n8n |
 | 2026-02-02 | Added expansion pattern and agent integration examples |
+| 2026-02-03 | Added planned shared service: Language Translation (i18n) |
 
 ---
 

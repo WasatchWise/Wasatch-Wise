@@ -88,6 +88,74 @@ const danTools: FunctionDeclarationsTool = {
         required: [],
       },
     },
+    {
+      name: 'get_weather_conditions',
+      description: 'Get current weather conditions at a location (Google Weather API). Use before recommending outdoor or mountain destinations. Returns conditions, temp, precipitation, and pack-chains style hints for mountain routes.',
+      parameters: {
+        type: SchemaType.OBJECT,
+        properties: {
+          lat: {
+            type: SchemaType.NUMBER,
+            description: 'Latitude (e.g., 40.76 for Salt Lake City)',
+          },
+          lng: {
+            type: SchemaType.NUMBER,
+            description: 'Longitude (e.g., -111.89 for Salt Lake City)',
+          },
+        },
+        required: ['lat', 'lng'],
+      },
+    },
+    {
+      name: 'get_air_quality',
+      description: 'Get current air quality at a location (Google Air Quality API). Use before recommending outdoor activities.',
+      parameters: {
+        type: SchemaType.OBJECT,
+        properties: {
+          lat: {
+            type: SchemaType.NUMBER,
+            description: 'Latitude',
+          },
+          lng: {
+            type: SchemaType.NUMBER,
+            description: 'Longitude',
+          },
+        },
+        required: ['lat', 'lng'],
+      },
+    },
+    {
+      name: 'get_place_details',
+      description: 'Get place details (hours, phone, open now) from Google Places API (New). Call before saying "Call them" or giving a phone number—verify they are open and get current phone/hours.',
+      parameters: {
+        type: SchemaType.OBJECT,
+        properties: {
+          placeId: {
+            type: SchemaType.STRING,
+            description: 'Google Place ID (e.g., ChIJ...)',
+          },
+        },
+        required: ['placeId'],
+      },
+    },
+    {
+      name: 'get_drive_time',
+      description: 'Get drive time and distance between origin and destination with current traffic (Google Directions API). Use for "how long to get there" questions.',
+      parameters: {
+        type: SchemaType.OBJECT,
+        properties: {
+          origin: {
+            type: SchemaType.STRING,
+            description: 'Origin address or place (e.g., "Salt Lake City, UT", "SLC")',
+          },
+          destination: {
+            type: SchemaType.STRING,
+            description: 'Destination address or place (e.g., "Mirror Lake, UT", "Park City")',
+          },
+        },
+        required: ['origin', 'destination'],
+      },
+    },
   ],
 };
 
@@ -304,6 +372,8 @@ interface TripKitDestination {
   subcategory?: string;
   county?: string;
   ai_tips?: string[];
+  contact_info?: { phone?: string; website?: string };
+  slug?: string;
 }
 
 async function searchTripkitDestinations(
@@ -335,13 +405,16 @@ async function searchTripkitDestinations(
     );
   }
 
-  // Return top 5 matches with key info
+  // Return top 5 matches with key info including contact so Dan can say "Call X, tell them SLCTrips sent you"
   const topResults = results.slice(0, 5).map(d => ({
     name: d.name,
     category: d.subcategory || d.category,
     county: d.county,
     description: d.ai_story?.slice(0, 200) || d.description?.slice(0, 200),
     tip: d.ai_tips?.[0],
+    phone: d.contact_info?.phone,
+    website: d.contact_info?.website,
+    slug: d.slug,
   }));
 
   return JSON.stringify({
@@ -416,6 +489,220 @@ async function getTodaysEvents(area?: string, _category?: string): Promise<strin
   });
 }
 
+const GOOGLE_MAPS_API_KEY = process.env.GOOGLE_MAPS_API_KEY;
+
+async function getWeatherConditions(lat: number, lng: number): Promise<string> {
+  if (!GOOGLE_MAPS_API_KEY) {
+    return JSON.stringify({ error: 'Weather conditions service unavailable (missing API key)' });
+  }
+  try {
+    const params = new URLSearchParams({
+      key: GOOGLE_MAPS_API_KEY,
+      'location.latitude': String(lat),
+      'location.longitude': String(lng),
+      unitsSystem: 'IMPERIAL',
+    });
+    const res = await fetch(
+      `https://weather.googleapis.com/v1/currentConditions:lookup?${params.toString()}`
+    );
+    if (!res.ok) {
+      const err = await res.text();
+      return JSON.stringify({ error: 'Could not fetch weather conditions', detail: err });
+    }
+    const data = (await res.json()) as {
+      weatherCondition?: { description?: { text?: string }; type?: string };
+      temperature?: { degrees?: number };
+      feelsLikeTemperature?: { degrees?: number };
+      precipitation?: { probability?: { percent?: number; type?: string } };
+      wind?: { speed?: { value?: number }; gust?: { value?: number } };
+    };
+    const desc = data.weatherCondition?.description?.text ?? 'Unknown';
+    const type = data.weatherCondition?.type ?? '';
+    const temp = data.temperature?.degrees ?? null;
+    const feelsLike = data.feelsLikeTemperature?.degrees ?? null;
+    const precipPct = data.precipitation?.probability?.percent ?? 0;
+    const precipType = data.precipitation?.probability?.type ?? '';
+
+    const snowOrIce = type === 'SNOW' || type === 'FREEZING_RAIN' || precipType === 'SNOW' || (precipPct > 30 && precipType === 'SNOW');
+    const packChainsHint = snowOrIce
+      ? ' Mountain routes may require chains—check UDOT before driving.'
+      : '';
+
+    return JSON.stringify({
+      conditions: desc,
+      condition_type: type,
+      temperature_f: temp,
+      feels_like_f: feelsLike,
+      precipitation_probability_percent: precipPct,
+      precipitation_type: precipType,
+      hint: packChainsHint || undefined,
+      summary: `${desc}${temp !== null ? `, ${Math.round(temp)}°F` : ''}${packChainsHint}`,
+    });
+  } catch (e) {
+    console.error('Weather conditions API error:', e);
+    return JSON.stringify({ error: 'Could not fetch weather conditions' });
+  }
+}
+
+async function getAirQuality(lat: number, lng: number): Promise<string> {
+  if (!GOOGLE_MAPS_API_KEY) {
+    return JSON.stringify({ error: 'Air quality service unavailable (missing API key)' });
+  }
+  try {
+    const res = await fetch(
+      `https://airquality.googleapis.com/v1/currentConditions:lookup?key=${encodeURIComponent(GOOGLE_MAPS_API_KEY)}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          location: { latitude: lat, longitude: lng },
+          extraComputations: ['HEALTH_RECOMMENDATIONS'],
+          languageCode: 'en',
+        }),
+      }
+    );
+    if (!res.ok) {
+      const err = await res.text();
+      return JSON.stringify({ error: 'Could not fetch air quality', detail: err });
+    }
+    const data = (await res.json()) as {
+      indexes?: Array<{ code?: string; displayName?: string; aqi?: number; category?: string }>;
+      healthRecommendations?: { generalPopulation?: string };
+    };
+    const uaqi = data.indexes?.find((i) => i.code === 'uaqi') ?? data.indexes?.[0];
+    const category = uaqi?.category ?? 'Unknown';
+    const aqi = uaqi?.aqi ?? null;
+    const recommendation = data.healthRecommendations?.generalPopulation ?? '';
+
+    return JSON.stringify({
+      category,
+      aqi,
+      recommendation,
+      summary: category + (recommendation ? ` — ${recommendation}` : ''),
+    });
+  } catch (e) {
+    console.error('Air quality API error:', e);
+    return JSON.stringify({ error: 'Could not fetch air quality' });
+  }
+}
+
+async function getPlaceDetails(placeId: string): Promise<string> {
+  if (!GOOGLE_MAPS_API_KEY) {
+    return JSON.stringify({ error: 'Place details service unavailable (missing API key)' });
+  }
+  const id = placeId.replace(/^places\//, '');
+  try {
+    const res = await fetch(
+      `https://places.googleapis.com/v1/places/${encodeURIComponent(id)}`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Goog-Api-Key': GOOGLE_MAPS_API_KEY,
+          'X-Goog-FieldMask':
+            'id,displayName,formattedAddress,nationalPhoneNumber,internationalPhoneNumber,currentOpeningHours,regularOpeningHours,websiteUri',
+        },
+      }
+    );
+    if (!res.ok) {
+      const err = await res.text();
+      return JSON.stringify({ error: 'Could not fetch place details', detail: err });
+    }
+    const data = (await res.json()) as {
+      displayName?: { text?: string };
+      formattedAddress?: string;
+      nationalPhoneNumber?: string;
+      internationalPhoneNumber?: string;
+      currentOpeningHours?: { openNow?: boolean; weekdayDescriptions?: string[] };
+      regularOpeningHours?: { openNow?: boolean; weekdayDescriptions?: string[] };
+      websiteUri?: string;
+    };
+    const name = data.displayName?.text ?? 'Unknown';
+    const phone = data.nationalPhoneNumber ?? data.internationalPhoneNumber ?? null;
+    const hours = data.currentOpeningHours ?? data.regularOpeningHours;
+    const openNow = hours?.openNow ?? null;
+    const weekdayDescriptions = hours?.weekdayDescriptions ?? [];
+    const website = data.websiteUri ?? null;
+
+    return JSON.stringify({
+      name,
+      formattedAddress: data.formattedAddress ?? null,
+      phone,
+      open_now: openNow,
+      opening_hours: weekdayDescriptions.length ? weekdayDescriptions : null,
+      websiteUri: website,
+      summary: [
+        name,
+        phone ? `Phone: ${phone}` : null,
+        openNow !== null ? (openNow ? 'Open now' : 'Closed now') : null,
+        weekdayDescriptions.length ? `Hours: ${weekdayDescriptions.join('; ')}` : null,
+      ]
+        .filter(Boolean)
+        .join('. '),
+    });
+  } catch (e) {
+    console.error('Place details API error:', e);
+    return JSON.stringify({ error: 'Could not fetch place details' });
+  }
+}
+
+async function getDriveTime(origin: string, destination: string): Promise<string> {
+  if (!GOOGLE_MAPS_API_KEY) {
+    return JSON.stringify({ error: 'Directions service unavailable (missing API key)' });
+  }
+  try {
+    const params = new URLSearchParams({
+      key: GOOGLE_MAPS_API_KEY,
+      origin: origin,
+      destination: destination,
+      mode: 'driving',
+      departure_time: 'now',
+      traffic_model: 'best_guess',
+    });
+    const res = await fetch(
+      `https://maps.googleapis.com/maps/api/directions/json?${params.toString()}`
+    );
+    if (!res.ok) {
+      return JSON.stringify({ error: 'Could not fetch directions' });
+    }
+    const data = (await res.json()) as {
+      status?: string;
+      routes?: Array<{
+        legs?: Array<{
+          duration?: { value?: number; text?: string };
+          duration_in_traffic?: { value?: number; text?: string };
+          distance?: { value?: number; text?: string };
+        }>;
+      }>;
+    };
+    if (data.status !== 'OK' || !data.routes?.length || !data.routes[0].legs?.length) {
+      return JSON.stringify({
+        error: 'No route found',
+        status: data.status,
+        hint: 'Try clearer origin/destination (e.g., "Salt Lake City, UT", "Park City, UT")',
+      });
+    }
+    const leg = data.routes[0].legs[0];
+    const durationTraffic = leg.duration_in_traffic ?? leg.duration;
+    const durationSec = durationTraffic?.value ?? leg.duration?.value;
+    const durationText = durationTraffic?.text ?? leg.duration?.text ?? '—';
+    const distanceText = leg.distance?.text ?? '—';
+
+    return JSON.stringify({
+      origin,
+      destination,
+      duration_seconds: durationSec,
+      duration_text: durationText,
+      distance_text: distanceText,
+      with_traffic: Boolean(leg.duration_in_traffic),
+      summary: `About ${durationText} (${distanceText})${leg.duration_in_traffic ? ' with current traffic' : ''}.`,
+    });
+  } catch (e) {
+    console.error('Directions API error:', e);
+    return JSON.stringify({ error: 'Could not fetch drive time' });
+  }
+}
+
 // Process function calls
 async function processToolCall(
   functionName: string,
@@ -438,13 +725,42 @@ async function processToolCall(
       );
     case 'get_todays_events':
       return await getTodaysEvents(args.area, args.category);
+    case 'get_weather_conditions':
+      return await getWeatherConditions(args.lat, args.lng);
+    case 'get_air_quality':
+      return await getAirQuality(args.lat, args.lng);
+    case 'get_place_details':
+      return await getPlaceDetails(args.placeId);
+    case 'get_drive_time':
+      return await getDriveTime(args.origin, args.destination);
     default:
       return JSON.stringify({ error: 'Unknown function' });
   }
 }
 
-// TripKit-specific context generator
+// TripKit-specific context generator (includes "site" for global/main-page chat)
 function getTripKitContext(tripkitCode: string, tripkitName: string) {
+  // Global "Ask Dan" on homepage and non-TripKit pages
+  if (!tripkitCode || tripkitCode === 'site') {
+    return {
+      description: 'You are helping visitors explore Utah from Salt Lake City. They may not have a TripKit yet.',
+      focus: 'weather, ski conditions, canyon traffic, events, and pointing them to TripKits for personalized destination recommendations',
+      capabilities: [
+        'Check current weather at Utah locations',
+        'Get ski resort conditions',
+        'Check canyon road status and traffic',
+        'Find events happening today',
+        'Suggest they browse TripKits or Destinations for personalized picks (no TripKit-specific search here)',
+      ],
+      examples: `EXAMPLE RESPONSES:
+"Salt Lake's looking great today - mid-40s and clear. Perfect for a drive up the canyon or a walk around Temple Square. Want ski conditions or events?"
+
+"When recommending a place: Use get_weather_conditions and get_air_quality first for outdoor/mountain recs; use get_place_details when you have a Place ID so you can say: 'Based on current conditions, Mirror Lake might be snowy—pack chains. Air quality is good. Call the lodge at (XXX) XXX-XXXX—they're open until 6pm. Tell them SLCTrips sent you.' Confident, specific, slightly playful."
+
+"For personalized road trip ideas, check out our TripKits—Valentine's getaways, Haunted Highway, Ski Utah—each one's curated from SLC. I can also tell you what's happening today or how the canyons are."`,
+    };
+  }
+
   const contexts: Record<string, {
     description: string;
     focus: string;
@@ -532,7 +848,9 @@ function getTripKitContext(tripkitCode: string, tripkitName: string) {
       'Provide recommendations based on your interests',
     ],
     examples: `EXAMPLE RESPONSES:
-"Based on your TripKit, I'd recommend [destination] today - the weather is perfect and it's one of the highlights."
+"Based on current conditions, your best bet is [Place]. Call [phone] for reservations—tell them SLCTrips sent you."
+
+"Based on your TripKit, I'd recommend [destination] today - the weather is perfect and it's one of the highlights. If the data has a phone, give it and the SLCTrips sign-off."
 
 "Looking for something specific? Tell me what you're in the mood for and I'll find the best match in your TripKit."`,
   };
@@ -557,14 +875,15 @@ export async function POST(request: NextRequest) {
     // TripKit-specific context and focus areas
     const tripkitContext = getTripKitContext(tripkitCode, tripkitName);
 
-    // Build a summary of destinations in this TripKit for Dan's knowledge
+    // Build a summary of destinations in this TripKit for Dan's knowledge (empty for "site" mode)
     const destinationSummary = tripkitDestinations?.slice(0, 30).map((d: TripKitDestination) => ({
       name: d.name,
       category: d.subcategory || d.category,
       tip: d.ai_tips?.[0],
     })) || [];
+    const isSiteMode = !tripkitCode || tripkitCode === 'site';
 
-    // Build Dan's system prompt - TripKit aware
+    // Build Dan's system prompt - TripKit aware or site (general) mode
     const systemPrompt = `You are Dan, the Wasatch Sasquatch - a friendly, knowledgeable concierge for Utah travelers using SLCTrips.
 
 PERSONALITY:
@@ -585,22 +904,28 @@ TODAY'S CONTEXT:
 YOUR CAPABILITIES:
 ${tripkitContext.capabilities.map((c: string) => `- ${c}`).join('\n')}
 
-DESTINATIONS IN THIS TRIPKIT (use these for recommendations):
-${destinationSummary.map((d: { name: string; category: string; tip?: string }) => `- ${d.name} (${d.category})${d.tip ? ': ' + d.tip : ''}`).join('\n')}
+${isSiteMode ? 'NO TRIPKIT SELECTED: Do not recommend specific TripKit destinations. Suggest weather, ski, canyon, events, or point them to TripKits/Destinations for personalized picks.' : `DESTINATIONS IN THIS TRIPKIT (use these for recommendations):\n${destinationSummary.map((d: { name: string; category: string; tip?: string }) => `- ${d.name} (${d.category})${d.tip ? ': ' + d.tip : ''}`).join('\n')}`}
+
+BEFORE RECOMMENDATIONS — USE THESE TOOLS:
+- Before recommending outdoor or mountain destinations (e.g., Mirror Lake, canyons, hikes), call get_weather_conditions(lat, lng) and optionally get_air_quality(lat, lng). Mention current conditions and cautions (e.g., "might be snowy—pack chains", "air quality is good today").
+- Before saying "Call them" or giving a phone number, call get_place_details(placeId) when you have a Google Place ID, to confirm they're open and get current phone/hours. Prefer our destination contact_info when we have it; use Places to verify or fill gaps.
+- For "how long to get there" or drive-time questions, call get_drive_time(origin, destination) to give duration with current traffic.
 
 RESPONSE STYLE:
-- Keep responses concise but helpful (2-4 sentences typical)
-- ALWAYS recommend from the user's TripKit destinations when relevant
-- Use real-time data (weather, conditions) when helpful
-- Give specific, actionable recommendations
-- Include insider tips when appropriate
-- Stay focused on ${tripkitContext.focus}
-- When data may be outdated (ski conditions, events), include disclaimers and links to official sources
-- Be honest about data limitations - it's better to admit uncertainty than provide inaccurate information
+- Be specific and actionable: name the place, the move, the number. "Your best bet is X" not "You could try something like X."
+- When a destination has a phone number (from our data or from get_place_details), give it: "Call [number] for reservations—tell them SLCTrips sent you." Warm, confident, slightly playful (not stiff). Only say "Call them" when you have verified or have a number.
+- When you have a slug or website, you can say "Check slctrips.com/destinations/[slug]" or "Their site: [website]" so they can book or learn more.
+- Keep responses concise but helpful (2-4 sentences typical).
+- ${isSiteMode ? 'Suggest TripKits or Destinations when they want personalized picks; use weather/ski/canyon/events for real-time help' : "ALWAYS recommend from the user's TripKit destinations when relevant"}
+- Use real-time data (get_weather_conditions, get_air_quality, get_place_details, get_drive_time) when helpful so recommendations are current and actionable.
+- Include insider tips when appropriate.
+- Stay focused on ${tripkitContext.focus}.
+- When data may be outdated (ski conditions, events), include disclaimers and links to official sources.
+- Be honest about data limitations - it's better to admit uncertainty than provide inaccurate information.
 
 ${tripkitContext.examples}
 
-Remember: You're their personal Utah concierge with deep knowledge of their specific TripKit. Recommend from THEIR destinations, not generic Utah tourism.`;
+Remember: ${isSiteMode ? "You're their Utah concierge. Help with weather, conditions, events; point them to TripKits for curated destination picks." : "You're their personal Utah concierge with deep knowledge of their specific TripKit. Recommend from THEIR destinations, not generic Utah tourism."}`;
 
     // Get Gemini model (using Gemini 2.0 Flash)
     const model = genAI.getGenerativeModel({

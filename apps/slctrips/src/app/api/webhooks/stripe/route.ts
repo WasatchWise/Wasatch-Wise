@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
+import * as Sentry from '@sentry/nextjs';
 import { STRIPE_CONFIG } from '@/lib/stripe-config';
 import { supabaseServer as supabase } from '@/lib/supabaseServer';
 import sgMail from '@sendgrid/mail';
@@ -92,6 +93,10 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ received: true });
   } catch (error: unknown) {
     console.error('Webhook handler error:', error);
+    Sentry.captureException(error, {
+      extra: { eventType: event.type, eventId: event.id },
+      tags: { component: 'stripe-webhook-fulfillment' },
+    });
     return NextResponse.json(
       { error: 'Webhook handler failed' },
       { status: 500 }

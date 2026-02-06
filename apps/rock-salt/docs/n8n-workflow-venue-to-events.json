@@ -1,0 +1,185 @@
+{
+  "name": "Rock Salt: Venue list → events (Workflow A)",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 9 * * *"
+            }
+          ]
+        }
+      },
+      "id": "cron-trigger",
+      "name": "Daily 9 AM",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [240, 300],
+      "webhookId": ""
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "venue_sources",
+        "returnAll": true,
+        "options": {
+          "filterType": "manual",
+          "filters": {
+            "conditions": [
+              {
+                "keyName": "active",
+                "keyValue": true,
+                "condition": "equal"
+              }
+            ]
+          },
+          "sort": [
+            { "field": "priority", "direction": "ASC" },
+            { "field": "venue_name", "direction": "ASC" }
+          ]
+        }
+      },
+      "id": "read-venue-sources",
+      "name": "Read venue_sources",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [460, 300],
+      "credentials": { "supabaseApi": { "id": "YOUR_SUPABASE_CREDENTIAL_ID", "name": "Supabase account" } }
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "loop-sources",
+      "name": "Loop over sources",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.source_url }}",
+        "options": {
+          "redirect": { "redirect": { "followRedirects": true } },
+          "timeout": 15000,
+          "response": { "response": { "responseFormat": "autodetect", "outputPropertyName": "body" } }
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "User-Agent", "value": "Mozilla/5.0 (compatible; RockSaltBot/1.0)" },
+            { "name": "Accept-Language", "value": "en-US,en;q=0.9" }
+          ]
+        }
+      },
+      "id": "fetch-page",
+      "name": "Fetch page",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [900, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const item = $input.first().json;\nconst html = item.body || item.data || '';\nconst stripped = html\n  .replace(/<script\\b[^<]*(?:(?!<\\/script>)<[^<]*)*<\\/script>/gi, '')\n  .replace(/<style\\b[^<]*(?:(?!<\\/style>)<[^<]*)*<\\/style>/gi, '')\n  .replace(/\\s+/g, ' ')\n  .trim()\n  .slice(0, 120000);\nreturn { json: { html: stripped, source_url: item.source_url || '', venue_name: item.venue_name || '' } };"
+      },
+      "id": "clean-html",
+      "name": "Clean HTML",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1120, 300]
+    },
+    {
+      "parameters": {
+        "model": "gpt-4o-mini",
+        "messages": {
+          "values": [
+            {
+              "content": "You are an expert at extracting live music events from HTML. Output only valid JSON, no markdown or explanation."
+            },
+            {
+              "content": "=Below is HTML from a venue calendar. Extract every live music event between 2026-02-01 and 2026-03-31 that fits \"Rock Salt ethos\": original music, local/regional scene, DIY-but-pro, real bills. Exclude tribute-only, wedding/corporate, DJ-only unless part of local original scene.\n\nEthos score: 5=scene-defining original, 4=original fits lane, 3=mixed, 2=mostly covers/DJ, 1=not a fit.\n\nOutput a JSON array. Each object: date (YYYY-MM-DD), start_time (string or null), venue_name, city, headliner, support (array), genre_tags (array), primary_link, ticket_link, ethos_fit_score (1-5), ethos_fit_note, source_page (URL of this HTML), missing_info (array). Do not invent details. Output only the array.\n\nHTML:\n{{ $json.html }}\n\nSource URL: {{ $json.source_url }}"
+            }
+          ]
+        },
+        "options": {
+          "temperature": 0.1,
+          "maxTokens": 4096
+        }
+      },
+      "id": "llm-normalize",
+      "name": "LLM normalize to events",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1.3,
+      "position": [1340, 300],
+      "credentials": { "openAiApi": { "id": "YOUR_OPENAI_CREDENTIAL_ID", "name": "OpenAI account" } }
+    },
+    {
+      "parameters": {
+        "jsCode": "const item = $input.first();\nlet raw = item.json.message?.content ?? item.json.choices?.[0]?.message?.content ?? item.json.content ?? JSON.stringify(item.json);\nif (raw.startsWith('```')) raw = raw.replace(/^```json?\\n?/, '').replace(/\\n?```$/, '');\nlet events = [];\ntry { events = JSON.parse(raw.trim()); } catch (e) { return []; }\nif (!Array.isArray(events)) events = [];\nconst start = '2026-02-01';\nconst end = '2026-03-31';\nconst filtered = events.filter(e => e.date >= start && e.date <= end && (e.ethos_fit_score ?? 0) >= 2);\nreturn filtered.map(e => ({ json: e }));"
+      },
+      "id": "validate-parse",
+      "name": "Validate and filter",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1560, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.ROCK_SALT_URL || 'https://therocksalt.com' }}/api/ingest-events",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"events\": {{ JSON.stringify($input.all().map(i => i.json)) }},\n  \"source\": \"n8n\"\n}",
+        "options": {
+          "timeout": 30000
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Content-Type", "value": "application/json" },
+            { "name": "Authorization", "value": "=Bearer {{ $env.CRON_SECRET }}" }
+          ]
+        }
+      },
+      "id": "post-ingest",
+      "name": "POST ingest-events",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1780, 300]
+    },
+    {
+      "parameters": {},
+      "id": "noop",
+      "name": "No Op",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [2000, 300]
+    }
+  ],
+  "connections": {
+    "Daily 9 AM": { "main": [[{ "node": "Read venue_sources", "type": "main", "index": 0 }]] },
+    "Read venue_sources": { "main": [[{ "node": "Loop over sources", "type": "main", "index": 0 }]] },
+    "Loop over sources": {
+      "main": [
+        [{ "node": "Fetch page", "type": "main", "index": 0 }],
+        [{ "node": "No Op", "type": "main", "index": 0 }]
+      ]
+    },
+    "Fetch page": { "main": [[{ "node": "Clean HTML", "type": "main", "index": 0 }]] },
+    "Clean HTML": { "main": [[{ "node": "LLM normalize to events", "type": "main", "index": 0 }]] },
+    "LLM normalize to events": { "main": [[{ "node": "Validate and filter", "type": "main", "index": 0 }]] },
+    "Validate and filter": { "main": [[{ "node": "POST ingest-events", "type": "main", "index": 0 }]] },
+    "POST ingest-events": { "main": [[{ "node": "Loop over sources", "type": "main", "index": 0 }]] }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": false
+  }
+}

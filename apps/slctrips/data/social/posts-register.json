@@ -1,0 +1,33 @@
+{
+  "updated_at": "2026-02-05",
+  "source": "slctrips",
+  "campaigns": {
+    "slctrips-valentines": {
+      "name": "Valentine TripKit 22s",
+      "utm_campaign": "slctrips-valentines",
+      "link": "https://www.slctrips.com/tripkits/valentines-getaways"
+    }
+  },
+  "posts": [
+    {
+      "id": "valentine-22s",
+      "campaign_id": "slctrips-valentines",
+      "posted_at": "2026-02-04",
+      "asset": "22-second Valentine TripKit video",
+      "platforms": [
+        {
+          "platform": "tiktok",
+          "post_url": "https://www.tiktok.com/@slctrips/video/7603074047374576910"
+        },
+        {
+          "platform": "instagram",
+          "post_url": "https://www.instagram.com/p/DUWIikAEeWW/"
+        },
+        {
+          "platform": "facebook",
+          "post_url": "https://www.facebook.com/reel/1620802586040202/"
+        }
+      ]
+    }
+  ]
+}

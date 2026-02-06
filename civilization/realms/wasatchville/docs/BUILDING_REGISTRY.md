@@ -166,6 +166,9 @@
 - **Primary:** Park Director (content strategy)
 - **Secondary:** Marketing Manager (social media)
 
+### HQ alerting (when something is wrong at B002)
+Headquarters is notified when the amusement park has errors by **Sentry Alerts** (email or Slack on new issues). Where to look and how to set up push notifications: **[WHERE_TO_LOOK_WHEN_THINGS_BREAK.md](../../../../apps/slctrips/docs/WHERE_TO_LOOK_WHEN_THINGS_BREAK.md)** (SLC Trips repo). Without Sentry Alerts, HQ must check Sentry / Stripe / Vercel manually or wait for customer email.
+
 ### Interior View (Phase 2)
 When clicked, expands to show:
 - Individual "rides" (destination categories)

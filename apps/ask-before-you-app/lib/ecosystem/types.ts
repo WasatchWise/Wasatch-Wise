@@ -133,13 +133,13 @@ export const FEDERAL_LAWS: StateLaw[] = [
   },
 ]
 
-// SDPC Member States (as of 2026)
+// SDPC Member States (as of Feb 2026 — verify at https://privacy.a4l.org)
+// Note: Some states are in TEC (The Education Collective); SDPC and TEC are related but distinct.
 export const SDPC_MEMBER_STATES = [
-  'AL', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI',
-  'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA',
-  'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM',
-  'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD',
-  'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY', 'DC',
+  'AL', 'AZ', 'AR', 'CA', 'CO', 'CT', 'FL', 'GA', 'HI', 'IL', 'IA',
+  'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO',
+  'NH', 'NJ', 'NY', 'NC', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'TN', 'TX',
+  'UT', 'VA', 'WA',
 ]
 
 // All US States and Territories

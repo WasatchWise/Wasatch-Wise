@@ -42,8 +42,6 @@ export default function WiseBotPage() {
   const [isStreaming, setIsStreaming] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [retryCount, setRetryCount] = useState(0);
-  const [audioUrl, setAudioUrl] = useState<string | null>(null);
-  const audioRef = useRef<HTMLAudioElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const [showCommandPalette, setShowCommandPalette] = useState(false);
@@ -136,32 +134,6 @@ export default function WiseBotPage() {
         citations: citations.length > 0 ? citations : undefined
       }]);
       setStreamingContent('');
-
-      // Convert to voice
-      try {
-        const voiceRes = await fetch('/api/voice/elevenlabs-tts', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ text: fullResponse }),
-        });
-
-        if (voiceRes.ok) {
-          const audioBlob = await voiceRes.blob();
-          const url = URL.createObjectURL(audioBlob);
-          setAudioUrl(url);
-
-          // Auto-play audio
-          if (audioRef.current) {
-            audioRef.current.src = url;
-            audioRef.current.play().catch((err) => {
-              console.error('Audio play failed:', err);
-            });
-          }
-        }
-      } catch (voiceError) {
-        console.error('Voice generation failed:', voiceError);
-        // Continue without voice
-      }
     } catch (error) {
       console.error('Chat error:', error);
       setError(error instanceof Error ? error.message : 'An error occurred. Please try again.');
@@ -431,26 +403,6 @@ export default function WiseBotPage() {
               Type your question and press Enter or click Send to get an AI-powered response with citations
             </p>
           </Form>
-
-          {audioUrl && (
-            <div className="mt-4">
-              <audio 
-                ref={audioRef} 
-                controls 
-                className="w-full" 
-                autoPlay
-                aria-label="Audio response"
-                onPlay={() => {
-                  // Ensure audio plays automatically
-                  if (audioRef.current) {
-                    audioRef.current.play().catch(() => {
-                      // Auto-play may be blocked, user can click play
-                    });
-                  }
-                }}
-              />
-            </div>
-          )}
         </div>
 
         <footer className="text-center">

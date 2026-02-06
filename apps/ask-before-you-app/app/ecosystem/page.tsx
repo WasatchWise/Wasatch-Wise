@@ -23,7 +23,7 @@ export default function EcosystemPage() {
           <div className="max-w-6xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#005696]/20 border border-[#005696]/40 rounded-full text-[#00A3E0] text-sm font-medium mb-6">
               <span>🗺️</span>
-              50 States + DC
+              {SDPC_MEMBER_STATES.length} SDPC Member States
             </div>
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
               State Privacy{' '}

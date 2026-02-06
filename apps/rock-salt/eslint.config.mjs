@@ -28,6 +28,8 @@ const eslintConfig = [
       "react/no-unescaped-entities": "off",
       "@typescript-eslint/no-unused-expressions": "off",
       "@next/next/no-html-link-for-pages": "off",
+      // ESLint 9 removed context.getAncestors(); this rule crashes without it
+      "@next/next/no-duplicate-head": "off",
       "prefer-const": "off",
     },
   },

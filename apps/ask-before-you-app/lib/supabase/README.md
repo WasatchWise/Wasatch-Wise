@@ -12,7 +12,10 @@ If your ABYA Supabase project has **no tables yet**, run migrations in this orde
 6. **005_citation_system.sql** — knowledge_sources, chat_sessions, chat_messages, citations
 7. **006_ask_before_you_app.sql** — app_reviews, review_findings, review_reports, review_notes
 8. **007_common_sense_privacy_evaluations.sql** — Common Sense Media privacy evaluations
-9. **008_states.sql** — *(optional)* `states` table for listing and “ecosystem available” flag; ecosystem content stays in code. See `docs/STATE_AND_DISTRICT_DATA_DESIGN.md`.
+9. **008_states.sql** — *(optional)* `states` table for listing and "ecosystem available" flag; ecosystem content stays in code. See `docs/STATE_AND_DISTRICT_DATA_DESIGN.md`.
+10. **010_app_requests.sql** — `app_requests` for the /request "suggest an app" form.
+11. **011_utah_agreements.sql** — `utah_agreements` for Utah USPA Agreement Hub (Dynamic Menu CSV).
+12. **012_normalize_utah_agreements_columns.sql** — Renames CSV-import columns (Company, Product, etc.) to snake_case; run after 011 if the table was created by CSV import.
 
 Copy each file’s contents into a new query and run it. Order matters: `001` depends on `districts` (created in `000`).
 
@@ -25,6 +28,9 @@ If you use the **dashboard** (districts, sessions, artifacts), run **daros-schem
 - **Email signups:** `email_captures` (Who Are You modal, newsletter).
 - **Common Sense data:** Put `privacy.csv` in `data/privacy.csv` and run `pnpm run seed:common-sense-privacy` (see `data/README.md`).
 - **States (optional):** If you ran `008_states.sql`, run `seeds/002_states.sql` in the SQL Editor to seed all 51 states and set Utah as having ecosystem content.
+- **Utah Agreements:** After running `011_utah_agreements.sql`, load the Dynamic Menu CSV either:
+  - **Dashboard:** Table Editor → `utah_agreements` → Import CSV (map columns to `company`, `product`, `originator`, `type`, `status`, `expiration_notes`, `date_approved`, `expires_on`), or
+  - **CLI:** `pnpm exec tsx scripts/seed-uspa-agreement-hub.ts "/path/to/USPA Agreement Hub ... Dynamic Menu (1).csv"` (writes to `utah_agreements`; uses `SUPABASE_SERVICE_ROLE_KEY`). Use `--replace` to clear the table first if re-importing.
 
 ## Env
 

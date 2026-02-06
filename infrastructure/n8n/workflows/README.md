@@ -43,8 +43,9 @@ Exported JSON can contain **node config** but n8n typically does **not** embed c
 | # | Workflow | Filename | Status | Purpose |
 |---|----------|----------|--------|---------|
 | **1** | **Utah Conditions Monitor** | `utah-conditions-monitor-v2.json` | **🟢 LIVE** | Every 6h: OpenWeather + optional AQI → conditions router → content angles + activity recommendations → `weather_alerts` table. Year-round (winter/summer/hazard/shoulder). See [UTAH_CONDITIONS_SETUP.md](UTAH_CONDITIONS_SETUP.md). |
-| 2 | UTM Link Generator | *(planned)* | — | Generate tracked links for content team from destination + campaign. |
-| 3 | Performance Reporter | *(planned)* | — | Aggregate Awin/TikTok metrics → content performance digest. |
+| **2** | **Social Metrics Webhook Ingest** | `social-metrics-webhook-ingest.json` | **Ready** | Webhook: POST snapshot JSON (TikTok/IG/FB/YouTube per-post metrics) → `social_post_metrics`. Content register: `apps/slctrips/data/social/`. See [SOCIAL_MEDIA_PIPELINE.md](SOCIAL_MEDIA_PIPELINE.md). |
+| 3 | UTM Link Generator | *(planned)* | — | Generate tracked links for content team from destination + campaign. |
+| 4 | Performance Reporter | *(planned)* | — | Aggregate Awin + social_post_metrics → content performance digest. |
 
 ---
 

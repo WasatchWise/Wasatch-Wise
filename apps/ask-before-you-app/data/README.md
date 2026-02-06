@@ -2,6 +2,17 @@
 
 Place import CSVs here. They are loaded into Supabase via scripts in `scripts/`.
 
+## State Student Data Privacy & AI Governance Profiles (reference)
+
+**File:** `state-student-privacy-ai-profiles-table1.csv`
+
+Reference CSV (NotebookLM / 229 sources) with state-by-state student data privacy laws, roles, contacts, compliance, and AI governance notes. Used to inform state ecosystem research and content—**not** imported into the database directly.
+
+- **Mapping to app schema:** `docs/STATE_PROFILES_CSV_MAPPING.md`
+- **SDPC:** Use canonical list in `lib/ecosystem/types.ts` (`SDPC_MEMBER_STATES`), not the CSV’s SDPC column (inconsistent).
+
+---
+
 ## Common Sense Media privacy evaluations
 
 **File:** `privacy.csv`

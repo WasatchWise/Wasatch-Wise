@@ -280,9 +280,8 @@ export default function CertificationPage() {
             {/* Module Cards - 3x2 Grid */}
             <div className="grid md:grid-cols-3 gap-5">
               {MODULES.map((module, i) => (
-                <Link
+                <div
                   key={module.id}
-                  href={`/certification/module/${module.id}?state=${selectedState}`}
                   className="group relative"
                   onMouseEnter={() => setHoveredModule(module.id)}
                   onMouseLeave={() => setHoveredModule(null)}
@@ -331,6 +330,25 @@ export default function CertificationPage() {
                         <span className="text-yellow-300">★</span>
                         {module.badge}
                       </div>
+
+                      {/* Start module + Take Quiz */}
+                      <div className="mt-5 flex flex-wrap items-center gap-3">
+                        <Link
+                          href={`/certification/module/${module.id}?state=${selectedState}`}
+                          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-black/20 hover:bg-black/30 text-sm font-semibold backdrop-blur-sm transition-all"
+                        >
+                          Start module
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                          </svg>
+                        </Link>
+                        <Link
+                          href={`/certification/quiz/${module.id}`}
+                          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-sm font-medium backdrop-blur-sm transition-all"
+                        >
+                          Take Quiz
+                        </Link>
+                      </div>
                     </div>
 
                     {/* Arrow */}
@@ -340,7 +358,7 @@ export default function CertificationPage() {
                       </svg>
                     </div>
                   </div>
-                </Link>
+                </div>
               ))}
 
               {/* Toolkit Card */}
@@ -401,15 +419,23 @@ export default function CertificationPage() {
                 <p className="text-gray-400 text-lg mb-10 max-w-lg mx-auto">
                   Join education professionals across the country who&apos;ve mastered student data privacy.
                 </p>
-                <Link
-                  href={`/certification/module/0?state=${selectedState}`}
-                  className="group inline-flex items-center gap-3 px-12 py-5 bg-white text-black font-bold text-lg rounded-2xl hover:bg-gray-100 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_60px_rgba(255,255,255,0.2)]"
-                >
-                  Start Now — It&apos;s Free
-                  <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </Link>
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                  <Link
+                    href={`/certification/module/0?state=${selectedState}`}
+                    className="group inline-flex items-center gap-3 px-12 py-5 bg-white text-black font-bold text-lg rounded-2xl hover:bg-gray-100 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_60px_rgba(255,255,255,0.2)]"
+                  >
+                    Start Now — It&apos;s Free
+                    <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </Link>
+                  <Link
+                    href="/certification/certificate"
+                    className="text-gray-400 hover:text-white text-sm font-medium transition-colors"
+                  >
+                    View certificate →
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

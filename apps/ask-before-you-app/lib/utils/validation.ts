@@ -36,6 +36,17 @@ export const emailCaptureSchema = z.object({
   leadMagnet: z.string().optional(),
 });
 
+// App request (suggest an app for review) validation
+export const appRequestSchema = z.object({
+  name: z.string().min(2, 'Name must be at least 2 characters'),
+  email: z.string().email('Invalid email address'),
+  role: z.string().optional(),
+  organization: z.string().optional(),
+  appName: z.string().min(2, 'App name is required'),
+  appUrl: z.string().optional(),
+  reason: z.string().optional(),
+});
+
 export type ContactFormData = z.infer<typeof contactFormSchema>;
 export type QuizSubmissionData = z.infer<typeof quizSubmissionSchema>;
 export type AuditScheduleData = z.infer<typeof auditScheduleSchema>;

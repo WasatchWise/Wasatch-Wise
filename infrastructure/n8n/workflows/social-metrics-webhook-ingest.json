@@ -1,0 +1,121 @@
+{
+  "name": "Social Metrics Webhook Ingest → social_post_metrics",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "social-metrics",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300],
+      "webhookId": "social-metrics-ingest"
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.first().json;\nconst body = input.body || input;\nconst runAt = body.run_at || new Date().toISOString();\nconst source = body.source || 'slctrips';\nconst posts = body.posts || [];\n\nif (posts.length === 0) {\n  return [{ json: { _skip: true, _response: JSON.stringify({ ok: true, ingested: 0, message: 'No posts in payload', run_at: runAt }) } }];\n}\n\nreturn posts.map(p => ({\n  json: {\n    _skip: false,\n    _run_at: runAt,\n    _total: posts.length,\n    _body: JSON.stringify({\n      source,\n      platform: p.platform || null,\n      post_url: p.post_url || null,\n      campaign_id: p.campaign_id || null,\n      posted_at: p.posted_at || null,\n      captured_at: runAt,\n      views: typeof p.views === 'number' ? p.views : 0,\n      likes: typeof p.likes === 'number' ? p.likes : 0,\n      comments: typeof p.comments === 'number' ? p.comments : 0,\n      saves: typeof p.saves === 'number' ? p.saves : null,\n      shares: typeof p.shares === 'number' ? p.shares : null,\n      reactions: typeof p.reactions === 'number' ? p.reactions : null,\n      accounts_reached: typeof p.accounts_reached === 'number' ? p.accounts_reached : null,\n      extra: p.extra ? JSON.stringify(p.extra) : null\n    })\n  }\n}));\n"
+      },
+      "id": "code-expand-posts",
+      "name": "Expand posts to rows",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict" },
+          "conditions": [{ "id": "is-skip", "leftValue": "={{ $json._skip }}", "rightValue": true, "operator": { "type": "boolean", "operation": "equals" } }],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "if-skip",
+      "name": "If skip",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [680, 200]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $vars.SUPABASE_URL }}/rest/v1/social_post_metrics",
+        "authentication": "none",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "apikey", "value": "={{ $vars.SUPABASE_SERVICE_ROLE_KEY }}" },
+            { "name": "Authorization", "value": "=Bearer {{ $vars.SUPABASE_SERVICE_ROLE_KEY }}" },
+            { "name": "Content-Type", "value": "application/json" },
+            { "name": "Prefer", "value": "return=minimal" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "string",
+        "body": "={{ $json._body }}",
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "options": {}
+      },
+      "id": "supabase-insert",
+      "name": "Insert social_post_metrics",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [900, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nconst runAt = items[0]?.json?._run_at || new Date().toISOString();\nreturn [{ json: { ok: true, ingested: items.length, run_at: runAt } }];\n"
+      },
+      "id": "code-summary",
+      "name": "Summary",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1100, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json) }}",
+        "options": {}
+      },
+      "id": "respond-success",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1300, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json._response }}",
+        "options": {}
+      },
+      "id": "respond-skip",
+      "name": "Respond (no posts)",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [900, 100]
+    }
+  ],
+  "connections": {
+    "Webhook": { "main": [[{ "node": "Expand posts to rows", "type": "main", "index": 0 }]] },
+    "Expand posts to rows": { "main": [[{ "node": "If skip", "type": "main", "index": 0 }]] },
+    "If skip": {
+      "main": [
+        [{ "node": "Respond (no posts)", "type": "main", "index": 0 }],
+        [{ "node": "Insert social_post_metrics", "type": "main", "index": 0 }]
+      ]
+    },
+    "Insert social_post_metrics": { "main": [[{ "node": "Summary", "type": "main", "index": 0 }]] },
+    "Summary": { "main": [[{ "node": "Respond to Webhook", "type": "main", "index": 0 }]] }
+  },
+  "active": true,
+  "settings": { "executionOrder": "v1" },
+  "versionId": "3",
+  "meta": { "templateCredsSetupCompleted": false }
+}

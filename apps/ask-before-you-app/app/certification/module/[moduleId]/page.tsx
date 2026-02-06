@@ -198,8 +198,14 @@ export default function ModulePage() {
                 </div>
               </div>
               
-              {/* Progress */}
+              {/* Progress + Take Quiz */}
               <div className="flex items-center gap-2 sm:gap-4">
+                <Link
+                  href={`/certification/quiz/${moduleId}`}
+                  className="px-3 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-sm font-medium text-gray-300 hover:text-white transition-all"
+                >
+                  Take Quiz
+                </Link>
                 <div className="hidden sm:flex items-center gap-3">
                   <div className="text-right">
                     <p className="text-xs text-gray-500">Progress</p>

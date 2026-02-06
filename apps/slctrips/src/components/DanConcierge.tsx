@@ -9,12 +9,17 @@ interface Message {
   role: 'user' | 'dan';
   content: string;
   timestamp: Date;
+  ctaUrl?: string;
+  ctaLabel?: string;
 }
 
 interface DanConciergeProps {
-  tripkitCode: string;
-  tripkitName: string;
-  destinations: Destination[];
+  /** TripKit code; use "site" for global/main-page chat (no TripKit context) */
+  tripkitCode?: string;
+  /** Display name for context; e.g. "SLCTrips" for site mode */
+  tripkitName?: string;
+  /** Destinations for TripKit-specific search; empty for site mode */
+  destinations?: Destination[];
   isOpen?: boolean;
   onToggle?: () => void;
 }
@@ -62,10 +67,37 @@ function getQuickPrompts(tripkitCode: string) {
   return TRIPKIT_PROMPTS[tripkitCode] || TRIPKIT_PROMPTS.default;
 }
 
+// Free-tier limit for site-wide Dan: N user messages per day (TripKit owners get unlimited in-context)
+const FREE_TIER_DAILY_LIMIT = 5;
+const SITE_COUNT_KEY_PREFIX = 'dan-site-count-';
+
+function getSiteModeMessageCount(): number {
+  if (typeof window === 'undefined') return 0;
+  try {
+    const today = new Date().toISOString().slice(0, 10);
+    const raw = localStorage.getItem(SITE_COUNT_KEY_PREFIX + today);
+    return raw ? Math.max(0, parseInt(raw, 10)) : 0;
+  } catch {
+    return 0;
+  }
+}
+
+function incrementSiteModeMessageCount(): void {
+  if (typeof window === 'undefined') return;
+  try {
+    const today = new Date().toISOString().slice(0, 10);
+    const key = SITE_COUNT_KEY_PREFIX + today;
+    const next = getSiteModeMessageCount() + 1;
+    localStorage.setItem(key, String(next));
+  } catch {
+    // Ignore
+  }
+}
+
 export default function DanConcierge({
-  tripkitCode,
-  tripkitName,
-  destinations,
+  tripkitCode = 'site',
+  tripkitName = 'SLCTrips',
+  destinations = [],
   isOpen: controlledIsOpen,
   onToggle,
 }: DanConciergeProps) {
@@ -161,11 +193,13 @@ export default function DanConcierge({
       setMessages([{
         id: 'greeting',
         role: 'dan',
-        content: `${greeting}! I'm Dan, your Utah concierge. I can check weather, ski conditions, canyon traffic, find events, or help you explore your ${tripkitName}. What would you like to know?`,
+        content: tripkitCode === 'site'
+          ? `${greeting}! I'm Dan, your Utah concierge. I can check weather, ski conditions, canyon traffic, find events, or help you explore. What would you like to know?`
+          : `${greeting}! I'm Dan, your Utah concierge. I can check weather, ski conditions, canyon traffic, find events, or help you explore your ${tripkitName}. What would you like to know?`,
         timestamp: new Date(),
       }]);
     }
-  }, [hydrated, isOpen, hasGreeted, messages.length, tripkitName]);
+  }, [hydrated, isOpen, hasGreeted, messages.length, tripkitName, tripkitCode]);
 
   const toggleOpen = () => {
     if (onToggle) {
@@ -178,6 +212,28 @@ export default function DanConcierge({
   const sendMessage = async (messageText: string) => {
     if (!messageText.trim() || isLoading) return;
 
+    const isSiteMode = tripkitCode === 'site';
+    if (isSiteMode && getSiteModeMessageCount() >= FREE_TIER_DAILY_LIMIT) {
+      const userMessage: Message = {
+        id: Date.now().toString(),
+        role: 'user',
+        content: messageText,
+        timestamp: new Date(),
+      };
+      setMessages(prev => [...prev, userMessage]);
+      setInput('');
+      const upsellMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        role: 'dan',
+        content: "You've used your free asks for today. Unlock unlimited Dan + curated TripKits for itineraries, guardian tips, and more.",
+        timestamp: new Date(),
+        ctaUrl: '/tripkits',
+        ctaLabel: 'Browse TripKits',
+      };
+      setMessages(prev => [...prev, upsellMessage]);
+      return;
+    }
+
     const userMessage: Message = {
       id: Date.now().toString(),
       role: 'user',
@@ -187,6 +243,7 @@ export default function DanConcierge({
 
     setMessages(prev => [...prev, userMessage]);
     setInput('');
+    if (isSiteMode) incrementSiteModeMessageCount();
     setIsLoading(true);
 
     // Cancel any previous request
@@ -334,6 +391,11 @@ export default function DanConcierge({
               <p className="text-xs text-white/80">Your Utah Concierge</p>
             </div>
             <div className="flex items-center gap-2">
+              {tripkitCode === 'site' && (
+                <span className="text-xs bg-white/20 px-2 py-1 rounded-full">
+                  {Math.max(0, FREE_TIER_DAILY_LIMIT - getSiteModeMessageCount())} free asks today
+                </span>
+              )}
               <div className="flex items-center gap-1 text-xs bg-white/20 px-2 py-1 rounded-full">
                 <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
                 Live
@@ -368,6 +430,14 @@ export default function DanConcierge({
                   }`}
                 >
                   <p className="text-sm whitespace-pre-wrap">{message.content}</p>
+                  {message.role === 'dan' && message.ctaUrl && message.ctaLabel && (
+                    <a
+                      href={message.ctaUrl}
+                      className="mt-2 inline-block text-sm font-semibold text-purple-600 hover:text-purple-700 underline"
+                    >
+                      {message.ctaLabel} →
+                    </a>
+                  )}
                 </div>
               </div>
             ))}

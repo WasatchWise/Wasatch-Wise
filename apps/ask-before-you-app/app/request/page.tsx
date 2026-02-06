@@ -5,10 +5,12 @@ import Link from 'next/link';
 import { Button } from '@/components/shared/Button';
 import { Form, FormField, Input } from '@/components/shared/Form';
 import { CheckCircle, Loader2, ArrowRight, BookOpen, Search, FileCheck } from 'lucide-react';
+import { submitAppRequest } from '@/app/actions/request-app';
 
 export default function RequestReviewPage() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -23,12 +25,19 @@ export default function RequestReviewPage() {
     e.preventDefault();
     setLoading(true);
 
-    // For now, just simulate submission
-    // In production, this would submit to a database or email service
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    setSubmitted(true);
+    const result = await submitAppRequest({
+      name: formData.name,
+      email: formData.email,
+      role: formData.role || undefined,
+      organization: formData.organization || undefined,
+      appName: formData.appName,
+      appUrl: formData.appUrl || undefined,
+      reason: formData.reason || undefined,
+    });
+
     setLoading(false);
+    if (result.success) setSubmitted(true);
+    else setError(result.error ?? 'Something went wrong. Please try again.');
   };
 
   if (submitted) {
@@ -235,6 +244,10 @@ export default function RequestReviewPage() {
                   rows={3}
                 />
               </FormField>
+
+              {error && (
+                <p className="text-sm text-red-600 bg-red-50 p-3 rounded-lg">{error}</p>
+              )}
 
               <Button
                 type="submit"
