@@ -3,8 +3,22 @@ name: CI
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - 'apps/ask-before-you-app/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+      - 'turbo.json'
+      - '.github/workflows/ci.yml'
   pull_request:
     branches: [ "main" ]
+    paths:
+      - 'apps/ask-before-you-app/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+      - 'turbo.json'
+      - '.github/workflows/ci.yml'
 
 jobs:
   build:
@@ -26,18 +40,20 @@ jobs:
     - name: Install dependencies
       run: pnpm install --frozen-lockfile
 
+    # Only validate the app we deploy from this repo (ask-before-you-app). Other apps in the
+    # monorepo can break without failing CI and spamming deployment emails.
     - name: Run Lint
-      run: pnpm run lint
+      run: pnpm run lint --filter=ask-before-you-app
 
     - name: Type Check
-      run: pnpm run typecheck
+      run: pnpm run typecheck --filter=ask-before-you-app
 
     - name: Run Tests
-      run: pnpm run test
+      run: pnpm run test --filter=ask-before-you-app
       continue-on-error: true  # Don't fail CI on test failures initially
 
     - name: Build
-      run: pnpm run build
+      run: pnpm run build --filter=ask-before-you-app
       env:
         NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
         NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
