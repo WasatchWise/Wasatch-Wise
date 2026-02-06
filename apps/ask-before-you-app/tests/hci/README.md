@@ -1,5 +1,7 @@
 # DAROS HCI Archetype Testing Suite
 
+> **Design framework:** For the full HCI design (principles, personas, evaluation), see **[docs/HCI_DESIGN.md](../../docs/HCI_DESIGN.md)**.
+
 ## Philosophy
 
 This test suite implements two core HCI principles:

@@ -16,7 +16,7 @@ import {
   ChevronRight,
   ExternalLink,
 } from 'lucide-react';
-import { ALL_STATES, SDPC_MEMBER_STATES, STATE_ECOSYSTEMS } from '@/lib/ecosystem';
+import { ALL_STATES, SDPC_MEMBER_STATES, hasEcosystemData } from '@/lib/ecosystem';
 import { setStoredPersona } from '@/lib/persona';
 
 const PERSONAS = [
@@ -39,7 +39,7 @@ export default function LearnPage() {
   const searchParams = useSearchParams();
   const who = searchParams.get('who');
   const whoLabel = who && WHO_LABELS[who] ? WHO_LABELS[who] : null;
-  const availableStates = Object.keys(STATE_ECOSYSTEMS);
+  // All states have overview; full guide = Utah only
 
   // Persist persona for the session so Certification / Ecosystem can use it
   useEffect(() => {
@@ -163,15 +163,16 @@ export default function LearnPage() {
                 <p className="text-sm font-medium text-gray-500 mb-2">Select your state</p>
                 <div className="flex flex-wrap gap-2">
                   {ALL_STATES.map((state) => {
-                    const hasData = availableStates.includes(state.code);
+                    const hasFullGuide = hasEcosystemData(state.code);
                     return (
                       <Link
                         key={state.code}
-                        href={hasData ? `/ecosystem/${state.code.toLowerCase()}` : '/ecosystem'}
+                        href={`/ecosystem/${state.code.toLowerCase()}`}
+                        aria-label={`${state.name} (${state.code})${hasFullGuide ? ' — full guide' : ''}`}
                         className={`px-2.5 py-1 rounded-md text-xs font-medium transition-colors ${
-                          hasData
+                          hasFullGuide
                             ? 'bg-blue-600 text-white hover:bg-blue-700'
-                            : 'bg-gray-100 text-gray-400 hover:bg-gray-200'
+                            : 'bg-blue-100 text-blue-700 hover:bg-blue-200'
                         }`}
                       >
                         {state.code}

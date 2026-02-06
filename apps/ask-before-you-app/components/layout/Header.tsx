@@ -81,7 +81,9 @@ export function Header() {
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2 text-gray-700 hover:text-orange-500"
-              aria-label="Toggle menu"
+              aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-nav"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {mobileMenuOpen ? (
@@ -96,7 +98,7 @@ export function Header() {
 
         {/* Mobile Navigation — ABYA only */}
         {mobileMenuOpen && (
-          <nav className="lg:hidden mt-4 pb-4 border-t border-gray-200 pt-4">
+          <nav id="mobile-nav" className="lg:hidden mt-4 pb-4 border-t border-gray-200 pt-4" aria-label="Mobile navigation">
             <div className="flex flex-col gap-4">
               <button
                 type="button"

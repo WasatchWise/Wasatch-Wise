@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Header } from '@/components/layout/Header'
-import { ALL_STATES, SDPC_MEMBER_STATES, STATE_ECOSYSTEMS } from '@/lib/ecosystem'
+import { ALL_STATES, SDPC_MEMBER_STATES, STATE_ECOSYSTEMS, hasEcosystemData } from '@/lib/ecosystem'
 import { getStoredPersona } from '@/lib/persona'
 
 export default function EcosystemPage() {
@@ -57,11 +57,11 @@ export default function EcosystemPage() {
               </div>
               <div className="text-center">
                 <p className="text-3xl font-bold text-white">{availableStates.length}</p>
-                <p className="text-slate-400 text-sm">Guides Ready</p>
+                <p className="text-slate-400 text-sm">Full Guides</p>
               </div>
               <div className="text-center">
-                <p className="text-3xl font-bold text-white">50M+</p>
-                <p className="text-slate-400 text-sm">Students Protected</p>
+                <p className="text-3xl font-bold text-white">51</p>
+                <p className="text-slate-400 text-sm">State Overviews</p>
               </div>
             </div>
           </div>
@@ -71,30 +71,30 @@ export default function EcosystemPage() {
         <section className="py-12 px-4">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-2xl font-bold text-white mb-8 text-center">Select Your State</h2>
-            
+            <p className="text-slate-400 text-center text-sm mb-6">
+              Every state has an overview (laws, compliance, AI governance). Utah has a full guide with workflows and resources.
+            </p>
             <div className="grid grid-cols-5 md:grid-cols-10 gap-2">
               {ALL_STATES.map((state) => {
-                const hasData = availableStates.includes(state.code)
+                const hasFullGuide = hasEcosystemData(state.code)
                 const isSdpcMember = SDPC_MEMBER_STATES.includes(state.code)
                 
                 return (
                   <Link
                     key={state.code}
-                    href={hasData ? `/ecosystem/${state.code.toLowerCase()}` : '#'}
+                    href={`/ecosystem/${state.code.toLowerCase()}`}
+                    aria-label={`${state.name} (${state.code})${hasFullGuide ? ' — full guide available' : ' — overview'}`}
                     className={`
                       relative p-3 rounded-lg text-center transition-all
-                      ${hasData
+                      ${hasFullGuide
                         ? 'bg-[#005696] hover:bg-[#005696]/80 text-white cursor-pointer hover:scale-105'
-                        : isSdpcMember
-                          ? 'bg-slate-700/50 text-slate-400 cursor-not-allowed'
-                          : 'bg-slate-800/30 text-slate-500 cursor-not-allowed'
+                        : 'bg-slate-700/50 hover:bg-slate-600/50 text-slate-300 hover:text-white cursor-pointer hover:scale-105'
                       }
                     `}
-                    onClick={(e) => !hasData && e.preventDefault()}
                   >
                     <span className="text-sm font-bold">{state.code}</span>
-                    {hasData && (
-                      <span className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full" />
+                    {hasFullGuide && (
+                      <span className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full" title="Full guide" />
                     )}
                   </Link>
                 )

@@ -119,3 +119,21 @@ Once the domain is assigned to the project that builds `apps/ask-before-you-app`
 ## Post-launch: HCI test plan for SDPC leadership
 
 To verify the live site is not breaking and to share a standard checklist with SDPC leadership, use **[HCI_TEST_PLAN_SDPC_LEADERSHIP.md](./HCI_TEST_PLAN_SDPC_LEADERSHIP.md)**. It includes smoke tests, critical user journeys by persona (Parent, Educator, Administrator, Student), page-by-page checks, accessibility (WCAG 2.1 AA), and how to run the automated Playwright HCI suite against production.
+
+---
+
+## Post-deploy verification: State links
+
+After deploying, verify that **all 51 states** (50 states + DC) are clickable and navigate correctly:
+
+1. Open **https://www.askbeforeyouapp.com/ecosystem**
+2. Click **CA** (California) → should load `/ecosystem/ca` with overview (laws, compliance, contacts)
+3. Click **TX** (Texas) → should load `/ecosystem/tx` with overview
+4. Click **UT** (Utah) → should load `/ecosystem/ut` with full guide
+
+**If non-Utah states show "Coming Soon" or `href="#"` in browser tools:**
+
+- Ensure `state-foundation-data.ts` and `app/ecosystem/[stateCode]/page.tsx` are in the deployed build
+- Redeploy from the correct branch (usually `main`)
+- Clear Vercel cache: **Deployments → … → Redeploy** with "Use existing Build Cache" unchecked
+- Hard refresh (Cmd+Shift+R) in the browser

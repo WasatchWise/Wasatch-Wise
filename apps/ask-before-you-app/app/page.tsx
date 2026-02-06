@@ -107,7 +107,7 @@ export default function AskBeforeYouAppPage() {
         </section>
 
         {/* What You Get — The Hub */}
-        <section className="bg-white rounded-2xl shadow-sm border border-orange-100 p-6 sm:p-8 md:p-10 mb-12">
+        <section id="services" className="bg-white rounded-2xl shadow-sm border border-orange-100 p-6 sm:p-8 md:p-10 mb-12 scroll-mt-20">
           <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2 text-center">
             One place to learn and take action
           </h2>

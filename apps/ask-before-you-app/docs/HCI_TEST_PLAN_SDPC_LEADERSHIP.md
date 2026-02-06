@@ -2,6 +2,8 @@
 
 **Purpose:** Ensure the Ask Before You App (ABYA) campaign site remains stable and usable for all audiences. This plan supports post-launch verification and can be shared with SDPC leadership to demonstrate ongoing quality assurance.
 
+> **Design context:** For the HCI design framework (principles, personas, interaction patterns), see **[HCI_DESIGN.md](./HCI_DESIGN.md)**.
+
 **Audience:** SDPC leadership, district administrators, and anyone validating that the campaign works as designed.
 
 **Live site:** https://www.askbeforeyouapp.com
