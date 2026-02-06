@@ -598,9 +598,15 @@ function ResourceSection({
             <h4 className="font-medium text-white text-sm">{resource.name}</h4>
             <p className="text-slate-400 text-xs">{resource.description}</p>
             {resource.url && (
-              <a href={resource.url} target="_blank" rel="noopener noreferrer" className="text-[#00A3E0] text-xs hover:underline">
-                Access →
-              </a>
+              resource.url.startsWith('/') ? (
+                <Link href={resource.url} className="text-[#00A3E0] text-xs hover:underline">
+                  Access →
+                </Link>
+              ) : (
+                <a href={resource.url} target="_blank" rel="noopener noreferrer" className="text-[#00A3E0] text-xs hover:underline">
+                  Access →
+                </a>
+              )
             )}
           </li>
         ))}

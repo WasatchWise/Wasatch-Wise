@@ -241,6 +241,13 @@ export const UTAH_ECOSYSTEM: StateEcosystem = {
     ],
     tools: [
       {
+        name: 'Utah Vendor Agreement Registry',
+        description: 'Searchable database of 1,200+ vendor and product agreements—DPAs, NDPA exhibits, and statewide contracts',
+        type: 'tool',
+        format: 'web',
+        url: '/utah-agreements',
+      },
+      {
         name: 'USPA Application Menu',
         description: 'Google Sheet tracking approved apps statewide',
         type: 'tool',
@@ -365,7 +372,7 @@ export const UTAH_ECOSYSTEM: StateEcosystem = {
 
   stats: {
     studentsProtected: '700,000+',
-    districtsParticipating: '41 school districts + 100+ charter schools',
+    districtsParticipating: '150+ districts and charters',
     vendorAgreements: 'Hundreds of vendors with standardized DPAs',
   },
 }
