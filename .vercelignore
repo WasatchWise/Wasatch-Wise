@@ -1,8 +1,24 @@
-# Large directories - not needed for Vercel build
+# Large directories
 Documents/
 Archive/
 Media/
 WolfTok/
+civilization/
+infrastructure/
+docs/
+scripts/
+
+# Apps not used by dashboard build
+apps/adult-ai-academy/
+apps/ask-before-you-app/
+apps/daite/
+apps/dublin-drive-live/
+apps/gmc-mag/
+apps/munchyslots/
+apps/pipeline-iq/
+apps/rock-salt/
+apps/slctrips/
+apps/the-rings/
 
 # Dependencies - Vercel installs these
 node_modules/

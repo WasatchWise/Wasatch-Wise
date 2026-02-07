@@ -1,5 +1,27 @@
 {
   "installCommand": "pnpm install --frozen-lockfile",
   "buildCommand": "pnpm --filter dashboard run build",
-  "outputDirectory": "apps/dashboard/.next"
+  "outputDirectory": "apps/dashboard/.next",
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/adult-ai-academy",
+      "has": [{ "type": "host", "value": "adultaiacademy.com" }]
+    },
+    {
+      "source": "/",
+      "destination": "/adult-ai-academy",
+      "has": [{ "type": "host", "value": "www.adultaiacademy.com" }]
+    },
+    {
+      "source": "/:path+",
+      "destination": "/adult-ai-academy/:path",
+      "has": [{ "type": "host", "value": "adultaiacademy.com" }]
+    },
+    {
+      "source": "/:path+",
+      "destination": "/adult-ai-academy/:path",
+      "has": [{ "type": "host", "value": "www.adultaiacademy.com" }]
+    }
+  ]
 }
