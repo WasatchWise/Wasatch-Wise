@@ -1,5 +1,5 @@
 {
-  "framework": "nextjs",
+  "ignoreCommand": "exit 0",
   "headers": [
     {
       "source": "/(.*)",
