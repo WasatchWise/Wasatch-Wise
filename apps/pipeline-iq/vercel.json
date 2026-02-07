@@ -2,7 +2,7 @@
   "framework": "nextjs",
   "installCommand": "cd ../.. && pnpm install --frozen-lockfile",
   "buildCommand": "cd ../.. && pnpm run build --filter=grooveleads-pro",
-  "ignoreCommand": "git diff --quiet HEAD^ HEAD -- .",
+  "ignoreCommand": "npx turbo-ignore grooveleads-pro",
   "crons": [
     {
       "path": "/api/cron/scrape",
