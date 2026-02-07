@@ -4,6 +4,7 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import { Button } from '@/components/shared/Button';
 import { Form, Input } from '@/components/shared/Form';
+import { Header } from '@/components/layout/Header';
 
 // Set page title for accessibility
 if (typeof document !== 'undefined') {
@@ -97,37 +98,79 @@ export default function WiseBotPage() {
       });
 
       if (!response.ok) {
-        throw new Error(`Failed to get response: ${response.statusText}`);
+        let errorMessage = `Failed to get response: ${response.statusText}`;
+        try {
+          const text = await response.text();
+          if (text) {
+            const errData = JSON.parse(text);
+            if (errData?.error) errorMessage = errData.error;
+            else if (errData?.message) errorMessage = errData.message;
+          }
+        } catch {
+          // Use default message
+        }
+        throw new Error(errorMessage);
       }
 
       const reader = response.body?.getReader();
       const decoder = new TextDecoder();
       let fullResponse = '';
+      let lineBuffer = '';
 
       if (!reader) {
         throw new Error('No response body');
       }
 
+      let streamError: string | null = null;
       while (true) {
         const { done, value } = await reader.read();
         if (done) break;
 
-        const chunk = decoder.decode(value);
-        const lines = chunk.split('\n');
+        lineBuffer += decoder.decode(value, { stream: true });
+        const lines = lineBuffer.split('\n');
+        lineBuffer = lines.pop() ?? '';
 
         for (const line of lines) {
           if (line.startsWith('data: ')) {
             try {
               const data = JSON.parse(line.slice(6));
+              if (data.error) {
+                streamError = data.error;
+                break;
+              }
               if (data.text) {
                 fullResponse += data.text;
                 setStreamingContent(fullResponse);
               }
             } catch (e) {
-              // Skip invalid JSON
+              // Skip invalid JSON (incomplete line or malformed)
             }
           }
         }
+        if (streamError) break;
+      }
+
+      if (lineBuffer.trim() && lineBuffer.startsWith('data: ')) {
+        try {
+          const data = JSON.parse(lineBuffer.slice(6));
+          if (data.error) streamError = data.error;
+          else if (data.text) {
+            fullResponse += data.text;
+            setStreamingContent(fullResponse);
+          }
+        } catch (e) {
+          // Skip incomplete final chunk
+        }
+      }
+
+      if (streamError) {
+        throw new Error(streamError);
+      }
+
+      if (!fullResponse.trim()) {
+        throw new Error(
+          'No response received. This may be due to an API configuration issue. Please try again or use Contact Us for help.'
+        );
       }
 
       // Add complete response to conversation
@@ -160,13 +203,15 @@ export default function WiseBotPage() {
   }, [conversation, handleSubmit]);
 
   const handleExamplePrompt = (prompt: string) => {
-    setMessage(prompt);
-    inputRef.current?.focus();
+    if (!prompt.trim() || isStreaming) return;
+    handleSubmit(new Event('submit') as React.FormEvent, prompt);
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-orange-50 to-white py-12" role="main">
-      <div className="max-w-4xl mx-auto px-6">
+    <>
+      <Header />
+      <main className="min-h-screen bg-gradient-to-br from-orange-50 to-white py-12" role="main">
+        <div className="max-w-4xl mx-auto px-6">
         <header className="text-center mb-8">
           <div className="mx-auto mb-4 h-20 w-20 rounded-full bg-orange-50 flex items-center justify-center">
             <Image
@@ -358,7 +403,8 @@ export default function WiseBotPage() {
             Want to talk to a human? Contact Us
           </Button>
         </footer>
-      </div>
-    </main>
+        </div>
+      </main>
+    </>
   );
 }

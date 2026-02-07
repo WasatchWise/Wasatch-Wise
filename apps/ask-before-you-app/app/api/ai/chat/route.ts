@@ -61,13 +61,23 @@ async function handler(req: NextRequest) {
 
   const supabase = await createClient();
 
-  // Search knowledge base before calling Claude
-  const { data: kbResults } = await supabase
-    .from('knowledge_base')
-    .select('id,question,answer,view_count')
-    .eq('active', true)
-    .textSearch('search_vector', sanitizedMessage, { type: 'websearch' })
-    .limit(3);
+  // Search knowledge base before calling Claude (non-fatal: if KB fails, continue without it)
+  let kbResults: { id: string; question: string; answer: string; view_count: number | null }[] | null = null;
+  try {
+    const { data, error: kbError } = await supabase
+      .from('knowledge_base')
+      .select('id,question,answer,view_count')
+      .eq('active', true)
+      .textSearch('search_vector', sanitizedMessage, { type: 'websearch' })
+      .limit(3);
+    if (kbError) {
+      logger.error('Knowledge base search failed, continuing without KB', kbError);
+    } else {
+      kbResults = data ?? null;
+    }
+  } catch (kbErr) {
+    logger.error('Knowledge base search failed, continuing without KB', kbErr);
+  }
 
   let enhancedSystemPrompt = systemPrompt;
 
