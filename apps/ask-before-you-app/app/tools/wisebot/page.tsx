@@ -204,7 +204,7 @@ export default function WiseBotPage() {
 
   const handleExamplePrompt = (prompt: string) => {
     if (!prompt.trim() || isStreaming) return;
-    handleSubmit(new Event('submit') as React.FormEvent, prompt);
+    handleSubmit(new Event('submit') as unknown as React.FormEvent, prompt);
   };
 
   return (
