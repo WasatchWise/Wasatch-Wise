@@ -17,7 +17,7 @@ import { useState, useEffect } from 'react';
  */
 
 export default function GoogleAnalytics() {
-  const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+  const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? 'G-0DXESNHNW5';
   const [hasConsent, setHasConsent] = useState(false);
 
   // Check and listen for consent changes

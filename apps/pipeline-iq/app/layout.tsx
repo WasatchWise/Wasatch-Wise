@@ -4,6 +4,7 @@ import './globals.css'
 import { PWAInstallPrompt } from '@/components/pwa/PWAInstallPrompt'
 import { ServiceWorkerRegistration } from '@/components/pwa/ServiceWorkerRegistration'
 import { IOSOptimizer } from '@/components/ios/IOSOptimizer'
+import GoogleAnalytics from '@/components/GoogleAnalytics'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -48,6 +49,7 @@ export default function RootLayout({
         <PWAInstallPrompt />
         <ServiceWorkerRegistration />
         <IOSOptimizer />
+        <GoogleAnalytics />
       </body>
     </html>
   )

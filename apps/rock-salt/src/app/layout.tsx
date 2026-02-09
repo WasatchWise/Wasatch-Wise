@@ -9,6 +9,7 @@ import InstallPrompt from "@/components/InstallPrompt";
 import { AudioPlayerProvider } from "@/contexts/AudioPlayerContext";
 import FloatingPlayer from "@/components/FloatingPlayer";
 import WelcomeModal from "@/components/WelcomeModal";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -91,6 +92,7 @@ export default function RootLayout({
           <Footer />
           <FloatingPlayer />
         </AudioPlayerProvider>
+        <GoogleAnalytics />
         <Script src="/sticky-header.js" strategy="afterInteractive" />
       </body>
     </html>

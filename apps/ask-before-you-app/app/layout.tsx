@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Analytics } from '@vercel/analytics/react';
 import { WhoAreYouModal } from '@/components/WhoAreYouModal';
+import GoogleAnalytics from '@/components/GoogleAnalytics';
 
 export const metadata: Metadata = {
   title: "Ask Before You App | Student Data Privacy Campaign",
@@ -18,6 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="font-sans bg-white text-gray-900 antialiased">
         {children}
         <WhoAreYouModal />
+        <GoogleAnalytics />
         <Analytics mode={'production'} />
       </body>
     </html>
