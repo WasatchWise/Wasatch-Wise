@@ -65,6 +65,11 @@ export function Footer() {
             <h4 className="text-white font-semibold mb-4">Company</h4>
             <ul className="space-y-2 text-sm">
               <li>
+                <Link href="https://johnlyman.net" className="hover:text-white" target="_blank" rel="noopener noreferrer">
+                  About the Founder
+                </Link>
+              </li>
+              <li>
                 <Link href="/#case-studies" className="hover:text-white">
                   Case Studies
                 </Link>
