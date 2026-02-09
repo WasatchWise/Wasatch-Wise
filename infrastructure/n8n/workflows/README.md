@@ -49,6 +49,14 @@ Exported JSON can contain **node config** but n8n typically does **not** embed c
 
 ---
 
+## WasatchWise content distribution
+
+| Workflow | Filename | Status | Purpose |
+|----------|----------|--------|---------|
+| **RSS → Claude → Google Sheets** | `rss-to-social-content-log.json` | **Ready** | Every 6h: RSS (blog feed) → newest post → Claude (LinkedIn + X copy) → append to Google Sheet. No LinkedIn/X API needed; copy from Sheet to post. See [RSS_TO_SOCIAL_SETUP.md](RSS_TO_SOCIAL_SETUP.md). |
+
+---
+
 ## Suggested first exports
 
 | Workflow idea | Filename | Purpose |

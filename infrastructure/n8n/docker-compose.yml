@@ -46,6 +46,9 @@ services:
       # Rock Salt events pipeline (POST ingest-events)
       ROCK_SALT_URL: ${ROCK_SALT_URL:-https://therocksalt.com}
       CRON_SECRET: ${CRON_SECRET:-}
+      # RSS → Social workflow (set in .env; do not commit keys)
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      GOOGLE_SHEET_ID: ${GOOGLE_SHEET_ID:-}
     volumes:
       - n8n_data:/home/node/.n8n
     depends_on:
