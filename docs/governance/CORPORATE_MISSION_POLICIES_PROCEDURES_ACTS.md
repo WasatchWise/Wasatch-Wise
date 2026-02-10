@@ -2,7 +2,7 @@
 
 **Effective:** February 9, 2026  
 **Authority:** Founder / Wasatch Wise LLC  
-**Cross-walk:** Monday Corporate Briefing (2/9), Sabrina Ramonov Focus Playbook, Brand Positioning, Three-Brand Empire Strategy
+**Cross-walk:** Monday Corporate Briefing (2/9), Sabrina Ramonov Focus Playbook, [SABRINA_AI_COFOUNDER_OPERATIONAL_FRAMEWORK.md](./SABRINA_AI_COFOUNDER_OPERATIONAL_FRAMEWORK.md), Brand Positioning, Three-Brand Empire Strategy
 
 ---
 
@@ -91,8 +91,10 @@ The following are **out of scope** unless explicitly approved as strategic:
   - Month strategic outlook (goals by venture).
   - Infrastructure health (Cloudflare, Supabase, Vercel, N8N).
   - Key metrics (commits, fix:feature ratio, active vs dormant apps, failing automations, open PRs).
+  - **Subtraction:** What we did **NOT** do last week (opportunities declined, work deliberately skipped). What we are **NOT** doing this week (reinforce exclusion and focus). Optionally: tasks eliminated, projects archived (see [SABRINA_AI_COFOUNDER_OPERATIONAL_FRAMEWORK.md](./SABRINA_AI_COFOUNDER_OPERATIONAL_FRAMEWORK.md) §5).
   - Recommendation (top 3 things to address).
 - **Output:** Published to terminal, Notion, or `docs/reports/` as appropriate. Used to drive P0/P1/P2 and to check compliance with Primary Focus and Automation Integrity policies.
+- **AI Co-Founder dependency:** Full AI Sparring Partner / Co-Founder methodology (Mixture of Experts, 95% confidence, strategic decisions) is operational only after analytics foundation is in place (GA4 + 30 days data). Weeks 1–4 focus = foundation; Week 5+ = when AI Co-Founder process is unlocked. See [SABRINA_AI_COFOUNDER_OPERATIONAL_FRAMEWORK.md](./SABRINA_AI_COFOUNDER_OPERATIONAL_FRAMEWORK.md).
 
 ### 3.2 Weekly Priority Procedure
 
