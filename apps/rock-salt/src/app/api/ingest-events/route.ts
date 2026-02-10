@@ -152,8 +152,7 @@ export async function POST(request: NextRequest) {
           description,
           ticket_url: ev.ticket_link || ev.primary_link || null,
           external_url: ev.primary_link || null,
-          external_source: source,
-          status: 'scheduled'
+          external_source: source
         })
 
         if (insertError) {
