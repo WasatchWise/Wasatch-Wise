@@ -162,7 +162,7 @@ export async function POST(request: NextRequest) {
           inserted++
         }
       } catch (err: unknown) {
-        const msg = err instanceof Error ? err.message : String(err)
+        const msg = err instanceof Error ? err.message : (typeof err === 'object' && err !== null && 'message' in err) ? String((err as { message: unknown }).message) : JSON.stringify(err)
         errors.push(`Error for ${ev.headliner}: ${msg}`)
         skipped++
       }
