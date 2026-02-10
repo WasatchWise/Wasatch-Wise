@@ -42,6 +42,9 @@ export function Header() {
             <Link href="/pricing" className="text-gray-700 hover:text-orange-500 transition-colors text-sm font-medium">
               Pricing
             </Link>
+            <Link href="/blog" className="text-gray-700 hover:text-orange-500 transition-colors text-sm font-medium">
+              Blog
+            </Link>
             <div className="relative group">
               <button className="text-gray-700 hover:text-orange-500 transition-colors text-sm font-medium flex items-center gap-1">
                 Tools
@@ -116,6 +119,9 @@ export function Header() {
               </Link>
               <Link href="/pricing" className="text-gray-700 hover:text-orange-500 transition-colors text-sm font-medium" onClick={() => setMobileMenuOpen(false)}>
                 Pricing
+              </Link>
+              <Link href="/blog" className="text-gray-700 hover:text-orange-500 transition-colors text-sm font-medium" onClick={() => setMobileMenuOpen(false)}>
+                Blog
               </Link>
               <div className="flex flex-col gap-2 pl-4 border-l-2 border-gray-200">
                 <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Tools</span>

@@ -30,6 +30,11 @@ export function Footer() {
             <h4 className="text-white font-semibold mb-4">Resources</h4>
             <ul className="space-y-2 text-sm">
               <li>
+                <Link href="/blog" className="hover:text-white">
+                  Blog
+                </Link>
+              </li>
+              <li>
                 <Link href="/tools/ai-readiness-quiz" className="hover:text-white">
                   AI Readiness Quiz
                 </Link>
