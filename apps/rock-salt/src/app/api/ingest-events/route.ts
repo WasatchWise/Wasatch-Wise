@@ -208,7 +208,8 @@ async function findOrCreateVenue(
       name: normalizedName,
       slug: slug || `venue-${Date.now()}`,
       city,
-      state
+      state,
+      org_id: '4cadb578-b415-461f-8039-1fd02f68a030'
     })
     .select('id')
     .single()
