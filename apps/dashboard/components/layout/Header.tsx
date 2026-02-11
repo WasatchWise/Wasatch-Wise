@@ -1,15 +1,23 @@
 'use client';
 
+import { useRef, useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/shared/Button';
-import { useState } from 'react';
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
-  const isAdultAIAcademy = pathname?.startsWith('/adult-ai-academy') ?? false;
+  const [clientPath, setClientPath] = useState('');
+  useEffect(() => {
+    if (typeof window !== 'undefined') setClientPath(window.location.pathname);
+  }, [pathname]);
+  // Use router path when available; fallback to last known or client path so logo doesn't flip when pathname briefly becomes null
+  const lastPathRef = useRef<string | null>(null);
+  if (pathname != null) lastPathRef.current = pathname;
+  const effectivePath = pathname ?? lastPathRef.current ?? clientPath ?? '';
+  const isAdultAIAcademy = effectivePath.startsWith('/adult-ai-academy');
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
