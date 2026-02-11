@@ -10,7 +10,7 @@ A privacy officer asked me last month: *"We're piloting an AI writing tool. Do w
 
 My answer: *"Probably both. Here's how to tell."*
 
-FERPA and COPPA are the two federal laws that govern student data in K-12. If you're adopting AI tools that process student information — and most do — you need to understand both. Confusing them leads to incomplete vendor vetting, missed risks, and board-level liability when something goes wrong.
+FERPA and COPPA are the two federal laws that govern student data in K-12. If you're adopting AI tools that process student information — and most do — you need to understand both. Confusing them leads to incomplete vendor vetting, missed risks, and board-level liability when something goes wrong. Student data privacy in the AI era isn't about picking one framework; it's about knowing which applies when, and making sure your vendor contracts and DPAs address each one. This post gives you the distinction, the overlap, and a practical checklist so you can vet AI vendors without losing your mind.
 
 ## FERPA: Education Records
 
@@ -18,7 +18,7 @@ FERPA and COPPA are the two federal laws that govern student data in K-12. If yo
 
 **What it covers:** Grades, attendance, disciplinary records, IEPs, assessment results, and — increasingly — any data created or collected through edtech tools the district has adopted.
 
-**Key question:** Does this AI tool create, store, or process data that is part of a student's education record? If yes, FERPA applies. Vendor contracts must specify how they handle, secure, and limit use of that data. Schools must have written agreements (Data Privacy Agreements, or DPAs) with vendors who access education records.
+**Key question:** Does this AI tool create, store, or process data that is part of a student's education record? If yes, FERPA applies. Vendor contracts must specify how they handle, secure, and limit use of that data. Schools must have written agreements (Data Privacy Agreements, or DPAs) with vendors who access education records. In practice, that means any AI tool that ingests student writing, quiz answers, behavioral notes, or assessment results is touching education records. FERPA AI compliance isn't optional for those tools — it's the baseline. Without a DPA that explicitly addresses FERPA, you're exposed the moment a parent or auditor asks how that data is stored and who can access it.
 
 ## COPPA: Children Under 13 Online
 
@@ -26,7 +26,7 @@ FERPA and COPPA are the two federal laws that govern student data in K-12. If yo
 
 **What it covers:** Name, email, location, persistent identifiers (cookies, device IDs), and — in the age of AI — prompts, inputs, and outputs that could identify a child.
 
-**Key question:** Does this AI tool collect personal information from students under 13? If yes, COPPA applies. The vendor needs verifiable parent consent (or must qualify for a "school official" exception when the school has contracted with them). They cannot use that data for advertising or to train models without explicit consent.
+**Key question:** Does this AI tool collect personal information from students under 13? If yes, COPPA applies. The vendor needs verifiable parent consent (or must qualify for a "school official" exception when the school has contracted with them). They cannot use that data for advertising or to train models without explicit consent. For AI tools, "personal information" now includes prompts, inputs, and outputs that could identify a child — so a chatbot or writing assistant used by elementary students is almost always in scope. AI vendor vetting for K-12 has to explicitly ask: How do you handle data from users under 13? What's your COPPA compliance mechanism?
 
 ## Why AI Tools Often Trigger Both
 
@@ -36,7 +36,7 @@ AI tools in schools typically:
 - Store usage data and analytics (identifiable to a child)
 - May use data to improve models (COPPA has strict rules here)
 
-So a single tool — an AI writing assistant, a chatbot tutor, a grading helper — can implicate both laws. Vendor vetting must address *both* FERPA and COPPA, not one or the other.
+So a single tool — an AI writing assistant, a chatbot tutor, a grading helper — can implicate both laws. Vendor vetting must address *both* FERPA and COPPA, not one or the other. Example: A district pilots an AI tool that gives feedback on student essays. The tool receives student writing (education record → FERPA) and is used by middle-schoolers including under-13s (personal information online → COPPA). The DPA needs to cover how the vendor handles education records under FERPA *and* how they obtain consent or qualify under COPPA. If the vendor says "we're FERPA compliant" but has nothing in writing about COPPA or under-13 data, the vetting is incomplete.
 
 ## Common Mistakes
 
@@ -47,13 +47,15 @@ COPPA applies to *operators* of online services that collect data from children.
 FERPA covers education records. Some data — e.g., certain browsing behavior, non-educational app usage — may fall outside FERPA but still be covered by COPPA or state laws. Don't assume one law covers everything.
 
 **Mistake 3: Skipping the DPA.**  
-"No DPA? No pilot." If a vendor can't or won't sign a Data Privacy Agreement that specifies FERPA and COPPA compliance, data handling, retention, and deletion — walk away.
+"No DPA? No pilot." If a vendor can't or won't sign a Data Privacy Agreement that specifies FERPA and COPPA compliance, data handling, retention, and deletion — walk away. Verbal assurances don't protect the district when something goes wrong. SDPC compliance and student data privacy in AI tools start with a signed agreement; everything else is secondary.
+
+**Takeaway:** FERPA and COPPA are complementary, not interchangeable. Map each tool to both frameworks, document it in your DPAs, and use SDPC alignment to prioritize which vendors get the deepest review. That’s how you scale AI adoption without scaling risk.
 
 ## SDPC Alignment: The Shortcut
 
-The **Student Data Privacy Consortium (SDPC)** maintains model DPAs and compliance frameworks that many edtech vendors have already adopted. A vendor who is SDPC-aligned has pre-negotiated terms that cover FERPA, COPPA, and common state requirements. That doesn't mean you skip due diligence — but it significantly reduces the legwork.
+The **Student Data Privacy Consortium (SDPC)** maintains model DPAs and compliance frameworks that many edtech vendors have already adopted. A vendor who is SDPC-aligned has pre-negotiated terms that cover FERPA, COPPA, and common state requirements. That doesn't mean you skip due diligence — but it significantly reduces the legwork. When you're evaluating multiple AI tools, SDPC alignment is a useful filter: vendors who have already signed onto the consortium's model terms have done a layer of privacy homework that others may not have.
 
-At Ask Before You App, we use WiseBot to assess vendor SDPC alignment. It's one way to quickly identify which vendors have done the privacy homework and which haven't.
+At Ask Before You App, we use **WiseBot** to assess vendor SDPC alignment. You can run your current or prospective vendors through WiseBot to see which are aligned and which need deeper contract review. It's one way to quickly identify which have done the privacy work and which haven't — so you focus your legal and compliance time where it matters most. No spreadsheets required: you get a clear signal on SDPC status so your team can move from "Are we covered?" to "What's our next pilot?"
 
 ## Your Next Step
 
@@ -63,5 +65,7 @@ Before you pilot any AI tool that touches student data, ask:
 2. Does it collect personal information from students under 13? (COPPA)
 3. Do we have a written DPA that addresses both?
 4. Is the vendor SDPC-aligned?
+
+Keeping FERPA and COPPA straight is the first step to defensible AI vendor vetting. Once you know which applies, get it in writing — and use SDPC alignment as a shortcut for vendors who've already committed to the right terms. Your board and your families will thank you when the question "Are we compliant?" has a clear, documented answer in hand — and when your next AI pilot is backed by a DPA that explicitly addresses both FERPA and COPPA.
 
 [Check WiseBot for SDPC alignment](/tools/wisebot) or [book a consultation](/contact) to walk through your vendor pipeline.

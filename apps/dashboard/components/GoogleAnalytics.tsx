@@ -13,13 +13,16 @@ const DEFAULT_MEASUREMENT_ID = 'G-Z6E4LRL4Q8';
 
 /**
  * Google Analytics 4 (gtag.js) — WasatchWise GA property (wasatch-wise-hq).
- * Dynamically selects measurement ID based on hostname so the dashboard app
- * reports to the correct GA4 data stream for both wasatchwise.com and adultaiacademy.com.
+ * Prefers NEXT_PUBLIC_GA_MEASUREMENT_ID from Vercel when set; otherwise selects
+ * measurement ID by hostname (wasatchwise.com vs adultaiacademy.com).
  */
 export default function GoogleAnalytics() {
   if (process.env.NODE_ENV !== 'production') {
     return null;
   }
+
+  const envId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+  const debug = process.env.NEXT_PUBLIC_GA_DEBUG === 'true';
 
   return (
     <Script
@@ -28,8 +31,10 @@ export default function GoogleAnalytics() {
       dangerouslySetInnerHTML={{
         __html: `
           (function() {
+            var envId = ${JSON.stringify(envId || '')};
             var ids = ${JSON.stringify(MEASUREMENT_IDS)};
-            var id = ids[window.location.hostname] || '${DEFAULT_MEASUREMENT_ID}';
+            var id = envId || ids[window.location.hostname] || '${DEFAULT_MEASUREMENT_ID}';
+            var debug = ${JSON.stringify(debug)};
             var s = document.createElement('script');
             s.src = 'https://www.googletagmanager.com/gtag/js?id=' + id;
             s.async = true;
@@ -38,7 +43,7 @@ export default function GoogleAnalytics() {
             function gtag(){dataLayer.push(arguments);}
             window.gtag = gtag;
             gtag('js', new Date());
-            gtag('config', id);
+            gtag('config', id, debug ? { debug_mode: true } : {});
           })();
         `,
       }}

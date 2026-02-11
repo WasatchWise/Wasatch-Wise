@@ -7,7 +7,7 @@
 
 ## Overview
 
-Three brands under the WasatchWise umbrella, each serving distinct audiences with clear boundaries.
+Three brands under the WasatchWise umbrella — the **Holy Trinity**: WasatchWise, Adult AI Academy, Ask Before You App. Each has equal stature, its own audience and offer, and when users are in one brand’s experience (e.g. AAA), that brand’s logo and identity lead (e.g. AAA logo in nav, Smart Tech • Wiser People).
 
 ---
 

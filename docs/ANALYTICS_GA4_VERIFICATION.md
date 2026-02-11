@@ -36,6 +36,14 @@ Same Measurement ID can be used for all; GA4 uses the stream to segment by site.
 2. Open DevTools → Network, filter by `gtag` or `google-analytics`.
 3. In GA4: Reports → Realtime; visit the page and confirm the hit.
 
+## Debug mode (Realtime not showing)
+
+If scripts load but Realtime shows 0 users, enable GA4 debug so events appear in **Admin → DebugView**:
+
+1. In Vercel, add **Production** env var: `NEXT_PUBLIC_GA_DEBUG` = `true` (on the project you’re testing).
+2. Redeploy, then open GA4 → **Admin → DebugView**.
+3. Visit the site; events show in DebugView within seconds. Remove the env var and redeploy when done.
+
 ## Code references
 
 - **Dashboard:** `apps/dashboard/app/layout.tsx` (renders `<GoogleAnalytics />`).
