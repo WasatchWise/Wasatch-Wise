@@ -3,6 +3,8 @@
 **Reference:** Comprehensive Corporate Strategic Plan (Feb 9, 2026)  
 **Context:** Wednesday, Feb 11, 2026. Revised plan and verification report reflect ~3 days ahead of original Week 1–2 schedule.
 
+**Status as of end of Feb 11:** Wed checklist is complete except operations (email/Resend, optional security PRs). Both blog posts expanded to ~1,200 words and pushed; GA4 debug removed; johnlyman.net audit done (results in checklist; only remaining item is adding a prominent WasatchWise CTA on that site). All commits pushed to `main`; Vercel will have latest.
+
 ---
 
 ## Where We Are vs. the 2/9 Report
@@ -18,13 +20,15 @@
 | **Content calendar / execution schedule** | ✅ `docs/EXECUTION_SCHEDULE_2026.md`; week-by-week through Phase 5. |
 | **Monday Corporate Briefing template** | ✅ `docs/MONDAY_CORPORATE_BRIEFING_TEMPLATE.md`. |
 | **Adult AI Academy** | ✅ Ahead of plan — full app (synthesis, library, pilot, HeyGen, Supabase). |
-| **Blog post #1 (5 Questions…)** | ✅ Draft exists: `apps/dashboard/content/blog/5-questions-superintendents-must-ask-before-ai.mdx` (~733 words; outline target 1,200). |
+| **Blog post #1 (5 Questions…)** | ✅ Expanded to ~1,181 words; in repo and pushed. Ready to publish. |
+| **Blog post #2 (FERPA vs. COPPA)** | ✅ Expanded to ~1,200 words; WiseBot SDPC CTA; in repo and pushed. Ready to publish. |
+| **GA4 debug flag** | ✅ Removed from Vercel (user). |
+| **johnlyman.net audit** | ✅ Completed (another agent). Results in `docs/JOHNLYMAN_NET_AUDIT_CHECKLIST.md`. Sections + 150+ districts verified; no broken links. Only gap: add prominent WasatchWise CTA on johnlyman.net homepage (site is external). |
 
 ### Remaining from 2/9 Week 1–2 / Revised Plan
 
-- Remove GA4 debug flag (clean-up).
-- Publish or expand Blog Post #1; draft/publish Blog Post #2 (FERPA vs. COPPA).
-- johnlyman.net audit (CTA, 150+ districts, broken links).
+- **Publish** Blog Post #1 and #2 (both ready; go live when you choose).
+- **johnlyman.net:** Add prominent WasatchWise CTA on homepage (e.g. “Consulting with school districts? Learn about WasatchWise →”) — change is on that site, not this repo.
 - Email: confirm Resend as single sender; document SendGrid status if still in use.
 - Optional: GitHub security PRs (dashboard + ask-before-you-app); add askbeforeyouapp.com to Cloudflare if desired.
 
@@ -34,16 +38,16 @@
 
 ### Clean-up
 
-- [ ] **Remove GA4 debug flag** — Vercel → wasatchwise project → Settings → Environment Variables → delete `NEXT_PUBLIC_GA_DEBUG` (or set to `false`) → redeploy. *(Tracking verified via phone test; debug no longer needed.)*
+- [x] **Remove GA4 debug flag** — Vercel → wasatchwise project → Settings → Environment Variables → delete `NEXT_PUBLIC_GA_DEBUG` (or set to `false`) → redeploy. *(Done; tracking verified.)*
 
 ### Content
 
-- [ ] **Blog Post #1** — Either (a) expand to ~1,200 words and publish, or (b) publish as-is. File: `apps/dashboard/content/blog/5-questions-superintendents-must-ask-before-ai.mdx`.
-- [ ] **Blog Post #2** — Start draft for “FERPA vs. COPPA for AI in Schools” from Outline 2 (`docs/content/WEEK1_BLOG_OUTLINES.md`). Target 1,200 words; CTA: WiseBot SDPC assessment. *(Draft may already exist: `content/blog/ferpa-vs-coppa-ai-in-schools.mdx` — verify and expand if needed.)*
+- [x] **Blog Post #1** — Expanded to ~1,200 words; in repo and pushed. File: `apps/dashboard/content/blog/5-questions-superintendents-must-ask-before-ai.mdx`. *Next: publish when ready.*
+- [x] **Blog Post #2** — Expanded to ~1,200 words; WiseBot SDPC CTA. File: `apps/dashboard/content/blog/ferpa-vs-coppa-ai-in-schools.mdx`. *Next: publish when ready.*
 
 ### Credibility / Marketing
 
-- [ ] **johnlyman.net audit** — Run `docs/JOHNLYMAN_NET_AUDIT_CHECKLIST.md`: check links, add WasatchWise CTA on homepage, confirm “150+ districts” in Privacy Perimeter, screenshot for reference.
+- [x] **johnlyman.net audit** — Completed. Checklist run; results in `docs/JOHNLYMAN_NET_AUDIT_CHECKLIST.md`. Links good; 150+ districts verified. *Remaining (on johnlyman.net): add prominent WasatchWise CTA on homepage.*
 
 ### Operations (if time)
 
@@ -99,5 +103,5 @@ Architecture: **Option B** — AAA blog + portal in dashboard under `/adult-ai-a
 ---
 
 **Document:** Wasatch Wise LLC — TASKS for February 11, 2026  
-**Version:** 1.0  
-**Next:** Update or replace with a new TASKS doc for Feb 12+ as needed.
+**Version:** 1.1  
+**Next:** Publish posts 1 & 2; add WasatchWise CTA on johnlyman.net; email/Resend; optional security PRs. New TASKS doc for Feb 12+ as needed.
