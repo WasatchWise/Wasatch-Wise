@@ -2,22 +2,25 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { Button } from '@/components/shared/Button';
 import { useState } from 'react';
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const isAdultAIAcademy = pathname?.startsWith('/adult-ai-academy') ?? false;
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          {/* Logo + Brand */}
-          <Link href="/" className="flex items-center gap-3 group">
+          {/* Logo + Brand (AAA when on /adult-ai-academy, else WasatchWise) */}
+          <Link href={isAdultAIAcademy ? '/adult-ai-academy' : '/'} className="flex items-center gap-3 group">
             <div className="relative w-10 h-10 flex-shrink-0">
               <Image
-                src="/wasatchwiselogo.png"
-                alt="WasatchWise Logo"
+                src={isAdultAIAcademy ? '/AAA.png' : '/wasatchwiselogo.png'}
+                alt={isAdultAIAcademy ? 'Adult AI Academy' : 'WasatchWise Logo'}
                 width={40}
                 height={40}
                 className="object-contain"
@@ -26,7 +29,7 @@ export function Header() {
             </div>
             <div className="flex flex-col">
               <span className="text-2xl font-bold text-orange-500 group-hover:text-orange-600 transition-colors">
-                WasatchWise
+                {isAdultAIAcademy ? 'Adult AI Academy' : 'WasatchWise'}
               </span>
               <span className="text-xs text-gray-600 font-medium tracking-wide">
                 SMART TECH * WISER PEOPLE
@@ -73,12 +76,14 @@ export function Header() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
-              <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+              <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                 <div className="py-2">
-                  <Link href="https://www.adultaiacademy.com" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-500" target="_blank" rel="noopener noreferrer">
+                  <Link href="https://www.adultaiacademy.com" className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-500" target="_blank" rel="noopener noreferrer">
+                    <Image src="/AAA.png" alt="" width={24} height={24} className="rounded-md flex-shrink-0" />
                     Adult AI Academy
                   </Link>
-                  <Link href="https://www.askbeforeyouapp.com" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-500" target="_blank" rel="noopener noreferrer">
+                  <Link href="https://www.askbeforeyouapp.com" className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-500" target="_blank" rel="noopener noreferrer">
+                    <Image src="/ABYA.png" alt="" width={24} height={24} className="rounded-md flex-shrink-0" />
                     Ask Before You App
                   </Link>
                 </div>
@@ -137,10 +142,12 @@ export function Header() {
               </div>
               <div className="flex flex-col gap-2 pl-4 border-l-2 border-gray-200">
                 <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Brands</span>
-                <Link href="https://www.adultaiacademy.com" className="text-gray-700 hover:text-orange-500 transition-colors text-sm" onClick={() => setMobileMenuOpen(false)} target="_blank" rel="noopener noreferrer">
+                <Link href="https://www.adultaiacademy.com" className="flex items-center gap-2 text-gray-700 hover:text-orange-500 transition-colors text-sm" onClick={() => setMobileMenuOpen(false)} target="_blank" rel="noopener noreferrer">
+                  <Image src="/AAA.png" alt="" width={22} height={22} className="rounded-md flex-shrink-0" />
                   Adult AI Academy
                 </Link>
-                <Link href="https://www.askbeforeyouapp.com" className="text-gray-700 hover:text-orange-500 transition-colors text-sm" onClick={() => setMobileMenuOpen(false)} target="_blank" rel="noopener noreferrer">
+                <Link href="https://www.askbeforeyouapp.com" className="flex items-center gap-2 text-gray-700 hover:text-orange-500 transition-colors text-sm" onClick={() => setMobileMenuOpen(false)} target="_blank" rel="noopener noreferrer">
+                  <Image src="/ABYA.png" alt="" width={22} height={22} className="rounded-md flex-shrink-0" />
                   Ask Before You App
                 </Link>
               </div>
