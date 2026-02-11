@@ -119,21 +119,27 @@ async function saveEvent(event: ScrapedEvent): Promise<boolean> {
   // Find or create venue
   const venueId = await findOrCreateVenue(event.venue, event.venue_address)
 
-  // Check for existing event (dedupe by name + date + venue)
+  // Check for existing event (dedupe by name/title + date + venue)
   const eventDate = new Date(event.date)
   const dateStr = eventDate.toISOString().split('T')[0]
 
-  const { data: existing } = await supabase
+  const { data: sameDayEvents } = await supabase
     .from('events')
-    .select('id')
-    .eq('name', event.title)
+    .select('id, name, title')
     .eq('venue_id', venueId)
     .gte('start_time', `${dateStr}T00:00:00`)
     .lte('start_time', `${dateStr}T23:59:59`)
-    .single()
 
-  if (existing) {
-    // Event already exists, skip
+  // Extract the core artist name (before " - Tour Name" or " + Support")
+  const coreName = event.title.split(/\s*[-–+:]\s*/)[0].toLowerCase().trim()
+
+  const alreadyExists = (sameDayEvents ?? []).some(
+    (e) =>
+      (e.name && (e.name.toLowerCase().includes(coreName) || coreName.includes(e.name.toLowerCase()))) ||
+      (e.title && (e.title.toLowerCase().includes(coreName) || coreName.includes(e.title.toLowerCase())))
+  )
+
+  if (alreadyExists) {
     return false
   }
 

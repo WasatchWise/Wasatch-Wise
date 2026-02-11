@@ -121,15 +121,17 @@ export async function POST(request: NextRequest) {
 
         const { data: sameDayEvents } = await supabase
           .from('events')
-          .select('id, title, headline')
+          .select('id, title, name, headline')
           .eq('venue_id', venueId)
           .gte('start_time', `${dateStr}T00:00:00`)
           .lte('start_time', `${dateStr}T23:59:59`)
 
+        const headlinerLower = ev.headliner.toLowerCase().trim()
         const alreadyExists = (sameDayEvents ?? []).some(
           (e) =>
-            (e.title && e.title.toLowerCase().includes(ev.headliner.toLowerCase())) ||
-            (e.headline && e.headline.toLowerCase() === ev.headliner.toLowerCase())
+            (e.name && e.name.toLowerCase().includes(headlinerLower)) ||
+            (e.title && e.title.toLowerCase().includes(headlinerLower)) ||
+            (e.headline && e.headline.toLowerCase() === headlinerLower)
         )
         if (alreadyExists) {
           skipped++

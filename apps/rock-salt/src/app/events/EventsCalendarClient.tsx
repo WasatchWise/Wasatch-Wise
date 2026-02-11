@@ -141,17 +141,27 @@ export default function EventsCalendarClient({ initialEvents }: EventsCalendarCl
           </h2>
 
           {thisWeek.length > 0 ? (
-            thisWeek.map(event => (
-              <div key={event.id}>
-                <DayHeader day={new Date(event.start_time!).toLocaleDateString('en-US', { weekday: 'short', month: '2-digit', day: '2-digit' }).toUpperCase()} />
-                <ShowCard
-                  venue={event.venue?.name || 'TBD'}
-                  location={event.venue?.city || ''}
-                  lineup={event.name || event.title || ''}
-                  meta={[
-                    { label: 'Time', value: new Date(event.start_time!).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }) }
-                  ]}
-                />
+            Object.entries(
+              thisWeek.reduce<Record<string, typeof thisWeek>>((groups, event) => {
+                const dayKey = new Date(event.start_time!).toLocaleDateString('en-US', { weekday: 'short', month: '2-digit', day: '2-digit' }).toUpperCase()
+                if (!groups[dayKey]) groups[dayKey] = []
+                groups[dayKey].push(event)
+                return groups
+              }, {})
+            ).map(([day, events]) => (
+              <div key={day}>
+                <DayHeader day={day} />
+                {events.map(event => (
+                  <ShowCard
+                    key={event.id}
+                    venue={event.venue?.name || 'TBD'}
+                    location={event.venue?.city || ''}
+                    lineup={event.name || event.title || ''}
+                    meta={[
+                      { label: 'Time', value: new Date(event.start_time!).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }) }
+                    ]}
+                  />
+                ))}
               </div>
             ))
           ) : (
