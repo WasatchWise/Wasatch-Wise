@@ -1,5 +1,5 @@
 {
-  "name": "RSS → Claude → Google Sheets (social post generation)",
+  "name": "RSS → Social Copy API → Google Sheets",
   "nodes": [
     {
       "parameters": {
@@ -15,7 +15,7 @@
     },
     {
       "parameters": {
-        "url": "https://wasatchwise.com/feed",
+        "url": "http://host.docker.internal:3000/feed",
         "options": {}
       },
       "id": "rss-read",
@@ -23,11 +23,11 @@
       "type": "n8n-nodes-base.rssFeedRead",
       "typeVersion": 1,
       "position": [460, 300],
-      "notes": "Change URL to your blog RSS (e.g. wasatchwise.com/feed or /rss)"
+      "notes": "Change URL to your blog RSS (e.g. wasatchwise.com/feed or /feed.xml)"
     },
     {
       "parameters": {
-        "jsCode": "// Take only the newest item (avoid reprocessing old posts)\nconst items = $input.all();\nif (!items.length) return [];\nconst sorted = items.sort((a, b) => {\n  const dateA = new Date(a.json.pubDate || a.json.isoDate || 0).getTime();\n  const dateB = new Date(b.json.pubDate || b.json.isoDate || 0).getTime();\n  return dateB - dateA;\n});\nconst newest = sorted[0].json;\nconst title = newest.title || '';\nconst link = newest.link || newest.guid || '';\nconst excerpt = newest.contentSnippet || newest.content?.substring(0, 500) || newest.description || '';\nreturn [{ json: { title, link, excerpt, pubDate: newest.pubDate || newest.isoDate } }];\n"
+        "jsCode": "// Take the newest item and extract the slug from the blog URL\nconst items = $input.all();\nif (!items.length) return [];\nconst sorted = items.sort((a, b) => {\n  const dateA = new Date(a.json.pubDate || a.json.isoDate || 0).getTime();\n  const dateB = new Date(b.json.pubDate || b.json.isoDate || 0).getTime();\n  return dateB - dateA;\n});\nconst newest = sorted[0].json;\nconst title = newest.title || '';\nconst link = newest.link || newest.guid || '';\nconst excerpt = newest.contentSnippet || newest.content?.substring(0, 500) || newest.description || '';\n// Extract slug from URL: https://wasatchwise.com/blog/my-post-slug → my-post-slug\nconst slug = link.split('/').filter(Boolean).pop() || '';\nreturn [{ json: { title, link, excerpt, slug, pubDate: newest.pubDate || newest.isoDate } }];\n"
       },
       "id": "code-newest-only",
       "name": "Newest Post Only",
@@ -42,7 +42,7 @@
           "conditions": [
             {
               "id": "has-link",
-              "leftValue": "={{ $json.link }}",
+              "leftValue": "={{ $json.slug }}",
               "rightValue": "",
               "operator": { "type": "string", "operation": "notEmpty" }
             }
@@ -51,70 +51,48 @@
         }
       },
       "id": "if-has-post",
-      "name": "Has New Post?",
+      "name": "Has Slug?",
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [900, 300]
     },
     {
       "parameters": {
-        "jsCode": "const r = $input.first().json;\nconst prompt = `Given this blog post, write two social posts. Use valid JSON only, no markdown.\\n\\nTitle: ${r.title}\\nURL: ${r.link}\\nExcerpt: ${(r.excerpt || '').substring(0, 800)}\\n\\nOutput format: { \\\"linkedin\\\": \\\"...\\\", \\\"x\\\": \\\"...\\\" }\\n- linkedin: professional, 1-3 sentences, max 3000 chars, include the URL at the end.\\n- x: punchy, max 280 chars, include the URL.`;\nconst requestBody = JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 1024, messages: [{ role: 'user', content: prompt }] });\nreturn [{ json: { ...r, requestBody } }];\n"
+        "url": "=http://host.docker.internal:3000/api/generate-social-copy?slug={{ $json.slug }}",
+        "options": {
+          "timeout": 60000
+        }
       },
-      "id": "code-build-body",
-      "name": "Build Claude Body",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [1120, 200]
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "https://api.anthropic.com/v1/messages",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            { "name": "x-api-key", "value": "={{ $env.ANTHROPIC_API_KEY }}" },
-            { "name": "anthropic-version", "value": "2023-06-01" },
-            { "name": "content-type", "value": "application/json" }
-          ]
-        },
-        "sendBody": true,
-        "specifyBody": "string",
-        "body": "={{ $json.requestBody }}",
-        "contentType": "raw",
-        "rawContentType": "application/json",
-        "options": {}
-      },
-      "id": "claude-generate",
-      "name": "Claude: Generate LinkedIn + X",
+      "id": "generate-social-copy",
+      "name": "Generate Social Copy",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [1340, 200],
-      "notes": "Set ANTHROPIC_API_KEY in n8n Variables or Environment."
+      "position": [1120, 300],
+      "notes": "Calls the Next.js API route. Change URL to https://wasatchwise.com for production."
     },
     {
       "parameters": {
-        "jsCode": "// Parse Claude response and merge with RSS data\nconst rss = $('Newest Post Only').first().json;\nconst claudeRaw = $input.first().json;\nlet linkedin = '';\nlet x = '';\nif (claudeRaw.content && Array.isArray(claudeRaw.content)) {\n  const text = claudeRaw.content.find(c => c.type === 'text')?.text || '';\n  try {\n    const parsed = JSON.parse(text.replace(/```json?\\n?|```/g, '').trim());\n    linkedin = parsed.linkedin || '';\n    x = parsed.x || '';\n  } catch (e) {\n    linkedin = text;\n    x = text.substring(0, 280);\n  }\n}\nreturn [{\n  json: {\n    title: rss.title,\n    blog_url: rss.link,\n    linkedin_text: linkedin,\n    x_text: x,\n    generated_at: new Date().toISOString()\n  }\n}];\n"
+        "jsCode": "// Format the API response for Google Sheets\nconst api = $input.first().json;\nconst twitterText = Array.isArray(api.twitter)\n  ? api.twitter.join('\\n---\\n')\n  : (api.twitter || '');\nreturn [{\n  json: {\n    slug: api.slug || '',\n    title: api.title || '',\n    blog_url: api.blogUrl || '',\n    linkedin_text: api.linkedin || '',\n    x_text: twitterText,\n    generated_at: new Date().toISOString()\n  }\n}];\n"
       },
-      "id": "code-parse",
-      "name": "Parse and Merge",
+      "id": "format-for-sheet",
+      "name": "Format for Sheet",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [1340, 200]
+      "position": [1340, 300]
     },
     {
       "parameters": {
         "operation": "append",
-        "documentId": { "__rl": true, "value": "={{ $vars.GOOGLE_SHEET_ID || 'YOUR_SPREADSHEET_ID' }}", "mode": "id" },
-        "sheetName": { "__rl": true, "value": "RSS Social Log", "mode": "name" },
+        "documentId": { "__rl": true, "value": "17YYA4QpezHLG81PTCyUsuSwLHAoT4P_s", "mode": "id" },
+        "sheetName": { "__rl": true, "value": "Sheet2", "mode": "name" },
         "columns": {
           "mappingMode": "defineBelow",
           "value": {
-            "Title": "={{ $json.title }}",
-            "Blog URL": "={{ $json.blog_url }}",
-            "LinkedIn Text": "={{ $json.linkedin_text }}",
-            "X Text": "={{ $json.x_text }}",
-            "Generated At": "={{ $json.generated_at }}"
+            "Date": "={{ $json.generated_at }}",
+            "Slug": "={{ $json.slug }}",
+            "LinkedIn": "={{ $json.linkedin_text }}",
+            "Twitter": "={{ $json.x_text }}",
+            "Blog URL": "={{ $json.blog_url }}"
           }
         },
         "options": {}
@@ -123,26 +101,25 @@
       "name": "Append to Google Sheet",
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
-      "position": [1560, 200],
-      "notes": "Create a Sheet with columns: Title, Blog URL, LinkedIn Text, X Text, Generated At. Set GOOGLE_SHEET_ID in n8n Variables or edit node."
+      "position": [1560, 300],
+      "notes": "Appends to the execution schedule spreadsheet, Sheet2 tab."
     }
   ],
   "connections": {
     "Every 6 Hours": { "main": [[{ "node": "RSS Feed Read", "type": "main", "index": 0 }]] },
     "RSS Feed Read": { "main": [[{ "node": "Newest Post Only", "type": "main", "index": 0 }]] },
-    "Newest Post Only": { "main": [[{ "node": "Has New Post?", "type": "main", "index": 0 }]] },
-    "Has New Post?": {
+    "Newest Post Only": { "main": [[{ "node": "Has Slug?", "type": "main", "index": 0 }]] },
+    "Has Slug?": {
       "main": [
-        [],
-        [{ "node": "Build Claude Body", "type": "main", "index": 0 }]
+        [{ "node": "Generate Social Copy", "type": "main", "index": 0 }],
+        []
       ]
     },
-    "Build Claude Body": { "main": [[{ "node": "Claude: Generate LinkedIn + X", "type": "main", "index": 0 }]] },
-    "Claude: Generate LinkedIn + X": { "main": [[{ "node": "Parse and Merge", "type": "main", "index": 0 }]] },
-    "Parse and Merge": { "main": [[{ "node": "Append to Google Sheet", "type": "main", "index": 0 }]] }
+    "Generate Social Copy": { "main": [[{ "node": "Format for Sheet", "type": "main", "index": 0 }]] },
+    "Format for Sheet": { "main": [[{ "node": "Append to Google Sheet", "type": "main", "index": 0 }]] }
   },
   "active": false,
   "settings": { "executionOrder": "v1" },
-  "versionId": "1",
+  "versionId": "2",
   "meta": { "templateCredsSetupCompleted": false }
 }
