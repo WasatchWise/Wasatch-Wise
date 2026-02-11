@@ -138,7 +138,7 @@ Be helpful, accurate, conversational, and always cite your sources when using kn
 
     // 6. Call Claude API
     const response = await anthropic.messages.create({
-      model: 'claude-3-5-sonnet-20241022',
+      model: 'claude-sonnet-4-5-20250929',
       max_tokens: 2048,
       system: systemPrompt,
       messages: [

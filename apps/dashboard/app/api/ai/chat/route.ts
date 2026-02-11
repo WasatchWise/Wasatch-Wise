@@ -115,7 +115,7 @@ If the user's question closely matches one of the knowledge base entries above, 
       let fullResponse = '';
       try {
         const stream = await anthropic.messages.stream({
-          model: 'claude-3-5-sonnet-20241022',
+          model: 'claude-sonnet-4-5-20250929',
           max_tokens: 1024,
           system: enhancedSystemPrompt,
           messages: messages.map((msg) => ({
@@ -143,7 +143,7 @@ If the user's question closely matches one of the knowledge base entries above, 
                 content_type: 'wisebot_chat',
                 input_prompt: message.slice(0, 10000),
                 output_text: fullResponse.slice(0, 50000),
-                model: 'claude-3-5-sonnet-20241022',
+                model: 'claude-sonnet-4-5-20250929',
                 kb_enhanced: kbUsed,
                 kb_results_count: kbResultsCount,
               });
