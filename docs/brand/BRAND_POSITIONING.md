@@ -19,6 +19,10 @@ Three brands under the WasatchWise umbrella — the **Holy Trinity**: WasatchWis
 | **Ask Before You App** | K-12 schools, higher ed institutions, parents | App safety, AI detection, privacy audits for educational ecosystems | Tool vetting, student data protection, educator/parent resources |
 | **Adult AI Academy** | General adults (Gen X, Xennials, career professionals, reluctant learners) | AI literacy and upskilling for everyday use | No tech jargon, real-world applications, privacy-conscious, non-educator-specific |
 
+### Visual identity (Adult AI Academy)
+- **Page palette:** Bluish-gray (Tailwind `slate`) for backgrounds, borders, and accents—aligns with the AAA logo background and a calmer, adult-learning feel. Less orange than WasatchWise.
+- **Orange** reserved for primary CTAs only (e.g. Get Started, modal primary button) to keep conversion clear and tie to parent brand.
+
 ---
 
 ## Audience Boundaries
