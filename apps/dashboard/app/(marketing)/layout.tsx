@@ -1,5 +1,6 @@
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { FirstVisitModalController } from '@/components/FirstVisitModalController';
 import { generateMetadata as genMeta } from '@/lib/utils/seo';
 
 export const metadata = genMeta({
@@ -18,6 +19,7 @@ export default function MarketingLayout({
       <Header />
       <main>{children}</main>
       <Footer />
+      <FirstVisitModalController />
     </>
   );
 }

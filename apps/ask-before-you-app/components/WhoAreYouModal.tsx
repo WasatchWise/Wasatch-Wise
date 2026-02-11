@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { captureEmail } from '@/app/actions/email-capture';
 import { Users, BookOpen, Shield, Smartphone, GraduationCap } from 'lucide-react';
 import { setStoredPersona } from '@/lib/persona';
@@ -33,7 +34,6 @@ const PERSONA_HASH: Record<string, string> = {
 
 export function WhoAreYouModal() {
   const router = useRouter();
-  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [persona, setPersona] = useState<string | null>(null);
   const [howHelp, setHowHelp] = useState<string | null>(null);
@@ -109,11 +109,31 @@ export function WhoAreYouModal() {
       >
         <div className="p-6">
           <h2 id="who-are-you-title" className="text-xl font-bold text-gray-900 mb-1">
-            Who are you?
+            App safety for K-12 and families
           </h2>
           <p id="who-are-you-desc" className="text-sm text-gray-600 mb-4">
-            We’ll point you to the right stuff. Optional: tell us how we can help and stay in the loop.
+            Vet edtech and AI tools before they touch your classroom or your kids. Privacy, DPAs, and clear guidance.
           </p>
+
+          {/* Matrix CTAs: Try WiseBot | Contact */}
+          <div className="flex flex-col sm:flex-row gap-3 mb-5">
+            <Link
+              href="/tools/wisebot"
+              onClick={() => { localStorage.setItem(STORAGE_KEY, '1'); setIsOpen(false); }}
+              className="flex-1 px-4 py-2.5 rounded-lg bg-orange-500 text-white text-sm font-semibold text-center hover:bg-orange-600 transition-colors"
+            >
+              Try WiseBot
+            </Link>
+            <Link
+              href="/contact"
+              onClick={() => { localStorage.setItem(STORAGE_KEY, '1'); setIsOpen(false); }}
+              className="flex-1 px-4 py-2.5 rounded-lg border-2 border-orange-500 text-orange-500 text-sm font-semibold text-center hover:bg-orange-50 transition-colors"
+            >
+              Contact
+            </Link>
+          </div>
+
+          <p className="text-xs text-gray-500 mb-3">Or tell us who you are and we’ll point you to the right stuff:</p>
 
           {/* Persona */}
           <div className="mb-4">
