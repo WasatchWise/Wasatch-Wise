@@ -3,7 +3,18 @@
 **Reference:** Comprehensive Corporate Strategic Plan (Feb 9, 2026)  
 **Context:** Wednesday, Feb 11, 2026. Revised plan and verification report reflect ~3 days ahead of original Week 1–2 schedule.
 
-**Status as of end of Feb 11:** Wed checklist is complete except operations (email/Resend, optional security PRs). Both blog posts expanded to ~1,200 words and pushed; GA4 debug removed; johnlyman.net audit done (results in checklist; only remaining item is adding a prominent WasatchWise CTA on that site). All commits pushed to `main`; Vercel will have latest.
+**Status as of end of Feb 11:** Wed checklist is complete except operations (email/Resend, optional security PRs). Both blog posts expanded to ~1,200 words and pushed; Blog Post #1 **published**; GA4 debug removed; johnlyman.net audit done (results in checklist; only remaining item is adding a prominent WasatchWise CTA on that site). All commits pushed to `main`; Vercel will have latest.
+
+**Additional Feb 11 accomplishments (evening session):**
+- Sabrina Matrix first-visit modals implemented for all 3 brand entry points (`c625bcd`)
+- AAA logo in header by route + ABYA logo in Brands dropdown (`96bea76`)
+- AAA logo flicker fix on `/adult-ai-academy` (`4f495a4`)
+- Adult AI Academy page: slate palette, in-person seminar section, Facebook event link (`51bf9a0`)
+- WiseBot: Claude AI integration and audit analysis (`66c14b1`)
+- MDX blog system with RSS feed for content pipeline (`f10f10c`)
+- Blog Post #1 ("5 Questions Superintendents Must Ask Before AI") published (`28ffa4e`)
+- Rock Salt: event duplication fix, ingest-events fixes (`bf36779`, `0e46ab1`, `15529d7`, `b501961`)
+- n8n RSS-to-social workflow added (`9de774b`)
 
 ---
 
@@ -20,17 +31,26 @@
 | **Content calendar / execution schedule** | ✅ `docs/EXECUTION_SCHEDULE_2026.md`; week-by-week through Phase 5. |
 | **Monday Corporate Briefing template** | ✅ `docs/MONDAY_CORPORATE_BRIEFING_TEMPLATE.md`. |
 | **Adult AI Academy** | ✅ Ahead of plan — full app (synthesis, library, pilot, HeyGen, Supabase). |
-| **Blog post #1 (5 Questions…)** | ✅ Expanded to ~1,181 words; in repo and pushed. Ready to publish. |
+| **Blog post #1 (5 Questions…)** | ✅ **Published.** Expanded to ~1,181 words; MDX blog system built; committed and pushed (`28ffa4e`). |
 | **Blog post #2 (FERPA vs. COPPA)** | ✅ Expanded to ~1,200 words; WiseBot SDPC CTA; in repo and pushed. Ready to publish. |
+| **MDX blog system + RSS** | ✅ Full blog infrastructure built with RSS feed for content pipeline (`f10f10c`). |
+| **Sabrina Matrix first-visit modals** | ✅ One welcome modal per brand entry point (WasatchWise, AAA, ABYA). sessionStorage-based, one per session (`c625bcd`). |
+| **Brand nav: AAA logo by route** | ✅ AAA logo shows in header when on `/adult-ai-academy`; ABYA in Brands dropdown; flicker fix applied (`96bea76`, `4f495a4`). |
+| **AAA page: slate palette + events** | ✅ Bluish-gray (slate) palette, in-person seminar section, Facebook event link added (`51bf9a0`). Brand Positioning doc updated with AAA visual identity. |
+| **WiseBot Claude integration** | ✅ Claude AI integration for audit analysis (`66c14b1`). |
+| **n8n RSS-to-social workflow** | ✅ Workflow added for blog → social pipeline (`9de774b`). |
+| **Rock Salt bug fixes** | ✅ Event duplication fix, ingest-events serialization/venue fixes (`bf36779`, `0e46ab1`, `15529d7`, `b501961`). |
 | **GA4 debug flag** | ✅ Removed from Vercel (user). |
 | **johnlyman.net audit** | ✅ Completed (another agent). Results in `docs/JOHNLYMAN_NET_AUDIT_CHECKLIST.md`. Sections + 150+ districts verified; no broken links. Only gap: add prominent WasatchWise CTA on johnlyman.net homepage (site is external). |
 
 ### Remaining from 2/9 Week 1–2 / Revised Plan
 
-- **Publish** Blog Post #1 and #2 (both ready; go live when you choose).
-- **johnlyman.net:** Add prominent WasatchWise CTA on homepage (e.g. “Consulting with school districts? Learn about WasatchWise →”) — change is on that site, not this repo.
+- ~~**Publish** Blog Post #1~~ ✅ Published (`28ffa4e`).
+- **Publish Blog Post #2** (FERPA vs. COPPA) — drafted and ready; go live when you choose.
+- **johnlyman.net:** Add prominent WasatchWise CTA on homepage (e.g. "Consulting with school districts? Learn about WasatchWise →") — change is on that site, not this repo.
 - Email: confirm Resend as single sender; document SendGrid status if still in use.
 - Optional: GitHub security PRs (dashboard + ask-before-you-app); add askbeforeyouapp.com to Cloudflare if desired.
+- **Untracked in repo:** `apps/dashboard/app/api/generate-social-copy/` — add and commit when ready.
 
 ---
 
@@ -79,10 +99,13 @@
 
 Architecture: **Option B** — AAA blog + portal in dashboard under `/adult-ai-academy/` with AAA layout (logo, Smart Tech • Wiser People). See `docs/plans/ADULT_AI_ACADEMY_BLOG_AND_PORTAL.md`.
 
-- [ ] AAA layout (AAA logo in nav, tagline, nav: Courses, Blog, Community, Get Started)
+- [x] AAA logo in nav by route (shows when on `/adult-ai-academy`) + ABYA in Brands dropdown
+- [x] AAA page: slate palette, in-person seminar section, Facebook event link
+- [x] Sabrina Matrix first-visit modal for AAA entry point
+- [ ] AAA full layout (tagline in nav, nav: Courses, Blog, Community, Get Started)
 - [ ] AAA blog structure + first 3 posts
 - [ ] Portal MVP: catalog page + course structure
-- [ ] First course: “AI Literacy Foundations,” 4 modules, 12 lessons
+- [ ] First course: "AI Literacy Foundations," 4 modules, 12 lessons
 - [ ] Progress tracking + completion badges
 - [ ] Paid certification + district site licenses
 
@@ -102,6 +125,6 @@ Architecture: **Option B** — AAA blog + portal in dashboard under `/adult-ai-a
 
 ---
 
-**Document:** Wasatch Wise LLC — TASKS for February 11, 2026  
-**Version:** 1.1  
-**Next:** Publish posts 1 & 2; add WasatchWise CTA on johnlyman.net; email/Resend; optional security PRs. New TASKS doc for Feb 12+ as needed.
+**Document:** Wasatch Wise LLC — TASKS for February 11, 2026
+**Version:** 1.2 (updated end-of-day Feb 11)
+**Next:** Publish Blog Post #2; add WasatchWise CTA on johnlyman.net; email/Resend; optional security PRs; commit `generate-social-copy` route. New TASKS doc for Feb 12+ as needed.

@@ -21,23 +21,34 @@ These items are **confirmed** from code and docs in the monorepo. Anything that 
 | **Monday Corporate Briefing template** | **Done** | `docs/MONDAY_CORPORATE_BRIEFING_TEMPLATE.md` — sections: metrics, AI Sparring Partner, content planning, “What we’re NOT doing,” week-ahead priorities. |
 | **Adult AI Academy build** | **Ahead of plan** | Full Next.js app in `apps/adult-ai-academy`: synthesis, library, pilot, HCI test, HeyGen/audio APIs, Supabase, production orchestrator, auditor, knowledge graph. Plan had “redirects to WasatchWise” and “BUILD Q2, launch Q3” — you have a real product in progress. |
 
-### ⚠ Documented but completion unclear (need verification)
+### ⚠ → ✅ Resolved (verified end of Feb 11)
 
-| Item | Notes |
+| Item | Status (updated Feb 11 EOD) |
 |------|--------|
-| **Cloudflare Web Analytics** | Plan: enable on wasatchwise.com + askbeforeyouapp.com. No repo evidence; needs browser check. |
-| **SendGrid vs email** | Feb 9 doc (`TODAY_FEB_9_2026.md`) says **Resend** is used for contact form, quiz, audit; SendGrid migration was in original plan. Need to confirm: SendGrid fully sunset? Resend the only sender? Apps Script optional? |
-| **johnlyman.net audit** | `docs/JOHNLYMAN_NET_AUDIT_CHECKLIST.md` exists; all checkboxes **unchecked** in repo. Either not done or not marked done. |
-| **First 2 blog posts** | Outlines ready; no evidence in repo of published posts (no blog app or content files found in this pass). |
-| **GitHub security PRs** | Plan: close 20+ CVE PRs. Not verified in repo. |
-| **Google Sheet Content Calendar** | Plan: 52-week Google Sheet. We have markdown schedule; unknown if Sheet exists and is populated. |
+| **Cloudflare Web Analytics** | ✅ Enabled on wasatchwise.com. ABYA not in same CF account — add if desired. |
+| **SendGrid vs email** | ⚠ Still open. Resend is primary sender (contact form, quiz, audit). Need to confirm: SendGrid fully sunset? Decision needed by Feb 13. |
+| **johnlyman.net audit** | ✅ **Completed.** Links good, 150+ districts verified. Results in `JOHNLYMAN_NET_AUDIT_CHECKLIST.md`. **Remaining:** add prominent WasatchWise CTA on homepage (external site). |
+| **First 2 blog posts** | ✅ **Blog Post #1 published** ("5 Questions Superintendents Must Ask Before AI", `28ffa4e`). Blog Post #2 drafted and ready ("FERPA vs COPPA"). MDX blog system + RSS feed built (`f10f10c`). |
+| **GitHub security PRs** | ⚠ Still open. Optional; low priority. |
+| **Google Sheet Content Calendar** | ✅ Markdown execution schedule (`EXECUTION_SCHEDULE_2026.md`) serves this role. No separate Google Sheet needed unless preferred. |
+
+### ✅ New accomplishments (Feb 11 evening session)
+
+| Item | Status |
+|------|--------|
+| **Sabrina Matrix first-visit modals** | ✅ One welcome modal per brand entry point (WasatchWise, AAA, ABYA). sessionStorage-based (`c625bcd`). |
+| **Brand nav: AAA logo by route** | ✅ AAA logo in header when on `/adult-ai-academy`; ABYA in Brands dropdown; flicker fix (`96bea76`, `4f495a4`). |
+| **AAA page: slate palette + events** | ✅ Bluish-gray (slate) palette, in-person seminar section, Facebook event link. Brand Positioning doc updated (`51bf9a0`). |
+| **WiseBot Claude integration** | ✅ Claude AI integration for audit analysis (`66c14b1`). |
+| **n8n RSS-to-social workflow** | ✅ Blog → social pipeline workflow added (`9de774b`). |
+| **Rock Salt bug fixes** | ✅ Event duplication fix + 3 ingest-events fixes (4 commits). |
 
 ---
 
-## 2. Revised “Where We Are” (Effective Wed Feb 11)
+## 2. Revised "Where We Are" (Updated end of Feb 11)
 
-- **Phase 1 (Weeks 1–4) — Stop the Bleeding:** Partially complete. GA4 (code), Pipeline IQ decision, AI outlines, execution schedule, and Monday Briefing template are in place. Adult AI Academy is ahead of plan.
-- **Assumption (~3 days ahead):** You’re roughly at **end of Week 1 / start of Week 2** in terms of deliverables: first blog drafts and SendGrid/email resolution could be next without redoing what’s done.
+- **Phase 1 (Weeks 1–4) — Stop the Bleeding:** Substantially complete. GA4 live, Pipeline IQ decided, content calendar done, Monday Briefing template ready, Blog Post #1 published, Blog Post #2 ready, johnlyman.net audit done, MDX blog + RSS built, Sabrina first-visit modals live, brand nav routing live, WiseBot Claude integration done, n8n RSS-to-social workflow ready. AAA page updated with slate palette and events.
+- **Ahead of schedule:** You're at **end of Week 2** in terms of deliverables — blog posts, analytics, brand experience, and content pipeline all done. Remaining: publish Post #2, email/Resend decision, optional security PRs, and johnlyman.net CTA.
 
 ---
 
@@ -135,16 +146,19 @@ Use these when Code Extension can use browser tabs where you’re logged into GA
 
 ---
 
-## 5. One-Page “What to Do Now” (Wed Feb 11)
+## 5. One-Page "What to Do Now" (Updated end of Feb 11)
 
-| Priority | Action | Owner |
-|----------|--------|--------|
-| 1 | Run Code Extension questions (Section 4) and save answers to a short verification doc | You / Code Extension |
-| 2 | Draft blog post #1 from Outline 1 (1,200 words) | You |
-| 3 | Decide email: Resend only vs Apps Script; if SendGrid still used, export and document | You |
-| 4 | johnlyman.net: run checklist, add CTA, fix critical broken links | You or Code Extension (Q4–5) |
-| 5 | Draft blog post #2 from Outline 2 | You |
-| 6 | (Optional) Close/merge security PRs on dashboard + ABYA | You |
+| Priority | Action | Status | Owner |
+|----------|--------|--------|--------|
+| ~~1~~ | ~~Run Code Extension questions (Section 4)~~ | ✅ Done (GA4 verified, Cloudflare confirmed) | — |
+| ~~2~~ | ~~Draft blog post #1~~ | ✅ **Published** (`28ffa4e`) | — |
+| ~~5~~ | ~~Draft blog post #2~~ | ✅ Drafted, ready to publish | — |
+| ~~4~~ | ~~johnlyman.net audit~~ | ✅ Done (remaining: add CTA on homepage) | — |
+| **1** | **Publish Blog Post #2** ("FERPA vs COPPA") | Ready | You |
+| **2** | **Decide email:** Resend only vs Apps Script; if SendGrid still used, export and document | Open | You |
+| **3** | **johnlyman.net:** Add prominent WasatchWise CTA on homepage | Open | You |
+| **4** | (Optional) Close/merge security PRs on dashboard + ABYA | Open | You |
+| **5** | Commit `apps/dashboard/app/api/generate-social-copy/` (untracked) | Open | You |
 
 ---
 
@@ -152,10 +166,10 @@ Use these when Code Extension can use browser tabs where you’re logged into GA
 
 | Field | Value |
 |-------|--------|
-| Title | Revised Plan — Feb 11, 2026 |
+| Title | Revised Plan — Feb 11, 2026 (v2, end-of-day update) |
 | Replaces | Week 1–2 focus of Feb 9 plan (not the full 52-week strategy) |
-| Next review | After Code Extension verification and first 2 posts published |
+| Next review | After Blog Post #2 published and email decision made (target: Feb 13) |
 
 ---
 
-**Summary:** You’re roughly 3 days ahead: GA4 (code), Pipeline IQ decision, AI outlines, execution schedule, Monday Briefing template, and Adult AI Academy build are in place. Focus this week: **confirm analytics and email in production**, **ship 2 blog drafts**, and **finish johnlyman.net audit**. Use Section 4 questions with Claude Code Extension so all “logged-in” checks are done once and recorded.
+**Summary (updated Feb 11 EOD):** You're now roughly **1 week ahead**. Blog Post #1 published, Post #2 ready, johnlyman.net audited, Sabrina modals live, brand nav working, WiseBot integrated, n8n RSS-to-social ready, AAA page refreshed with slate palette and events, Rock Salt bugs fixed. **Remaining this week:** publish Post #2, decide email (Resend vs SendGrid), add WasatchWise CTA on johnlyman.net, optional security PRs.

@@ -4,7 +4,7 @@
 
 **Brand framing:** Adult AI Academy is **1/3 of the Holy Trinity** — WasatchWise, Adult AI Academy, Ask Before You App. Equal stature, distinct audience and offer. When users are in the AAA experience, the nav shows the **AAA logo** and tagline **Smart Tech • Wiser People**; it should feel like its own vertical, not a sub-page of WasatchWise.
 
-**Status:** Scope doc. **Architecture decision: Option B** (see below).
+**Status:** Scope doc. **Architecture decision: Option B** (see below). **Partial implementation started Feb 11** — AAA logo routing, slate palette, in-person seminar, first-visit modal all live.
 
 ---
 
@@ -96,13 +96,13 @@ apps/dashboard/
 
 ## 4. Phase 4 week-by-week (when ready)
 
-| Week | Focus |
-|------|--------|
-| **1** | AAA layout (logo + nav) + blog structure + first 3 AAA posts |
-| **2** | Portal MVP: catalog page + course structure (no lessons yet) |
-| **3–4** | First course: “AI Literacy Foundations,” 4 modules, 12 lessons |
-| **5** | Progress tracking + completion badges |
-| **6+** | Paid certification: assessment + digital badge; optional district site licenses |
+| Week | Focus | Status |
+|------|--------|--------|
+| **1** | AAA layout (logo + nav) + blog structure + first 3 AAA posts | 🟡 Partial — AAA logo routing by route ✅, slate palette ✅, first-visit modal ✅, ABYA in Brands dropdown ✅. Remaining: full AAA nav (Courses, Blog, Community, Get Started), AAA blog structure, first 3 posts. |
+| **2** | Portal MVP: catalog page + course structure (no lessons yet) | ☐ |
+| **3–4** | First course: "AI Literacy Foundations," 4 modules, 12 lessons | ☐ |
+| **5** | Progress tracking + completion badges | ☐ |
+| **6+** | Paid certification: assessment + digital badge; optional district site licenses | ☐ |
 
 ---
 
@@ -114,4 +114,6 @@ apps/dashboard/
 
 ---
 
-**Backlog (Phase 4):** AAA layout + blog setup; AAA portal (catalog + first course); progress + certification. Current sprint: WasatchWise blog posts and P0 tasks; AAA when Phase 4 starts.
+**Backlog (Phase 4):** AAA layout partially started (logo routing, palette, modal done; full nav + blog structure remaining); AAA portal (catalog + first course); progress + certification. Current sprint: WasatchWise blog posts and P0 tasks; full AAA build when Phase 4 starts.
+
+**Last updated:** February 11, 2026

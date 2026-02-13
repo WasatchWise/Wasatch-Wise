@@ -14,7 +14,7 @@
 | **SEO Keywords** | superintendent AI decisions, K-12 AI adoption, school district AI policy, AI tool vetting schools, FERPA AI compliance |
 | **CTA** | Free Cognitive Audit — 15-min call to assess your district's AI readiness |
 | **Word Target** | 1,200 |
-| **Status** | Ready for draft |
+| **Status** | ✅ **PUBLISHED** — Expanded to ~1,181 words. Committed (`28ffa4e`). File: `apps/dashboard/content/blog/5-questions-superintendents-must-ask-before-ai.mdx`. |
 
 ---
 
@@ -28,7 +28,7 @@
 | **SEO Keywords** | FERPA COPPA AI schools, student data privacy AI, SDPC compliance, AI vendor vetting K-12, student data AI tools |
 | **CTA** | WiseBot SDPC assessment — see if your vendors are aligned |
 | **Word Target** | 1,200 |
-| **Status** | Ready for draft |
+| **Status** | ✅ **DRAFTED** — Expanded to ~1,200 words with WiseBot SDPC CTA. File: `apps/dashboard/content/blog/ferpa-vs-coppa-ai-in-schools.mdx`. Ready to publish. |
 
 ---
 
@@ -46,4 +46,4 @@
 
 ---
 
-**Use:** Post 1 & 2 this week (Week 1). Post 3 for Week 2.
+**Use:** ~~Post 1 & 2 this week (Week 1).~~ Post 1 ✅ published; Post 2 ✅ drafted, ready to publish. Post 3 for Week 2.

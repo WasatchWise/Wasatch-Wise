@@ -1,7 +1,8 @@
 # Wasatch Wise — Execution Schedule 2026
 ## Stop Thinking. Start Doing.
 
-**Today:** Tuesday, February 10, 2026  
+**Started:** Tuesday, February 10, 2026
+**Last updated:** Wednesday, February 11, 2026
 **Target:** $50K MRR, 10K email subscribers, national K-12 AI governance authority by Feb 2027
 
 ---
@@ -9,35 +10,46 @@
 ## WEEK 1: STOP THE BLEEDING
 **Goal:** All 7 P0 items DONE by Friday 5pm. No exceptions.
 
-### TUESDAY FEB 10 — TODAY
+### TUESDAY FEB 10
 | Time | Task | Done? |
 |------|------|-------|
-| 2-3 hrs | **Install GA4** — wasatchwise.com, askbeforeyouapp.com, adultaiacademy.com. Add measurement IDs to Next.js, deploy, verify DebugView | ☐ |
-| 30 min | **Enable Cloudflare Web Analytics** — wasatchwise.com + askbeforeyouapp.com | ☐ |
-| 30 min | **Set up Content Calendar** — Google Sheet, 52 weeks, columns: Week, Date, Title, Status | ☐ |
+| 2-3 hrs | **Install GA4** — wasatchwise.com, askbeforeyouapp.com, adultaiacademy.com. Add measurement IDs to Next.js, deploy, verify DebugView | ✅ |
+| 30 min | **Enable Cloudflare Web Analytics** — wasatchwise.com + askbeforeyouapp.com | ✅ (wasatchwise.com; ABYA not in same CF account) |
+| 30 min | **Set up Content Calendar** — Google Sheet, 52 weeks, columns: Week, Date, Title, Status | ✅ (markdown: `EXECUTION_SCHEDULE_2026.md`) |
 
 ### WEDNESDAY FEB 11
 | Time | Task | Done? |
 |------|------|-------|
-| 4 hrs MAX | **Pipeline IQ decision** — Can it deliver K-12 leads? YES → fix. NO/UNCERTAIN → sunset. By end of day: either working OR archived + redirect live | ☐ |
-| 1 hr | **AI Co-Founder prompt** — Use template from Section II.B, generate first 3 blog outlines, save to Content Calendar | ☐ |
+| 4 hrs MAX | **Pipeline IQ decision** — Can it deliver K-12 leads? YES → fix. NO/UNCERTAIN → sunset. By end of day: either working OR archived + redirect live | ✅ Maintenance mode (Feb 10) |
+| 1 hr | **AI Co-Founder prompt** — Use template from Section II.B, generate first 3 blog outlines, save to Content Calendar | ✅ 3 outlines in `WEEK1_BLOG_OUTLINES.md` |
+| — | **Blog Post #1 drafted + published** — "5 Questions Superintendents Must Ask Before AI" (~1,200 words) | ✅ Published (`28ffa4e`) |
+| — | **Blog Post #2 drafted** — "FERPA vs. COPPA" (~1,200 words) | ✅ Ready to publish |
+| — | **MDX blog system + RSS feed** — Full blog infrastructure | ✅ (`f10f10c`) |
+| — | **Sabrina Matrix first-visit modals** — One per brand entry point | ✅ (`c625bcd`) |
+| — | **Brand nav** — AAA logo by route, ABYA in Brands dropdown, flicker fix | ✅ (`96bea76`, `4f495a4`) |
+| — | **AAA page** — Slate palette, in-person seminar, Facebook event | ✅ (`51bf9a0`) |
+| — | **WiseBot** — Claude AI integration + audit analysis | ✅ (`66c14b1`) |
+| — | **n8n RSS-to-social workflow** | ✅ (`9de774b`) |
+| — | **Rock Salt fixes** — Event duplication, ingest-events bugs | ✅ (4 commits) |
+| — | **johnlyman.net audit** — Links good, 150+ districts verified | ✅ (remaining: add WasatchWise CTA on homepage) |
+| — | **GA4 debug flag removed** | ✅ |
 
 ### THURSDAY FEB 12
 | Time | Task | Done? |
 |------|------|-------|
-| 2 hrs | **johnlyman.net audit** — Fix broken links, add "Consulting with WasatchWise →" CTA on homepage | ☐ |
+| — | **Publish Blog Post #2** — "FERPA vs. COPPA" (ready to publish) | ☐ |
+| 2 hrs | **johnlyman.net** — Add "Consulting with WasatchWise →" CTA on homepage | ☐ |
 | 3 hrs | **SendGrid migration start** — Export contacts (CSV), export templates to Google Drive, create "Email Subscribers Master List" sheet | ☐ |
 
 ### FRIDAY FEB 13
 | Time | Task | Done? |
 |------|------|-------|
-| 2 hrs | **Draft blog post #1** — From AI outline, 1,200 words, K-12 governance topic | ☐ |
-| 1 hr | **SendGrid research** — Google Apps Script + Gmail API for replacement automation | ☐ |
-| 30 min | **Week 1 checkpoint** — All 7 P0 items complete? If not → Saturday work | ☐ |
+| 1 hr | **SendGrid / Resend decision** — Confirm single sender; document decision | ☐ |
+| 30 min | **Week 1 checkpoint** — All P0 items complete? Review GA4 data. | ☐ |
 
 ### WEEKEND FEB 14-15 (if needed)
 - Catch up any incomplete P0 items
-- Prep Monday Corporate Briefing template
+- Prep Monday Corporate Briefing template ✅ (already created: `MONDAY_CORPORATE_BRIEFING_TEMPLATE.md`)
 
 ---
 
