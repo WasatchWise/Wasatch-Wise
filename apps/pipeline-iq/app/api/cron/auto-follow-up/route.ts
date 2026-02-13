@@ -7,6 +7,17 @@ import {
 } from '@/lib/api/errors'
 import { logger } from '@/lib/logger'
 import { sendEmailWithSendGrid } from '@/lib/utils/sendgrid'
+import { wrapEmailInHtml } from '@/lib/groove/email-html'
+
+// Signature config — must match groove_send.py SIGNATURE dict
+const FOLLOW_UP_SIGNATURE = {
+  name: 'Mike Sartain',
+  title: 'National Sales Executive',
+  company: 'Groove Technology Solutions',
+  phone: '801-396-6534',
+  email: 'msartain@getgrooven.com',
+  website: 'getgrooven.com',
+}
 
 // Follow-up schedule: day 3, day 7, day 14
 const FOLLOW_UP_SCHEDULE = [
@@ -182,18 +193,14 @@ export async function POST(request: NextRequest) {
             .replace(/{firstName}/g, firstName)
             .replace(/{projectName}/g, projectName)
 
-          const htmlContent = `
-            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-              ${message.replace(/\n/g, '<br>')}
-              <br><br>
-              <div style="color: #666; font-size: 12px;">
-                --<br>
-                Mike Sartain<br>
-                Groove Technologies<br>
-                msartain@getgrooven.com
-              </div>
-            </div>
-          `
+          // Use the branded Groove template (same as groove_send.py)
+          // DO NOT replace with bare inline HTML — see PREFLIGHT.md Golden Rule
+          const bodyHtml = message
+            .split('\n\n')
+            .filter(p => p.trim() && !p.startsWith('Best,') && !p.startsWith('Cheers,') && !p.startsWith('Wishing'))
+            .map(p => `<p style="margin-bottom: 12px;">${p.replace(/\n/g, '<br>')}</p>`)
+            .join('')
+          const htmlContent = wrapEmailInHtml(bodyHtml, FOLLOW_UP_SIGNATURE)
 
           const success = await sendEmailWithSendGrid({
             to: contact.email,

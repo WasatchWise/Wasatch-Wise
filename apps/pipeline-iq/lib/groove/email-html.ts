@@ -16,7 +16,10 @@ export function wrapEmailInHtml(content: string, sig: SignatureConfig): string {
     const appBaseUrl =
         process.env.NEXT_PUBLIC_APP_URL ||
         (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://pipelineiq.net')
-    const logoUrl = `${appBaseUrl}/assets/unnamed.png`
+    // Primary: R2-hosted logo (always publicly accessible)
+    // Fallback: app-relative path (requires working Vercel deployment)
+    const logoUrl = process.env.GROOVE_LOGO_URL
+        || 'https://pub-b787703d5ebf43deaaaea6e8c7032324.r2.dev/unnamed.png'
 
     return `
 <!DOCTYPE html>

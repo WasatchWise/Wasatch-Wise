@@ -5,22 +5,6 @@
   "ignoreCommand": "npx turbo-ignore grooveleads-pro",
   "crons": [
     {
-      "path": "/api/cron/scrape",
-      "schedule": "0 6 * * *"
-    },
-    {
-      "path": "/api/cron/auto-outreach",
-      "schedule": "0 16 * * *"
-    },
-    {
-      "path": "/api/cron/auto-outreach",
-      "schedule": "0 13 27 1 *"
-    },
-    {
-      "path": "/api/cron/auto-follow-up",
-      "schedule": "0 14 * * *"
-    },
-    {
       "path": "/api/cron/auto-archive",
       "schedule": "0 6 * * 0"
     },
