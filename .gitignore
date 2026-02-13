@@ -90,3 +90,18 @@ next-env.d.ts
 
 # test results
 test-results
+
+# LibreOffice lock files
+.~lock.*
+
+# root-level outreach data and scripts (contain PII / API keys)
+/*.xlsx
+/*.csv
+/*.docx
+/*.cjs
+/*.py
+/scripts/
+
+# contact data and send results (contain PII)
+/*_contacts*.json
+/send_results_*.json
