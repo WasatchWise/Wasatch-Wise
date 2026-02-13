@@ -1,0 +1,10 @@
+{
+  "week": "February 16, 2026",
+  "posts": [
+    { "day": "Monday", "topic": "Origin Story (7 platforms in 8 months)", "status": "draft" },
+    { "day": "Tuesday", "topic": "Shadow AI in Schools", "status": "draft" },
+    { "day": "Wednesday", "topic": "8% to 92% Transformation", "status": "draft" },
+    { "day": "Thursday", "topic": "Why AI Training for Teachers Fails", "status": "draft" },
+    { "day": "Friday", "topic": "Free AI Readiness Quiz", "status": "draft" }
+  ]
+}
