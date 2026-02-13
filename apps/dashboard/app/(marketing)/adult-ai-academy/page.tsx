@@ -129,14 +129,17 @@ export default function AdultAIAcademyPage() {
           </div>
         </section>
 
-        {/* Coming Soon Notice */}
+        {/* Course catalog CTA */}
         <section className="bg-slate-100 border-2 border-slate-200 rounded-2xl p-6 sm:p-8 mb-8 text-center">
           <p className="text-lg sm:text-xl font-semibold text-slate-700 mb-2">
-            🚀 Launching Spring 2026
+            Start learning: AI Literacy Foundations
           </p>
-          <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
-            Adult AI Academy courses are currently in development. Join our waitlist to be notified when courses launch and receive early access pricing.
+          <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-4">
+            Our free introductory course is available now—4 modules, 12 lessons on what AI is, privacy and safety, responsible use, and simple governance.
           </p>
+          <Button href="/adult-ai-academy/courses" variant="primary" size="lg">
+            View courses
+          </Button>
         </section>
 
         {/* In-person seminar / workshop sign-up */}

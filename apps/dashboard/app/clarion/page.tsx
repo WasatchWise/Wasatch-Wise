@@ -81,7 +81,7 @@ export default function ClarionBrief() {
           </p>
           <div className="grid sm:grid-cols-2 gap-4">
             <Callout title="Proven Scalability">
-              Used by 157 Utah school districts to evaluate EdTech and AI tools responsibly.
+              Used by 157 Utah school districts and charter schools to evaluate EdTech and AI tools responsibly.
             </Callout>
             <Callout title="National Credibility">
               Presented at A4L, CoSN, and national summits. Trusted methodology for FERPA/COPPA.

@@ -212,7 +212,7 @@ export default function AskBeforeYouAppPage() {
               <div>
                 <h3 className="font-semibold text-gray-900 mb-1">Proven Methodology</h3>
                 <p className="text-sm text-gray-600 leading-relaxed">
-                  Framework used by 157 Utah school districts to evaluate EdTech and AI tools responsibly.
+                  Framework used by 157 Utah school districts and charter schools to evaluate EdTech and AI tools responsibly.
                 </p>
               </div>
             </div>

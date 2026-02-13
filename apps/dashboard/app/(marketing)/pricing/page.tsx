@@ -2,6 +2,21 @@ import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { CheckCircle } from 'lucide-react';
+import { generateMetadata as genMeta, getServiceSchema, getFAQSchema } from '@/lib/utils/seo';
+
+export const metadata = genMeta({
+  title: 'Pricing — AI Governance Consulting for K-12 Districts',
+  description:
+    'AI governance packages for school districts. From 60-minute board briefings ($6,300) to full implementation sprints ($12,999-$35,499) and ongoing support.',
+  canonical: 'https://www.wasatchwise.com/pricing',
+  keywords: [
+    'AI governance pricing',
+    'school district AI consulting cost',
+    'K-12 AI compliance services',
+    'education AI policy consultant',
+    'FERPA compliance consulting',
+  ],
+});
 
 export default function PricingPage() {
   const tiers = [
@@ -148,6 +163,28 @@ export default function PricingPage() {
           ))}
         </div>
 
+        {/* Digital Products */}
+        <div className="bg-white rounded-lg p-6 sm:p-8 shadow-sm border border-gray-200 mb-12">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6">
+            <span className="text-orange-500">Digital Products</span>
+          </h2>
+          <div className="max-w-lg mx-auto">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-4 bg-orange-50 rounded-lg border border-orange-200">
+              <div>
+                <h3 className="font-bold text-gray-900">AI Governance Starter Kit</h3>
+                <p className="text-sm text-gray-600">
+                  3 professional PDFs: Policy Template, Vendor Checklist, Board Presentation Template
+                </p>
+              </div>
+              <Link href="/starter-kit">
+                <Button className="bg-orange-500 hover:bg-orange-600 w-full sm:w-auto whitespace-nowrap">
+                  Buy Now – $79
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+
         {/* Workshops Add-Ons */}
         <div className="bg-white rounded-lg p-6 sm:p-8 shadow-sm border border-gray-200">
           <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8 leading-tight">
@@ -167,10 +204,70 @@ export default function PricingPage() {
           </div>
         </div>
 
+        {/* Not Sure Where to Start? */}
+        <div className="mt-12 sm:mt-16 bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl p-8 sm:p-12 text-white text-center">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-4">Not Sure Where to Start?</h2>
+          <p className="text-orange-100 mb-6 max-w-2xl mx-auto text-lg">
+            Book a free 30-minute consultation. We'll assess your district's AI readiness
+            and recommend the right package — no commitment required.
+          </p>
+          <a
+            href={process.env.NEXT_PUBLIC_BOOKING_URL || '/contact'}
+            className="inline-flex items-center gap-2 bg-white text-orange-600 font-bold px-8 py-4 rounded-lg hover:bg-orange-50 transition-colors text-lg"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            Book Free Consultation
+          </a>
+          <p className="text-orange-200 text-sm mt-4">
+            Most districts start with a DAROS Briefing and grow from there.
+          </p>
+        </div>
+
         {/* Footer Note */}
         <div className="mt-8 sm:mt-12 text-center text-xs sm:text-sm text-gray-600 space-y-1.5 sm:space-y-2">
           <p>💡 <strong>Terms:</strong> 30% upfront, 40% on delivery, 30% at 60-day check-in. Minimum engagement: $2,000. On-site work: $2K/day + $1K for travel.</p>
           <p>🔄 <strong>Quick scope</strong> - I don't discount outcomes. Most districts transition from Briefing → Sprint → Ongoing partnership.</p>
+        </div>
+
+        {/* FAQ for SEO */}
+        <div className="mt-12 sm:mt-16">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8">
+            Frequently Asked Questions
+          </h2>
+          <div className="space-y-6 max-w-3xl mx-auto">
+            {[
+              {
+                q: 'How long does it take to implement AI governance?',
+                a: 'Our 30-Day Implementation Sprint delivers a complete governance foundation in one month — including policy, training, and infrastructure. Most districts see measurable results within the first week.',
+              },
+              {
+                q: 'Do you work with districts outside Utah?',
+                a: 'Yes. While our methodology was proven across 157 Utah districts and charter schools, our frameworks apply to any K-12 district in the US. Virtual delivery is available for all services.',
+              },
+              {
+                q: 'What makes WasatchWise different from other AI consultants?',
+                a: 'We built our approach inside the system — elevating Utah\'s FERPA compliance from 8% to 92% statewide. We focus on practical governance that actually gets adopted, not theoretical frameworks.',
+              },
+              {
+                q: 'Can we start small and scale up?',
+                a: 'Absolutely. Most districts start with a DAROS Briefing ($6,300) to assess their current state, then move to a 30-Day Sprint for implementation. Our Ongoing Support ensures you stay current as AI evolves.',
+              },
+            ].map((faq, idx) => (
+              <details key={idx} className="group bg-white rounded-lg border border-gray-200 overflow-hidden">
+                <summary className="flex items-center justify-between p-6 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50">
+                  {faq.q}
+                  <svg className="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="px-6 pb-6 text-gray-600">
+                  {faq.a}
+                </div>
+              </details>
+            ))}
+          </div>
         </div>
       </div>
     </div>

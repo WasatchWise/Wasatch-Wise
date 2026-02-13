@@ -1,11 +1,20 @@
 import Link from 'next/link';
 import { getAllPosts } from '@/lib/blog';
 import { generateMetadata as genMeta } from '@/lib/utils/seo';
+import { EmailCapture } from '@/components/shared/EmailCapture';
 
 export const metadata = genMeta({
-  title: 'Blog',
+  title: 'Blog — AI Governance Insights for K-12 Leaders',
   description:
-    'Practical AI governance insights for school district leaders — policy frameworks, training strategies, and vendor vetting guidance.',
+    'Practical AI governance insights for school district leaders — policy frameworks, training strategies, vendor vetting, FERPA compliance, and shadow AI prevention.',
+  canonical: 'https://www.wasatchwise.com/blog',
+  keywords: [
+    'AI governance blog',
+    'K-12 AI policy',
+    'school district AI training',
+    'FERPA AI compliance',
+    'education AI insights',
+  ],
 });
 
 export default function BlogListingPage() {
@@ -23,7 +32,7 @@ export default function BlogListingPage() {
           <p className="text-gray-500">No posts yet. Check back soon.</p>
         ) : (
           <div className="space-y-10">
-            {posts.map((post) => (
+            {posts.map((post, idx) => (
               <article key={post.slug}>
                 <Link href={`/blog/${post.slug}`} className="group block">
                   <time className="text-sm text-gray-500">
@@ -50,10 +59,32 @@ export default function BlogListingPage() {
                     ))}
                   </div>
                 </Link>
+
+                {/* Email capture after second post */}
+                {idx === 1 && (
+                  <div className="mt-10 mb-4">
+                    <EmailCapture
+                      source="blog_listing"
+                      heading="Get These Insights in Your Inbox"
+                      description="Weekly AI governance tips for school leaders. Practical, no fluff."
+                      incentive="Join 150+ district leaders staying ahead of AI."
+                    />
+                  </div>
+                )}
               </article>
             ))}
           </div>
         )}
+
+        {/* Bottom CTA */}
+        <div className="mt-16">
+          <EmailCapture
+            source="blog_bottom"
+            heading="Never Miss an Update"
+            description="Subscribe for weekly AI governance insights, policy templates, and district success stories."
+            buttonText="Subscribe Free"
+          />
+        </div>
       </div>
     </div>
   );

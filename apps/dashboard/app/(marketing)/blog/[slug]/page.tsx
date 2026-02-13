@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import Link from 'next/link';
 import { getAllPosts, getPostBySlug } from '@/lib/blog';
+import { BlogPostFooter } from '@/components/blog/BlogPostFooter';
 import type { Metadata } from 'next';
 
 interface PageProps {
@@ -100,6 +101,8 @@ export default async function BlogPostPage({ params }: PageProps) {
         <div className="prose prose-lg prose-gray prose-headings:text-gray-900 prose-a:text-orange-500 hover:prose-a:text-orange-600 max-w-none">
           <MDXRemote source={post.content} />
         </div>
+
+        <BlogPostFooter currentSlug={post.slug} />
       </div>
 
       <script
