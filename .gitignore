@@ -34,6 +34,7 @@ apps/gmc-mag/GMC*/
 
 # large reference files
 *.pdf
+!docs/clawdbot/*.pdf
 *.zip
 *.tar.gz
 *.mp4
