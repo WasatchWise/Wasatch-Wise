@@ -68,6 +68,9 @@ export function Header() {
                   <Link href="/utah-agreements" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-500">
                     Utah Vendor Agreements
                   </Link>
+                  <Link href="/tracker" className="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-500">
+                    State Privacy Tracker
+                  </Link>
                 </div>
               </div>
             </div>
@@ -135,6 +138,9 @@ export function Header() {
                 </Link>
                 <Link href="/utah-agreements" className="text-gray-700 hover:text-orange-500 transition-colors text-sm" onClick={() => setMobileMenuOpen(false)}>
                   Utah Vendor Agreements
+                </Link>
+                <Link href="/tracker" className="text-gray-700 hover:text-orange-500 transition-colors text-sm" onClick={() => setMobileMenuOpen(false)}>
+                  State Privacy Tracker
                 </Link>
               </div>
               <div className="pt-2 border-t border-gray-200">

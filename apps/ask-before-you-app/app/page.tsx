@@ -153,15 +153,15 @@ export default function AskBeforeYouAppPage() {
                 How to evaluate tools, what to ask vendors, and where to find vetted apps (e.g. SDPC Registry).
               </p>
             </div>
-            <div className="text-center">
-              <div className="mx-auto mb-4 w-16 h-16 rounded-full bg-orange-100 flex items-center justify-center">
+            <Link href="/tracker" className="text-center group block p-4 rounded-xl hover:bg-orange-50 transition-colors -m-4 sm:m-0">
+              <div className="mx-auto mb-4 w-16 h-16 rounded-full bg-orange-100 group-hover:bg-orange-200 flex items-center justify-center transition-colors">
                 <MapPin className="w-8 h-8 text-orange-500" />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">State laws & procedures</h3>
               <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                 Federal and state privacy laws, workflows, and compliance—by state. Pick yours and get the details.
               </p>
-            </div>
+            </Link>
             <div className="text-center">
               <div className="mx-auto mb-4 w-16 h-16 rounded-full bg-orange-100 flex items-center justify-center">
                 <Megaphone className="w-8 h-8 text-orange-500" />
