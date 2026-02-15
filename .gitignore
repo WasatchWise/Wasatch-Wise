@@ -106,3 +106,5 @@ test-results
 # contact data and send results (contain PII)
 /*_contacts*.json
 /send_results_*.json
+.npm-cache/
+.npm-cache/
